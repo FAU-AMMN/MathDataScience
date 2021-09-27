@@ -1,0 +1,21 @@
+format: jb-book
+root: intro
+options:
+  numbered: True
+chapters:
+- file: vorkurs/vorkurs.md
+  sections:
+  - file: vorkurs/regression.md
+  - file: vorkurs/koord.md
+  - file: vorkurs/folgen.md
+  - file: vorkurs/funktionen.md
+  - file: vorkurs/stetigkeit.md
+  - file: vorkurs/diffnint.md
+- file: grundlagen/grundlagen.md
+  sections:
+  - file: grundlagen/mengenlogik.md
+  - file: grundlagen/zahlensysteme.md
+- file: vektorraeume/vektorraeume.md
+  sections:
+  - file: vektorraeume/LineareAbb.md
+  - file: vektorraeume/LGS.md
