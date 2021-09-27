@@ -230,7 +230,8 @@ Sei
  V= \{(x,0)~|~x \in  \R \}, \qquad W= \{(0,y)~|~Y \in  \R \},
 ```
 
-dann gilt  $V+W = \R^2$.  ````
+dann gilt  $V+W = \R^2$.  
+````
 
 Analog definieren wir $\sum_{i=1}^m V_i$ für mehrere Vektorräume   $V_i$.Eine Summe von Vektorräumen heisst _\2_, wenn für jedes $w \in \sum_{i=1}^m V_i$ eine eindeutige Zerlegung$w=\sum_{i=1}^n v_i$, $v_i \in V_i$ existiert. Wir schreiben dann für direkte Summe zweier Vektorräume $V$ und $W$ auch $V \oplus W$.
 

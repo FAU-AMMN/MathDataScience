@@ -125,9 +125,6 @@ Die Gruppe heißt abelsch (oder kommutativ), wenn für alle $a,b \in G$ gilt: $a
 
 ```{margin} Niels Abel
 [Niels Henrik Abel](https://de.wikipedia.org/wiki/Niels_Henrik_Abel) (\* 5. August 1802 auf der Insel Finnøy, Ryfylke, Norwegen; † 6. April 1829 in Froland, Aust-Agder, Norwegen) war ein norwegischer Mathematiker.
-
-<img src="https://de.wikipedia.org/wiki/Niels_Henrik_Abel#/media/Datei:Niels_Henrik_Abel.jpg" alt="Abel" class="bg-primary" width="200px">
-
 ```
 
 Wir beachten, dass wir die Eigenschaft des neutralen und inversen Elements nur einseitig definiert haben, bei abelschen Gruppen folgt sofort $a \circ n = a$ und $a \circ a'=n$. Diese Eigenschaft folgt aber auch bei allgemeinen Gruppen. Es gilt ja dann
@@ -346,7 +343,12 @@ Durch eine Hintereinanderausführung erhalten wir dann auch Maximum und Minimum 
 ```
 
 $\Q$ ist nicht nur ein angeordneter Körper, sondern wird sogar als _archimedisch angeordnet_ bezeichnet. Dies bedeutet, dass für alle $x \in \K$ ein $n \in \N$ existiert mit $x \prec n$. Bei einer rationalen Zahl $\frac{p}q$ können wir einfach $n = |p|+1$ wählen.
-Wir betrachten zum Abschluss noch die Mächtigkeit von $\Q$. Wir haben schon gesehen, dass es eine bijektive Abbildung $f: \N \mapsto \N \times \N$ gibt, und ähnlich können wir eine bijektive Abbildung von $f: \N \rightarrow \Z \rightarrow \Z \times Z$ konstruieren. Da die Abbildung von $\Z \times \Z \setminus \{0\}$ auf die obigen Äquivalenzklassen, d.h. $\Q$ surjektiv ist, erhalten wir eine surjektive Abbildung von $\N$ nach $\Q$. Andererseits ist die Identität von $\N$ nach $\Q$ eine injektive Abbildung. Also erwarten wir, dass es auch eine Bijektion gibt, d.h. $|\Q|=\aleph_0$. Dies liefert das sogenannte erste Cantor'sche Diagonalverfahren:
+Wir betrachten zum Abschluss noch die Mächtigkeit von $\Q$. Wir haben schon gesehen, dass es eine bijektive Abbildung $f: \N \mapsto \N \times \N$ gibt, und ähnlich können wir eine bijektive Abbildung von $f: \N \rightarrow \Z \rightarrow \Z \times Z$ konstruieren. Da die Abbildung von $\Z \times \Z \setminus \{0\}$ auf die obigen Äquivalenzklassen, d.h. $\Q$ surjektiv ist, erhalten wir eine surjektive Abbildung von $\N$ nach $\Q$.
+
+```{margin} Georg Cantor
+[Georg Ferdinand Ludwig Philipp Cantor](https://de.wikipedia.org/wiki/Georg_Cantor) (\* 19. Februarjul. / 3. März 1845greg. in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.
+
+Andererseits ist die Identität von $\N$ nach $\Q$ eine injektive Abbildung. Also erwarten wir, dass es auch eine Bijektion gibt, d.h. $|\Q|=\aleph_0$. Dies liefert das sogenannte erste Cantor'sche Diagonalverfahren:
 
 ````{prf:theorem}
 Es gibt eine bijektive Abbildung $f: \N \rightarrow \Q$, d.h. $\Q$ ist abzählbar.
