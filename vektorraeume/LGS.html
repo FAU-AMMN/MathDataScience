@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.2. Lineare Gleichungssysteme &#8212; Mathematik für Data Science 2</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="3.1. Lineare Abbildungen" href="LineareAbb.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science 2</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience 2
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vorkurs/vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/regression.html">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/folgen.html">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/funktionen.html">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../grundlagen/grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/zahlensysteme.html">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="vektorraeume.html">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/vektorraeume/LGS.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transponierte-matrizen-und-skalarprodukte">
+   3.2.1. Transponierte Matrizen und Skalarprodukte
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#losbarkeit">
+   3.2.2. Lösbarkeit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quadratische-matrizen-und-inverse">
+   3.2.3. Quadratische Matrizen und Inverse
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#determinanten">
+   3.2.4. Determinanten
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lineare-gleichungssysteme">
+<h1><span class="section-number">3.2. </span>Lineare Gleichungssysteme<a class="headerlink" href="#lineare-gleichungssysteme" title="Permalink to this headline">¶</a></h1>
+<p>Im Folgenden werden wir uns mit linearen Gleichungssystemen der Form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}
+a_{11} x_1 &amp;+&amp; a_{12}x_2 &amp;+&amp; \ldots &amp;+&amp; a_{1n}x_n &amp;=&amp; y_1 \\
+a_{21} x_1 &amp;+&amp; a_{22}x_2 &amp;+&amp; \ldots &amp;+&amp; a_{2n}x_n &amp;=&amp; y_2 \\
+\vdots &amp;&amp;  \vdots &amp;&amp; \ddots &amp;&amp; \vdots &amp;&amp; \vdots \\
+a_{m1} x_1 &amp;+&amp; a_{m2}x_2 &amp;+&amp; \ldots &amp;+&amp; a_{mn}x_n &amp;=&amp; y_m
+\end{matrix}\end{split}\]</div>
+<p>mit <span class="math notranslate nohighlight">\(m,n \in \N\)</span>, <span class="math notranslate nohighlight">\(a_{ij} \in \R\)</span> und <span class="math notranslate nohighlight">\(y_i \in \R\)</span>. Die Unbekannten sind dabei <span class="math notranslate nohighlight">\(x_i \in \R\)</span>. Schreiben wir die <span class="math notranslate nohighlight">\(x_i\)</span> und <span class="math notranslate nohighlight">\(y_i\)</span> jeweils wieder in einen Spaltenvektor <span class="math notranslate nohighlight">\(x\)</span> bzw. <span class="math notranslate nohighlight">\(y\)</span> und die <span class="math notranslate nohighlight">\(a_{ij}\)</span> in eine Matrix <span class="math notranslate nohighlight">\(A \in \R^{m \times n}\)</span>, so erhalten wir die kürzere Matrixform</p>
+<div class="math notranslate nohighlight">
+\[ A x = y .\]</div>
+<p>Ist <span class="math notranslate nohighlight">\(m=n=1\)</span>, so können wir einfach durch <span class="math notranslate nohighlight">\(A\)</span> dividieren um die Gleichung zu lösen, für größere <span class="math notranslate nohighlight">\(m\)</span> und <span class="math notranslate nohighlight">\(n\)</span> benötigen wir eine Verallgemeinerung dieses Vorgangs.
+Wir wissen schon, dass die Lösung nur dann eindeutig ist, wenn das homogene System <span class="math notranslate nohighlight">\(A x = 0\)</span> nur die eindeutige Lösung <span class="math notranslate nohighlight">\(x=0\)</span> hat. Ist dies nicht der Fall, dann nennen wir</p>
+<div class="math notranslate nohighlight">
+\[ {\cal N}(A) = \{ x \in \R^n ~|~ Ax = 0 \}\]</div>
+<p>den Nullraum der Matrix <span class="math notranslate nohighlight">\(A\)</span> (analog definieren wir den Nullraum einer linearen Abbildung). Wegen der Linearität prüft man leicht nach, dass <span class="math notranslate nohighlight">\({\cal N}(A)\)</span> ein Unterraum des <span class="math notranslate nohighlight">\(\R^n\)</span> ist. Wir nennen</p>
+<div class="math notranslate nohighlight">
+\[ \text{Rg}(A) := n - \text{dim}({\cal N}(A))\]</div>
+<p>den Rang der Matrix <span class="math notranslate nohighlight">\(A\)</span>. Dazu definieren wir den Range (oder auch das Bild) von <span class="math notranslate nohighlight">\(A\)</span> als</p>
+<div class="math notranslate nohighlight">
+\[ {\cal R}(A) = \{ y \in \R^m~|~\exists x \in \R^N: y = Ax\}.\]</div>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span class="caption-number">Example 3.12 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Die Matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A = \left(\begin{matrix} 1 &amp; 2 &amp; 1 \\ 1 &amp; 0 &amp; 0  \\ 2 &amp; 2 &amp; 1  \end{matrix} \right)\end{split}\]</div>
+<p>hat den Nullraum</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} {\cal N}(A) = \{ x \in \R^3 ~|~x_1=0, x_3= -x_2\} =\{ \left(\begin{matrix} 0 \\ t  \\ -t  \end{matrix} \right) ~|~ t \in \R\}\end{split}\]</div>
+<p>und den Range</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} {\cal R}(A) = \{ y \in \R^3~|~y_3 = y_1 + y_2\}=\{ \left(\begin{matrix} s \\ t  \\ s+t  \end{matrix} \right) ~|~ s,t \in \R\}\end{split}\]</div>
+<p>Hier ist der Rang zwei, dies ist gleich der Dimension von <span class="math notranslate nohighlight">\({\cal R}(A)\)</span>.</p>
+</div>
+</div><div class="proof lemma admonition" id="lemma-1">
+<p class="admonition-title"><span class="caption-number">Lemma 3.3 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Sei dim<span class="math notranslate nohighlight">\((V)=n\)</span> und für <span class="math notranslate nohighlight">\(k &lt; n\)</span> sei <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_k\}\)</span> eine linear unabhängige Menge. Dann existieren <span class="math notranslate nohighlight">\(b_{k+1}, \ldots, b_n\)</span>, sodass <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_n\}\)</span> eine Basis von <span class="math notranslate nohighlight">\(V\)</span> ist.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Wir wählen nacheiander <span class="math notranslate nohighlight">\(b_{j+1} \in \)</span> lin<span class="math notranslate nohighlight">\((\{b_1,\ldots,b_j\})\)</span> für <span class="math notranslate nohighlight">\(j=k,\ldots,n-1\)</span> und sehen dann<span class="math notranslate nohighlight">\( \{b_1,\ldots,b_j,b_{j+1} \}\)</span> ist linear unabhängig. Für <span class="math notranslate nohighlight">\(j=n-1\)</span> sind wir dann bei einer Basis von <span class="math notranslate nohighlight">\(V\)</span> angekommen.</p>
+</div>
+<div class="proof lemma admonition" id="lemma-2">
+<p class="admonition-title"><span class="caption-number">Lemma 3.4 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(A \in \R^{m \times n}\)</span>. Dann gilt Rg<span class="math notranslate nohighlight">\((A)=\)</span>dim <span class="math notranslate nohighlight">\(({\cal R}(A))\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(k=\)</span>dim<span class="math notranslate nohighlight">\(({\cal N}(A))\)</span> und <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_k\}\)</span> eine Basis von <span class="math notranslate nohighlight">\({\cal N}(A)\)</span>. Dann können wir nach dem obigen Lemma zu einer Basis <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_n\}\)</span> erweitern. Nun sehen wir, dass <span class="math notranslate nohighlight">\(\{Ab_{k+1},\ldots,Ab_n\}\)</span> ein Erzeugendensystem für <span class="math notranslate nohighlight">\({\cal R}(A)\)</span>. Andererseits sehen wir auch, dass <span class="math notranslate nohighlight">\(\{Ab_{k+1},\ldots,Ab_n\}\)</span> linear unabhängig ist. Nehmen wir an es gibt <span class="math notranslate nohighlight">\(\lambda_i \in \R\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[ 0 = \sum_{i=k+1}^n \lambda_i A b_i = A(\sum_{i=k+1}^n \lambda_i b_i).\]</div>
+<p>Da per Konstruktion <span class="math notranslate nohighlight">\(\sum_{i=k+1}^n \lambda_i b_i\)</span> nur dann im Nullraum von A liegt, falls <span class="math notranslate nohighlight">\(\sum_{i=k+1}^n \lambda_i b_i = 0\)</span> ist, folgt <span class="math notranslate nohighlight">\(\lambda_i=0\)</span>  wegen der linearen Unabhängigkeit der <span class="math notranslate nohighlight">\(b_i\)</span>.
+Damit ist <span class="math notranslate nohighlight">\(n-k=\)</span>Rg<span class="math notranslate nohighlight">\((A)=\)</span>dim<span class="math notranslate nohighlight">\(({\cal R}(A))\)</span>.</p>
+</div>
+<p>Wir sehen, dass der Rang angibt wie groß der Raum möglichen <span class="math notranslate nohighlight">\(y\)</span> ist, für die <span class="math notranslate nohighlight">\(Ax = y\)</span> lösbar ist. Andererseits gibt uns der Rang auch Information über die mögliche Anzahl der Lösungen, wenn das Problem lösbar ist. Grundlage dafür ist folgendes Resultat:</p>
+<div class="proof lemma admonition" id="lemma-3">
+<p class="admonition-title"><span class="caption-number">Lemma 3.5 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(x_0 \in \R^n\)</span> eine Lösung von <span class="math notranslate nohighlight">\(A x = y\)</span>. Dann ist die Menge aller Lösungen gegeben durch</p>
+<div class="math notranslate nohighlight">
+\[ x_0 + {\cal N}(A) = \{ x \in \R^n ~|~x=x_0+z, z \in {\cal N}(A)\}.\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(x_0\)</span> eine Lösung, dann gilt für <span class="math notranslate nohighlight">\(z \in {\cal N}(A)\)</span> auch</p>
+<div class="math notranslate nohighlight">
+\[ A(x_0+z) = Ax_0  + A_z =y,\]</div>
+<p>also ist <span class="math notranslate nohighlight">\(x_0 + z\)</span> Lösung. Ist umgekehrt <span class="math notranslate nohighlight">\(x\)</span> eine weitere Lösung neben <span class="math notranslate nohighlight">\(x_0\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ A(x-x_0)  = Ax - Ax_0= y - y=0,\]</div>
+<p>also ist <span class="math notranslate nohighlight">\(x \in x_0 + {\cal N}(A)\)</span>.</p>
+</div>
+<p>Allgemein nennen wir für einen Teilraum <span class="math notranslate nohighlight">\(U \subset V\)</span> und <span class="math notranslate nohighlight">\(x \in V\)</span> die Menge  <span class="math notranslate nohighlight">\(M= x + U\)</span> eine <em>lineare Mannigfaltigkeit</em>.</p>
+<div class="section" id="transponierte-matrizen-und-skalarprodukte">
+<h2><span class="section-number">3.2.1. </span>Transponierte Matrizen und Skalarprodukte<a class="headerlink" href="#transponierte-matrizen-und-skalarprodukte" title="Permalink to this headline">¶</a></h2>
+<p>Zu einer Matrix <span class="math notranslate nohighlight">\(A=(A_{ij})_{i=1,\ldots,m;j=1,\ldots,n} \in \R^{m \times n}\)</span> definieren wir die transponierte Matrix <span class="math notranslate nohighlight">\(A^T
+\in \R^{n \times m} \)</span> als</p>
+<div class="math notranslate nohighlight">
+\[ A^T =  (A_{ji})_{i=1,\ldots,n;j=1,\ldots,m}.\]</div>
+<p>Die transponierte Matrix entsteht durch Wechseln zwischen Zeilen und Spalten, die Zeilen von <span class="math notranslate nohighlight">\(A\)</span> sind die Spalten von <span class="math notranslate nohighlight">\(A^T\)</span> und umgekehrt. Wir sehen leicht, dass <span class="math notranslate nohighlight">\((A^T)^T = A \)</span> gilt und darüber hinaus rechnen wir</p>
+<div class="math notranslate nohighlight">
+\[ (AB)^T = (\sum_{p } A_{jp} B_{pi} ) = (\sum_{p } B_{pi} A_{jp}  ) = B^T A^T.\]</div>
+<p>Eine Matrix heisst symmetrisch, wenn <span class="math notranslate nohighlight">\(A=A^T\)</span> gilt.</p>
+<p>Wir beachten, dass wir <span class="math notranslate nohighlight">\(A^T A \in \R^{n \times n}\)</span> und <span class="math notranslate nohighlight">\(AA^T \in \R^{m \times m}\)</span> berechnen können, während <span class="math notranslate nohighlight">\(A A \)</span> für <span class="math notranslate nohighlight">\(m \neq n\)</span> nicht definiert ist. Deshalb sind die Ausdrücke <span class="math notranslate nohighlight">\(AA^T\)</span> und <span class="math notranslate nohighlight">\(A^T A\)</span>  geeignete Verallgemeinerung des Quadrats auf eine Matrix. Im Fall von Vektoren <span class="math notranslate nohighlight">\(x \in \R^{n \times 1}\)</span> können wir</p>
+<div class="math notranslate nohighlight">
+\[ x^T x = \sum_{i=1}^n x_i^2 \in \R\]</div>
+<p>berechnen und sehen <span class="math notranslate nohighlight">\(x^T x &gt; 0\)</span> für <span class="math notranslate nohighlight">\(x \neq 0.\)</span>  Als Verallgemeinerung des Betrags definieren wir die Euklidische Norm</p>
+<div class="math notranslate nohighlight">
+\[ \Vert x \Vert := \sqrt{x^T x}.\]</div>
+<p>Allgemeiner können wir für zwei Vektoren <span class="math notranslate nohighlight">\(x,y \in \R^{n \times n}\)</span> das <em>Skalarprodukt</em></p>
+<div class="math notranslate nohighlight">
+\[ x \cdot y := x^T y = y^T x =  \sum_{i=1}^n x_i y_i\]</div>
+<p>definieren. Das Skalarprodukt erlaubt eine Verallgemeinerung von Orthogonalität, wir sagen <span class="math notranslate nohighlight">\(x\)</span> und <span class="math notranslate nohighlight">\(y\)</span> sind orthogonal, wenn<span class="math notranslate nohighlight">\( x^T y  = 0.\)</span> Dies können wir auch für Basen definieren:</p>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 3.4 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine Basis <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_n\}\)</span> der <span class="math notranslate nohighlight">\(\R^n\)</span> heisst Orthogonalbasis, falls <span class="math notranslate nohighlight">\(b_i^T b_j = 0\)</span> für <span class="math notranslate nohighlight">\(i \neq j\)</span> gilt. Gilt zusätzlich <span class="math notranslate nohighlight">\(\Vert b_i \Vert=1\)</span> für <span class="math notranslate nohighlight">\(i=1,\ldots,n\)</span>, dann sprechen wir von einer Orthonormalbasis. Analog definieren wir eine Orthogonalbasis oder Orthonormalbasis eines beliebigen Unterraums <span class="math notranslate nohighlight">\(U \subset \R^n\)</span>.</p>
+</div>
+</div><p>Wir können aus einer beliebigen Basis <span class="math notranslate nohighlight">\(\{b_1,b_2, \ldots,b_n\}\)</span> eine Orthonormalbasis konstruieren, mit dem sogenannten <em>Gram-Schmidt Verfahren</em>. Dabei beginnen wir mit <span class="math notranslate nohighlight">\(b_1\)</span> und normieren es einfach zu <span class="math notranslate nohighlight">\(\tilde b_1 = \frac{b_1}{\Vert b_1\Vert}\)</span>. Wir beachten, dass <span class="math notranslate nohighlight">\(\Vert b_1\Vert \neq 0\)</span> gilt, da sonst <span class="math notranslate nohighlight">\(b_1=0\)</span> wäre und die Annahme einer Basis falsch wäre. <span class="math notranslate nohighlight">\(\tilde b_2\)</span> konstruieren wir als Linearkombination <span class="math notranslate nohighlight">\(\tilde b_2 = \alpha \tilde b_1 + \beta b_2\)</span> mit <span class="math notranslate nohighlight">\(\alpha, \beta \in \R\)</span>, die wir so bestimmen, dass</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+0 &amp;=  \tilde b_1^T \tilde b_2 = \alpha \tilde b_1^T \tilde b_1 + \beta \tilde b_1^T b_2\\
+1 &amp;=  \tilde b_2^T \tilde b_2 = \alpha^2 \tilde b_1^T \tilde b_1 + 2 \alpha \beta \beta \tilde b_1^T b_2 + \beta^2 b_2^T b_2.
+\end{align*}\]</div>
+<p>Wegen <span class="math notranslate nohighlight">\(1 = \tilde b_1^T \tilde b_1 = \Vert \tilde b_1 \Vert^2\)</span> folgt aus der ersten Gleichung</p>
+<div class="math notranslate nohighlight">
+\[ \alpha = - \beta \tilde b_1^T b_2.\]</div>
+<p>Setzen wir dies in die zweite Gleichung ein, so folgt</p>
+<div class="math notranslate nohighlight">
+\[ 1 = \beta^2 ( b_2^T b_2 - (\tilde b_1^T b_2)^2).\]</div>
+<p>Dies Gleichung hat einer reelle Lösung <span class="math notranslate nohighlight">\(\beta\)</span>, da wegen der Cauchy-Schwarz Ungleichung (siehe Vorkurs) gilt</p>
+<div class="math notranslate nohighlight">
+\[ (\tilde b_1^T b_2)^2 \leq \Vert \tilde b_1 \Vert^2 \Vert b_2 \Vert^2 =  b_2^T b_2 ,\]</div>
+<p>mit Gleichheit wenn <span class="math notranslate nohighlight">\(\tilde b_1\)</span> und <span class="math notranslate nohighlight">\(b_2\)</span> linear abhängig sind. Dies ist wegen der Basiseigenschaft ausgeschlossen, also ist</p>
+<div class="math notranslate nohighlight">
+\[ \beta = \frac{1}{\sqrt{b_2^T b_2 - (\tilde b_1^T b_2)^2}} \]</div>
+<p>eine positive reelle Zahl.Nun gehen wir schrittweise weiter so vor und konstruieren <span class="math notranslate nohighlight">\(\tilde b_{j+1}\)</span> als Linearkombination von <span class="math notranslate nohighlight">\(\tilde b_1, \ldots, \tilde b_j\)</span> und <span class="math notranslate nohighlight">\(b_{j+1}\)</span>, aus den Gleichungen</p>
+<div class="math notranslate nohighlight">
+\[ \tilde b_i^T \tilde b_{j+1} = 0, \qquad i=1,\ldots,j\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \tilde b_{j+1}^T \tilde b_{j+1} = 1.\]</div>
+<p>Das Vorgehen ist dabei völlig analog zur Bestimmung von <span class="math notranslate nohighlight">\(\tilde b_2\)</span>, aus den ersten <span class="math notranslate nohighlight">\(j\)</span> Gleichungen können wir die ersten <span class="math notranslate nohighlight">\(j\)</span> Koeffizienten durch den Koeffizienten von <span class="math notranslate nohighlight">\(\tilde b_{j+1}\)</span> ausdrücken und diesen wieder aus der letzten Gleichung bestimmen.
+Wir bemerken, dass wir im Fall einer Orthonormalbasis <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_n\}\)</span> die Koeffizienten durch Skalarprodukte ausdrücken können. Ist</p>
+<div class="math notranslate nohighlight">
+\[ x = \sum_{i=1}^n \lambda_i b_i,\]</div>
+<p>dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ b_j^T x = \sum_{i=1}^n \lambda_i b_j^T b_i = \lambda_j.\]</div>
+<p>Also erhalten wir</p>
+<div class="math notranslate nohighlight">
+\[ x= \sum_{i=1}^n (b_i^T x) b_i.\]</div>
+<p>Wir sehen dann auch nochmal eine allgemeine Version des Satz von Pythagoras, es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \Vert x \Vert^2 = \sum_{i=1}^n (b_i^T x)^2.\]</div>
+<p>Nun wenden wir uns noch ein wenig dem Range und dem Nullraum von Operatoren zu. Insbesondere betrachten wir <span class="math notranslate nohighlight">\({\cal R}(A)\)</span> und <span class="math notranslate nohighlight">\({\cal N}(A^T)\)</span>. Wir werden sehen, dass diese Räume orthogonal sind. Wir sprechen von zwei orthogonalen Unterräumen <span class="math notranslate nohighlight">\(U\)</span> und <span class="math notranslate nohighlight">\(V\)</span>, wenn <span class="math notranslate nohighlight">\(u^T v = 0\)</span> für alle <span class="math notranslate nohighlight">\(u \in U\)</span> und <span class="math notranslate nohighlight">\(v \in V\)</span> gilt. Damit gilt insbesondere <span class="math notranslate nohighlight">\(U \cap V = \{0\}\)</span>.</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 3.6 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \R^m  = {\cal R}(A) \oplus {\cal N}(A^T), \qquad \R^n = {\cal R}(A^T) \oplus {\cal N}(A ),\]</div>
+<p>dazu sind die beiden Teilräume jeweils orthogonal.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Wir zeigen zunächst die Orthogonalität. Ist <span class="math notranslate nohighlight">\(y=Ax \in {\cal R}(A)\)</span> und <span class="math notranslate nohighlight">\(z \in {\cal N}(A^T)\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ z^T y = z^T A x = (A^T z)^T x = 0.\]</div>
+<p>Damit folgt insbesondere, dass die Summe aus den beiden Unterräumen direkt ist und wir müssen nur noch nachweisen, dass sie auch gleich dem <span class="math notranslate nohighlight">\(\R^m\)</span> ist. Sei zunächst <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_k\}\)</span> eine Basis von <span class="math notranslate nohighlight">\({\cal R}(A)\)</span> und <span class="math notranslate nohighlight">\(\{b_{k+1},\ldots,b_m\}\)</span> eine Basiserweiterung. Dann können wir mit dem Gram-Schmidt Verfahren eine Orthonormalbasis  <span class="math notranslate nohighlight">\(\{\tilde b_1,\ldots, \tilde b_m\}\)</span>
+konstruieren. Da <span class="math notranslate nohighlight">\(\{\tilde b_1, \ldots, \tilde b_k\}\)</span> aus Linearkombinationen von <span class="math notranslate nohighlight">\(\{b_1, \ldots b_k\}\)</span> entsteht, ist es eine Orthonormalbasis von <span class="math notranslate nohighlight">\({\cal R}(A)\)</span>. Für <span class="math notranslate nohighlight">\(j &gt; k\)</span> gilt nun <span class="math notranslate nohighlight">\(\tilde b_i^T \tilde b_j = 0\)</span> für <span class="math notranslate nohighlight">\(j \leq k\)</span> und damit auch</p>
+<div class="math notranslate nohighlight">
+\[ y^T \tilde b_j = (Ax)^T \tilde b_j = x^T (A^T \tilde b_j) = 0\]</div>
+<p>für alle <span class="math notranslate nohighlight">\(x \in \R^n\)</span> und damit <span class="math notranslate nohighlight">\(y \in {\cal R}(A)\)</span>. Insbesondere folgt daraus <span class="math notranslate nohighlight">\(A^T \tilde b_j = 0\)</span> für <span class="math notranslate nohighlight">\(j &gt; k\)</span>. Damit ist <span class="math notranslate nohighlight">\(\tilde b_j \in {\cal N}(A^T)\)</span>. Wegen <span class="math notranslate nohighlight">\(\R^m  = \)</span>lin<span class="math notranslate nohighlight">\((\{\tilde b_i\}_{i=1,\ldots,m})\)</span> folgt dann direkt</p>
+<div class="math notranslate nohighlight">
+\[ \R^m  = {\cal R}(A) \oplus {\cal N}(A^T).\]</div>
+<p>Die zweite Identität folgt direkt aus der ersten wegen <span class="math notranslate nohighlight">\((A^T)^T = A\)</span>.</p>
+</div>
+<p>Neben dem Skalarprodukt können wir auch das <em>äußere Produkt</em> <span class="math notranslate nohighlight">\(x \otimes y = x y^T \in \R^{n \times n}\)</span> berechnen. Für die Matrix <span class="math notranslate nohighlight">\(A=x y^T\)</span> gilt <span class="math notranslate nohighlight">\(A z = x(y^T z)\)</span>, d.h. alle Elemente von <span class="math notranslate nohighlight">\({\cal R}(A)\)</span> sind skalare Vielfache von <span class="math notranslate nohighlight">\(x\)</span>. Ist <span class="math notranslate nohighlight">\(x \neq 0\)</span> ist deshalb Rg<span class="math notranslate nohighlight">\((A) = \)</span>dim<span class="math notranslate nohighlight">\(({\cal R}(A))\)</span>.</p>
+</div>
+<div class="section" id="losbarkeit">
+<h2><span class="section-number">3.2.2. </span>Lösbarkeit<a class="headerlink" href="#losbarkeit" title="Permalink to this headline">¶</a></h2>
+<p>Basierend auf Skalarprodukten und der transponierten Matrix können wir auch eine Lösbarkeitsbedingung für das lineare Gleichungssystem <span class="math notranslate nohighlight">\(A x = y\)</span> herleiten. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ z^T y = z^T A x = (A^T z)^T x.\]</div>
+<p>Ist nun <span class="math notranslate nohighlight">\(z \in {\cal N}(A^T)\)</span>, so muss <span class="math notranslate nohighlight">\(z^T y = 0\)</span> sein. Dies ist aber nicht nur notwendige, sondern auch hinreichende Bedingung.</p>
+<div class="proof theorem admonition" id="theorem-6">
+<p class="admonition-title"><span class="caption-number">Theorem 3.7 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(Ax=y\)</span> ist lösbar, genau dann wenn <span class="math notranslate nohighlight">\(z^T y = 0\)</span> für alle <span class="math notranslate nohighlight">\(z \in {\cal N}(A^T)\)</span> gilt.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Die eine Richtung haben wir schon oben gesehen. Nun nehmen wir an, <span class="math notranslate nohighlight">\(z^T y = 0\)</span> für alle <span class="math notranslate nohighlight">\(z \in {\cal N}(A^T)\)</span> gilt.</p>
+</div>
+<div class="proof example admonition" id="example-7">
+<p class="admonition-title"><span class="caption-number">Example 3.13 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \left(  \begin{matrix} 2 &amp; 1 \\ 1  &amp; 0 \\ -1 &amp; 1\end{matrix} \right), \qquad A^T = \left(  \begin{matrix}
+2 &amp; 1 &amp; -1 \\ 1 &amp; 0 &amp; 1 \end{matrix} \right).\end{split}\]</div>
+<p>Dann gilt</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} {\cal N}(A^T) = t \begin{pmatrix} 1 \\ - 3 \\ -1\end{pmatrix},\end{split}\]</div>
+<p>also ist <span class="math notranslate nohighlight">\(Ax =y\)</span> lösbar, wenn <span class="math notranslate nohighlight">\(y_1 - 3y_2 -y_3 = 0\)</span> gilt.</p>
+</div>
+</div><p>Wir haben nun die Lösbarkeit und die Lösungsmenge untersucht, als nächsten Schritt wollen wir nun konkreter die Berechnung einzelner Lösungen untersuchen. Dazu können wir das Problem auf eines mit quadratischer Matrix zurückführen: Ist <span class="math notranslate nohighlight">\(m &gt; n\)</span>, dann haben wir ein überbestimmtes Problem. Statt <span class="math notranslate nohighlight">\(Ax = y\)</span> können wir</p>
+<div class="math notranslate nohighlight">
+\[A^TA x = A^T y\]</div>
+<p>lösen. Ist <span class="math notranslate nohighlight">\({\cal N}(A^T) =\{0\}\)</span>, dann ist eine Lösung von <span class="math notranslate nohighlight">\(A^T A x=A^Ty\)</span> auch eine Lösung von <span class="math notranslate nohighlight">\(Ax =b\)</span>. Andernfalls ist das Problem nur lösbar, wenn <span class="math notranslate nohighlight">\(y\)</span> orthogonal zu <span class="math notranslate nohighlight">\({\cal N}(A^T)\)</span> ist und damit ist wiederum jede Lösung von <span class="math notranslate nohighlight">\(A^T A x=A^Ty\)</span> auch eine Lösung von <span class="math notranslate nohighlight">\(Ax =y\)</span>.</p>
+<p>Ist <span class="math notranslate nohighlight">\(m &lt; n\)</span>, dann ist das Problem unterbestimmt und der Nullraum von <span class="math notranslate nohighlight">\(A\)</span> in jedem Fall nichttrivial. Hier können wir eine Lösung der Form <span class="math notranslate nohighlight">\(x=A^T z\)</span> suchen, also das Problem <span class="math notranslate nohighlight">\(AA^T z = y\)</span> lösen.</p>
+</div>
+<div class="section" id="quadratische-matrizen-und-inverse">
+<h2><span class="section-number">3.2.3. </span>Quadratische Matrizen und Inverse<a class="headerlink" href="#quadratische-matrizen-und-inverse" title="Permalink to this headline">¶</a></h2>
+<p>Im Folgenden betrachten wir nun Systeme <span class="math notranslate nohighlight">\(Ax = y\)</span> mit <span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span>. In diesem Fall können wir bestenfalls das System für alle <span class="math notranslate nohighlight">\(y \in \R^n\)</span> eindeutig lösen, d.h. die Abbildung <span class="math notranslate nohighlight">\(x \mapsto Ax\)</span> ist bijektiv.</p>
+<div class="proof definition admonition" id="definition-8">
+<p class="admonition-title"><span class="caption-number">Definition 3.5 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine Matrix <span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span> heisst regulär, wenn für alle <span class="math notranslate nohighlight">\(y \in \R^n\)</span> eine eindeutige Lösung des linearen Systems <span class="math notranslate nohighlight">\(Ax=y\)</span> existiert. Andernfalls heisst <span class="math notranslate nohighlight">\(A\)</span> singulär.</p>
+</div>
+</div><p>Ist <span class="math notranslate nohighlight">\(A\)</span> regulär, dann können wir insbesondere eindeutige Lösungen <span class="math notranslate nohighlight">\(b_i\)</span> zu <span class="math notranslate nohighlight">\(y=e_i\)</span> finden, d.h. <span class="math notranslate nohighlight">\(A b_i = e_i\)</span>. Schreiben wir die Spaltenvektoren <span class="math notranslate nohighlight">\(b_i\)</span> in eine Matrix <span class="math notranslate nohighlight">\(B \in \R^{n \times n}\)</span> und analog die Spaltenvektoren <span class="math notranslate nohighlight">\(e_i\)</span> in die Einheitsmatrix <span class="math notranslate nohighlight">\(I\)</span>, dann gilt <span class="math notranslate nohighlight">\(AB=I\)</span>, d.h. <span class="math notranslate nohighlight">\(B\)</span> ist die inverse Matrix <span class="math notranslate nohighlight">\(B=A^{-1}\)</span>. Also ist eine reguläre Matrix immer invertierbar im Sinne der Matrixmultiplikation und umgekehrt, denn für invertierbare Matrizen ist <span class="math notranslate nohighlight">\(x=A^{-1}y\)</span> die eindeutige Lösung.Wir sehen, dass die invertierbaren Matrizen im <span class="math notranslate nohighlight">\(\R^{n \times n}\)</span> eine Gruppe bilden mit <span class="math notranslate nohighlight">\(I\)</span> als neutralem Element, diese wird allgemeine lineare Gruppe (englisch general linear group), GL<span class="math notranslate nohighlight">\((n)\)</span> genannt.</p>
+<div class="proof example admonition" id="example-9">
+<p class="admonition-title"><span class="caption-number">Example 3.14 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A = \left( \begin{matrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}  \end{matrix} \right).\end{split}\]</div>
+<p>Wir berechnen <span class="math notranslate nohighlight">\(b_1\)</span> als Lösung von <span class="math notranslate nohighlight">\(Ax = e_1\)</span>, d.h.</p>
+<div class="math notranslate nohighlight">
+\[ a_{11} b_{11} + a_{12} b_{21} = 1, \quad a_{21} b_{11} + a_{22} b_{21} = 0.\]</div>
+<p>Wir multiplizieren die erste Gleichung mit <span class="math notranslate nohighlight">\(a_{22}\)</span> und die zweite mit <span class="math notranslate nohighlight">\(-a_{12}\)</span> und addieren die beiden, dann erhalten wir</p>
+<div class="math notranslate nohighlight">
+\[ (a_{11} a_{22} - a_{12} a_{21}) b_{11} = a_{22},\]</div>
+<p>also, falls der Nenner ungleich Null ist</p>
+<div class="math notranslate nohighlight">
+\[ b_{11} = \frac{a_{22}}{a_{11} a_{22} - a_{12} a_{21}}, \quad b_{21} = \frac{-a_{12}}{a_{11} a_{22} - a_{12} a_{21}}.\]</div>
+<p>Analog können wir die zweite Spalte <span class="math notranslate nohighlight">\(b_2\)</span> der inversen Matrix als</p>
+<div class="math notranslate nohighlight">
+\[ b_{22} = \frac{a_{11}}{a_{11} a_{22} - a_{12} a_{21}}, \quad b_{12} = \frac{-a_{21}}{a_{11} a_{22} - a_{12} a_{21}} \]</div>
+<p>berechnen. Damit erhalten wir</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A^{-1} = \frac{1}{a_{11} a_{22} - a_{12} a_{21}} \left( \begin{matrix} a_{22} &amp; -a_{12} \\ - a_{21} &amp; a_{11}  \end{matrix} \right).\end{split}\]</div>
+<p>Die Inverse existiert unter der Bedingung, dass <span class="math notranslate nohighlight">\(a_{11} a_{22} - a_{12} a_{21} \neq 0\)</span>.</p>
+</div>
+</div></div>
+<div class="section" id="determinanten">
+<h2><span class="section-number">3.2.4. </span>Determinanten<a class="headerlink" href="#determinanten" title="Permalink to this headline">¶</a></h2>
+<p>Im letzen Beispiel haben wir gesehen, dass wir die Invertierbarkeit einer <span class="math notranslate nohighlight">\(2 \times 2\)</span> Matrix durch eine einzige Zahl, die sogenannte Determinante</p>
+<div class="math notranslate nohighlight">
+\[ \text{det}(A) = a_{11} a_{22} - a_{12} a_{21}\]</div>
+<p>charakterisieren können. Wir werden sehen, das eine analoge Eigenschaft für <span class="math notranslate nohighlight">\(n \times n\)</span> Matrizen gilt. Wie im Fall von <span class="math notranslate nohighlight">\(n=2\)</span> werden wir Determinanten als Summe über Produkte definieren, in denen wir aus jeder Zeile (bzw. Spalte) genau ein Element verwenden. Dann müssen wir nur noch die jeweiligen Vorzeichen klären. Um dies strukturiert zu machen führen wir das Konzept der Permutation ein:</p>
+<div class="proof definition admonition" id="definition-10">
+<p class="admonition-title"><span class="caption-number">Definition 3.6 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine <em>Permutation</em> ist eine bijektive Abbildung <span class="math notranslate nohighlight">\(\pi: \{1,\ldots,n\} \rightarrow \{1,\ldots,n\} \)</span>. Die Menge der Permutationen zur Mächtigkeit <span class="math notranslate nohighlight">\(n\)</span> nennen wir <span class="math notranslate nohighlight">\(\Pi_n\)</span>.</p>
+</div>
+</div><p>Wir unterscheiden monotone Teile der Permutation (<span class="math notranslate nohighlight">\(i \leq j\)</span> und <span class="math notranslate nohighlight">\(\pi(i) \leq \pi(j)\)</span>), sowie nichtmonotone (<span class="math notranslate nohighlight">\(i &lt; j\)</span> und <span class="math notranslate nohighlight">\(\pi(i) &gt; \pi(j)\)</span>), letztere nennt man <em>Fehlstände</em> oder Inversionen</p>
+<div class="math notranslate nohighlight">
+\[ \text{inv}(\pi): = \{(i,j)~|~i&lt;j, \pi(i) &gt; \pi(j) \}.\]</div>
+<p>Basierend darauf definieren wir das Vorzeichen einer Permutation als</p>
+<div class="math notranslate nohighlight">
+\[ \text{sign}(\pi) =(-1)^{|\text{inv}(\pi)|}.\]</div>
+<div class="proof example admonition" id="example-11">
+<p class="admonition-title"><span class="caption-number">Example 3.15 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir betrachten nochmal die Determinante einer <span class="math notranslate nohighlight">\(2 \times 2\)</span> Matrix. Dort gibt es zwei Permutationen in <span class="math notranslate nohighlight">\(\Pi_2\)</span>, nämlich</p>
+<div class="math notranslate nohighlight">
+\[ \pi_1(1)=1, \pi_1(2)=2,\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \pi_2(1)=2, \pi_2(2)=1.\]</div>
+<p><span class="math notranslate nohighlight">\(\pi_1\)</span> hat keine Fehlstände, inv<span class="math notranslate nohighlight">\((\pi_1)=\emptyset\)</span>, also sign<span class="math notranslate nohighlight">\((\pi_1)=1\)</span>. <span class="math notranslate nohighlight">\(\pi_2\)</span> hat einen Fehlstand, inv<span class="math notranslate nohighlight">\((\pi_2)={(1,2)}\)</span>,
+also  sign<span class="math notranslate nohighlight">\((\pi_2)=-1\)</span>. Die Determinante können wir dann als</p>
+<div class="math notranslate nohighlight">
+\[ \text{det}(A) =  \text{sign}(\pi_1) a_{1\pi_1(1)} a_{2\pi_1(2)} + \text{sign}(\pi_2) a_{1\pi_2(1)} a_{2\pi_2(2)} \]</div>
+<p>schreiben.</p>
+</div>
+</div><p>Die Einsicht des obigen Beispiels ist die Grundlage der Definition der Determinante einer <span class="math notranslate nohighlight">\(n \times n\)</span> Matrix:</p>
+<div class="proof definition admonition" id="definition-12">
+<p class="admonition-title"><span class="caption-number">Definition 3.7 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span>, dann ist die Determinante von <span class="math notranslate nohighlight">\(A\)</span> definiert als</p>
+<div class="math notranslate nohighlight">
+\[ \text{det}(A) = \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \prod_{j=1}^n a_{j \pi(j)}.\]</div>
+</div>
+</div><p>Wir sehen, dass durch die Eigenschaft der Permutationen in jedem Produkt genau ein Element aus jeder Zeile bzw. Spalte steht.</p>
+<div class="proof example admonition" id="example-13">
+<p class="admonition-title"><span class="caption-number">Example 3.16 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Für die Einheitsmatrix <span class="math notranslate nohighlight">\(I \in \R^{n \times n}\)</span> gilt det<span class="math notranslate nohighlight">\((I)=1\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="example-14">
+<p class="admonition-title"><span class="caption-number">Example 3.17 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Für eine Dreiecksmatrix  <span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span> (<span class="math notranslate nohighlight">\(A_{ij} = 0\)</span> für <span class="math notranslate nohighlight">\(i&lt; j\)</span> oder <span class="math notranslate nohighlight">\(A_{ij} = 0\)</span> für <span class="math notranslate nohighlight">\(i&gt; j\)</span>) gilt det<span class="math notranslate nohighlight">\((A)=\prod_{i=1}^n A_{ii}\)</span>.</p>
+</div>
+</div><p>Eine besonders wichtige Eigenschaft ist der sogenannte Determinantenproduktsatz, der auf einer einfachen Eigenschaft von Permutationen beruht, die wir hier nicht beweisen:</p>
+<div class="proof lemma admonition" id="lemma-15">
+<p class="admonition-title"><span class="caption-number">Lemma 3.6 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Seien <span class="math notranslate nohighlight">\(\pi_1, \pi_2 \in \Pi_n\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[  \text{sign}(\pi_1 \circ \pi_2) = \text{ sign}(\pi_1) \text{ sign}(\pi_2).\]</div>
+</div>
+</div><p>Wir wollen nun die Determinante eines Produkts <span class="math notranslate nohighlight">\(A B\)</span> berechnen, dazu betrachten wir zunächst wieder das Beispiel <span class="math notranslate nohighlight">\(n=2\)</span></p>
+<div class="proof example admonition" id="example-16">
+<p class="admonition-title"><span class="caption-number">Example 3.18 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir berechnen det<span class="math notranslate nohighlight">\((AB)\)</span> für</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A = \left( \begin{matrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}  \end{matrix} \right),  B = \left( \begin{matrix} b_{11} &amp; b_{12} \\ b_{21} &amp; b_{22}  \end{matrix} \right).\end{split}\]</div>
+<p>Dann ist</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} C = A B = \left( \begin{matrix} a_{11} b_{11} + a_{12} b_{21}   &amp; a_{11} b_{12} + a_{12} b_{22} \\ a_{21} b_{11} + a_{22} b_{21}    &amp; a_{21} b_{12} + a_{22} b_{22}   \end{matrix} \right)\end{split}\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \text{det}(C) = (a_{11} b_{11} + a_{12} b_{21}) (a_{21} b_{12} + a_{22} b_{22}) - (a_{11} b_{12} + a_{12} b_{22}) (a_{21} b_{11} + a_{22} b_{21}).\]</div>
+<p>Nach ausmultiplizieren erhalten wir</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  \text{det}(C) =&amp; (a_{11} b_{11} a_{21} b_{12}  +  a_{11} b_{11} a_{22} b_{22} + a_{12} b_{21} a_{21} b_{12} +  a_{12} b_{21}a_{22} b_{22}) - \\&amp; (a_{11} b_{12} a_{21} b_{11} + a_{11} b_{12}  a_{22} b_{21} + a_{12} b_{22} a_{21} b_{11} + a_{12} b_{22} a_{22} b_{21}) \\ =&amp; a_{11} a_{22} b_{11}  b_{22} - a_{12} a_{21}   b_{11} b_{22}   -  a_{11} a_{22}  b_{12}  b_{21} +  a_{12}  a_{21} b_{12} b_{21}  +\\ &amp;    a_{11} a_{21} b_{11}  b_{12} - a_{11} a_{21} b_{11}  b_{12}   +  a_{12} a_{22} b_{21} b_{22}  -  a_{12} a_{22} b_{21} b_{22}  \\=&amp; (a_{11} a_{22} - a_{12} a_{21} )(b_{11}  b_{22}  - b_{12}  b_{21} ).
+\end{align*}\]</div>
+<p>Wir sehen also det<span class="math notranslate nohighlight">\((C)\)</span>= det<span class="math notranslate nohighlight">\((A)\)</span> det<span class="math notranslate nohighlight">\((B)\)</span>.</p>
+</div>
+</div><div class="proof theorem admonition" id="theorem-17">
+<p class="admonition-title"><span class="caption-number">Theorem 3.8 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Seien <span class="math notranslate nohighlight">\(A,B \in \R^{n \times n}\)</span>. Dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ \text{det}(AB) = \text{ det}(A) \text{ det}(B).\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(C=AB\)</span>, dann gilt</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\text{det}(C) &amp;= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \prod_{i=1}^n C_{i\pi(i)} \\
+&amp;= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \prod_{i=1}^n ( \sum_{j_i=1}^n a_{ij_i} b_{j_i\pi(i)})  .
+%&amp;= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \sum_{j=1}^n \prod_{i_j=1}^n (  a_{i_j j} b_{j \pi(i_j)}) \\
+%&amp;= \sum_{j=1}^n \sum_{\pi \in \Pi_n} \text{ sign}(\pi)  \prod_{i_j=1}^n (  a_{i_j j} b_{j \pi(i_j)}).
+\end{align*}\]</div>
+<p>Nun wollen wir die letzte Summe und das Produkt vertauschen, d.h. ein allgemeines Distributivgesetz anwenden.Dazu definieren wir die Indexmenge <span class="math notranslate nohighlight">\( I_n = \{1,\ldots,n\}^n\)</span>, die als mögliche Einträge für die Vektoren <span class="math notranslate nohighlight">\(J=(j_1,\ldots,j_n)\)</span> vorkommen. Nun sehen wir, dass</p>
+<div class="math notranslate nohighlight">
+\[ \prod_{i=1}^n ( \sum_{j_i=1}^n a_{ij_i} b_{j_i\pi(i)}) = \sum_{J \in I_n} \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}\]</div>
+<p>gilt, was wir bei der Determinantenberechnung verwenden können:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*} \text{det}(C) &amp;= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \sum_{J \in I_n} \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}  \\ &amp;= \sum_{J \in I_n}  \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}\end{align*}\]</div>
+<div class="math notranslate nohighlight">
+\[ \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)} = a_{kj_k} b_{j_k\pi(k)} a_{\ell j_k} b_{j_k\pi(\ell)} \prod_{i=1, i \neq k, i \neq \ell}^n  a_{ij_i} b_{j_i\pi(i)}. \]</div>
+<p>Sei nun <span class="math notranslate nohighlight">\(\tilde \pi\)</span> die Permutation mit <span class="math notranslate nohighlight">\(\tilde \pi(\ell)=k, \tilde \pi(k) = \ell\)</span> und <span class="math notranslate nohighlight">\(\tilde \pi(i)=\pi(i)\)</span> sonst. Dann hat <span class="math notranslate nohighlight">\(\tilde \pi\)</span> einen zusätzlichen Fehlstand zu <span class="math notranslate nohighlight">\(\pi\)</span>, d.h. sign<span class="math notranslate nohighlight">\((\tilde \pi)= - \)</span> sign<span class="math notranslate nohighlight">\((\pi)\)</span>. Darüber hinaus gilt</p>
+<div class="math notranslate nohighlight">
+\[ \prod_{i=1}^n  a_{ij_i} b_{j_i\tilde \pi(i)} = a_{kj_k} b_{j_k\pi(\ell)} a_{\ell j_k} b_{j_k\pi(k)} \prod_{i=1, i \neq k, i \neq \ell}^n  a_{ij_i} b_{j_i\pi(i)} = \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)} . \]</div>
+<p>Damit sind heben sich die beiden Terme mit <span class="math notranslate nohighlight">\(\pi\)</span> und <span class="math notranslate nohighlight">\(\tilde \pi\)</span> in der Summe über alle Permutationen weg und wir folgern für solche <span class="math notranslate nohighlight">\(J\)</span></p>
+<div class="math notranslate nohighlight">
+\[ \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}  = 0.\]</div>
+<p>Damit bleiben nur jene <span class="math notranslate nohighlight">\(J\)</span> übrig, in denen jeder Index in <span class="math notranslate nohighlight">\(\{1,\ldots,n\}\)</span> genau einmal vorkommt. Diese entsprechen genau den Permutationen in <span class="math notranslate nohighlight">\(\Pi_n\)</span>. Damit erhalten wir</p>
+<div class="math notranslate nohighlight">
+\[ \text{det}(C) =  \sum_{\sigma \in \Pi_n} \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{i\sigma(i)} b_{\sigma(i) \pi(i)} =  \sum_{\sigma \in \Pi_n} \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{i\sigma(i)} \prod_{j=1}^n  b_{j \pi(\sigma^{-1}(j))},\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(\sigma^{-1}\)</span> die Umkehrung von <span class="math notranslate nohighlight">\(\sigma\)</span> und damit wieder eine Permutation ist. Nun sehen wir leicht, dass</p>
+<div class="math notranslate nohighlight">
+\[ \{ \pi \circ \sigma^{-1}~|~\pi \in \Pi_n\} = \Pi_n\]</div>
+<p>gilt und wegen des obigen Lemmas zum Vorzeichen der Hintereinanderausführung gilt</p>
+<div class="math notranslate nohighlight">
+\[ \text{sign}(\pi \circ \sigma^{-1}) = \text{ sign}(\pi) \text{ sign}(\sigma^{-1}) = \text{ sign}(\pi) \text{ sign}(\sigma ) \]</div>
+<p>bzw.</p>
+<div class="math notranslate nohighlight">
+\[  \text{sign}(\pi ) = \text{ sign}(\sigma)  \text{sign}(\pi \circ \sigma^{-1}).\]</div>
+<p>Also folgt</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*} \text{det}(C) &amp;=  \sum_{\sigma \in \Pi_n} \sum_{\pi' \in \Pi_n} \text{ sign}(\pi') \text{ sign}(\sigma) \prod_{i=1}^n  a_{i\sigma(i)} \prod_{j=1}^n  b_{j \pi'(j)} \\  &amp;= \sum_{\sigma \in \Pi_n} \sum_{\pi' \in \Pi_n} \text{ sign}(\pi') \text{ sign}(\sigma) \prod_{i=1}^n  a_{i\sigma(i)} \prod_{j=1}^n  b_{j \pi'(j)}  \\  &amp;= \sum_{\sigma \in \Pi_n} \text{ sign}(\sigma) \prod_{i=1}^n  a_{i\sigma(i)} \sum_{\pi' \in \Pi_n} \text{ sign}(\pi')   \prod_{j=1}^n  b_{j \pi'(j)}  = \text{ det}(A) \text{ det}(B). \end{align*}\]</div>
+</div>
+<div class="sidebar">
+<p class="sidebar-title">Gabriel Cramer</p>
+<p><a class="reference external" href="https://de.wikipedia.org/wiki/Gabriel_Cramer">Gabriel Cramer</a> (* 31. Juli 1704 in Genf; † 4. Januar 1752 in Bagnols-sur-Cèze, Frankreich) war ein Genfer Mathematiker.</p>
+</div>
+<p>Aus dem Determinantenproduktsatz können wir die Cramer’sche Regel, eine Formel für die Lösung des Gleichungssystems <span class="math notranslate nohighlight">\(Ax=y\)</span> herleiten, aus der wir auch die Lösbarkeit sehen, wenn die Determinante nicht verschwindet. Sei dazu <span class="math notranslate nohighlight">\(X_i \in \R^{n \times n}\)</span> die Matrix, die aus der Einheitsmatrix entsteht, wenn man die <span class="math notranslate nohighlight">\(i\)</span>-te Spalte durch <span class="math notranslate nohighlight">\(x\)</span> ersetzt. Dann gilt <span class="math notranslate nohighlight">\(A X_i = A_i\)</span>, wobei <span class="math notranslate nohighlight">\(A_i \in \R^{n \times n}\)</span> die Matrix ist, die aus <span class="math notranslate nohighlight">\(A\)</span> entsteht, wenn man die <span class="math notranslate nohighlight">\(i\)</span>-te Spalte durch <span class="math notranslate nohighlight">\(y=Ax\)</span> ersetzt.  Nach dem Determinantenproduktsatz gilt dann</p>
+<div class="math notranslate nohighlight">
+\[ \det(A) \det(X_i) = \det(A_i).\]</div>
+<p>Wir sehen sofort <span class="math notranslate nohighlight">\(\det(X_i)=x_i\)</span>, also ist das System für jeden Eintrag von <span class="math notranslate nohighlight">\(x\)</span> lösbar, wenn <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span> und wir erhalten</p>
+<div class="math notranslate nohighlight">
+\[ x_i = \frac{\det(A_i)}{\det(A)},\]</div>
+<p>die sogenannte Cramer’sche Regel.</p>
+<div class="proof theorem admonition" id="theorem-18">
+<p class="admonition-title"><span class="caption-number">Theorem 3.9 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span> ist regulär genau dann wenn <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Die eine Richtung sehen wir sofort aus der Cramer’schen Regel. Ist umgekehrt <span class="math notranslate nohighlight">\(A\)</span> regulär, dann folgt aus dem Determinantenproduktsatz</p>
+<div class="math notranslate nohighlight">
+\[ \det(A) \det(A^{-1}) = \det(I) = 1,\]</div>
+<p>damit kann <span class="math notranslate nohighlight">\(\det(A)\)</span> nicht verschwinden. <span class="math notranslate nohighlight">\(\square\)</span></p>
+</div>
+<p>Die Cramer’sche Regel ist theoretisch sehr angenehm, aber ungeeignet für die praktische Anwendung bei großen linearen Gleichungssystemen, da die Berechnung der Determinanten sehr aufwändig ist. Es gibt <span class="math notranslate nohighlight">\(n!\)</span> verschiedene Permutationen, für jede davon ist ein Produkt aus <span class="math notranslate nohighlight">\(n \)</span> Faktoren zu berechnen. Deshalb betrachten wir alternative Verfahren und überlegen zuerst für welche Matrizen das System <span class="math notranslate nohighlight">\(Ax=y\)</span> einfach zu lösen ist.</p>
+<div class="proof definition admonition" id="definition-19">
+<p class="admonition-title"><span class="caption-number">Definition 3.8 </span></p>
+<div class="definition-content section" id="proof-content">
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(D \in \R^{n \times n}\)</span> heisst Diagonalmatrix, wenn <span class="math notranslate nohighlight">\(D_{ij} =0 \)</span> für <span class="math notranslate nohighlight">\(i \neq j\)</span> gilt.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L \in \R^{n \times n}\)</span> heisst linke untere Dreiecksmatrix, wenn <span class="math notranslate nohighlight">\(L_{ij} =0 \)</span> für <span class="math notranslate nohighlight">\(i &lt; j\)</span> gilt.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R \in \R^{n \times n}\)</span> heisst rechte obere Dreiecksmatrix, wenn <span class="math notranslate nohighlight">\(R_{ij} =0 \)</span> für <span class="math notranslate nohighlight">\(i &gt; j\)</span> gilt.</p></li>
+</ul>
+</div>
+</div><p>Im Fall einer Diagonalmatrix ist die Lösung von <span class="math notranslate nohighlight">\(Dx = y\)</span> direkt durch</p>
+<div class="math notranslate nohighlight">
+\[ x_i = \frac{y_i}{D_{ii}}\]</div>
+<p>gegeben. Im Fall einer linken unteren Dreiecksmatrix berechnen wir die Einträge nacheinander (sogenanntes Vorwärtseinsetzen)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+x_1 &amp;= \frac{y_1}{L_{11}} \\
+x_2 &amp;= \frac{y_2-L_{21} x_1}{L_{22}} \\
+x_3 &amp;= \frac{y_3-L_{31} x_1-L_{32} x_2}{L_{33}} \\
+\ldots
+\end{align*}\]</div>
+<p>Im Fall einer rechten oberen Dreiecksmatrix gehen wir umgekehrt vor und beginnen beim letzten Eintrag (sogenanntes Rückwärtseinsetzen)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+x_n &amp;= \frac{y_n}{R_{nn}} \\
+x_{n-1} &amp;= \frac{y_{n-1}-R_{n-1,n} x_n}{R_{n-1,n-1}} \\
+x_{n-2} &amp;= \frac{y_{n-2}-R_{n-2,n} x_n-R_{n-2,n-1} x_{n-1}}{R_{n-2,n-2}} \\
+\ldots
+\end{align*}\]</div>
+<p>Dasselbe Vorgehen ist auch möglich, wenn wir eine Matrix <span class="math notranslate nohighlight">\(A\)</span> haben, die sich durch Vertauschen von Zeilen und Spalten in eine linkere und rechte obere Dreiecksmatrix überführen lässt. Zeilenvertauschung bedeutet, dass wir Gleichungen umnummerieren, Spaltenvertauschung, dass wir Variablen umnummerieren.
+Wie können wir nun ein allgemeines System <span class="math notranslate nohighlight">\(Ax = y\)</span> mit <span class="math notranslate nohighlight">\(A \in \R^{n \times n}\)</span> lösen ? Die grundlegende Idee ist es, das System auf eine Dreiecksform zu bringen und dann Vorwärts- oder Rückwärtseinsetzen zu benutzen. Dies erreicht das sogenannte Gauss-Verfahren. Hier beginnen wir mit der ersten Gleichung</p>
+<div class="math notranslate nohighlight">
+\[ a_{11}x_1 + a_{12} x_2 + \ldots + a_{1n} x_n = y_n.\]</div>
+<p>Ist <span class="math notranslate nohighlight">\(a_{11}=0\)</span> so vertauschen wir die erste Gleichung mit einer anderen Gleichung <span class="math notranslate nohighlight">\(k \in \{2,\ldots,n\}\)</span>, sodass <span class="math notranslate nohighlight">\(a_{k1} \neq 0\)</span> gilt. Ist <span class="math notranslate nohighlight">\(a_{k1}=0\)</span> für alle <span class="math notranslate nohighlight">\(k\)</span>, so sehen wir sofort dass <span class="math notranslate nohighlight">\(\det(A)=0\)</span> und damit die Gleichung nicht eindeutig lösbar (wenn überhaupt) ist.  Nachdem wir ggf. vertauscht haben, können wir eine Linearkombination von Zeilen durchführen, die die Lösungsmenge unverändert lässt. Wir ziehen für <span class="math notranslate nohighlight">\(k=2,\ldots,n\)</span> ein Vielfaches <span class="math notranslate nohighlight">\(\ell_{k1} = - \frac{a_{k1}}{a_{11}}\)</span> der ersten von der <span class="math notranslate nohighlight">\(k\)</span>-ten Zeile ab. <span class="math notranslate nohighlight">\(\ell_{k1}\)</span> ist genau so gewählt, dass <span class="math notranslate nohighlight">\(x_1\)</span> aus den Gleichungen verschwindet. Wir erhalten mit</p>
+<div class="math notranslate nohighlight">
+\[\tilde a_{ki} = a_{ki} + \ell_{k1} a_{1i}, \qquad \tilde y_k = y_k + \ell_{k1} y_1\]</div>
+<p>die Gleichungen</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=2}^n \tilde a_{ki} x_i = \tilde y_k, \qquad k=2,\ldots,n.\]</div>
+<p>Damit haben wir ein lineares Gleichungssystem in <span class="math notranslate nohighlight">\(\R^{n-1 \times n-1}\)</span> und können nun analog weiter verfahren. Die neue erste Variable ist <span class="math notranslate nohighlight">\(x_2\)</span> und die neue erste Zeile ist die Gleichung mit <span class="math notranslate nohighlight">\(k=2\)</span>. Nun können wir völlig analog vorgehen bis wir bei <span class="math notranslate nohighlight">\(k=n\)</span> angekommen sind, hier erhalten wir einfach ein <span class="math notranslate nohighlight">\(1x1\)</span> System für <span class="math notranslate nohighlight">\(x_n\)</span>, das wir direkt lösen können. Nun berechnen wir die anderen Variablen durch Rückwärtseinsetzen. Für <span class="math notranslate nohighlight">\(x_{n-1}\)</span> verwenden wir die erste Gleichung im <span class="math notranslate nohighlight">\(2 \times 2\)</span> System aus dem vorletzten Schritt, für <span class="math notranslate nohighlight">\(x_{n-2}\)</span> die erste Gleichung aus dem <span class="math notranslate nohighlight">\(3 \times 3\)</span> System im drittletzten Schritt und so weiter.  Dieses Verfahren nennt man Gauss-Elimination.</p>
+<div class="proof example admonition" id="example-20">
+<p class="admonition-title"><span class="caption-number">Example 3.19 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir betrachten <span class="math notranslate nohighlight">\(Ax=y\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A = \left( \begin{matrix} 1 &amp; 2 &amp; 2 \\ 2 &amp; 4 &amp; 3 \\ 0 &amp; -1 &amp; 1 \end{matrix} \right).\end{split}\]</div>
+<p>Hier ist <span class="math notranslate nohighlight">\(a_{11}=1\)</span>, damit <span class="math notranslate nohighlight">\(\ell_{21} = -2, \ell_{31} = 0. \)</span> Als erste Gleichung, die wir uns für später merken, erhalten wir</p>
+<div class="math notranslate nohighlight">
+\[ x_1 + 2 x_2 + 2x_3 = y_1\]</div>
+<p>und nach Elimination von <span class="math notranslate nohighlight">\(x_1\)</span> aus der zweiten und dritten Gleichung bleibt das <span class="math notranslate nohighlight">\(2 \times 2 \)</span> System.</p>
+<div class="math notranslate nohighlight">
+\[ 0 x_2 -x_3 = y_2 -2 y_1, \qquad -x_2 + x_3 = y_3.\]</div>
+<p>Da nun der erste Koeffizient <span class="math notranslate nohighlight">\(0\)</span> ist, vertauschen wir die beiden Gleichungen und haben dann das gestaffelte System (entsprechend rechter oberer Dreiecksmatrix\begin{align*}
+x_1 + 2 x_2 + 2x_3 &amp;= y_1 \ -x_2 + x_3 &amp;= y_3 \
+-x_3 &amp;= y_2 -2 y_1
+\end{align*}Durch Rückwärtseinsetzen berechnen wir</p>
+<div class="math notranslate nohighlight">
+\[ x_3=2y_1 - y_2, \quad x_2 = 2 y_1 -y_2 -y_3, \quad x_1 = - 7 y_1 + 4y_2 +2 y_3.\]</div>
+</div>
+</div><p>Um die Rechnung bei der Gauss Elimination ein wenig strukturierter durchführen zu können definieren wir eine rechte obere Dreiecksmatrix <span class="math notranslate nohighlight">\(R \in \R^{n \times n}\)</span> im Laufe des Verfahrens. Im ersten Schritt setzen wir <span class="math notranslate nohighlight">\(R_{1i}=a_{1i}\)</span> für <span class="math notranslate nohighlight">\(i=1,\ldots,n\)</span> und <span class="math notranslate nohighlight">\(z_1=y_1\)</span>. Im zweiten Schritt setzen wir <span class="math notranslate nohighlight">\(R_{21} =0\)</span> und <span class="math notranslate nohighlight">\(R_{2i} = \tilde a_{2i}\)</span> für <span class="math notranslate nohighlight">\(i=2, \ldots,n\)</span> mit <span class="math notranslate nohighlight">\(\tilde a_{2i}\)</span> wie oben, und so fahren wir auch für <span class="math notranslate nohighlight">\(k=3\)</span> bis <span class="math notranslate nohighlight">\(m\)</span> fort. Damit haben wir am Ende ein System <span class="math notranslate nohighlight">\(Rx=z\)</span>, das wir durch Rückwärtseinsetzen lösen können.</p>
+<div class="proof example admonition" id="example-21">
+<p class="admonition-title"><span class="caption-number">Example 3.20 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Für</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A = \left( \begin{matrix} 1 &amp; 2 &amp; 2 \\ 2 &amp; 4 &amp; 3 \\ 0 &amp; -1 &amp; 1 \end{matrix} \right)\end{split}\]</div>
+<p>wie oben erhalten wir</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} R = \left( \begin{matrix} 1 &amp; 2 &amp; 2 \\ 0 &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; -1 \end{matrix} \right).\end{split}\]</div>
+</div>
+</div><p>Wir sehen auch, dass wir eigentlich keine Gleichungen schreiben müssen, sondern alles direkt auf Ebene der Matrix <span class="math notranslate nohighlight">\(A\)</span> und des Vektors <span class="math notranslate nohighlight">\(y\)</span> durchführen können. Die wichtigste Erkenntnis ist, dass eine Linearkombination von Zeilen in einer Matrix der Multiplikation mit einer Matrix von links entspricht. Wir führen dies für das Gauss-Verfahren nochmal durch. Im ersten Schritt multiplizieren wir mit einer Matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}L_1 = \left( \begin{matrix} 1 &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \\ \ell_{21} &amp; 1 &amp; 0 &amp;\ldots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \ell_{n1} &amp; 0 &amp; 0 &amp; \ldots &amp; 1 \end{matrix} \right)\end{split}\]</div>
+<p>bzw. im <span class="math notranslate nohighlight">\(k\)</span>-ten Schritt mit einer Matrix <span class="math notranslate nohighlight">\(L_k\)</span>, die neben der Diagonale nur Einträge in der <span class="math notranslate nohighlight">\(k\)</span>-ten Spalte unter der Diagonale hat, d.h.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(L_k)_{ij} = \left\{ 
+\begin{matrix} 
+1 &amp; i=j \\ 0 &amp; i &lt; j \\ 
+0 &amp; i &gt; j, j \neq k \\ 
+\ell_{ik} &amp; i=k,j &gt;k
+\end{matrix}
+\right\}.\end{split}\]</div>
+<p>Damit entspricht das Gauss-Verfahren einfach einer wiederholten Multiplikation des Systems <span class="math notranslate nohighlight">\(Ax=y\)</span> mit solchen Matrizen, bis wir</p>
+<div class="math notranslate nohighlight">
+\[ Rx = L_{n-1} L_{n-2} \ldots L_2 L_1 A x = L_{n-1} L_{n-2} Ax  \ldots L_2 L_1 y = z\]</div>
+<p>erhalten. Man prüft leicht nach, dass <span class="math notranslate nohighlight">\(L_k\)</span> invertierbar ist mit einer sehr einfach zu berechnenden Inverse</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(L_k^{-1})_{ij} = \left\{ \begin{matrix} 1 &amp; i=j \\ 0 &amp; i &lt; j \\ 0 &amp; i &gt; j, j \neq k \\ - \ell_{ik} &amp; i=k,j &gt; k\end{matrix}\right.\end{split}\]</div>
+<p>Damit können wir auch die Identität</p>
+<div class="math notranslate nohighlight">
+\[  R  = L_{n-1} L_{n-2} \ldots L_2 L_1 A\]</div>
+<p>nochmal neu betrachten. Es gilt dann</p>
+<div class="math notranslate nohighlight">
+\[ A =  L_1^{-1}   L_2^{-1} \ldots  L_{n-2}^{-1} L_{n-1}^{-1} R  = L R,\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(L= L_1^{-1}   L_2^{-1} \ldots  L_{n-2}^{-1} L_{n-1}^{-1}\)</span>. Nun kann man leicht nachrechnen, dass <span class="math notranslate nohighlight">\(L\)</span> eine linke untere Dreiecksmatrix ist, deren Diagonaleinträge alle gleich eins sind. Wir haben also damit <span class="math notranslate nohighlight">\(A\)</span> in eine linke untere und eine rechte obere Dreiecksmatrix zerlegt. Hat man dies einmal berechnet, dann ist es genauso aufwändig, sich die Matrix <span class="math notranslate nohighlight">\(A\)</span> zu merken wie <span class="math notranslate nohighlight">\(L\)</span> und <span class="math notranslate nohighlight">\(R\)</span> (für <span class="math notranslate nohighlight">\(L\)</span> die Einträge unter der Diagonale, für <span class="math notranslate nohighlight">\(R\)</span> auf und über der Diagonale). Sind <span class="math notranslate nohighlight">\(L\)</span> und <span class="math notranslate nohighlight">\(R\)</span> bekannt, kann das System <span class="math notranslate nohighlight">\(Ax=y\)</span> leicht gelöst werden durch</p>
+<div class="math notranslate nohighlight">
+\[ L z = y, \qquad Rx = z.\]</div>
+<p>Damit müssen wir einmal und Vorwärts- und einmal Rückwärtseinsetzen.</p>
+<p>Kommt nun auch die Vertauschung von Zeilen hinzu, so benötigen wir auch dafür geeignete Matrizen, die sogenannten Permutationsmatrizen. Zu jeder Permutation <span class="math notranslate nohighlight">\(\pi \in \Pi_n\)</span> können wir eine Permutationsmatrix <span class="math notranslate nohighlight">\(P^\pi \in \R^{n \times n}\)</span> definieren als <span class="math notranslate nohighlight">\(P_{ij}^\pi = (\delta_{i\pi(i)})\)</span>, d.h. <span class="math notranslate nohighlight">\(P^\pi\)</span> hat in jeder Zeile und Spalte einen Eintrag eins und <span class="math notranslate nohighlight">\(n-1\)</span> Einträge null. Eine Multiplikation <span class="math notranslate nohighlight">\(PA\)</span> entspricht einer Vertauschung von Zeilen <span class="math notranslate nohighlight">\(AP\)</span> einer Vertauschung von Spalten. Im Fall des Gauss-Verfahrens benötigt man in jedem Schritt nur die Vertauschung der <span class="math notranslate nohighlight">\(k\)</span>-ten Zeile mit einer Zeile <span class="math notranslate nohighlight">\(p \geq k\)</span>, d.h. die Einträge von <span class="math notranslate nohighlight">\(P^\pi\)</span> entsprechen in <span class="math notranslate nohighlight">\(n-2\)</span> Zeilen der Einheitsmatrix, nur in Zeile <span class="math notranslate nohighlight">\(k\)</span> ist das <span class="math notranslate nohighlight">\(p\)</span>-te Element gleich eins und umgekehrt. Das Gauss-Verfahren mit Vertauschung ist dann</p>
+<div class="math notranslate nohighlight">
+\[ R=L_{n-1} P_{n-1} L_{n-2} P_{n-2}\ldots L_2 P_2 L_1 P_1 A ,\]</div>
+<p>mit entsprechenden Permutationsmatrizen <span class="math notranslate nohighlight">\(P_j\)</span> für Zweiervertauschungen. Die Zerlegung insgesamt kann dann am Ende in der Form</p>
+<div class="math notranslate nohighlight">
+\[ P A = L R\]</div>
+<p>geschrieben werden mit einer allgemeinen Permutationsmatrix <span class="math notranslate nohighlight">\(P\)</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./vektorraeume"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="LineareAbb.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">3.1. </span>Lineare Abbildungen</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

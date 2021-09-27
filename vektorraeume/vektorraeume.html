@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Vektorräume und lineare Abbildungen &#8212; Mathematik für Data Science 2</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}"}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1. Lineare Abbildungen" href="LineareAbb.html" />
+    <link rel="prev" title="2.2. Zahlensysteme" href="../grundlagen/zahlensysteme.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science 2</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience 2
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vorkurs/vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/regression.html">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/folgen.html">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/funktionen.html">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../grundlagen/grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/zahlensysteme.html">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="LGS.html">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/vektorraeume/vektorraeume.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="vektorraume-und-lineare-abbildungen">
+<h1><span class="section-number">3. </span>Vektorräume und lineare Abbildungen<a class="headerlink" href="#vektorraume-und-lineare-abbildungen" title="Permalink to this headline">¶</a></h1>
+<p>Die komplexen Zahlen aus dem letzten Abschnitt sind ein einfaches Beispiel eines Vektorraums, nun wollen wir Vektorräume etwas genauer betrachten, die allgemein folgendermaßen definiert sind:</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 3.1 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(V\)</span> eine Menge und <span class="math notranslate nohighlight">\(\K\)</span> ein Körper. Gegeben seien die Addition <span class="math notranslate nohighlight">\(\oplus: V \times V \rightarrow V\)</span> und die Skalarmultiplikation <span class="math notranslate nohighlight">\(\odot: \K \times V \rightarrow V\)</span>. <span class="math notranslate nohighlight">\((V,\oplus,\odot)\)</span> heisst Vektorraum, wenn für alle <span class="math notranslate nohighlight">\(u,v \in V\)</span> und alle <span class="math notranslate nohighlight">\(\alpha, \beta \in \K\)</span> die folgenden Eigenschaften gelten:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((V,\oplus)\)</span> ist eine abel’sche Gruppe.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha \odot (u \oplus v) = \alpha \odot(v \oplus u) = (\alpha \odot u) \oplus (\alpha \odot v)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((\alpha + \beta) \odot v = (\alpha \odot v) \oplus (\beta \odot v)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((\alpha \beta)\odot v = \alpha \odot (\beta \odot v)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(1 \odot v = v\)</span>, wobei <span class="math notranslate nohighlight">\(1\)</span> das Einselement der Multiplikation in <span class="math notranslate nohighlight">\(\K\)</span> ist.</p></li>
+</ul>
+</div>
+</div><p>Wir werden im Folgenden einfach <span class="math notranslate nohighlight">\(u +v\)</span> statt <span class="math notranslate nohighlight">\(u \oplus v\)</span> und <span class="math notranslate nohighlight">\(\alpha v\)</span> statt <span class="math notranslate nohighlight">\(\alpha \odot v\)</span> schreiben.</p>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 3.1 </span></p>
+<div class="example-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\R^n\)</span> ist ein Vektorraum über <span class="math notranslate nohighlight">\(\R\)</span>, allgemein ist <span class="math notranslate nohighlight">\(\K^n\)</span> ein Vektorraum über <span class="math notranslate nohighlight">\(\K\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 3.2 </span></p>
+<div class="example-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\R^\N =  \{(x_n):\N \rightarrow \R\}\)</span> ist Vektorraum über <span class="math notranslate nohighlight">\(\R\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 3.3 </span></p>
+<div class="example-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\ell^\infty(\N) = \{(x_n) \in \R^\N~|~\sup_n |x_n| &lt; \infty\}\)</span> ist ein Vektorraum über <span class="math notranslate nohighlight">\(\R\)</span></p>
+</div>
+</div><div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span class="caption-number">Example 3.4 </span></p>
+<div class="example-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\C = \{ a + b \i ~|~ a,b \in \R\}\)</span> ist ein Vektorraum über <span class="math notranslate nohighlight">\(\R\)</span></p>
+</div>
+</div><p>Im Fall der komplexen Zahlen haben wir den Vektorraum über eine <em>\2</em> (also Vielfache und Summen) gewisser Elemente, nämlich <span class="math notranslate nohighlight">\(1\)</span> und <span class="math notranslate nohighlight">\(\i\)</span>, definiert. Dies ist auch in den anderen Vektorräumen der Fall, z.B. können wir in <span class="math notranslate nohighlight">\(\R^n\)</span> alles als Linearkombination der Einheitsvektoren</p>
+<div class="math notranslate nohighlight">
+\[ e_i = (\delta_{ij})_{j=1}^n\]</div>
+<p>schreiben, wobei <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> das Kronecker-Delta bezeichnet, definiert als <span class="math notranslate nohighlight">\(\delta_{ii}=1\)</span> und <span class="math notranslate nohighlight">\(\delta_{ij}=0\)</span> sonst. Diese Elemente sind aber nicht eindeutig, z.B. können wir im <span class="math notranslate nohighlight">\(\R^2\)</span> auch alles als Linearkombination von <span class="math notranslate nohighlight">\((1,1)\)</span> und <span class="math notranslate nohighlight">\((1,-1)\)</span> schreiben, es gilt</p>
+<div class="math notranslate nohighlight">
+\[ (a,b) = \lambda_1 (1,1) + \lambda_2 (1,-1)\]</div>
+<p>mit <span class="math notranslate nohighlight">\(\lambda_1 = \frac{a+b}2\)</span>, <span class="math notranslate nohighlight">\(\lambda_2 = \frac{a-b}2\)</span>.</p>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definition 3.2 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Seien <span class="math notranslate nohighlight">\(v_1,\ldots,v_n \in V\)</span>.</p>
+<ul class="simple">
+<li><p>Seien <span class="math notranslate nohighlight">\(\lambda_1,\ldots,\lambda_b \in \K\)</span>, dann heisst</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ v = \sum_{i=1}^n \lambda_i v_i\]</div>
+<p>Linearkombination der <span class="math notranslate nohighlight">\(v_i\)</span>.</p>
+<ul class="simple">
+<li><p>Die Elemente <span class="math notranslate nohighlight">\(v_1,\ldots,v_n\)</span> ( bzw. <span class="math notranslate nohighlight">\(\{v_1,\ldots,v_n\}\)</span>) die Menge heissen linear unabhängig, wenn aus<span class="math notranslate nohighlight">\(\sum_{i=1}^n \lambda_i v_i =0\)</span> folgt, dass <span class="math notranslate nohighlight">\(\lambda_1 = \lambda_2 \ldots = \lambda_n = 0\)</span>.</p></li>
+<li><p>Eine Menge <span class="math notranslate nohighlight">\(W \subset V\)</span> heisst linear unabhängig für alle <span class="math notranslate nohighlight">\(n \in \N \setminus \{0\}\)</span>, <span class="math notranslate nohighlight">\(n \leq |W|\)</span> jede Teilmenge <span class="math notranslate nohighlight">\(\{v_1,\ldots,v_n\}\)</span> linear unabhängig ist. Andernfalls nennen wir <span class="math notranslate nohighlight">\(W\)</span> linear abhängig.</p></li>
+<li><p>Sei <span class="math notranslate nohighlight">\(W \subset V\)</span>, dann ist die lineare Hülle</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \text{lin}(W) = \{ \sum_{i=1}^n \lambda_i v_i~|~ n \in \N, \lambda_i \in \K, v_i \in W\}\]</div>
+<p>gegeben als die Menge aller Linearkombinationen von Elementen aus <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W\)</span> heisst Erzeugendensystem, wenn lin<span class="math notranslate nohighlight">\((W)=V\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B \subset V\)</span> heisst Basis von <span class="math notranslate nohighlight">\(V\)</span>, wenn <span class="math notranslate nohighlight">\(B\)</span> Erzeugendensystem und linear unabhängig ist.</p></li>
+<li><p>Ist <span class="math notranslate nohighlight">\(B\)</span> Basis von <span class="math notranslate nohighlight">\(V\)</span> und <span class="math notranslate nohighlight">\(n=|B| &lt; \infty\)</span>, dann heisst <span class="math notranslate nohighlight">\(V\)</span> endlichdimensionaler Vektorraum und <span class="math notranslate nohighlight">\(n\)</span> die Dimension von <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+<li><p>Ist <span class="math notranslate nohighlight">\(W \subset V\)</span> selbst ein Vektorraum, d.h. abgeschlossen bezüglich Addition und Skalarmultiplikation, dann nennen wir <span class="math notranslate nohighlight">\(W\)</span> Unterraum von <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+</ul>
+</div>
+</div><div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Example 3.5 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir betrachten wieder den <span class="math notranslate nohighlight">\(\R^2\)</span>. <span class="math notranslate nohighlight">\(B=\{(1,0),(0,1)\}\)</span> ist eine Basis, <span class="math notranslate nohighlight">\(W= \{(1,0),(0,1),(1,1)\}\)</span> ist ein Erzeugendensystem, aber nicht linear unabhängig, da</p>
+<div class="math notranslate nohighlight">
+\[ (1,0) + (0,1) - (1,1) = 0.\]</div>
+</div>
+</div><div class="proof example admonition" id="example-7">
+<p class="admonition-title"><span class="caption-number">Example 3.6 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(V=\R^3\)</span> ist <span class="math notranslate nohighlight">\(W=\{(1,0,0),(0,1,0)\}\)</span>  linear unabhängig, aber kein Erzeugendensystem, da wir kein <span class="math notranslate nohighlight">\(\lambda_1,\lambda_2 \in \R\)</span> finden können mit</p>
+<div class="math notranslate nohighlight">
+\[(0,0,1) =  \lambda_1 (1,0,0)+ \lambda_2 (0,1,0) = (\lambda_1,\lambda_2,0).\]</div>
+<p>Tatsächlich entspricht lin<span class="math notranslate nohighlight">\((V)\)</span> dem <span class="math notranslate nohighlight">\(\R^2\)</span> mit einer zusätzlichen Null in der dritten Variable.</p>
+</div>
+</div><div class="proof example admonition" id="example-8">
+<p class="admonition-title"><span class="caption-number">Example 3.7 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(V=\R^N\)</span>, <span class="math notranslate nohighlight">\(W=\{(\delta_{in})_n ~|~i \in \N\}\)</span>. Dann ist <span class="math notranslate nohighlight">\(W\)</span> linear unabhängig, aber keine Basis. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \text{lin}(W) = \{ (x_n) \in \R^\N~|~ \exists n_0 \in \N \forall n \geq n_0: x_n =0 \},\]</div>
+<p>die lineare Hülle entspricht also den Folgen, die nach endlich vielen Indizes null werden.</p>
+</div>
+</div><p>Wir machen einige Beobachtungen:</p>
+<ul class="simple">
+<li><p>Ist <span class="math notranslate nohighlight">\(W\)</span> linear unabhängig, so ist natürlich auch jede nichtleere Teilmenge von <span class="math notranslate nohighlight">\(W\)</span> linear unabhängig. Ist <span class="math notranslate nohighlight">\(W\)</span> ein Erzeugendensystem, dann ist auch jedes <span class="math notranslate nohighlight">\(W'\)</span> mit <span class="math notranslate nohighlight">\(W \subset W'\)</span> Erzeugendensystem.</p></li>
+<li><p>Eine Menge, die <span class="math notranslate nohighlight">\(v=0\)</span> enthält ist nie linear unabhängig, da <span class="math notranslate nohighlight">\(\lambda   v  = 0\)</span> für alle <span class="math notranslate nohighlight">\(\lambda \in \K\)</span>.</p></li>
+</ul>
+<p>Linearkombinationen führen in natürlicher Weise auf lineare Gleichungssysteme für die Koeffizienten <span class="math notranslate nohighlight">\(\lambda_i\)</span>, dies sehen wir noch mal am Beispiel</p>
+<div class="math notranslate nohighlight">
+\[ (a,b) = \lambda_1 (1,1) + \lambda_2 (1,-1),\]</div>
+<p>das wir auch  als Gleichungssystem</p>
+<div class="math notranslate nohighlight">
+\[ \lambda_1 + \lambda_2 = a, \qquad \lambda_1 - \lambda_2 = b\]</div>
+<p>für <span class="math notranslate nohighlight">\(\lambda_1\)</span>, <span class="math notranslate nohighlight">\(\lambda_2\)</span> schreiben können. Die Möglichkeit <span class="math notranslate nohighlight">\(v\)</span> als Linearkombination von <span class="math notranslate nohighlight">\(v_1, \ldots,v_n\)</span> darstellen zu können, ist dann die Frage der Lösbarkeit eines linearen Gleichungssystems für <span class="math notranslate nohighlight">\(n\)</span> unbekannte Koeffizienten, die wir noch intensiv diskutieren werden. Der Einfachheit halber werden wir uns dazu auf <span class="math notranslate nohighlight">\(\K=\R\)</span> beschränken.</p>
+<div class="proof theorem admonition" id="theorem-9">
+<p class="admonition-title"><span class="caption-number">Theorem 3.1 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(W \subset V\)</span>, dann ist lin<span class="math notranslate nohighlight">\((W)\)</span> ein Teilraum von <span class="math notranslate nohighlight">\(V\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Da die Gesetze der Addition und Multiplikation auch in lin<span class="math notranslate nohighlight">\((W) \subset V\)</span> gelten, müssen wir nur nachprüfen, dass <span class="math notranslate nohighlight">\(+:\)</span>lin<span class="math notranslate nohighlight">\((W) \times\)</span> lin<span class="math notranslate nohighlight">\((W) \rightarrow \)</span>lin<span class="math notranslate nohighlight">\((W)\)</span> und <span class="math notranslate nohighlight">\(\cdot:\R \times\)</span> lin<span class="math notranslate nohighlight">\((W) \rightarrow\)</span> lin<span class="math notranslate nohighlight">\((W)\)</span> gilt.Ist <span class="math notranslate nohighlight">\(v \in \)</span> lin<span class="math notranslate nohighlight">\((W)\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ v = \sum_{i=1}^n \lambda_i v_i, \qquad \lambda_i \in \R, v_i \in W\]</div>
+<p>und
+damit auch</p>
+<div class="math notranslate nohighlight">
+\[ \alpha v = \sum_{i=1}^n (\alpha \lambda_i) v_i \quad \in \text{ lin}(W).\]</div>
+<p>Ist darüber hinaus <span class="math notranslate nohighlight">\(w \in \)</span> lin<span class="math notranslate nohighlight">\((W)\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ v = \sum_{i=1}^n \mu_i w_i, \qquad \mu_i \in \R, w_i \in W\]</div>
+<p>und
+damit</p>
+<div class="math notranslate nohighlight">
+\[ v+ w = \sum_{i=1}^{n+m} \lambda_i v_i \qquad \lambda_i \in \R, v_i \in W,\]</div>
+<p>wobei wir <span class="math notranslate nohighlight">\(\lambda_{n+i} = \mu_i\)</span> und <span class="math notranslate nohighlight">\(v_{n+i} = \mu_i\)</span> setzen. Also ist auch <span class="math notranslate nohighlight">\(v+w \in \)</span> lin<span class="math notranslate nohighlight">\((W)\)</span>.</p>
+</div>
+<div class="proof theorem admonition" id="theorem-10">
+<p class="admonition-title"><span class="caption-number">Theorem 3.2 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(V\)</span> ein Vektorraum und <span class="math notranslate nohighlight">\(B \subset V\)</span> eine Basis mit <span class="math notranslate nohighlight">\(|B|=n\)</span>. Dann gilt für jede linear unabhängig Menge <span class="math notranslate nohighlight">\(W\)</span> auch <span class="math notranslate nohighlight">\(|W| \leq n\)</span> und für jedes Erzeugendensystem <span class="math notranslate nohighlight">\(E\)</span> auch <span class="math notranslate nohighlight">\(|E| \geq n\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(W\)</span> eine  Menge und nehmen wir an es gibt <span class="math notranslate nohighlight">\(n+1\)</span> linear unabhängige Elemente <span class="math notranslate nohighlight">\(w_1, \ldots w_{n+1}\)</span> in <span class="math notranslate nohighlight">\(W\)</span>. Dann gibt es für jedes <span class="math notranslate nohighlight">\(w_i\)</span> eine Darstellung in der Basis <span class="math notranslate nohighlight">\(B=\{b_1,\ldots,b_n\}\)</span>, d.h.</p>
+<div class="math notranslate nohighlight">
+\[ w_i =  \sum_{j=1}^n \lambda_{ij} b_j.\]</div>
+<p>Wir beginnen mit <span class="math notranslate nohighlight">\(i=1\)</span>. Da nicht alle <span class="math notranslate nohighlight">\(\lambda_{1j} =0 \)</span> sein können, nehmen wir ohne Beschränkung der Allgemeinheit an, dass <span class="math notranslate nohighlight">\(\lambda_{11} \neq 0\)</span> gilt. Also folgt</p>
+<div class="math notranslate nohighlight">
+\[ - \lambda_{11} w_i + \lambda_{i1} w_1 = \sum_{j=2}^n \lambda_{ij}^{(2)}  b_j, \qquad i=2,\ldots,n+1\]</div>
+<p>mit neuen Koeffizienten <span class="math notranslate nohighlight">\(\lambda_{ij}^{(2)}\)</span>. Da nicht alle <span class="math notranslate nohighlight">\(\lambda_{2j}^{(2)} \)</span> gleich Null sein können, nehmen wir wieder an, <span class="math notranslate nohighlight">\(\lambda_{22}^{(2)} \neq 0\)</span>. Mit analogem Vorgehen erhalten wir eine Darstellung der Form</p>
+<div class="math notranslate nohighlight">
+\[ \alpha_{1i} w_1 + \alpha_{2i} w_2 + \beta_i w_i = \sum_{j=3}^n \lambda_{ij}^{(3)}  b_j, \qquad i=3,\ldots,n+1.\]</div>
+<p>Wenden wir dieses Argument wiederholt an, so gilt nach <span class="math notranslate nohighlight">\(n\)</span> Schritten</p>
+<div class="math notranslate nohighlight">
+\[ \alpha_{1,n+1} w_1 + \alpha_{2,n+1} w_2 + \ldots \alpha_{n,n+1} w_n + \beta_{n+1} w_{n+1} = 0\]</div>
+<p>und damit sind die <span class="math notranslate nohighlight">\(w_i\)</span> linear abhängig.
+Ist umgekehrt <span class="math notranslate nohighlight">\(v_1, \ldots, v_m\)</span> ein Erzeugendensystem mit <span class="math notranslate nohighlight">\(m&lt;n\)</span>, so können wir <span class="math notranslate nohighlight">\(b_1,\ldots,b_{m+1}\)</span> wie oben durch die <span class="math notranslate nohighlight">\(v_i\)</span> ausdrücken und analog folgern, dass die Menge <span class="math notranslate nohighlight">\(\{b_1,\ldots,b_{m+1}\}\)</span> linear abhängig ist. Dies widerspricht aber der Basis-Eigenschaft.</p>
+</div>
+<p>Wir sehen insbesondere, dass jede Basis eines Vektorraums die gleiche Anzahl an Elementen haben muss, sobald eine endliche Basis existiert. Wir sprechen dann von der Dimension eines Vektorraums, die wir gleich der Anzahl der Basiselemente setzen. Ist <span class="math notranslate nohighlight">\(|B|\)</span> nicht endlich, so sprechen wir von einem unendlich-dimensionalen Vektorraum. In einem Raum der Dimension <span class="math notranslate nohighlight">\(n\)</span> können (und werden) wir immer jedes Element als Linearkombination aller <span class="math notranslate nohighlight">\(n\)</span> Basiselemente schreiben und ggf. Koeffizienten gleich Null setzen.
+Im Allgemeinen sehen wir auch, dass die Entwicklung von <span class="math notranslate nohighlight">\(V\)</span> in einer Basis, d.h. eine Linearkombination aus Basiselementen, eindeutig ist:</p>
+<div class="proof theorem admonition" id="theorem-11">
+<p class="admonition-title"><span class="caption-number">Theorem 3.3 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(V\)</span> ein Vektorraum mit Basis <span class="math notranslate nohighlight">\(B\)</span> und <span class="math notranslate nohighlight">\(v \neq \in V\)</span>. Dann existiert genau ein <span class="math notranslate nohighlight">\(n \in \N\)</span> und eine Teilmenge <span class="math notranslate nohighlight">\(\{b_i\}_{i=1,\ldots,n} \subset V\)</span> sowie Koeffizienten <span class="math notranslate nohighlight">\(\lambda_i \in \R\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[ v =  \sum_{i=1}^n \lambda_i b_i .\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei</p>
+<div class="math notranslate nohighlight">
+\[ v = \sum_{i=1}^n \lambda_i b_i = \sum_{j=1}^m \lambda_j' b_j'\]</div>
+<p>mit <span class="math notranslate nohighlight">\(b_j' \in B\)</span>. Dann gilt mit <span class="math notranslate nohighlight">\(\lambda_{n+i} = -\lambda_i'\)</span> und <span class="math notranslate nohighlight">\(b_{n+i}=-b_i'\)</span></p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=1}^{n+m} \lambda_i b_i = 0.\]</div>
+<p>Wegen der linearen Unabhängigkeit der Basis folgt dann aber <span class="math notranslate nohighlight">\(v=0\)</span>.</p>
+</div>
+<p>Wir definieren nun noch die Summe zweier Vektorräume <span class="math notranslate nohighlight">\(V\)</span> und <span class="math notranslate nohighlight">\(W\)</span>, die beide Unterräume eines größeren Raums <span class="math notranslate nohighlight">\(U\)</span> sind, als</p>
+<div class="math notranslate nohighlight">
+\[ V+W = \{ v + w ~|~ v \in V, w \in W \}.\]</div>
+<div class="proof example admonition" id="example-12">
+<p class="admonition-title"><span class="caption-number">Example 3.8 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei</p>
+<div class="math notranslate nohighlight">
+\[ V= \{(x,0)~|~x \in  \R \}, \qquad W= \{(0,y)~|~Y \in  \R \},\]</div>
+<p>dann gilt  <span class="math notranslate nohighlight">\(V+W = \R^2\)</span>.  ````</p>
+<p>Analog definieren wir <span class="math notranslate nohighlight">\(\sum_{i=1}^m V_i\)</span> für mehrere Vektorräume   <span class="math notranslate nohighlight">\(V_i\)</span>.Eine Summe von Vektorräumen heisst <em>\2</em>, wenn für jedes <span class="math notranslate nohighlight">\(w \in \sum_{i=1}^m V_i\)</span> eine eindeutige Zerlegung<span class="math notranslate nohighlight">\(w=\sum_{i=1}^n v_i\)</span>, <span class="math notranslate nohighlight">\(v_i \in V_i\)</span> existiert. Wir schreiben dann für direkte Summe zweier Vektorräume <span class="math notranslate nohighlight">\(V\)</span> und <span class="math notranslate nohighlight">\(W\)</span> auch <span class="math notranslate nohighlight">\(V \oplus W\)</span>.</p>
+<div class="proof lemma admonition" id="lemma-13">
+<p class="admonition-title"><span class="caption-number">Lemma 3.1 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Seien <span class="math notranslate nohighlight">\(V\)</span> und <span class="math notranslate nohighlight">\(W\)</span> Vektorräume mit Summe <span class="math notranslate nohighlight">\(V+W\)</span>. Die Summe ist direkt genau dann, wenn <span class="math notranslate nohighlight">\(V \cap W = \{0\}\)</span>.</p>
+</div>
+</div></div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Wir zeigen die äquivalente Aussage <span class="math notranslate nohighlight">\(V \cap W \neq \{0\}\)</span> genau dann, wenn die Summe <span class="math notranslate nohighlight">\(V+W\)</span> nicht direkt ist. Sei <span class="math notranslate nohighlight">\(w \neq 0, w \in V \cap W\)</span>. Dann ist wegen der Vektorraumeigenschaft auch <span class="math notranslate nohighlight">\(-w \in W\)</span>. Damit hat</p>
+<div class="math notranslate nohighlight">
+\[ 0  = 0 + 0 = w + (-w) \in V + W\]</div>
+<p>eine nichteindeutige Darstellung als Summe. Sei umgekehrt die Summe nicht direkt, dann gibt es <span class="math notranslate nohighlight">\(v_1,v_2 \in V\)</span>, <span class="math notranslate nohighlight">\(v_1 \neq v_2\)</span> and <span class="math notranslate nohighlight">\(w_1, w_2 \in W\)</span>, <span class="math notranslate nohighlight">\(w_1 \neq w_2\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[ v_1 + w_1 = v_2 + w_2.\]</div>
+<p>Nun definieren wir <span class="math notranslate nohighlight">\(v = v_1-v_2 = w_2 -w_1\)</span> und sehen sofort <span class="math notranslate nohighlight">\(v \in V\cap W \setminus\{0\}\)</span>.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./vektorraeume"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../grundlagen/zahlensysteme.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">2.2. </span>Zahlensysteme</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="LineareAbb.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">3.1. </span>Lineare Abbildungen</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
