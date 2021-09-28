@@ -3,13 +3,14 @@
 Eine Funktion ist in allgemeinster Weise eine Abbildung $f: M_1 \rightarrow M_2$, die jedem Wert $x \in M_1$ einen _eindeutigen_ Wert $y \in M_2$ zuordnet. In der Schule betrachtet man üblicherweise skalare reelle Funktionen, d.h. $M_1=M_2=\R$, manchmal auch $M_1$ ein Intervall in $\R$. Im Prinzip sind aber auch Folgen nichts anderes als Funktionen von $\N$ nach $\R$.
 
 ````{prf:definition}
-Eine Funktion $f:M_1 \rightarrow M_2$ heisst
-\begin{*ize}
-\* _injektiv_, wenn aus $x \neq y$ auch $f(x) \neq f(y)$ folgt.
+Eine Funktion $f:M_1 \rightarrow M_2$ heißt
 
-\* _surjektiv_, wenn zu jedem $z \in M_2$ ein $x \in M_1$ existiert mit $f(x)=z$.
+* _injektiv_, wenn aus $x \neq y$ auch $f(x) \neq f(y)$ folgt.
 
-\* _bijektiv_, wenn sie injektiv und surjektiv ist. 
+* _surjektiv_, wenn zu jedem $z \in M_2$ ein $x \in M_1$ existiert mit $f(x)=z$.
+
+* _bijektiv_, wenn sie injektiv und surjektiv ist.
+
 \end{*ize} 
 ````
 
