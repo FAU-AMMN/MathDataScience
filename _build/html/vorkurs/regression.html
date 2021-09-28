@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.1. Regression &#8212; Mathematik für Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}", "x": "\\mathbf{x}", "veczwei": ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras" href="koord.html" />
+    <link rel="prev" title="1. Vorkurs" href="vorkurs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="folgen.html">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="funktionen.html">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../grundlagen/grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/zahlensysteme.html">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vektorraeume/vektorraeume.html">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LGS.html">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../metrik/metrik.html">
+   4. Metriken und Konvergenz
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/normen.html">
+     4.1. Metriken und Normen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/konvfolgen.html">
+     4.2. Konvergente Folgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/teilfolgen.html">
+     4.3. Teilfolgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/reihen.html">
+     4.4. Reihen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/potenzreihen.html">
+     4.5. Potenzreihen und Exponentialfunktion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../stetigkeit/stetigkeit.html">
+   5. Stetigkeit
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/eigenschaften.html">
+     5.1. Eigenschaften stetiger reeller Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/grenzwerte.html">
+     5.2. Grenzwerte von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/glm.html">
+     5.3. Gleichmäßige Stetigkeit und gleichmäßige Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/exp.html">
+     5.4. Die Exponentialfunktion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/trig.html">
+     5.5. Trigonometrische Funktionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../differential/differential.html">
+   6. Differentialrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/kombfkt.html">
+     6.1. Ableitungsregeln für Kombinationen von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/mws.html">
+     6.2. Der Mittelwertsatz der Differentialrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/hoehereOrdnung.html">
+     6.3. Höhere Ableitungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../integration/integration.html">
+   7. Integralrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/riemann.html">
+     7.1. Riemann Integral
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/hdi.html">
+     7.2. Der Hauptsatz der Differential- und Integralrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/vertauschen.html">
+     7.3. Vertauschung von Integralen und Taylor-Formel
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/vorkurs/regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/https://github.com/FAU-AMMN/MathDataScience"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/FAU-AMMN/MathDataScience/master?urlpath=tree/vorkurs/regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lineare-regression">
+   1.1.1. Lineare Regression
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="regression">
+<h1><span class="section-number">1.1. </span>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h1>
+<p>Wir beginnen mit einem der klassischen Probleme in der Datenanalyse, wie man es in vielen Disziplinen findet, nämlich die Konstruktion eines funktionalen Zusammenhangs aus einer endlichen Anzahl an Messdaten. Wir nehmen an, dass
+wir Messdaten <span class="math notranslate nohighlight">\(x_i\)</span> als Eingabe und <span class="math notranslate nohighlight">\(y_i\)</span> als Ausgabe gegeben haben, für <span class="math notranslate nohighlight">\(i=1,\ldots, N\)</span>. Nun suchen wir einen funktionalen Zusammenhang, also <span class="math notranslate nohighlight">\(y=f(x)\)</span>. Dies geschieht bei der Regression durch einen parametrischen Ansatz</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = F(x,\theta_1,\ldots,\theta_M) \]</div>
+<p>mit einer gegebenen Form <span class="math notranslate nohighlight">\(F\)</span> und   zu bestimmenden Parametern <span class="math notranslate nohighlight">\(\theta_j\)</span>. Das einfachste Beispiel ist die lineare Regression f”ur skalare Daten, d.h.</p>
+<div class="math notranslate nohighlight" id="equation-eq-linreg">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-eq-linreg" title="Permalink to this equation">¶</a></span>\[F(x,\theta_1,\theta_2) = \theta_1 x + \theta_2 .\]</div>
+<p>Unter der Annahme der Exaktheit von funktionaler Form und Messung hätte man ein Gleichungssystem für <span class="math notranslate nohighlight">\(\theta_1\)</span> und <span class="math notranslate nohighlight">\(\theta_2\)</span> zu lösen, nämlich</p>
+<div class="math notranslate nohighlight" id="equation-eq-nonlinreg">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-eq-nonlinreg" title="Permalink to this equation">¶</a></span>\[ F(x_i,\theta_1,\ldots,\theta_M) = y_i, \qquad i=1,\ldots,N. \]</div>
+<p>Im allgemeinen ist dieses System aber nicht lösbar oder eine Lösung gar nicht sinnvoll aus den folgenden Gründen:</p>
+<ul class="simple">
+<li><p>Die Messdaten <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span> weisen Fehler auf.</p></li>
+<li><p>Die angenommene Funktionenklasse erklärt das Verhalten der Daten nur approximativ.</p></li>
+<li><p>Man hat zusätzlich zu viele Messungen (<span class="math notranslate nohighlight">\(N &gt; M\)</span>), z.B. <span class="math notranslate nohighlight">\(N &gt; 2\)</span> bei der linearen Regression in <a class="reference internal" href="#equation-eq-linreg">(1.1)</a>. Damit hat man mehr Gleichungen als Unbekannte und das Gleichungssystem ist eventuell nicht mehr lösbar. In der Praxis versucht man oft zur Sicherheit lieber mehr Messungen zu machen, um Fehler auszugleichen, also ist dies ein sehr häufiger Fall.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">scale</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">PiYG</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">scale</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># plot real function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
+
+<span class="c1"># scatter plot</span>
+<span class="n">x_scatter</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">scale</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">,)</span> <span class="o">-</span> <span class="n">scale</span>
+<span class="n">y_scatter</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_scatter</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_scatter</span><span class="p">,</span> <span class="n">y_scatter</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/regression_1_0.png" src="../_images/regression_1_0.png" />
+</div>
+</div>
+<p>Deshalb ist es naheliegend die Gleichheit nur approximativ zu erfüllen, man könnte also alle Parameter <span class="math notranslate nohighlight">\(\theta_1,\ldots,\theta_M\)</span> akzeptieren, die zu kleinen Fehlern im Gleichungssystem führen. Wie können wir aber solche Parameter mit einer nachvollziehbaren Rechenvorschrift berechnen ? Ein Ansatz dazu ist das Kleinstquadrate-Prinzip, dass schon von Gauss im frühen neunzehnten Jahrhundert angewandt wurde. Statt der Lösung eines Gleichungssystems betrachtet man nun die Lösung eines Optimierungsproblems, wir suchen <span class="math notranslate nohighlight">\(\theta_1,\ldots,\theta_M\)</span> als Lösung von</p>
+<div class="math notranslate nohighlight" id="equation-eq-nonlinregoptim">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-eq-nonlinregoptim" title="Permalink to this equation">¶</a></span>\[\min \sum_{i=1}^N ( F(x_i,\theta_1,\ldots,\theta_M) - y_i)^2.\]</div>
+<p>Wir minimieren also in Summe den quadratischen Abstand zwischen der Modellvorhersage und den gemessenen Daten.
+Da wir eine Summe von Quadraten, also nichtnegativen Termen, haben, sehen wir sofort dass der Minimalwert selbst bei optimaler Wahl der <span class="math notranslate nohighlight">\(\theta_i\)</span> größer oder gleich Null liegen muss. Damit sehen wir sofort, dass eine Lösung des Gleichungssystems <a class="reference internal" href="#equation-eq-nonlinreg">(1.2)</a> auch immer eine Lösung des Optimierungsproblems <a class="reference internal" href="#equation-eq-nonlinregoptim">(1.3)</a> ist.</p>
+<p>Mathematisch und praktisch stellen sich dabei sofort einige Fragen:</p>
+<ul class="simple">
+<li><p>Gibt es überhaupt eine Lösung des Problems ?</p></li>
+<li><p>Wenn ja, wie können wir das Minimum berechnen ?</p></li>
+<li><p>Ist das Problem robust gegenüber Messfehlern, d.h. ändert sich die Lösung nur wenig wenn wir die Daten <span class="math notranslate nohighlight">\(x_i\)</span> und <span class="math notranslate nohighlight">\(y_i\)</span> geringfügig ändern ?</p></li>
+<li><p>Was passiert mit der Lösung wenn wir weitere Messungen machen, d.h. wenn sich <span class="math notranslate nohighlight">\(N\)</span> ändert ?</p></li>
+</ul>
+<div class="section" id="lineare-regression">
+<h2><span class="section-number">1.1.1. </span>Lineare Regression<a class="headerlink" href="#lineare-regression" title="Permalink to this headline">¶</a></h2>
+<p>Wir wollen die obigen Fragen nun im Rahmen der linearen Regression näher betrachten, dort wollen wir eine Funktion von zwei Variablen</p>
+<div class="math notranslate nohighlight">
+\[ f(\theta_1,\theta_2) =  \sum_{i=1}^N (\theta_1 x_i + \theta_2 -y_i)^2 \]</div>
+<p>minimieren.</p>
+<p>Um eine erste Idee zu bekommen, nehmen wir an <span class="math notranslate nohighlight">\(\theta_2 = 0\)</span> ist schon bekannt. Dann bleibt uns nur eine eindimensionale Minimierung der quadratischen Funktion</p>
+<div class="math notranslate nohighlight">
+\[ g(\theta_1) =  \sum_{i=1}^N (\theta_1 x_i   -y_i)^2 .\]</div>
+<p>Wir bestimmen das Minimum durch Ableitung mit Kettenregel:</p>
+<div class="math notranslate nohighlight">
+\[ g'(\theta_1) = 2 \sum_{i=1}^N x_i (\theta_1 x_i   -y_i) = (2 \sum_i x_i^2) \theta_1 - 2 \sum_i x_i y_i. \]</div>
+<p>Also folgt als stationärer Punkt <span class="math notranslate nohighlight">\(g'(\overline{\theta}_1) = 0\)</span></p>
+<div class="math notranslate nohighlight">
+\[ \overline{\theta}_1 = \frac{\sum_i x_i y_i}{\sum_i x_i^2}.\]</div>
+<p>Zur Überprüfung berechnen wir auch noch die zweite Ableitung</p>
+<div class="math notranslate nohighlight">
+\[ g'(\theta_1) =  2 \sum_{i=1}^N x_i^2, \]</div>
+<p>die offensichtlich positiv ist, wenn wir nicht alle Messungen bei <span class="math notranslate nohighlight">\(x_i = 0\)</span> durchgeführt haben. Also ist der stationäre Punkt auch wirklich ein Minimierer von <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<p>Nun betrachten wir analog den Fall, dass <span class="math notranslate nohighlight">\(\theta_1 = 0\)</span> schon bekannt ist. In diesem Fall bleibt die quadratische Funktion</p>
+<div class="math notranslate nohighlight">
+\[  g(\theta_2) =  \sum_{i=1}^N (\theta_2   -y_i)^2 .\]</div>
+<p>Hier erhalten wir als stationären Punkt</p>
+<div class="math notranslate nohighlight">
+\[ \overline{\theta}_2 = \frac{1}N  \sum_{i=1}^N y_i, \]</div>
+<p>also den Mittelwert der Daten <span class="math notranslate nohighlight">\(y_i\)</span>.</p>
+<p>Daraus versuchen wir uns zu überlegen wie die Lösung im allgemeinen Fall aussehen würde. Um das optimale <span class="math notranslate nohighlight">\(\theta_1\)</span> zu bestimmen, haben wir eigentlich den Fall oben, wenn wir statt <span class="math notranslate nohighlight">\(y_i\)</span> die verschobenen Daten <span class="math notranslate nohighlight">\(y_i - \theta_2\)</span> betrachten.
+Dies f”uhrt auf</p>
+<div class="math notranslate nohighlight">
+\[ \overline{\theta}_1 = \frac{\sum_{i=1}^N  x_i (y_i-\overline{\theta}_2)}{\sum_{i=1}^N  x_i^2}. \]</div>
+<p>Analog können wir im Problem f”ur <span class="math notranslate nohighlight">\(\theta_2\)</span> die verschobenen Daten <span class="math notranslate nohighlight">\(y_i - \theta_1 x_i\)</span> betrachten und erhalten</p>
+<div class="math notranslate nohighlight">
+\[ \overline{\theta}_2 = \frac{1}N \sum_{i=1}^N   (y_i - \overline{\theta}_1 x_i). \]</div>
+<p>Wir haben also eigentlich ein Gleichungssystem der Form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1d9a7b5d-8f95-47dc-9f36-5c7a08a11552">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-1d9a7b5d-8f95-47dc-9f36-5c7a08a11552" title="Permalink to this equation">¶</a></span>\[\begin{align}
+(\sum_{i=1}^N x_i^2) \theta_1 + (\sum_{i=1}^N x_i) \theta_2 &amp;= \sum_{i=1}^N x_i y_i \\
+(\sum_{i=1}^N x_i) \theta_1 + N \theta_2 &amp;= \sum_{i=1}^N y_i
+\end{align}\]</div>
+<p>zu lösen. Daraus erhalten wir</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1486efc8-a536-422a-b539-4b5c93238730">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-1486efc8-a536-422a-b539-4b5c93238730" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\overline{\theta}_1 &amp;=  \frac{N \sum_{i=1}^N x_i y_i - (\sum_{i=1}^N x_i) (\sum_{i=1}^N y_i)}{N \sum_{i=1}^N x_i^2 - (\sum_{i=1}^N x_i)^2} \\
+\overline{\theta}_2 &amp;=  \frac{(\sum_{i=1}^N x_i^2) (\sum_{i=1}^N y_i) - (\sum_{i=1}^N x_i y_i) (\sum_{i=1}^N x_i)}{N \sum_{i=1}^N x_i^2 - (\sum_{i=1}^N x_i)^2}.
+\end{align}\]</div>
+<p>Wir beachten, dass die Ungleichung</p>
+<div class="math notranslate nohighlight">
+\[ (\sum_{i=1}^N x_i)^2 \leq N \sum_{i=1}^N x_i^2, \]</div>
+<p>auch bekannt als arithmetisch-quadratische Mittelungleichung</p>
+<div class="math notranslate nohighlight">
+\[ (\frac{1}N \sum_{i=1}^N x_i)^2 \leq \frac{1}N  \sum_{i=1}^N x_i^2\]</div>
+<p>gilt, mit Gleichheit nur wenn <span class="math notranslate nohighlight">\(x_1=x_2=\ldots=x_N\)</span>. Hat man also nicht alle Messungen an der gleichen Stelle <span class="math notranslate nohighlight">\(x_1\)</span> durchgeführt, dann ist der Nenner positiv, insbesondere nicht Null.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./vorkurs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="vorkurs.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">1. </span>Vorkurs</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="koord.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">1.2. </span>Wiederholung: Koordinatensysteme und der Satz des Pythagoras</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

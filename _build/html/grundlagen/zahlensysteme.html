@@ -1,0 +1,1422 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.2. Zahlensysteme &#8212; Mathematik für Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}", "x": "\\mathbf{x}", "veczwei": ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Vektorräume und lineare Abbildungen" href="../vektorraeume/vektorraeume.html" />
+    <link rel="prev" title="2.1. Mengenlehre und Logik" href="mengenlogik.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vorkurs/vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/regression.html">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/folgen.html">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/funktionen.html">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vektorraeume/vektorraeume.html">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LGS.html">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../metrik/metrik.html">
+   4. Metriken und Konvergenz
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/normen.html">
+     4.1. Metriken und Normen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/konvfolgen.html">
+     4.2. Konvergente Folgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/teilfolgen.html">
+     4.3. Teilfolgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/reihen.html">
+     4.4. Reihen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/potenzreihen.html">
+     4.5. Potenzreihen und Exponentialfunktion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../stetigkeit/stetigkeit.html">
+   5. Stetigkeit
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/eigenschaften.html">
+     5.1. Eigenschaften stetiger reeller Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/grenzwerte.html">
+     5.2. Grenzwerte von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/glm.html">
+     5.3. Gleichmäßige Stetigkeit und gleichmäßige Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/exp.html">
+     5.4. Die Exponentialfunktion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/trig.html">
+     5.5. Trigonometrische Funktionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../differential/differential.html">
+   6. Differentialrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/kombfkt.html">
+     6.1. Ableitungsregeln für Kombinationen von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/mws.html">
+     6.2. Der Mittelwertsatz der Differentialrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/hoehereOrdnung.html">
+     6.3. Höhere Ableitungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../integration/integration.html">
+   7. Integralrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/riemann.html">
+     7.1. Riemann Integral
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/hdi.html">
+     7.2. Der Hauptsatz der Differential- und Integralrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/vertauschen.html">
+     7.3. Vertauschung von Integralen und Taylor-Formel
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/grundlagen/zahlensysteme.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/https://github.com/FAU-AMMN/MathDataScience"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naturliche-zahlen">
+   2.2.1. Natürliche Zahlen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vollstandige-induktion">
+   2.2.2. Vollständige Induktion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ganze-zahlen">
+   2.2.3. Ganze Zahlen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rationale-zahlen">
+   2.2.4. Rationale Zahlen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reelle-zahlen">
+   2.2.5. Reelle Zahlen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#konstruktion-reeller-zahlen">
+     2.2.5.1. Konstruktion reeller Zahlen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vollstandigkeit">
+     2.2.5.2. Vollständigkeit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#infima-und-suprema">
+   2.2.6. Infima und Suprema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#komplexe-zahlen">
+   2.2.7. Komplexe Zahlen
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="zahlensysteme">
+<h1><span class="section-number">2.2. </span>Zahlensysteme<a class="headerlink" href="#zahlensysteme" title="Permalink to this headline">¶</a></h1>
+<p>Im Folgenden betrachten wir die wichtigsten Zahlensysteme und ihre Eigenschaften. Wir beginnen bei den natürlichen Zahlen und machden den Weg bis zu den reellen und komplexen Zahlen.</p>
+<div class="section" id="naturliche-zahlen">
+<h2><span class="section-number">2.2.1. </span>Natürliche Zahlen<a class="headerlink" href="#naturliche-zahlen" title="Permalink to this headline">¶</a></h2>
+<p>Die bisher verwendete Aufzählung <span class="math notranslate nohighlight">\(\N = \{0,1,2,3,\ldots\}\)</span> ist etwas unbefriedigend, da wird die Punkte ja nicht bis unendlich auffüllen können. Deshalb ist es besser die natürlichen Zahlen axiomatisch zu definieren (über die sogenannten Dedekind-Peano Axiome):</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 2.9 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Die natürlichen Zahlen sind eine Menge mit den folgenden Eigenschaften:</p>
+<ul class="simple">
+<li><p>Es gibt ein ausgezeichnetes Element <span class="math notranslate nohighlight">\(0\)</span></p></li>
+<li><p>Es gibt eine Nachfolgerabbildung <span class="math notranslate nohighlight">\({\cal N}:\N \rightarrow \N\)</span>, sodass <span class="math notranslate nohighlight">\(0 \notin {\cal N}(\N)\)</span> und <span class="math notranslate nohighlight">\({\cal N}\)</span> injektiv ist.</p></li>
+<li><p>Falls für <span class="math notranslate nohighlight">\(M \subset \N\)</span> gilt: <span class="math notranslate nohighlight">\(0 \in M\)</span> und <span class="math notranslate nohighlight">\({\cal N}(M) \subset M\)</span>, dann ist <span class="math notranslate nohighlight">\(M=\N\)</span>.</p></li>
+</ul>
+</div>
+</div><p>Man kann zeigen, dass damit die natürlichen Zahlen wohldefiniert sind. Nun definieren wir die Addition und Multiplikation mit</p>
+<div class="math notranslate nohighlight">
+\[ m + {\cal N}(n) = {\cal N}(m+n)\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ m 0 = 0, \quad m {\cal N}(n) = mn +m.\]</div>
+<p>Wir nennen <span class="math notranslate nohighlight">\({\cal N}(0)=1\)</span> und haben daher auch
+<span class="math notranslate nohighlight">\( {\cal N}(n) = n+1\)</span>.</p>
+</div>
+<div class="section" id="vollstandige-induktion">
+<h2><span class="section-number">2.2.2. </span>Vollständige Induktion<a class="headerlink" href="#vollstandige-induktion" title="Permalink to this headline">¶</a></h2>
+<p>Die Definition der natürlichen Zahlen impliziert auch die Beweistechnik der vollständigen Induktion:</p>
+<div class="proof theorem admonition" id="theorem-1">
+<p class="admonition-title"><span class="caption-number">Theorem 2.1 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(A(0)\)</span> sei wahr und aus <span class="math notranslate nohighlight">\(A(n)\)</span> wahr folgt <span class="math notranslate nohighlight">\(A(n+1)\)</span> wahr für alle <span class="math notranslate nohighlight">\(n \in \N\)</span>. Dann ist die Aussage <span class="math notranslate nohighlight">\(A(m)\)</span> wahr für alle <span class="math notranslate nohighlight">\(m \in N\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(N=\{m \in \N~|~A(m) \text{ ist wahr }\}\)</span>. Nun gilt nach unseren Voraussetzungen <span class="math notranslate nohighlight">\(0 \in N\)</span> und für jedes <span class="math notranslate nohighlight">\(n \in N\)</span> auch <span class="math notranslate nohighlight">\({\cal N}(n) \in N\)</span>. Also gilt <span class="math notranslate nohighlight">\(N= \N\)</span> und die Aussage ist für alle <span class="math notranslate nohighlight">\(m \in \N\)</span> wahr</p>
+</div>
+<p>Damit haben wir ein sehr nützliches Prinzip, mit dem wir Aussagen über den natürlichen Zahlen zeigen können. Die Überprüfung, dass <span class="math notranslate nohighlight">\(A(0)\)</span> wahr ist, nennen wir Induktionsanfang, die Folgerung von <span class="math notranslate nohighlight">\(n\)</span> auf <span class="math notranslate nohighlight">\(n+1\)</span> den Induktionsschritt. Beim Induktionsschritt wird die angenommene Gültigkeit von <span class="math notranslate nohighlight">\(A(n)\)</span> auch als Induktionsannahme bezeichnet. Natürlich können wir Induktionsbeweise auch für Teilmengen der Form <span class="math notranslate nohighlight">\(N= \{n \in \N~|~n \geq k \}\)</span>
+anwenden, denn durch die Variablentransformation <span class="math notranslate nohighlight">\(m=n-k\)</span> kommen wir auf die ursprüngliche Version. Damit können wir also den Induktionsanfang bei <span class="math notranslate nohighlight">\(k\)</span> und den Induktionsschritt für <span class="math notranslate nohighlight">\(n \geq k\)</span> machen um eine Aussage auf <span class="math notranslate nohighlight">\(N\)</span> zu zeigen.Wir illustrieren das Induktionsprinzip an zwei Beispielen:</p>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 2.5 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir beweisen das Kommutativgesetz der Addition, d.h. wir zeigen <span class="math notranslate nohighlight">\(n+m=m+n\)</span> für alle <span class="math notranslate nohighlight">\(n,m \in \N\)</span>. Wir beginnen mit der einfacheren Version <span class="math notranslate nohighlight">\(n+1=1+n\)</span> für alle <span class="math notranslate nohighlight">\(n\in\N\)</span>. Der Induktionsanfang bei <span class="math notranslate nohighlight">\(n=0\)</span> liefert <span class="math notranslate nohighlight">\(1=1\)</span>, also ist <span class="math notranslate nohighlight">\(A(0)\)</span> wahr. Sei nun die Induktionsannahme <span class="math notranslate nohighlight">\(n+1=1+n\)</span>, dann wollen wir folgern</p>
+<div class="math notranslate nohighlight">
+\[ (n+1)+1=1+(n+1).\]</div>
+<p>Dazu können wir aber die Induktionsannahme verwenden, denn es gilt <span class="math notranslate nohighlight">\(n+1+1 = 1+n+1\)</span> und damit folgt <span class="math notranslate nohighlight">\(A(n+1)\)</span> aus <span class="math notranslate nohighlight">\(A(n)\)</span>.
+Mit einem zweiten Induktionsbeweis zeigen wir nun die eigentliche Aussage <span class="math notranslate nohighlight">\(n+m=m+n\)</span>, wobei wir jetzt Induktion in <span class="math notranslate nohighlight">\(m\)</span> verwenden. Für <span class="math notranslate nohighlight">\(m=0\)</span> ist die Aussage wahr, da sie zu <span class="math notranslate nohighlight">\(n=n\)</span> reduziert. Nehmen wir nun an, dass <span class="math notranslate nohighlight">\(n+m=m+n\)</span> gilt, so wollen wir zeigen</p>
+<div class="math notranslate nohighlight">
+\[ n+(m+1) = (m+1) + n\]</div>
+<p>Dazu verwenden wir die oben bewiesene Eigenschaft <span class="math notranslate nohighlight">\(m+1 =1+m\)</span> bzw. <span class="math notranslate nohighlight">\(n+1=1+m\)</span> sowie die Induktionsannahme, also gilt</p>
+<div class="math notranslate nohighlight">
+\[ n+m+1=n+1+m=1+n+m=1+m+n=m+1+n\]</div>
+<p>und wir haben den Induktionsschritt erfolgreich durchgeführt</p>
+</div>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 2.6 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir beweisen die Gauss’sche Summationsformel für die Summe der ersten <span class="math notranslate nohighlight">\(n\)</span> Zahlen</p>
+<div class="math notranslate nohighlight">
+\[  \sum_{i=1}^n i = \frac{n(n+1)}2.\]</div>
+<p>Hier sind wir also im Fall <span class="math notranslate nohighlight">\(k=1\)</span> wie oben beschrieben. Wir definieren die Aussage <span class="math notranslate nohighlight">\(A(n)\)</span> als <em>Die Summenformel gilt für die ersten <span class="math notranslate nohighlight">\(n\)</span> Zahlen</em>.
+Den Induktionsanfang <span class="math notranslate nohighlight">\(A(1)\)</span> können wir durch direktes Ausrechnen nachprüfen</p>
+<div class="math notranslate nohighlight">
+\[  1 = \sum_{i=1}^n 1 = \frac{1(1+1)}2 = 1.\]</div>
+<p>Nun führen wir den Induktionsschritt durch, es gelte <span class="math notranslate nohighlight">\(A(n)\)</span>. Wir berechnen dann</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=1}^{n+1} i = \sum_{i=1}^n i  + (n+1) = \frac{n(n+1)}2 + (n+1) = \frac{(n+1)(n+2)}2,\]</div>
+<p>wobei wir in der Mitte die bereits gültige Aussage <span class="math notranslate nohighlight">\(A(n)\)</span>  eingesetzt haben.Damit haben wir <span class="math notranslate nohighlight">\(A(n+1)\)</span> gefolgert und somit die Summenformel für alle <span class="math notranslate nohighlight">\(n \in \N \setminus \{0\}\)</span> gültig</p>
+</div>
+</div></div>
+<div class="section" id="ganze-zahlen">
+<h2><span class="section-number">2.2.3. </span>Ganze Zahlen<a class="headerlink" href="#ganze-zahlen" title="Permalink to this headline">¶</a></h2>
+<p>Nachdem wir die natürlichen Zahlen bereits definiert haben, können wir nun die ganzen Zahlen als</p>
+<div class="math notranslate nohighlight">
+\[ Z = \N \cup -\N = \{n ~|~n \in \N \text{ oder } -n \in \N \}\]</div>
+<p>definieren mit den gleichen Regeln für die Addition und Multiplikation wie in <span class="math notranslate nohighlight">\(\N\)</span>, wobei <span class="math notranslate nohighlight">\(-n\)</span> das zu <span class="math notranslate nohighlight">\(n\)</span> inverse Element bezüglich der Addition ist, d.h.</p>
+<div class="math notranslate nohighlight">
+\[\forall n \in \Z: -n + n = n + (-n) = 0.\]</div>
+<p>Die <span class="math notranslate nohighlight">\(0\)</span> nennen wir neutrales Element, da <span class="math notranslate nohighlight">\(n+0=0+n=n\)</span>, d.h. Addition mit <span class="math notranslate nohighlight">\(0\)</span> verändert die Zahl nicht.
+Daraus folgern wir übrigens auch die Regel <em>Minus mal Minus ist Plus</em>. Es gilt ja, dass <span class="math notranslate nohighlight">\(-(-n))\)</span> das inverse Element zu <span class="math notranslate nohighlight">\(-n\)</span> ist und das ist wegen <span class="math notranslate nohighlight">\(n+(-n) = (-n)+n=0\)</span> durch <span class="math notranslate nohighlight">\(n\)</span> gegeben.
+Die Addition und Multiplikation auf den ganzen Zahlen liefern eine interessante algebraische Struktur.
+Die ganzen Zahlen mit der Operation der Addition sind eine sogenannte Gruppe:</p>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 2.10 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine Menge <span class="math notranslate nohighlight">\(G\)</span> zusammen mit einer Abbildung <span class="math notranslate nohighlight">\(\circ: G \times G \rightarrow G\)</span> heißt <em>Gruppe</em>, wenn die folgenden Eigenschaften erfüllt sind:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \forall a,b,c \in G: a \circ (b \circ c) = (a\circ b) \circ c\)</span> (Assoziativität)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\exists n \in G~ \forall a \in G: n \circ a = a\)</span> (neutrales Element)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\forall a \in G~\exists a' \in G: a' \circ a = n\)</span> (Existenz eines inversen Elements)</p></li>
+</ul>
+<p>Die Gruppe heißt abelsch (oder kommutativ), wenn für alle <span class="math notranslate nohighlight">\(a,b \in G\)</span> gilt: <span class="math notranslate nohighlight">\(a \circ b = b \circ a\)</span>.</p>
+</div>
+</div><div class="margin sidebar">
+<p class="sidebar-title">Niels Abel</p>
+<p><a class="reference external" href="https://de.wikipedia.org/wiki/Niels_Henrik_Abel">Niels Henrik Abel</a> (* 5. August 1802 auf der Insel Finnøy, Ryfylke, Norwegen; † 6. April 1829 in Froland, Aust-Agder, Norwegen) war ein norwegischer Mathematiker.</p>
+</div>
+<p>Wir beachten, dass wir die Eigenschaft des neutralen und inversen Elements nur einseitig definiert haben, bei abelschen Gruppen folgt sofort <span class="math notranslate nohighlight">\(a \circ n = a\)</span> und <span class="math notranslate nohighlight">\(a \circ a'=n\)</span>. Diese Eigenschaft folgt aber auch bei allgemeinen Gruppen. Es gilt ja dann</p>
+<div class="math notranslate nohighlight">
+\[a' \circ a  \circ a' = n \circ a' = a'\]</div>
+<p>und damit</p>
+<div class="math notranslate nohighlight">
+\[(a \circ a') \circ a \circ a' = a \circ a' .\]</div>
+<p>Nun gibt es ein inverses Element <span class="math notranslate nohighlight">\(b\)</span> zu <span class="math notranslate nohighlight">\((a \circ a')\)</span> also folgt</p>
+<div class="math notranslate nohighlight">
+\[a \circ a' = b \circ (a \circ a') \circ a \circ a' = b \circ (a \circ a') = n.\]</div>
+<p>Analog zeigt man auch <span class="math notranslate nohighlight">\(a \circ n = a\)</span>.
+Es gibt in einer Gruppe nur ein neutrales Element und zu jedem <span class="math notranslate nohighlight">\(a\)</span> ein eindeutiges inverses Element. Seien <span class="math notranslate nohighlight">\(n_1,n_2\)</span> neutrale Elemente, dann gilt ja</p>
+<div class="math notranslate nohighlight">
+\[n_1 = n_1 \circ n_2 = n_2,\]</div>
+<p>also sind sie gleich. Seien <span class="math notranslate nohighlight">\(a_1'\)</span> und <span class="math notranslate nohighlight">\(a_2'\)</span> inverse Elemente zu <span class="math notranslate nohighlight">\(a\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[a_1' = a_1' \circ (a \circ a_2') = (a_1' \circ a) \circ a_2' = a_2'.\]</div>
+<p>Neben <span class="math notranslate nohighlight">\(\Z\)</span> können wir noch andere Beispiele von Gruppen finden.</p>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 2.7 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(p \in \N \setminus \{0\}\)</span>. Dann ist die Faktormenge <span class="math notranslate nohighlight">\(\Z_p = (\Z/p\Z, +)\)</span> eine Gruppe, die wir mit der Restklasse
+<span class="math notranslate nohighlight">\( \{0,1,\ldots,p-1\}\)</span> identifizieren können. Im Sinne einer Restklasse ergibt sich automatisch die Addition modulo <span class="math notranslate nohighlight">\(p\)</span>. Das neutrale Element ist <span class="math notranslate nohighlight">\(n=0\)</span>, das zu <span class="math notranslate nohighlight">\(m\)</span> inverse Element ist <span class="math notranslate nohighlight">\(m'=p-m\)</span>. Wir betrachten als konkretes Beispiel <span class="math notranslate nohighlight">\(p=3\)</span>, hier ist die Addition gegeben durch</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>+</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><p>Wir können <span class="math notranslate nohighlight">\(\Z\)</span> auch mit den beiden Operationen <span class="math notranslate nohighlight">\(+\)</span> und <span class="math notranslate nohighlight">\(\cdot\)</span> betrachten, dann ergibt sich die Struktur eines Rings:</p>
+<div class="proof definition admonition" id="definition-6">
+<p class="admonition-title"><span class="caption-number">Definition 2.11 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Ein Ring <span class="math notranslate nohighlight">\(R\)</span> ist eine bezüglich der Operation <span class="math notranslate nohighlight">\(+\)</span> abel’sche Gruppe mit einer zweiten Operation <span class="math notranslate nohighlight">\(\cdot : R \times R \rightarrow R\)</span>, sodass folgende Eigenschaften erfüllt sind:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \forall a,b,c \in R: a \cdot (b \cdot c) = (a\cdot b) \cdot c\)</span> (Assoziativität)</p></li>
+<li><p><span class="math notranslate nohighlight">\( \forall a,b,c \in R: a \cdot (b+c) = a\cdot b + a \cdot c\)</span> und <span class="math notranslate nohighlight">\((b+c) \cdot a = b \cdot a + c \cdot a\)</span> (Distributivgesetz)</p></li>
+</ul>
+<p>Wir bezeichnen das neutrale Element der Addition <span class="math notranslate nohighlight">\(+\)</span> als 0.
+Falls ein zusätzliches neutrales Element <span class="math notranslate nohighlight">\(1\)</span> existiert, sodass für alle <span class="math notranslate nohighlight">\(a  \in R\)</span> gilt <span class="math notranslate nohighlight">\(1 \cdot a = a \cdot 1\)</span>, dann
+heißt <span class="math notranslate nohighlight">\(R\)</span> Ring mit Einselement. Gilt für alle <span class="math notranslate nohighlight">\(a, b  \in R\)</span>, dass <span class="math notranslate nohighlight">\(a \cdot b = b \cdot a\)</span>, dann heißt <span class="math notranslate nohighlight">\(R\)</span> kommutativ</p>
+</div>
+</div><p>Wir beachten, dass in einem Ring aus <span class="math notranslate nohighlight">\(a_1 \cdot b = a_2 \cdot b\)</span> nicht <span class="math notranslate nohighlight">\(a_1=a_2\)</span> folgen muss, auch wenn <span class="math notranslate nohighlight">\(b\neq 0\)</span> gilt. Aus diesen Gründen müssen wir beim neutralen Element der Multiplikation auch die beidseitige Definition verwenden.</p>
+<div class="proof example admonition" id="example-7">
+<p class="admonition-title"><span class="caption-number">Example 2.8 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir betrachten <span class="math notranslate nohighlight">\((\Z/2\Z, +,\cdot)=(\{0,1\},+,\cdot)\)</span>. Hier gilt</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(+\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\cdot\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Wir sehen, dass <span class="math notranslate nohighlight">\(0\)</span> das neutrale Element der Addition und <span class="math notranslate nohighlight">\(1\)</span> das neutrale Element der Multiplikation ist. Dazu sind die Operationen kommutativ, wir haben also einen kommutativen Ring mit Einselement.</p>
+</div>
+</div><div class="proof example admonition" id="example-8">
+<p class="admonition-title"><span class="caption-number">Example 2.9 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir betrachten <span class="math notranslate nohighlight">\((\Z/4\Z, +,\cdot)=(\{0,1,2,3\},+,\cdot)\)</span>. Hier gilt</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(+\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(\cdot\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Wir sehen, dass <span class="math notranslate nohighlight">\(0\)</span> das neutrale Element der Addition und <span class="math notranslate nohighlight">\(1\)</span> das neutrale Element der Multiplikation ist. Dazu sind die Operationen kommutativ, wir haben also einen kommutativen Ring mit Einselement.</p>
+</div>
+</div></div>
+<div class="section" id="rationale-zahlen">
+<h2><span class="section-number">2.2.4. </span>Rationale Zahlen<a class="headerlink" href="#rationale-zahlen" title="Permalink to this headline">¶</a></h2>
+<p>Die rationalen Zahlen definieren wir üblicherweise als Brüche von ganzen Zahlen. Dabei haben wir natürlich das Problem des <em>Kürzens</em>. Zwei Brüche der Form <span class="math notranslate nohighlight">\(\frac{p_1}{q_1}\)</span> und <span class="math notranslate nohighlight">\(\frac{p_2}{q_2}\)</span> mit <span class="math notranslate nohighlight">\(p_i, q_i \in \Z\)</span>,<span class="math notranslate nohighlight">\(q_i \neq 0\)</span> (für <span class="math notranslate nohighlight">\(i=1,2\)</span>) betrachten wir als gleich, wenn nach ausmultiplizieren
+<span class="math notranslate nohighlight">\(p_1 q_2= p_2 q_1\)</span> gilt.
+Die mathematische Grundlage zur Betrachtung dieses Problems haben wir bereits gelegt, nämlich die Faktorisierung bezüglich einer Äquivalenzrelation. Wir definieren zunächst die rationalen Zahlen als <span class="math notranslate nohighlight">\(\Z \times (\N \setminus \{0\})\)</span>, d.h. alle möglichen Zähler-Nenner Paare. Nun definieren wir eine Äquivalenzrelation</p>
+<div class="math notranslate nohighlight">
+\[\frac{p_1}{q_1} \sim \frac{p_2}{q_2}  \quad \Leftrightarrow \quad p_1 q_2= p_2 q_1.\]</div>
+<p>Reflexivität, Symmetrie und Transitivität sind wegen den Eigenschaft der Multiplikation in <span class="math notranslate nohighlight">\(\N\)</span> gegeben.
+Nun definieren wir die rationalen Zahlen als Faktorgruppe</p>
+<div class="math notranslate nohighlight">
+\[\Q = ( \Z \times (\N \setminus \{0\}) /  \sim).\]</div>
+<p>Eine rationale Zahl entspricht also der Klasse an Brüchen, die den gleichen Wert ergeben. Wir können als Repräsentanten dann den gekürzten Bruch, also teilerfremde <span class="math notranslate nohighlight">\(p\)</span> und <span class="math notranslate nohighlight">\(q\)</span> wählen. Wir schreiben dann statt <span class="math notranslate nohighlight">\((p,q)\)</span> einfach <span class="math notranslate nohighlight">\(\frac{p}q\)</span>. Auch bei Addition und Multiplikation betrachten wir Äquivalenzklassen und definieren</p>
+<div class="math notranslate nohighlight">
+\[ \frac{p_1}{q_1} +   \frac{p_2}{q_2}  = \frac{p_1 q_2 + p_2 q_1}{q_1q_2}\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \frac{p_1}{q_1}  \cdot  \frac{p_2}{q_2}  = \frac{p_1   p_2  }{q_1q_2} .\]</div>
+<p>Mit diesen Gesetzen weisen wir leicht nach, dass <span class="math notranslate nohighlight">\(\Q\)</span> ein Ring ist, es gilt aber sogar noch die zusätzliche Eigenschaft, dass es ein inverses Element der Multiplikation gibt. Dies führt uns auf die nächste Definition:</p>
+<div class="proof definition admonition" id="definition-9">
+<p class="admonition-title"><span class="caption-number">Definition 2.12 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Ein kommutativer Ring <span class="math notranslate nohighlight">\(\K\)</span> mit Einselement <span class="math notranslate nohighlight">\(1 \neq 0\)</span> heißt Körper, wenn</p>
+<div class="math notranslate nohighlight">
+\[ \forall a \in\K \setminus \{0\} ~\exists b \in K:  a b = 1.\]</div>
+</div>
+</div><p>In <span class="math notranslate nohighlight">\(\Q\)</span> ist das inverse Element für <span class="math notranslate nohighlight">\(\frac{p}q \neq 0\)</span> gegeben durch <span class="math notranslate nohighlight">\(\frac{q}p\)</span>. Allgemein gilt in einem Körper, dass <span class="math notranslate nohighlight">\(x\)</span> das inverse Element zu <span class="math notranslate nohighlight">\(1/x\)</span>. Darüber hinaus erfüllt ein Körper die sogenannte Nullteilerfreiheit, d.h.</p>
+<div class="math notranslate nohighlight">
+\[x \cdot y = 0 \quad \Rightarrow x = 0 \text{ oder } y =0.\]</div>
+<p>Wir haben am Beispiel des Rings <span class="math notranslate nohighlight">\(\Z_4=\Z/4\Z\)</span> (dort ist <span class="math notranslate nohighlight">\(2 \cdot 2 = 0\)</span>) schon gesehen, das die Nullteilerfreiheit nicht in jedem Ring gilt.
+Neben der Körpereigenschaft haben wir mit der üblichen Ordnungsrelation <span class="math notranslate nohighlight">\(\leq\)</span>, d.h.</p>
+<div class="math notranslate nohighlight">
+\[\frac{p_1}{q_1} \leq \frac{p_2}{q_2} \quad \Leftrightarrow \quad p_1 q_2 \leq p_2 q_1\]</div>
+<p>auch eine vollständige Ordnung auf <span class="math notranslate nohighlight">\(\Q\)</span>. Diese verträgt sich in gewisser Weise mit den Rechenoperationen, was uns auf folgende Definition führt:</p>
+<div class="proof definition admonition" id="definition-10">
+<p class="admonition-title"><span class="caption-number">Definition 2.13 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Ein Körper <span class="math notranslate nohighlight">\(\K\)</span> mit vollständiger Ordnung <span class="math notranslate nohighlight">\(\preceq\)</span> bzw. <span class="math notranslate nohighlight">\(\prec\)</span>  heißt angeordnet, wenn die beiden folgenden Bedingungen erfüllt sind:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\forall~x,y,z \in \K, x \prec y: x+z \prec y+z\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\forall x,y \in \K, 0 \prec x, 0 \prec y: 0 \prec x \cdot y\)</span>.</p></li>
+</ul>
+</div>
+</div><p>Für einen angeordneten Körper erhalten wir verschiedene intuitive Eigenschaften:</p>
+<ul class="simple">
+<li><p>Für <span class="math notranslate nohighlight">\(x \in \K \setminus \{0\}\)</span> gilt entweder <span class="math notranslate nohighlight">\(0 \prec x\)</span> oder <span class="math notranslate nohighlight">\(0 \prec -x\)</span>. Dies sehen wir aus der ersten Eigenschaft, denn falls <span class="math notranslate nohighlight">\(0 \prec x\)</span> gilt können wir <span class="math notranslate nohighlight">\(z=-x\)</span> addieren. Damit sehen wir auch, dass <span class="math notranslate nohighlight">\( 0 \preceq 1\)</span> gelten muss, sonst wäre <span class="math notranslate nohighlight">\(0 \preceq -1\)</span> und damit wegen der zweiten Eigenschaft für <span class="math notranslate nohighlight">\(0 \prec x \)</span> auch <span class="math notranslate nohighlight">\(0 \prec -x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(0 \prec x^2 = (-x)^2\)</span>. Dies sehen wir aus der zweiten Eigenschaft, entweder für <span class="math notranslate nohighlight">\(0 \prec x\)</span> oder <span class="math notranslate nohighlight">\(0 \prec -x\)</span>.</p></li>
+<li><p>Aus <span class="math notranslate nohighlight">\(x_1 \prec x_2\)</span> und <span class="math notranslate nohighlight">\(y_1 \prec y_2\)</span> folgt <span class="math notranslate nohighlight">\(x_1 + y_1 \prec x_2 + y_2\)</span>.</p></li>
+<li><p>Aus <span class="math notranslate nohighlight">\(0 \prec x\)</span> folgt <span class="math notranslate nohighlight">\(0 \prec \frac{1}x\)</span>.</p></li>
+</ul>
+<p>In einem angeordneten Körper kann man den Betrag als</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vert x \vert := \left\{ \begin{array}{rl} x &amp; 0 \preceq x \\ -x &amp; x \prec 0 \end{array} \right.\end{split}\]</div>
+<p>und das Vorzeichen (Signum) als</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{sign}(x) =  \left\{ \begin{array}{rl} 1 &amp; 0 \prec  x \\ 0 &amp; x =0\\-1 &amp; x \prec 0 \end{array}\right.\end{split}\]</div>
+<p>definieren. Auch für Betrag und Vorzeichen gelten die üblichen Eigenschaften wie</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x = |x|\)</span> sign<span class="math notranslate nohighlight">\((x)\)</span>, <span class="math notranslate nohighlight">\(|-x|=|x|\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|x|~|y|=|xy|\)</span>, sign<span class="math notranslate nohighlight">\((x)\)</span>sign<span class="math notranslate nohighlight">\((y) = \)</span>sign<span class="math notranslate nohighlight">\((xy)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(0 \preceq |x|\)</span> und <span class="math notranslate nohighlight">\(|x|=0 \Leftrightarrow x =0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|x+y| \preceq |x|+|y|\)</span> (Dreiecksungleichung)</p></li>
+</ul>
+<p>Da die ersten Eigenschaften sehr einfach zu zeigen sind, beweisen wir nur kurz die Dreiecksungleichung. Wegen <span class="math notranslate nohighlight">\(x \preceq |x|\)</span> und <span class="math notranslate nohighlight">\(-x \preceq |x|\)</span> folgt</p>
+<div class="math notranslate nohighlight">
+\[x+y \preceq |x|+|y|, \qquad -x-y \preceq |x|+|y|\]</div>
+<p>und damit direkt die Dreiecksungleichung.
+Neben Betrag und Vorzeichen können wir auch das Maximum und Minimum definieren durch</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\max\{x,y\} = \left\{ \begin{array}{rl} x &amp; y \preceq x \\ y &amp; x \prec y \end{array} \right.\end{split}\]</div>
+<p>bzw.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\min\{x,y\} = \left\{ \begin{array}{rl} y &amp; y \preceq x \\ x &amp; x \prec y. \end{array} \right.\end{split}\]</div>
+<p>Durch eine Hintereinanderausführung erhalten wir dann auch Maximum und Minimum endlicher Mengen, z.B.</p>
+<div class="math notranslate nohighlight">
+\[\max\{x_1,\ldots,x_n\} = \max\{x_1,\max\{x_2, \ldots, \max\{x_{n-1},x_n\} \ldots\}\}.\]</div>
+<p><span class="math notranslate nohighlight">\(\Q\)</span> ist nicht nur ein angeordneter Körper, sondern wird sogar als <em>archimedisch angeordnet</em> bezeichnet. Dies bedeutet, dass für alle <span class="math notranslate nohighlight">\(x \in \K\)</span> ein <span class="math notranslate nohighlight">\(n \in \N\)</span> existiert mit <span class="math notranslate nohighlight">\(x \prec n\)</span>. Bei einer rationalen Zahl <span class="math notranslate nohighlight">\(\frac{p}q\)</span> können wir einfach <span class="math notranslate nohighlight">\(n = |p|+1\)</span> wählen.
+Wir betrachten zum Abschluss noch die Mächtigkeit von <span class="math notranslate nohighlight">\(\Q\)</span>. Wir haben schon gesehen, dass es eine bijektive Abbildung <span class="math notranslate nohighlight">\(f: \N \mapsto \N \times \N\)</span> gibt, und ähnlich können wir eine bijektive Abbildung von <span class="math notranslate nohighlight">\(f: \N \rightarrow \Z \rightarrow \Z \times Z\)</span> konstruieren. Da die Abbildung von <span class="math notranslate nohighlight">\(\Z \times \Z \setminus \{0\}\)</span> auf die obigen Äquivalenzklassen, d.h. <span class="math notranslate nohighlight">\(\Q\)</span> surjektiv ist, erhalten wir eine surjektive Abbildung von <span class="math notranslate nohighlight">\(\N\)</span> nach <span class="math notranslate nohighlight">\(\Q\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title">Georg Cantor</p>
+<p><a class="reference external" href="https://de.wikipedia.org/wiki/Georg_Cantor">Georg Ferdinand Ludwig Philipp Cantor</a> (* 3. März 1845greg. in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.</p>
+</div>
+<p>Andererseits ist die Identität von <span class="math notranslate nohighlight">\(\N\)</span> nach <span class="math notranslate nohighlight">\(\Q\)</span> eine injektive Abbildung. Also erwarten wir, dass es auch eine Bijektion gibt, d.h. <span class="math notranslate nohighlight">\(|\Q|=\aleph_0\)</span>. Dies liefert das sogenannte erste Cantor’sche Diagonalverfahren:</p>
+<div class="proof theorem admonition" id="theorem-11">
+<p class="admonition-title"><span class="caption-number">Theorem 2.2 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Es gibt eine bijektive Abbildung <span class="math notranslate nohighlight">\(f: \N \rightarrow \Q\)</span>, d.h. <span class="math notranslate nohighlight">\(\Q\)</span> ist abzählbar.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Wir konstruieren eine bijektive Abbildung in zwei Schritten. Zuerst verwenden wir die bereits bekannte Bijektion <span class="math notranslate nohighlight">\(f_1 : \N \rightarrow \Z\)</span> und konstruieren danach eine Abbildung <span class="math notranslate nohighlight">\(f_2: \Z \rightarrow \Q\)</span>. Danach definieren wir <span class="math notranslate nohighlight">\(f: \N \rightarrow \Q\)</span> als Hintereinanderausführung <span class="math notranslate nohighlight">\(f_2 \circ f_1\)</span>.
+Es genügt <span class="math notranslate nohighlight">\(f_2\)</span> auf <span class="math notranslate nohighlight">\(\N \setminus \{0\}\)</span> mit Werten in <span class="math notranslate nohighlight">\(\Q_+\)</span>. Danach definieren wir <span class="math notranslate nohighlight">\(f_2(0)=0\)</span> und <span class="math notranslate nohighlight">\(f_2(-n)=-f_2(n)\)</span> für alle <span class="math notranslate nohighlight">\(n \in \N\)</span> um eine Bijektion von <span class="math notranslate nohighlight">\(\Z\)</span> nach <span class="math notranslate nohighlight">\(\Q\)</span> zu erhalten. Dazu schreiben wir alle rationalen Zahlen zeilenweise an, in die erste Zeile jene mit Zähler <span class="math notranslate nohighlight">\(1\)</span>, in die zweite mit Zähler <span class="math notranslate nohighlight">\(2\)</span> usw.:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\Large 
+\begin{matrix}  
+\frac{1}1 &amp; \frac{1}2 &amp; \frac{1}3 &amp; \frac{1}4 &amp; \ldots  \\
+&amp; &amp; &amp; &amp;\\
+\frac{2}1 &amp; \frac{2}3 &amp; \frac{2}5 &amp; \frac{2}7 &amp; \ldots \\
+&amp; &amp; &amp; &amp;\\
+\frac{3}1 &amp; \frac{3}2 &amp; \frac{3}4 &amp; \frac{3}5 &amp; \ldots \\
+&amp; &amp; &amp; &amp;\\
+\frac{4}1 &amp; \frac{4}3 &amp; \frac{4}5 &amp; \frac{4}7 &amp; \ldots \\
+&amp; &amp; &amp; &amp;\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots
+\end{matrix}}\end{split}\]</div>
+<p>Diese zählen wir mit dem Cantor’schen Diagonalverfahren ab, dies ist analog zur Bijektion von <span class="math notranslate nohighlight">\(\N\)</span> nach <span class="math notranslate nohighlight">\(\N \times \N\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\Large 
+ \begin{matrix}    
+\frac{1}1 &amp; &amp; \frac{1}2 &amp; \rightarrow &amp;\frac{1}3 &amp; &amp;\frac{1}4 &amp; \ldots  \\
+\downarrow &amp; \nearrow &amp; &amp; \swarrow  &amp; &amp; \nearrow &amp; &amp; \\
+\frac{2}1 &amp; &amp;\frac{2}3 &amp; &amp;\frac{2}5 &amp; &amp;\frac{2}7 &amp; \ldots \\
+&amp; \swarrow &amp; &amp; \nearrow&amp;&amp;  \swarrow &amp; &amp; \\
+\frac{3}1 &amp; &amp;\frac{3}2 &amp; &amp;\frac{3}4 &amp; &amp;\frac{3}5 &amp; \ldots \\
+\downarrow &amp; \nearrow &amp; &amp; \swarrow  &amp; &amp; \nearrow &amp; &amp; \\
+\frac{4}1 &amp; &amp;\frac{4}3 &amp; &amp;\frac{4}5 &amp; &amp;\frac{4}7 &amp; \ldots \\
+\vdots &amp; &amp;\vdots &amp; &amp;\vdots &amp; &amp; \vdots &amp; \ddots
+\end{matrix}}\end{split}\]</div>
+<p>Damit haben wir insgesamt eine Bijektion gefunden, da wir jede Zahl genau einmal nach endlich vielen Schritten erreichen. Also ist <span class="math notranslate nohighlight">\(\Q\)</span> abzählbar</p>
+</div>
+</div>
+<div class="section" id="reelle-zahlen">
+<h2><span class="section-number">2.2.5. </span>Reelle Zahlen<a class="headerlink" href="#reelle-zahlen" title="Permalink to this headline">¶</a></h2>
+<p>Wir konstruieren im Folgenden die reellen Zahlen und ihre Eigenschaften, indem wir Lücken zwischen den rationalen Zahlen füllen. Solche können wir uns als nichtperiodische Dezimalzahlen mit unendlich vielen Kommastellen vorstellen. Da wir die unendlich vielen Stellen ja nie alle hinschreiben können, haben wir hier einen natürlichen Grenzwertprozess. Wir können uns eine Folge aus Dezimalzahlen mit <span class="math notranslate nohighlight">\(n\)</span> Kommastellen vorstellen, wobei <span class="math notranslate nohighlight">\(n\)</span> größer wird. Für <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> erhalten wir dann die reelle Zahl, quasi als Grenzwert. Wir beachten, dass der Unterschied zwischen zwei Versionen einer Dezimalzahl mit <span class="math notranslate nohighlight">\(n\)</span> bzw. <span class="math notranslate nohighlight">\(m &gt; n\)</span> Stellen betragsmäßig immer kleiner als <span class="math notranslate nohighlight">\(10^{-n+1}\)</span> ist, d.h. auf jeden Fall gegen Null konvergiert mit <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. Dies wird uns auf das Konzept der sogenannten Cauchy-Folgen führen, über die wir reelle Zahlen dann konstruieren. Wir werden auch sehen, dass sehr viele irrationale relle Zahlen gibt, tatsächlich gilt <span class="math notranslate nohighlight">\(|\R| &gt; |\Q|\)</span>.
+Die notwendigkeit der Betrachtung irrationaler Zahlen <span class="math notranslate nohighlight">\(x \in \R \setminus \Q\)</span> sehen wir aus der Tatsache, dass wir in den rationalen Zahlen nicht immr eine Wurzel aus einer positiven Zahl ziehen können. Wir sehen dies bereits bei der Quadratwurzel aus <span class="math notranslate nohighlight">\(2\)</span>, eine Beobachtung der Griechen, der wir hier in einem Beweis von Euklid folgen:</p>
+<div class="proof theorem admonition" id="theorem-12">
+<p class="admonition-title"><span class="caption-number">Theorem 2.3 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Es gibt kein <span class="math notranslate nohighlight">\(x \in \Q\)</span> mit <span class="math notranslate nohighlight">\(x^2 = 2\)</span></p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(x = \frac{p}q\)</span> mit <span class="math notranslate nohighlight">\((p,q) \in \N \times \N \setminus \{0\}\)</span> (wir können O.B.d.A. annehmen, dass <span class="math notranslate nohighlight">\(x\)</span> und damit <span class="math notranslate nohighlight">\(p\)</span> positiv ist). Wir können den Repräsentanten als teilerfremd auswählen, d.h. es gibt keine natürliche Zahl, die sowohl <span class="math notranslate nohighlight">\(p\)</span> als auch <span class="math notranslate nohighlight">\(q\)</span> teilt. Aus <span class="math notranslate nohighlight">\(x^2 =2\)</span> folgt <span class="math notranslate nohighlight">\(p^2 = 2 q^2\)</span> und dies bedeutet, dass <span class="math notranslate nohighlight">\(p^2\)</span> gerade ist. Damit muss natürlich auch <span class="math notranslate nohighlight">\(p\)</span> gerade sein, da das Quadrat einer ungeraden Zahl ungerade ist. Also existiert ein <span class="math notranslate nohighlight">\(\tilde p \in \N\)</span> mit <span class="math notranslate nohighlight">\(p = 2 \tilde p^2\)</span>. Setzen wir dies in die obige Identität ein, so folgt</p>
+<div class="math notranslate nohighlight">
+\[ 4 \tilde p^2 = 2 q^2 \Rightarrow q^2 = 2 \tilde p^2.\]</div>
+<p>Damit können wir mit den gleichen Argumenten wie vorher folgern, dass <span class="math notranslate nohighlight">\(q\)</span> gerade ist. Also ist <span class="math notranslate nohighlight">\(2\)</span> ein gemeinsamer Teiler von <span class="math notranslate nohighlight">\(p\)</span> und <span class="math notranslate nohighlight">\(q\)</span>, was der Teilerfremdheit widerspricht. Damit kann kein solches <span class="math notranslate nohighlight">\(x \in \Q\)</span> existieren.</p>
+<p>Die Griechen hatten auch bereits ein iteratives Verfahren zur Annäherung der Quadratwurzel, das sogenannte Heron-Verfahren, in dem man die Folgenglieder nacheinander definiert als</p>
+<div class="math notranslate nohighlight">
+\[ x_{n+1}=\frac{x_n}2 + \frac{1}x_n,\]</div>
+<p>mit einem beliebigen Startwert <span class="math notranslate nohighlight">\(x_0 \in \Q_+\)</span>, z.B. <span class="math notranslate nohighlight">\(x_0=1\)</span> oder <span class="math notranslate nohighlight">\(x_0=2\)</span>. Nehmen wir an es gilt <span class="math notranslate nohighlight">\(x_n \rightarrow \overline{x}\)</span>, dann gilt natürlich auch <span class="math notranslate nohighlight">\( x_{n+1} \rightarrow \overline{x}\)</span> für <span class="math notranslate nohighlight">\(n\rightarrow \infty\)</span> und damit muss gelten</p>
+<div class="math notranslate nohighlight">
+\[ \overline{x}=\frac{\overline{x}}2 + \frac{1}{\overline{x}} \Leftrightarrow \overline{x}^2=2.\]</div>
+<p>Die tatsächliche Konvergenz der Folge werden wir später nachweisen.Da bei der Definition des Heron-Verfahrens nur Additionen, Multiplikationen und Divisionen passieren, ist <span class="math notranslate nohighlight">\(x_n \in \Q_+\)</span> für alle <span class="math notranslate nohighlight">\(n\)</span>. Damit erhalten wir tatsächlich Folgen rationaler Zahlen, die gegen <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> konvergieren. Wir sehen aber auch die Nichteindeutigkeit, für jeden Anfangswert <span class="math notranslate nohighlight">\(x_0\)</span> erhalten wir eine andere Folge mit dem gleichen Grenzwert. Deshalb werden wir besonders darauf achten müssen, dass wir die reellen Zahlen unabhängig von
+\subsubsection{Folgen in Körpern}</p>
+<div class="proof definition admonition" id="definition-13">
+<p class="admonition-title"><span class="caption-number">Definition 2.14 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(\K\)</span> ein archimedisch angeordneter Körper.</p>
+<ul class="simple">
+<li><p>Eine Folge in <span class="math notranslate nohighlight">\(\K\)</span> ist eine Abbildung <span class="math notranslate nohighlight">\(x: \N \rightarrow \K\)</span>, sie wird geschrieben als <span class="math notranslate nohighlight">\((x_n)_{n \in \N}\)</span> bzw.
+<span class="math notranslate nohighlight">\((x_0,x_1,\ldots)\)</span>.</p></li>
+<li><p>Eine Folge <span class="math notranslate nohighlight">\((x_n)\)</span> konvergiert gegen <span class="math notranslate nohighlight">\(\overline{x} \in \K\)</span>, genau dann wenn</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon \in K, 0 \prec \epsilon ~ \exists n_0 \in \N ~\forall n \geq n_0: |x_n - \overline{x}| \prec \epsilon.\]</div>
+<p>In diesem Fall nennen wir <span class="math notranslate nohighlight">\(\overline{x}\)</span> Grenzwert (oder Limes) von <span class="math notranslate nohighlight">\((x_n)\)</span> und schreiben <span class="math notranslate nohighlight">\(x_n \rightarrow \overline{x}\)</span> oder <span class="math notranslate nohighlight">\(\overline{x}= \lim_{n \rightarrow \infty} x_n. \)</span></p>
+<p>Insgesamt nennen wir eine Folge konvergent, wenn es irgendeinen Grenzwert <span class="math notranslate nohighlight">\(\overline{x} \in \K\)</span> der Folge gibt.</p>
+</div>
+</div></div>
+<p>Eine Folge rationaler Zahlen konvergiert gegen <span class="math notranslate nohighlight">\(\overline{x} \in \Q\)</span>, genau dann wenn in der normalen Ordnung gilt</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon \in K, 0 &lt; \epsilon ~ \exists n_0 \in \N ~\forall n \geq n_0: |x_n - \overline{x}| &lt; \epsilon.\]</div>
+<p>Allerdings haben wir mit dieser Definition noch das Problem, dass wir einen Grenzwert in <span class="math notranslate nohighlight">\(\Q\)</span> brauchen, wir hätten aber gerne auch Grenzwerte in <span class="math notranslate nohighlight">\(\R \setminus \Q\)</span>, die wir eigentlich über die Folge definieren. Also brauchen wir eine alternative Definition, die keinen Grenzwert benutzt:</p>
+<div class="proof definition admonition" id="definition-14">
+<p class="admonition-title"><span class="caption-number">Definition 2.15 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine Folge <span class="math notranslate nohighlight">\((x_n) \in \K\)</span> heißt Cauchy-Folge, genau dann wenn</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon \in K, 0 \prec \epsilon ~ \exists n_0 \in \N ~\forall n,m  \geq n_0: |x_n - x_m| \prec \epsilon.\]</div>
+</div>
+</div><p>Wir sehen sofort eine einseitige Beziehung:</p>
+<div class="proof theorem admonition" id="theorem-15">
+<p class="admonition-title"><span class="caption-number">Theorem 2.4 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Eine konvergente Folge <span class="math notranslate nohighlight">\((x_n)\)</span> in einem archimedisch angeordneten Körper <span class="math notranslate nohighlight">\(\K\)</span> ist eine Cauchy-Folge.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Ist <span class="math notranslate nohighlight">\((x_n)\)</span> konvergent, dann existiert für alle <span class="math notranslate nohighlight">\(\epsilon \in \K\)</span>, <span class="math notranslate nohighlight">\(0 \prec \epsilon\)</span> ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span>, sodass für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span> gilt:</p>
+<div class="math notranslate nohighlight">
+\[| x_n - \overline{x} | \prec  \epsilon',\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(\overline{x}\)</span> der Grenzwert der Folge ist und <span class="math notranslate nohighlight">\(\epsilon'+\epsilon' \preceq \epsilon\)</span> gilt. Aus der Dreiecksungleichung folgt für <span class="math notranslate nohighlight">\(n,m \geq n_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[| x_n - x_m | \preceq  | x_n - \overline{x} |  +  | x_m - \overline{x} | \prec \epsilon,\]</div>
+<p>also ist <span class="math notranslate nohighlight">\((x_n)\)</span> Cauchy-Folge.</p>
+</div>
+<p>Der folgende Satz liefert uns einige Eigenschaften von Cauchy-Folgen:</p>
+<div class="proof theorem admonition" id="theorem-16">
+<p class="admonition-title"><span class="caption-number">Theorem 2.5 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> eine Cauchy-Folge in einem archimedisch angeordneten Körper <span class="math notranslate nohighlight">\(\K\)</span>. Dann ist <span class="math notranslate nohighlight">\((x_n)\)</span> beschränkt, d.h. es gibt ein <span class="math notranslate nohighlight">\(C \in \K\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[|x_n| \preceq C \qquad \forall~n \in \N.\]</div>
+<p>Ist <span class="math notranslate nohighlight">\((y_n)\)</span> eine weitere Cauchy-Folge in <span class="math notranslate nohighlight">\(\K\)</span>, dann sind auch <span class="math notranslate nohighlight">\((x_n+y_n)\)</span> und <span class="math notranslate nohighlight">\((x_n y_n)\)</span> Cauchy-Folgen.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Da <span class="math notranslate nohighlight">\((x_n)\)</span> Cauchy-Folge ist, gibt es ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span>, sodass für alle <span class="math notranslate nohighlight">\(n,m \geq n_0\)</span> gilt</p>
+<div class="math notranslate nohighlight">
+\[ | x_n - x_m | \preceq 1.\]</div>
+<p>Damit ist insbesondere für jedes <span class="math notranslate nohighlight">\(n \geq n_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[|x_n| \preceq |x_{n_0}| + |x_n - x_{n_0}| \prec |x_{n_0}| +1.\]</div>
+<p>Wählen wir nun</p>
+<div class="math notranslate nohighlight">
+\[C = \max_{1 \leq j \leq n_0} |x_j| + 1,\]</div>
+<p>dann folgt für alle <span class="math notranslate nohighlight">\(n \in \N\)</span>: <span class="math notranslate nohighlight">\(|x_j| \prec 1\)</span>.
+Seien nun <span class="math notranslate nohighlight">\((x_n)\)</span> und <span class="math notranslate nohighlight">\((y_n)\)</span> Cauchy-Folgen. Dann existiert zu jedem <span class="math notranslate nohighlight">\(\epsilon \in \K\)</span> mit <span class="math notranslate nohighlight">\(0 \prec \epsilon\)</span> ein <span class="math notranslate nohighlight">\(n_0^1\)</span>, sodass</p>
+<div class="math notranslate nohighlight">
+\[|x_n - x_m| \prec \epsilon', \qquad \forall n,m \geq n_0^1\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[|y_n - y_m| \prec \epsilon' \qquad \forall n,m \geq n_0^2\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(\epsilon'+\epsilon' \preceq \epsilon\)</span>
+gilt. Für <span class="math notranslate nohighlight">\(n_0 = \max\{n_0^1,n_0^2\}\)</span> gilt</p>
+<div class="math notranslate nohighlight">
+\[|(x_n+y_n) - (x_m+y_m)| \preceq |x_n - x_m| + |y_n - y_m| \prec {\epsilon} , \qquad \forall n,m \geq n_0.\]</div>
+<p>Zum Beweis der Eigenschaft für das Produkt verwenden wir</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+|x_n y_n| &amp;= | x_n(y_n -y_m) + y_m (x_n - x_m) | \\&amp;\leq |x_n| ~|y_n - y_m| + |y_m|~|x_n - x_m|.\end{align*}\]</div>
+<p>Nach dem ersten Teil des Satzes sind die Cauchy-Folgen <span class="math notranslate nohighlight">\((x_n)\)</span> und <span class="math notranslate nohighlight">\((y_n)\)</span> beschränkt. Ist <span class="math notranslate nohighlight">\(C\)</span> das Maximum der Schranken und <span class="math notranslate nohighlight">\(n_0\)</span> hinreichend groß, dann gilt für $n,m \geq n_0</p>
+<div class="math notranslate nohighlight">
+\[$ |x_n| \preceq C, \quad |y_n| \preceq C, \quad |x_n - x_m| \prec \frac{\epsilon'}{C}, \qquad|y_n - y_m| \prec \frac{\epsilon'}{C},\]</div>
+<p>und daraus folgt<span class="math notranslate nohighlight">\( |x_n y_n - x_m y_m | \preceq \epsilon.~\square \)</span></p>
+</div>
+<div class="section" id="konstruktion-reeller-zahlen">
+<h3><span class="section-number">2.2.5.1. </span>Konstruktion reeller Zahlen<a class="headerlink" href="#konstruktion-reeller-zahlen" title="Permalink to this headline">¶</a></h3>
+<p>Nun beginnen wir die reellen Zahlen zu konstruieren ohne explizit den Grenzwert anzugeben. Dazu wollen wir reelle Folgen mit rationalen Cauchy-Folgen identifizieren. Für die Teilmenge der rationalen Zahlen ist dies einfach, dazu können wir z.b. jedes <span class="math notranslate nohighlight">\(q \in \Q\)</span> mit der konstanten Folge <span class="math notranslate nohighlight">\(x_n = q\)</span> für alle <span class="math notranslate nohighlight">\(n \in \N\)</span> identifizieren. Für irrationale Zahlen können wir uns die Dezimaldarstellung vorstellen, der Einfachheit halber für <span class="math notranslate nohighlight">\(0\leq x &lt;1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[x = 0,a_1a_2a_3 \ldots  \quad \text{ bzw. } x=\sum_{j=1}^\infty a_j 10^{-j}\]</div>
+<p>wobei die Ziffern <span class="math notranslate nohighlight">\(a_i \in \{0,1,\ldots,9\}\)</span> erfüllen. Ist <span class="math notranslate nohighlight">\(x\)</span> nicht rational, dann ist die Darstellung weder endlich noch periodisch, d.h. wir werden es nie schaffen diese vollständig hinzuschreiben, wir können uns nur darauf beschränken, die ersten <span class="math notranslate nohighlight">\(n\)</span> Dezimalstellen anzugeben. Damit konstruieren wir automatisch eine Folge</p>
+<div class="math notranslate nohighlight">
+\[x_n = 0,a_1a_2a_3 \ldots  \quad \text{ bzw. } x_n=\sum_{j=1}^n a_j 10^{-j} .\]</div>
+<p>Wir sehen f”ur <span class="math notranslate nohighlight">\(m \geq n\)</span>, dass</p>
+<div class="math notranslate nohighlight">
+\[|x_m -x_n| = | \sum_{j=n+1}^m a_j 10^{-j}| &lt; 10^{-n}\]</div>
+<p>gilt. Damit ist <span class="math notranslate nohighlight">\((x_n)\)</span> natürlich Cauchy-Folge in <span class="math notranslate nohighlight">\(\Q\)</span>, denn für jedes <span class="math notranslate nohighlight">\(\epsilon \in \Q_+\)</span> gibt es ein <span class="math notranslate nohighlight">\(n_0\)</span> mit
+<span class="math notranslate nohighlight">\(10^{-n_0} &lt; \epsilon \)</span> und damit ist auch <span class="math notranslate nohighlight">\(10^{-n} &lt; \epsilon\)</span> für <span class="math notranslate nohighlight">\(n \geq n_0\)</span>.
+Nun haben wir noch das Problem, dass wir nicht direkt reelle Zahlen mit Cauchy-Folgen identifizieren können, da es mehrere Folgen mit dem gleichen Grenzwert gegen kann. Dies sehen wir etwa bei <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>, wenn wir Folgen aus dem Heron-Verfahren mit unterschiedlichen Startwerten betrachten oder sogar für eine reelle Zahl <span class="math notranslate nohighlight">\(q\)</span>. Dort können wir etwa <span class="math notranslate nohighlight">\(x_n=q\)</span> oder <span class="math notranslate nohighlight">\(\tilde x_n = q +\frac{1}n\)</span> betrachten, die beide gegen <span class="math notranslate nohighlight">\(q\)</span> konvergieren. Um diese Nichteindeutigkeit zu beheben, müssen wir wieder eine geeignete Äquivalenzrelation einführen und bezüglich dieser faktorisieren.</p>
+<div class="proof definition admonition" id="definition-17">
+<p class="admonition-title"><span class="caption-number">Definition 2.16 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine Folge mit Grenzwert <span class="math notranslate nohighlight">\(\overline{x}=0\)</span> nennen wir Nullfolge. Dazu nennen wir</p>
+<div class="math notranslate nohighlight">
+\[ {\cal F} = \{ (x_n): \N \rightarrow \Q~|~(x_n) \text{ ist Cauchy-Folge.}\}\]</div>
+</div>
+</div><p>Auf <span class="math notranslate nohighlight">\({\cal F}\)</span> definieren wir eine Äquivalenzrelation</p>
+<div class="math notranslate nohighlight">
+\[ (x_n) \sim (y_n) : \Leftrightarrow (x_n-y_n) \text{ ist Nullfolge. }\]</div>
+<p>Die Reflexivität ist klar, da <span class="math notranslate nohighlight">\((x_n-x_n)\)</span> die konstante Folge null ist, die Symmetrie folgt aus <span class="math notranslate nohighlight">\(|x_n-y_n|=|y_n-x_n|\)</span> eingesetzt in die Konvergenzbedingung. Die Transitivität erhalten wir wieder mit der Dreiecksungleichung</p>
+<div class="math notranslate nohighlight">
+\[ 0 \leq  |x_n - z_n| \leq |x_n-y_n| + |y_n - z_n|.\]</div>
+<div class="proof definition admonition" id="definition-18">
+<p class="admonition-title"><span class="caption-number">Definition 2.17 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Mit der obigen Definition von <span class="math notranslate nohighlight">\({\cal F}\)</span> und <span class="math notranslate nohighlight">\(\sim\)</span> definieren wir die reellen Zahlen als <span class="math notranslate nohighlight">\(\R = {\cal F}/\sim\)</span>, d.h. als Äquivalenzklassen rationaler Cauchy-Folgen.
+Addition und Multiplikation auf <span class="math notranslate nohighlight">\(\R\)</span> sind definiert durch</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+[(x_n)] + [(y_n)] &amp;:= [(x_n+y_n)] \\
+[(x_n)] ~ [(y_n)] &amp;:= [(x_n~y_n)]\end{align*}\]</div>
+</div>
+</div><p>Man prüft leicht nach, dass die Addition und Multiplikation wohldefiniert sind, also unabhängig von den Repräsentatnen ausgeführt werden können. Wir wollen nun auch noch eine Ordnungsrelation auf <span class="math notranslate nohighlight">\(\R\)</span> einführen, die natürlich auf dem Vergleich der Folgen basieren muss. Dabei können wir Positivität aber nicht einfach durch die Bedingung <span class="math notranslate nohighlight">\(0 &lt; x_n\)</span> für alle <span class="math notranslate nohighlight">\(n \in \N\)</span> oder für <span class="math notranslate nohighlight">\(n \geq n_0\)</span> fordern, da es auch Folgen wie <span class="math notranslate nohighlight">\(\frac{1}n\)</span> gibt, die diese Bedingung erfüllen aber gegen <span class="math notranslate nohighlight">\(0\)</span> konvergieren.  Um dies zu verhindern definieren wir</p>
+<div class="math notranslate nohighlight">
+\[ 0 &lt; [(x_n)]:\Leftrightarrow \exists \epsilon &gt; 0~\forall (\tilde x_n) \in [(x_n)]~\exists n_0 \in \N ~\forall n\geq n_0: \tilde x_n &gt; \epsilon.\]</div>
+<p>Wir beachten, dass dabei <span class="math notranslate nohighlight">\(n_0\)</span>, aber nicht <span class="math notranslate nohighlight">\(\epsilon\)</span> vom Repräsentanten abhängen darf. Diese Definition erweitern wir wie üblich auf <span class="math notranslate nohighlight">\(\leq\)</span>, indem wir schreiben</p>
+<div class="math notranslate nohighlight">
+\[0 \leq  [(x_n)]:\Leftrightarrow 0 &lt; [(x_n)] \text{ oder } 0 = [(x_n)].\]</div>
+<p>Die Relation ist dann definiert als</p>
+<div class="math notranslate nohighlight">
+\[[(x_n)] \leq [(y_n)] : \Leftrightarrow 0 \leq [(y_n-x_n)].\]</div>
+<p>Wir weisen noch kurz die Eigenschaften einer Ordnungsrelation nach:</p>
+<ul class="simple">
+<li><p><em>Reflexivität</em> ist trivial, da wir die Gleichheit ja explizit in der Definition berücksichtigt haben.</p></li>
+<li><p><em>Antisymmetrie:</em> Sei <span class="math notranslate nohighlight">\([(x_n)] &lt; [(y_n)]\)</span>, dann gilt für alle Repräsentanten <span class="math notranslate nohighlight">\((\tilde x_n) \in [(x_n)]\)</span> und
+<span class="math notranslate nohighlight">\((\tilde y_n) \in [(y_n)]\)</span>;</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\exists \epsilon &gt; 0~\exists n_0 \in \N~\forall n \geq n_0: \tilde y_n - \tilde x_n &gt; \epsilon.\]</div>
+<p>Damit kann nicht <span class="math notranslate nohighlight">\(\tilde x_n - \tilde y_n &gt; \tilde \epsilon\)</span> gelten für <span class="math notranslate nohighlight">\(\tilde \epsilon &gt;0\)</span> und <span class="math notranslate nohighlight">\(n \geq n_0\)</span>. Da <span class="math notranslate nohighlight">\(\tilde x_n - \tilde y_n\)</span> keine Nullfolge ist, gilt nicht <span class="math notranslate nohighlight">\((y_n) \leq (x_n)\)</span>.</p>
+<ul class="simple">
+<li><p><em>Transitivität:</em> Sei <span class="math notranslate nohighlight">\([(x_n)] \leq [(y_n)]\)</span> und <span class="math notranslate nohighlight">\([(y_n)] \leq [(z_n)]\)</span>. Dann unterscheiden wir zunächst <span class="math notranslate nohighlight">\([(x_n)]=[(y_n)]\)</span> und <span class="math notranslate nohighlight">\([(x_n)]&lt; [(y_n)]\)</span>. Im ersten Fall ist <span class="math notranslate nohighlight">\([(x_n)] \leq [(z_n)]\)</span> trivial, also betrachten wir den zweiten. Genauso können wir eine Fallunterscheidung bei <span class="math notranslate nohighlight">\([(y_n)]\)</span> und <span class="math notranslate nohighlight">\([(z_n)]\)</span> machen und müssen nur den nichttrivialen Fall <span class="math notranslate nohighlight">\([(y_n)]&lt;[(z_n)]\)</span> betrachten. Hier können wir <span class="math notranslate nohighlight">\(\epsilon_1\)</span> und <span class="math notranslate nohighlight">\(\epsilon_2\)</span> finden, sodass für <span class="math notranslate nohighlight">\(n\geq n_0^1\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\tilde y_n - \tilde x_n &gt; \epsilon_1\]</div>
+<p>und für <span class="math notranslate nohighlight">\(n\geq n_0^2\)</span></p>
+<div class="math notranslate nohighlight">
+\[\tilde z_n - \tilde y_n &gt; \epsilon_2\]</div>
+<p>gilt. Mit <span class="math notranslate nohighlight">\(n_0=\max\{n_0^1,n_0^2\}\)</span> und <span class="math notranslate nohighlight">\(\epsilon = \epsilon_1 + \epsilon_2\)</span> erhalten wir die gewünschte Eigenschaft</p>
+<div class="math notranslate nohighlight">
+\[\tilde z_n - \tilde x_n &gt; \epsilon, \qquad \forall n \geq n_0.\]</div>
+<p>Man prüft leicht nach, dass die Grundrechenarten auf <span class="math notranslate nohighlight">\(\R\)</span> mit der Ordnung verträglich sind und dass <span class="math notranslate nohighlight">\(\R\)</span> ein archimedisch angeordneter Körper ist. Die Anordnung von <span class="math notranslate nohighlight">\(\R\)</span> und die Beziehung zu den natürlichen Zahlen erlaubt es uns auch zu runden:</p>
+<div class="proof lemma admonition" id="lemma-19">
+<p class="admonition-title"><span class="caption-number">Lemma 2.3 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Für alle <span class="math notranslate nohighlight">\(x \in \R\)</span> existiert genau ein <span class="math notranslate nohighlight">\(m\in \Z\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[ m-1 \leq x &lt; m .\]</div>
+<p>Analog gibt es genau ein genau <span class="math notranslate nohighlight">\(n \in \Z\)</span> mit <span class="math notranslate nohighlight">\(n-1 &lt; x \leq n\)</span></p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Sei <span class="math notranslate nohighlight">\(x \in \R\)</span>. Wegen der archimedischen Anordnung existiert ein <span class="math notranslate nohighlight">\(n_1 \in \N\)</span> mit <span class="math notranslate nohighlight">\(x &lt; n_1\)</span> und <span class="math notranslate nohighlight">\(n_2 \in \N\)</span> mit <span class="math notranslate nohighlight">\(-x &lt; n_2\)</span>. Wir betrachten die nichtleeren Mengen</p>
+<div class="math notranslate nohighlight">
+\[M_1 = \{ z \in \Z~|~ x &lt; z\}, \qquad M_2 = \{ z \in \Z~|~ z \leq x\}.\]</div>
+<p>Diese sind disjunkt und es gilt <span class="math notranslate nohighlight">\(\Z = M_1 \cup M_2\)</span>. Ist <span class="math notranslate nohighlight">\(z \in M_1\)</span>, dann ist auch <span class="math notranslate nohighlight">\(z+1 \in M_1\)</span>. Damit gibt es wegen der Anordnung nur ein <span class="math notranslate nohighlight">\(m \in M_1\)</span> mit <span class="math notranslate nohighlight">\(m-1 \notin M_1\)</span>. Wegen <span class="math notranslate nohighlight">\(\Z = M_1 \cup M_2\)</span> gilt also <span class="math notranslate nohighlight">\(m-1 \in M_1\)</span>, damit folgt <span class="math notranslate nohighlight">\(  m-1 \leq x &lt; m . \square\)</span></p>
+</div>
+<p>Eine interessante Eigenschaft ist auch das Wachstum der Exponentialfunktion. Dazu benötigen wir zunächst ein Hilfsresultat, die sogenannte Bernoulli-Ungleichung</p>
+<div class="proof lemma admonition" id="lemma-20">
+<p class="admonition-title"><span class="caption-number">Lemma 2.4 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(x \in \R\)</span>, <span class="math notranslate nohighlight">\(x \geq -1\)</span> und <span class="math notranslate nohighlight">\(n\in \N\)</span> gilt</p>
+<div class="math notranslate nohighlight">
+\[ (1+x)^n \geq 1 + n x.\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Wir können den Beweis per vollständiger Induktion führen. Der Anfang bei <span class="math notranslate nohighlight">\(n=0\)</span> liefert <span class="math notranslate nohighlight">\(1 \geq 1\)</span>, ist also wahr. Nun nehmen wir an <span class="math notranslate nohighlight">\((1+x)^n \geq 1 + n x\)</span> und setzen dies ein in</p>
+<div class="math notranslate nohighlight">
+\[ (1+x)^{n+1} = (1+x)^n (1+x) \geq (1+nx)(1+x) = 1+ (n+1)x +x^2.
+ \]</div>
+<p>Wegen der Nichtnegativität von <span class="math notranslate nohighlight">\(x^2\)</span> folgt die Aussage auch für <span class="math notranslate nohighlight">\(n+1\)</span> und damit haben wir die Ungleichung für alle <span class="math notranslate nohighlight">\(n\in \N\)</span> bewiesen.</p>
+</div>
+<div class="proof lemma admonition" id="lemma-21">
+<p class="admonition-title"><span class="caption-number">Lemma 2.5 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(x \in \R\)</span>, <span class="math notranslate nohighlight">\(x  &gt; 1\)</span> und <span class="math notranslate nohighlight">\(m\in \N\)</span>. Dann gibt es ein <span class="math notranslate nohighlight">\(\ell \in \N\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[x^\ell \geq m.\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Für <span class="math notranslate nohighlight">\(m=0\)</span> und <span class="math notranslate nohighlight">\(m=1\)</span> erfüllt offensichtlich <span class="math notranslate nohighlight">\(\ell=1\)</span> die Ungleichung. Für <span class="math notranslate nohighlight">\(m &gt; 1\)</span> schreiben wir <span class="math notranslate nohighlight">\(x=1+y\)</span>, <span class="math notranslate nohighlight">\(y &gt; 0\)</span> und setzen <span class="math notranslate nohighlight">\(l \geq \frac{m-1}y\)</span>. Aus der Bernoulli-Ungleichung folgt nun:</p>
+<div class="math notranslate nohighlight">
+\[x^\ell =(1+y)^\ell \geq 1+ \ell y \geq 1+  \frac{m-1}y y = m,\]</div>
+<p>also gilt die Aussage</p>
+</div>
+</div>
+<div class="section" id="vollstandigkeit">
+<h3><span class="section-number">2.2.5.2. </span>Vollständigkeit<a class="headerlink" href="#vollstandigkeit" title="Permalink to this headline">¶</a></h3>
+<p>Die reellen Zahlen <span class="math notranslate nohighlight">\(\R\)</span> sind ein Körper, also können wir wieder Cauchy-Folgen in <span class="math notranslate nohighlight">\(\R\)</span> betrachten. Nun stellt sich die Frage, ob <span class="math notranslate nohighlight">\(\R\)</span> vollständig ist, d.h. ob alle Cauchy-Folgen konvergieren. Dazu stellen wir zunächst Zusammenhänge zwischen den reellen und den ganzen Zahlen her. Zunächst sehen wir, dass Cauchy-Folgen in <span class="math notranslate nohighlight">\(\Q\)</span> auch Cauchy-Folgen in <span class="math notranslate nohighlight">\(\R\)</span> sind, indem wir <span class="math notranslate nohighlight">\(\epsilon \in \R_+\)</span> durch <span class="math notranslate nohighlight">\(\epsilon' \in \Q\)</span> ersetzen können. Ist <span class="math notranslate nohighlight">\(\epsilon \in \R\)</span>, <span class="math notranslate nohighlight">\(\epsilon \geq 1\)</span>, so können wir <span class="math notranslate nohighlight">\(n,m\)</span> so wählen, dass</p>
+<div class="math notranslate nohighlight">
+\[|x_n -x_m| &lt; 1 \leq \epsilon\]</div>
+<p>gilt. Ist <span class="math notranslate nohighlight">\(\epsilon &lt; 1\)</span>, dann können wir <span class="math notranslate nohighlight">\(k \in \N\)</span> wählen, indem wir <span class="math notranslate nohighlight">\(\frac{1}\epsilon\)</span> aufrunden und damit ist
+<span class="math notranslate nohighlight">\(\frac{1}k \leq \epsilon\)</span>. Nun können wir <span class="math notranslate nohighlight">\(n,m\)</span> so wählen, dass</p>
+<div class="math notranslate nohighlight">
+\[|x_n -x_m| &lt; \frac{1}k \leq \epsilon.\]</div>
+<p>Um nich immer explizit die Eigenschaft einer Cauchy-Folge nachweisen zu müssen, verwenden wir folgendes einfache Resultat:</p>
+<div class="proof lemma admonition" id="lemma-22">
+<p class="admonition-title"><span class="caption-number">Lemma 2.6 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((y_n)\)</span> eine Nullfolge in <span class="math notranslate nohighlight">\(\R\)</span> und für ein <span class="math notranslate nohighlight">\(C \in \R_+\)</span> gelte</p>
+<div class="math notranslate nohighlight">
+\[\forall m,n \in \N, m \geq n: |x_m-x_n| \leq C y_n.\]</div>
+<p>Dann ist <span class="math notranslate nohighlight">\((x_n)\)</span> Cauchy-Folge</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Da <span class="math notranslate nohighlight">\((y_n)\)</span> eine Nullfolge ist, existiert für jedes <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> ein <span class="math notranslate nohighlight">\(n_0 \in N\)</span>, sodass für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span> gilt <span class="math notranslate nohighlight">\(y_n \leq |y_n| &lt; \frac{\epsilon}C\)</span>. Damit folgt sofort für <span class="math notranslate nohighlight">\(m \geq n \geq n_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[|x_m-x_n| \leq C y_n &lt; \epsilon,\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\((x_n)\)</span> ist Cauchy-Folge</p>
+</div>
+<div class="proof lemma admonition" id="lemma-23">
+<p class="admonition-title"><span class="caption-number">Lemma 2.7 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Für jedes <span class="math notranslate nohighlight">\(x \in \R\)</span> und <span class="math notranslate nohighlight">\(\epsilon \in \R_+\)</span> existiert ein ein <span class="math notranslate nohighlight">\(q \in \Q\)</span> mit <span class="math notranslate nohighlight">\(|x-q|&lt;\epsilon\)</span></p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(k\)</span> wie oben mit <span class="math notranslate nohighlight">\(\frac{1}k \leq \epsilon\)</span>. Da <span class="math notranslate nohighlight">\(x\)</span> der Grenzwert einer Cauchy-Folge <span class="math notranslate nohighlight">\((r_n)\)</span> in <span class="math notranslate nohighlight">\(\Q\)</span> ist, gibt es ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[|r_n - r_m| &lt; \frac{1}{2k} \leq \frac{\epsilon}2,\]</div>
+<p>für alle <span class="math notranslate nohighlight">\(m,n \geq n_0\)</span>. Wählen wir nun <span class="math notranslate nohighlight">\(q=r_{n_0}\)</span> und betrachten die konstante Folge <span class="math notranslate nohighlight">\((q)\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[|r_n - q| &lt;  \frac{\epsilon}2,\]</div>
+<p>für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span>. Sei nun <span class="math notranslate nohighlight">\((\tilde r_n)\)</span> ein anderer Repräsentant von <span class="math notranslate nohighlight">\(x\)</span>, dann ist <span class="math notranslate nohighlight">\((r_n - \tilde r_n)\)</span> Nullfolge, d.h. es gibt ein <span class="math notranslate nohighlight">\(\tilde n_0\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[|r_n - \tilde r_n|   &lt; \frac{1}{2k} \leq \frac{\epsilon}2,\]</div>
+<p>für <span class="math notranslate nohighlight">\(n \geq \tilde n_0\)</span>. Damit gilt für <span class="math notranslate nohighlight">\(n\geq \max\{n_0,\tilde n_0\}\)</span> auch</p>
+<div class="math notranslate nohighlight">
+\[|q-\tilde r_n| \leq |q -r_n|+|r_n - \tilde r_n| &lt; \epsilon,\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\(|q-x| &lt; \epsilon\)</span>.</p>
+</div>
+<p>Damit können wir die Vollständigkeit von <span class="math notranslate nohighlight">\(\R\)</span> nachweisen.</p>
+<div class="proof theorem admonition" id="theorem-24">
+<p class="admonition-title"><span class="caption-number">Theorem 2.6 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\R\)</span> ist vollständig, d.h. jede Cauchy-Folge <span class="math notranslate nohighlight">\((x_n)\)</span> in <span class="math notranslate nohighlight">\(\R\)</span> ist konvergent</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Zu jedem Folgenelement <span class="math notranslate nohighlight">\(x_n \in \R\)</span> gibt es ein <span class="math notranslate nohighlight">\(q_n \in \Q\)</span> mit</p>
+<div class="math notranslate nohighlight">
+\[|x_n-q_n| &lt; \frac{1}n.\]</div>
+<p>Sei nun <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>, dann gibt es ein <span class="math notranslate nohighlight">\(n_0\)</span>, sodass für alle <span class="math notranslate nohighlight">\(n,m \geq n_0\)</span> gilt</p>
+<div class="math notranslate nohighlight">
+\[|x_n - x_m| &lt; \frac{\epsilon}3.\]</div>
+<p>Sei darüber hinaus <span class="math notranslate nohighlight">\(n_0\)</span> so groß gewählt, dass <span class="math notranslate nohighlight">\(\frac{1}{n_0} &lt; \frac{\epsilon}3\)</span> gilt. Dann folgt</p>
+<div class="math notranslate nohighlight">
+\[|q_n - q_m| \leq |q_n - x_n| + |x_n - x_m| + |x_m-q_m| &lt;\epsilon,\]</div>
+<p>d.h. <span class="math notranslate nohighlight">\((q_n)\)</span> ist Cauchy-Folge in <span class="math notranslate nohighlight">\(\Q\)</span> und da <span class="math notranslate nohighlight">\((x_n -q_n)\)</span> eine Nullfolge ist, folgt</p>
+<div class="math notranslate nohighlight">
+\[ x=\lim_n q_n = \lim_n x_n\]</div>
+<p>und damit ist <span class="math notranslate nohighlight">\(x_n\)</span> konvergent.</p>
+</div>
+<p>Mit Hilfe der Vollständigkeit können wir nun Grenzwerte in <span class="math notranslate nohighlight">\(\R\)</span> definieren, indem wir nachweisen, dass Folgen Cauchy-Folgen sind. Als Anwendung betrachten wir die Exponentialfunktion:</p>
+<div class="proof example admonition" id="example-25">
+<p class="admonition-title"><span class="caption-number">Example 2.10 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(x \in \R\)</span>. Wir definieren</p>
+<div class="math notranslate nohighlight">
+\[ e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = \lim_{n \rightarrow \infty} \sum_{k=0}^n \frac{x^k}{k!},\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(k! = \prod_{i=1}^k i\)</span>. Sei</p>
+<div class="math notranslate nohighlight">
+\[y_n = \sum_{k=0}^n \frac{x^k}{k!}\]</div>
+<p>und wählen wir <span class="math notranslate nohighlight">\(m \geq n\)</span>. Dann ist</p>
+<div class="math notranslate nohighlight">
+\[|y_n - y_m| \leq \sum_{k=n+1}^m \frac{|x|^k}{k!}.\]</div>
+<p>Sei <span class="math notranslate nohighlight">\(n_0 \in \N\)</span> so, dass <span class="math notranslate nohighlight">\(n_0 &gt; 2{|x|} \)</span>, dann gilt</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sum_{k=n+1}^m \frac{|x|^k}{k!} &amp;= \frac{|x|^{n_0}}{n_0!} \sum_{k=n+1}^m \frac{|x|^{k-n_0}}{(n_0+1)\ldots k} \\
+&amp;\leq \frac{|x|^{n_0}}{n_0!} \sum_{k=n+1}^m \left(\frac{1}2\right)^{k-n_0} \\
+&amp;= \frac{|2x|^{n_0}}{n_0!} \sum_{k=n+1}^m \left(\frac{1}2\right)^{k} \\
+&amp;= \frac{|2x|^{n_0}}{n_0!} \left(\frac{1}2\right)^{n+1} \sum_{k=0}^{m-n-1} \left(\frac{1}2\right)^{k} \\
+&amp;= \frac{|2x|^{n_0}}{n_0!} \left(\frac{1}2\right)^{n+1} \frac{1-\left(\frac{1}2\right)^{m-n-1}}{\frac{1}2} \\
+&amp;\leq \frac{|2x|^{n_0}}{n_0!} \left(\frac{1}2\right)^{n},
+\end{align*}\]</div>
+<p>Da der letzte Term gegen Null konvergiert, können wir <span class="math notranslate nohighlight">\(m,n\)</span> so groß wählen, dass er beliebig klein wird. Also ist <span class="math notranslate nohighlight">\(y_n\)</span> eine Cauchy-Folge.</p>
+</div>
+</div><p>Wir betrachten nun noch die Mächtigkeit von <span class="math notranslate nohighlight">\(\R\)</span>:</p>
+<div class="proof theorem admonition" id="theorem-26">
+<p class="admonition-title"><span class="caption-number">Theorem 2.7 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Es gilt <span class="math notranslate nohighlight">\(|\R| &gt; |\N|\)</span>, d.h. <span class="math notranslate nohighlight">\(\R\)</span> ist nicht abzählbar</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.   Es genügt zu zeigen, dass</p>
+<div class="math notranslate nohighlight">
+\[I=[0,1) = \{ x \in \R~|~0 \leq x &lt; 1\}\]</div>
+<p>nicht abzählbar ist. Wir können<span class="math notranslate nohighlight">\(x \in I\)</span> in Dezimaldarstellung <span class="math notranslate nohighlight">\(0,a_1a_2 \ldots\)</span> schreiben, indem wir iterativ abrunden:</p>
+<div class="math notranslate nohighlight">
+\[a_1 = \lfloor 10 x \rfloor, \quad a_{i+1} = \lfloor 10^{i+1}(x-\sum_{j=0}^i a_j 10^{-j})\rfloor.\]</div>
+<p>Nehmen wir an, es gäbe eine surjektive Abbildung <span class="math notranslate nohighlight">\(f: \N \rightarrow [0,1)\)</span>. Dann schreiben wir die Dezimaldarstellung für den Wertebereich als</p>
+<div class="math notranslate nohighlight">
+\[f(\ell) = 0,a_1^\ell a_2^\ell \ldots\]</div>
+<p>mit <span class="math notranslate nohighlight">\(a_i^\ell \in \{0,1,\ldots,9\}\)</span>. Nun definieren wir</p>
+<div class="math notranslate nohighlight">
+\[x=0,b_1 b_2 \ldots\]</div>
+<p>mit <span class="math notranslate nohighlight">\(b_i \in \{1,\ldots,8\}\)</span> so, dass <span class="math notranslate nohighlight">\(|b_i - n_i^i| \geq 2\)</span>. Damit folgt <span class="math notranslate nohighlight">\(|x-f(\ell)|\geq 10^{-\ell}\)</span>, also insbesondere <span class="math notranslate nohighlight">\(x \neq f(\ell)\)</span> für alle <span class="math notranslate nohighlight">\(\ell \in \N\)</span>. Damit kann <span class="math notranslate nohighlight">\(f\)</span> nicht surjektiv sein und <span class="math notranslate nohighlight">\(\R\)</span> nicht abzählbar</p>
+</div>
+<p>Wir sehen also, dass die Mächtigkeit von <span class="math notranslate nohighlight">\(\R\)</span> eine größere Art von Unendlich ist als die Mächtigkeit von <span class="math notranslate nohighlight">\(\N\)</span>, dies gilt auch für die irrationalen Zahlen im Vergleich zu den rationalen. Wir definieren diese deshalb als zweite Kardinalzahl <span class="math notranslate nohighlight">\(|\R|= \aleph_1\)</span>.</p>
+</div>
+</div>
+<div class="section" id="infima-und-suprema">
+<h2><span class="section-number">2.2.6. </span>Infima und Suprema<a class="headerlink" href="#infima-und-suprema" title="Permalink to this headline">¶</a></h2>
+<p>Intuitiv würden wir gerne von einem größten und kleinsten Element einer Menge (Maximum bzw. Minimum) sprechen, wenn wir eine vollständige Ordnung haben. Dies ist aber nicht immer gegeben, wie eine Betrachtung verschiedener Intervalle in <span class="math notranslate nohighlight">\(\R\)</span> zeigt. Für <span class="math notranslate nohighlight">\(a,b \in \R\)</span> mit <span class="math notranslate nohighlight">\(a &lt; b\)</span> definieren wir</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+[a,b] &amp;:= \{x \in \R~|~a \leq x \leq b\} \\
+(a,b) &amp;:= \{x \in \R~|~a &lt; x &lt; b\} \\
+[a,b) &amp;:= \{x \in \R~|~a \leq x &lt; b\} \\
+(a,b] &amp;:= \{x \in \R~|~a &lt; x \leq b\}.
+\end{align*}\]</div>
+<p>Wir nennen <span class="math notranslate nohighlight">\([a,b]\)</span> geschlossenes Intervall, <span class="math notranslate nohighlight">\((a,b)\)</span> offenes Intervall und die anderen beiden halboffene Intervalle. Das geschlossene Intervall hat ein Maximum (<span class="math notranslate nohighlight">\(b\)</span>) und ein Minimum (<span class="math notranslate nohighlight">\(a\)</span>), das offene Intervall aber nicht, denn einerseits existiert für jedes <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> ein <span class="math notranslate nohighlight">\(x \in \R\)</span> mit <span class="math notranslate nohighlight">\(x&gt;b-\epsilon\)</span>, also müsste ein Maximum größer gleich <span class="math notranslate nohighlight">\(b\)</span> sein. Alle reellen Zahlen größer gleich <span class="math notranslate nohighlight">\(b\)</span> liegen aber nicht in <span class="math notranslate nohighlight">\((a,b)\)</span>. In einem solchen Fall werden wir <span class="math notranslate nohighlight">\(b\)</span> ein Supremum nennen (und analog <span class="math notranslate nohighlight">\(a\)</span> ein Infimum), dies führt auf die folgende Definition:</p>
+<div class="proof definition admonition" id="definition-27">
+<p class="admonition-title"><span class="caption-number">Definition 2.18 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(K\)</span> eine Menge mit Ordnungsrelation <span class="math notranslate nohighlight">\(\preceq\)</span> und <span class="math notranslate nohighlight">\(M \subset K\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(z \in K\)</span> heisst obere Schranke für <span class="math notranslate nohighlight">\(M\)</span>, wenn für alle <span class="math notranslate nohighlight">\(x \in M\)</span> gilt: <span class="math notranslate nohighlight">\(x \preceq z\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(z \in K\)</span> heisst untere Schranke für <span class="math notranslate nohighlight">\(M\)</span>, wenn für alle <span class="math notranslate nohighlight">\(x \in M\)</span> gilt: <span class="math notranslate nohighlight">\(z \preceq x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M\)</span> heisst nach oben / unten beschränkt, wenn eine obere / untere Schranke existiert. <span class="math notranslate nohighlight">\(M\)</span> heisst beschränkt, wenn sie nach oben und unten beschränkt ist.* Eine obere Schranke <span class="math notranslate nohighlight">\(s \in K\)</span> heisst Supremum, wenn für alle anderen oberen Schranken <span class="math notranslate nohighlight">\(z\)</span> gilt <span class="math notranslate nohighlight">\(s \preceq z\)</span>.</p></li>
+<li><p>Eine untere Schranke <span class="math notranslate nohighlight">\(i \in K\)</span> heisst Infimum, wenn für alle anderen unteren Schranken <span class="math notranslate nohighlight">\(z\)</span> gilt <span class="math notranslate nohighlight">\(z \preceq i\)</span>.</p></li>
+</ul>
+</div>
+</div><p>Wir wenden dies nun auf die reellen Zahlen an:</p>
+<div class="proof theorem admonition" id="theorem-28">
+<p class="admonition-title"><span class="caption-number">Theorem 2.8 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(M \subset \R\)</span> ist beschränkt genau dann wenn es ein <span class="math notranslate nohighlight">\(g \in \R_+\)</span> gibt, sodass für alle <span class="math notranslate nohighlight">\(x \in M\)</span> gilt: <span class="math notranslate nohighlight">\(|x|\leq g\)</span>.Ist <span class="math notranslate nohighlight">\(M \neq \emptyset\)</span> und <span class="math notranslate nohighlight">\(M\)</span> nach oben und unten beschränkt, dann besitzt <span class="math notranslate nohighlight">\(M\)</span> ein Supremum und ein Infimum. Diese sind jeweils eindeutig.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Zunächst sehen wir, dass für beschränkte Mengen in <span class="math notranslate nohighlight">\(\R\)</span> Schranken <span class="math notranslate nohighlight">\(a,b \in \R\)</span> existieren, mit <span class="math notranslate nohighlight">\(a \leq x  \leq b\)</span> für alle <span class="math notranslate nohighlight">\(x \in M\)</span>. Nun wählen wir <span class="math notranslate nohighlight">\(g=\max\{|a|,|b|\}\)</span> und erhalten <span class="math notranslate nohighlight">\(|x|\leq g\)</span>. Umgekehrt können wir im Fall <span class="math notranslate nohighlight">\(|x|\leq g\)</span> für alle <span class="math notranslate nohighlight">\(x \in M\)</span> einfach <span class="math notranslate nohighlight">\(g\)</span> als obere und <span class="math notranslate nohighlight">\(-g\)</span> als untere Schranke wählen.</p>
+<p>Um ein Supremum zu konstruieren beginnen wir mit <span class="math notranslate nohighlight">\(m_0 \in M\)</span> und einer oberen Schranke <span class="math notranslate nohighlight">\(s_0 \in \R\)</span>. Nun definieren wir iterativ zunächst <span class="math notranslate nohighlight">\(x_i=\frac{m_i+s_i}2\)</span>. Ist <span class="math notranslate nohighlight">\(x_i\)</span> obere Schranke, dann setzen wir <span class="math notranslate nohighlight">\(s_{i+1}=x_i\)</span> und <span class="math notranslate nohighlight">\(m_{i+1}=m_i\)</span>. Andernfalls setzen wir <span class="math notranslate nohighlight">\(m_{i+1}=x_i, s_{i+1}=s_i\)</span>. In beiden Fällen ist <span class="math notranslate nohighlight">\(M \cap [m_{i+1},s_{i+1}] \neq \emptyset\)</span>. Wir sehen auch</p>
+<div class="math notranslate nohighlight">
+\[|s_{i+1} - m_{i+1}| = \frac{1}2 |s_i - m_i|\]</div>
+<p>und daraus folgt</p>
+<div class="math notranslate nohighlight">
+\[|s_n - m_n| = \frac{1}{2^n} |s_0-m_0|,\]</div>
+<p>also ist <span class="math notranslate nohighlight">\((s_n-m_n)\)</span> ein Nullfolge. Darüber hinaus sehen wir</p>
+<div class="math notranslate nohighlight">
+\[ |s_{i+1}-s_i| \leq \frac{1}2 |s_i - m_i|  = \frac{1}{2^{i+1}} |s_0-m_0|\]</div>
+<p>und erhalten für <span class="math notranslate nohighlight">\(m\geq n\)</span></p>
+<div class="math notranslate nohighlight">
+\[ |s_m - s_n| = |\sum_{i=n}^{m-1} s_{i+1}-s_i| \leq \sum_{i=n}^{m-1} |s_{i+1}-s_i| \leq  \sum_{i=n}^{m-1}\frac{1}{2^{i+1}} |s_0-m_0| = \frac{1}{2^{n+1}}  |s_0-m_0| \sum_{i=0}^{m-n-1}\frac{1}{2^{i}} \leq \frac{1}{2^{n}}  |s_0-m_0|.\]</div>
+<p>Also ist <span class="math notranslate nohighlight">\((s_n)\)</span> eine Cauchy-Folge und analog zeigen wir, dass auch <span class="math notranslate nohighlight">\((m_n)\)</span> eine Cauchy-Folge ist. Da jede Cauchy-Folge in <span class="math notranslate nohighlight">\(\R\)</span> konvergiert gibt es einen Grenzwert <span class="math notranslate nohighlight">\(s\)</span>, der für beide Folgen gleich ist. Aus der Konstruktion sehen, wir dass <span class="math notranslate nohighlight">\(s_n\)</span> für jedes <span class="math notranslate nohighlight">\(n\)</span> eine obere Schranke ist. Nehmen wir an, dass es ein <span class="math notranslate nohighlight">\(m \in M\)</span> gibt mit <span class="math notranslate nohighlight">\(m &gt; s\)</span>, dann ist <span class="math notranslate nohighlight">\(m=s+\epsilon\)</span> für ein <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>. Andererseits existiert <span class="math notranslate nohighlight">\(n_0\)</span> mit <span class="math notranslate nohighlight">\(|s-s_{n_0}|&lt; \epsilon\)</span> und damit<span class="math notranslate nohighlight">\(s_{n_0} &lt; s + \epsilon = m\)</span>. Dies ist ein Widerspruch dazu, dass <span class="math notranslate nohighlight">\(s_{n_0}\)</span> eine obere Schranke ist, also <span class="math notranslate nohighlight">\(m \leq s_{n_0}\)</span>. Damit ist <span class="math notranslate nohighlight">\(s\)</span> eine obere Schranke und es kann keine kleinere obere Schranke geben, da es für jedes <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> ein <span class="math notranslate nohighlight">\(m \in M\)</span> mit <span class="math notranslate nohighlight">\(m &gt; s-\epsilon\)</span> gibt. Also ist <span class="math notranslate nohighlight">\(s\)</span> ein Supremum. Ist <span class="math notranslate nohighlight">\(s'\)</span> ein weiteres Supremum, dann gilt <span class="math notranslate nohighlight">\(s \leq s'\)</span> und <span class="math notranslate nohighlight">\(s' \leq s\)</span>, also <span class="math notranslate nohighlight">\(s=s'\)</span>. Die Existenz und Eindeutigkeit eines Infimums folgt analog</p>
+</div>
+<p>Für unbeschränkte Mengen gibt es nicht unbedingt ein Infimum oder Supremum. Wir können dies erzwingen indem wir <span class="math notranslate nohighlight">\(\R\)</span> erweitern zu</p>
+<div class="math notranslate nohighlight">
+\[ \overline{\R} = \R \cup \{+\infty,-\infty\},\]</div>
+<p>wobei wir <span class="math notranslate nohighlight">\(\pm \infty\)</span> so definieren, dass</p>
+<div class="math notranslate nohighlight">
+\[ \forall x\in \R \cup \{+\infty\} : - \infty &lt; x\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \forall x\in \R \cup \{+\infty\} : x &lt; \infty \]</div>
+<p>gilt.</p>
+</div>
+<div class="section" id="komplexe-zahlen">
+<h2><span class="section-number">2.2.7. </span>Komplexe Zahlen<a class="headerlink" href="#komplexe-zahlen" title="Permalink to this headline">¶</a></h2>
+<p>In <span class="math notranslate nohighlight">\(\R\)</span> können wir die Quadratwurzel einer positiven Zahl ziehen, nicht aber aus einer negativen. Dies bedeutet, dass nicht jede quadratische Gleichung eine Lösung hat, z.B.</p>
+<div class="math notranslate nohighlight">
+\[ x^2 +1 = 0\]</div>
+<p>ist nicht in <span class="math notranslate nohighlight">\(\R\)</span> lösbar. Allgemeiner gibt es viele algebraische Gleichungen, d.h. Gleichungen der Form</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{j=0}^n a_j x^j = 0,\]</div>
+<p>die nicht lösbar sind oder äquivalent hat nicht jedes nichtkonstante Polynom eine Nullstelle in <span class="math notranslate nohighlight">\(\R\)</span>. Um dies zu beheben führen wir eine imaginäre Zahl <span class="math notranslate nohighlight">\(\i\)</span> ein, sodass</p>
+<div class="math notranslate nohighlight">
+\[ \i^2 = (-\i)^2 = -1\]</div>
+<p>gilt. Dann können wir auch reelle Zahlen zu <span class="math notranslate nohighlight">\(\i\)</span> addieren oder reelle Vielfache von <span class="math notranslate nohighlight">\(\i\)</span> betrachten, z.B. sollte gelten <span class="math notranslate nohighlight">\((2\i)^2=-4\)</span>. Also erhalten wir komplexe Zahlen in der Form</p>
+<div class="math notranslate nohighlight">
+\[ z = a + b \i, \qquad a, b \in \R.\]</div>
+<p>Wir nennen <span class="math notranslate nohighlight">\(a\)</span> den Realteil und <span class="math notranslate nohighlight">\(b\)</span> den Imaginärteil, sehen also, dass im wesentlichen die komplexen Zahlen dem <span class="math notranslate nohighlight">\(\R^2 = \R \times \R\)</span> entsprechen.
+Für die Addition und Multiplikation verwenden wir Assoziativität, Distributivität und Kommutativität, damit ist</p>
+<div class="math notranslate nohighlight">
+\[ z_1+z_2 = (a_1+a_2) + (b_1+b_2)\i,\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ z_1 ~z_2 = a_1 a_2 + a_1 b_2 \i + a_2 b_1 \i + b_1 b_2 \i^2 = (a_1 a_2 - b_1 b_2) + ( a_1 b_2   + a_2 b_1) \i .\]</div>
+<p>Dies führt auf die Definition der komplexen Zahlen als <span class="math notranslate nohighlight">\(\C = \R \times \R\)</span> mit den Rechenregeln</p>
+<div class="math notranslate nohighlight">
+\[ (a_1,b_1) +(a_2,b_2) := (a_1+a_2,b_1+b_2)\]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ (a_1,b_1) ~(a_2,b_2) := (a_1 a_2 - b_1 b_2,a_1 b_2   + a_2 b_1).\]</div>
+<p>Damit erhalten wir:</p>
+<div class="proof theorem admonition" id="theorem-29">
+<p class="admonition-title"><span class="caption-number">Theorem 2.9 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Die komplexen Zahlen <span class="math notranslate nohighlight">\(\C\)</span> sind ein Körper</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Zunächst sehen wir sofort, dass <span class="math notranslate nohighlight">\((\C,+)\)</span> eine abel’sche Gruppe mit neutralem Element <span class="math notranslate nohighlight">\((0,0)\)</span> und zu <span class="math notranslate nohighlight">\((a,b)\)</span> inversem Element <span class="math notranslate nohighlight">\((-a,-b)\)</span> bildet. Darüber hinaus sehen wir, das <span class="math notranslate nohighlight">\((\C,\cdot)\)</span> eine abel’sche Gruppe mit Einselement <span class="math notranslate nohighlight">\((1,0)\)</span> und zu <span class="math notranslate nohighlight">\((a,b)\)</span> inversem Element <span class="math notranslate nohighlight">\((\frac{a}{a^2+b^2},  \frac{-b}{a^2+b^2}) \)</span> bildet. Das Assoziativ- und Distributivgesetz kann man direkt mit den entsprechenden Gesetzen für die Multiplikation in <span class="math notranslate nohighlight">\(\R\)</span> nachrechnen</p>
+</div>
+<p>Mit der Abbildung <span class="math notranslate nohighlight">\(x \in \R \mapsto (x,0) \in \C\)</span> haben wir eine kanonische Einbettung der reellen Zahlen in <span class="math notranslate nohighlight">\(\C\)</span>. Wir schreiben dann allgemein wieder <span class="math notranslate nohighlight">\(z=a+b\i\)</span> und sagen <span class="math notranslate nohighlight">\(z \in\R\)</span> wenn der Imaginärteil <span class="math notranslate nohighlight">\(b=0\)</span> ist.  Die imaginäre Zahl <span class="math notranslate nohighlight">\(\i\)</span> können wir also mit <span class="math notranslate nohighlight">\((0,1)\)</span> identifizieren.  Wir schreiben auch <span class="math notranslate nohighlight">\(a=\)</span>Re<span class="math notranslate nohighlight">\((z)\)</span> und <span class="math notranslate nohighlight">\(b=\)</span>Im<span class="math notranslate nohighlight">\((z)\)</span>. Wir definieren den Betrag einer komplexen Zahl als</p>
+<div class="math notranslate nohighlight">
+\[ |z| := \sqrt{a^2+b^2}\]</div>
+<p>und die konjugierte Zahl als</p>
+<div class="math notranslate nohighlight">
+\[ \overline{z} := a - b \i.\]</div>
+<p>Als Beispiel betrachen wir <span class="math notranslate nohighlight">\(z= 4+3\i\)</span>, dann ist <span class="math notranslate nohighlight">\(|z|=5\)</span> und <span class="math notranslate nohighlight">\(\overline{z}=4-3\i\)</span>.</p>
+<p>Den folgenden Satz geben wir ohne seinen (einfachen) Beweis an:</p>
+<div class="proof theorem admonition" id="theorem-30">
+<p class="admonition-title"><span class="caption-number">Theorem 2.10 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(z \in \C \)</span>, dann gilt:</p>
+<div class="math notranslate nohighlight">
+\[  |z| \geq 0\quad \text{ und } |z|=\sqrt{z \overline{z}}\1\]</div>
+<p>darüber hinaus ist <span class="math notranslate nohighlight">\(|z|=0\)</span> genau dann wenn <span class="math notranslate nohighlight">\(z=0\)</span> gilt.Sind <span class="math notranslate nohighlight">\(x,y \in \C\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ |xy|=|x|~|y|,\qquad |x+y| \leq |x|+|y| .\]</div>
+</div>
+</div><p>Ist <span class="math notranslate nohighlight">\(y \in \C\)</span> und <span class="math notranslate nohighlight">\(n\in \N\setminus\{0,1\}\)</span>, dann heisst <span class="math notranslate nohighlight">\(x \in \C\)</span> die <span class="math notranslate nohighlight">\(n\)</span>-te Wurzel von <span class="math notranslate nohighlight">\(y\)</span>, wenn <span class="math notranslate nohighlight">\(y=x^n\)</span> gilt.Eine Wurzel ist eine Nullstelle des Polynoms <span class="math notranslate nohighlight">\(p:\C \rightarrow \C, x \mapsto x^n-y\)</span>. Eine solche Wurzel existiert immer in <span class="math notranslate nohighlight">\(\C\)</span>, allgemeiner gilt der <em>Hauptsatz der Algebra</em> (hier ohne Beweis):</p>
+<div class="proof theorem admonition" id="theorem-31">
+<p class="admonition-title"><span class="caption-number">Theorem 2.11 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Jedes Polynom```{math}
+p: \C \mapsto \C, x \mapsto \sum_{j=0}^n a_j x^j</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+mit $n \in \N\setminus\{0\}$, $a_j \in \C$, $a_n \neq 0$ hat eine komplexe Nullstelle, d.h. es existiert ein $\overline{x} \in \C$ mit $p(\overline{x})=0$
+</pre></div>
+</div>
+</div>
+</div><div class="proof example admonition" id="example-32">
+<p class="admonition-title"><span class="caption-number">Example 2.11 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Das quadratische Polynom <span class="math notranslate nohighlight">\(p(x) =x^2+1\)</span> hat die Nullstellen <span class="math notranslate nohighlight">\(\i\)</span> und <span class="math notranslate nohighlight">\(-\i\)</span></p>
+</div>
+</div><div class="proof example admonition" id="example-33">
+<p class="admonition-title"><span class="caption-number">Example 2.12 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Das kubische Polynom <span class="math notranslate nohighlight">\(p(x) =x^3+1\)</span> hat die Nullstellen <span class="math notranslate nohighlight">\(-1\)</span>, <span class="math notranslate nohighlight">\(\frac{-1+\sqrt{3}\i}2\)</span> und <span class="math notranslate nohighlight">\(\frac{-1-\sqrt{3}\i}2\)</span></p>
+</div>
+</div><p>In den Beispielen sehen wir, dass zu jeder Nullstelle auch die konjugierte Zahl Nullstelle ist. Dies gilt allgemein für komplexe Polynome: ist <span class="math notranslate nohighlight">\(z \in \C\)</span> Nullstelle, dann ist auch <span class="math notranslate nohighlight">\(\overline{z}\)</span> eine Nullstelle.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./grundlagen"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="mengenlogik.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">2.1. </span>Mengenlehre und Logik</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../vektorraeume/vektorraeume.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">3. </span>Vektorräume und lineare Abbildungen</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

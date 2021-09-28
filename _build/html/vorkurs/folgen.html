@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.3. Folgen und Konvergenz &#8212; Mathematik für Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}", "x": "\\mathbf{x}", "veczwei": ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4. Funktionen" href="funktionen.html" />
+    <link rel="prev" title="1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras" href="koord.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="regression.html">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="funktionen.html">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../grundlagen/grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/zahlensysteme.html">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vektorraeume/vektorraeume.html">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LGS.html">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../metrik/metrik.html">
+   4. Metriken und Konvergenz
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/normen.html">
+     4.1. Metriken und Normen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/konvfolgen.html">
+     4.2. Konvergente Folgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/teilfolgen.html">
+     4.3. Teilfolgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/reihen.html">
+     4.4. Reihen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/potenzreihen.html">
+     4.5. Potenzreihen und Exponentialfunktion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../stetigkeit/stetigkeit.html">
+   5. Stetigkeit
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/eigenschaften.html">
+     5.1. Eigenschaften stetiger reeller Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/grenzwerte.html">
+     5.2. Grenzwerte von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/glm.html">
+     5.3. Gleichmäßige Stetigkeit und gleichmäßige Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/exp.html">
+     5.4. Die Exponentialfunktion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/trig.html">
+     5.5. Trigonometrische Funktionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../differential/differential.html">
+   6. Differentialrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/kombfkt.html">
+     6.1. Ableitungsregeln für Kombinationen von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/mws.html">
+     6.2. Der Mittelwertsatz der Differentialrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/hoehereOrdnung.html">
+     6.3. Höhere Ableitungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../integration/integration.html">
+   7. Integralrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/riemann.html">
+     7.1. Riemann Integral
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/hdi.html">
+     7.2. Der Hauptsatz der Differential- und Integralrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/vertauschen.html">
+     7.3. Vertauschung von Integralen und Taylor-Formel
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/vorkurs/folgen.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/https://github.com/FAU-AMMN/MathDataScience"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="folgen-und-konvergenz">
+<h1><span class="section-number">1.3. </span>Folgen und Konvergenz<a class="headerlink" href="#folgen-und-konvergenz" title="Permalink to this headline">¶</a></h1>
+<p>Eine Folge <span class="math notranslate nohighlight">\((x_n)\)</span> reeller Zahlen ist eine Zuordnung <span class="math notranslate nohighlight">\(x_n \in \R\)</span> zu jedem <span class="math notranslate nohighlight">\(n \in \N\)</span>. Allgemeiner kann man auch Folgen anderer Objekte betrachten, aber wir belassen es hier bei reellen Folgen. Diese dienen uns als Einstieg ins <em>Unendliche</em>, wir wollen daran ein wenig das Konzept von Konvergenz und Grenzwerten beleuchten.</p>
+<p>Wir interessieren uns besonders für die Konvergenz (oder auch Divergenz) von Folgen, d.h. das Verhalten für <span class="math notranslate nohighlight">\(n\)</span> gegen unendlich (geschrieben als <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>). Eine <em>konvergente</em> Folge besitzt einen Grenzwert <span class="math notranslate nohighlight">\(\overline{x}\)</span>
+(geschrieben <span class="math notranslate nohighlight">\(x_n \rightarrow \overline{x}\)</span>), wenn für größer werdende <span class="math notranslate nohighlight">\(n\)</span> die Folgenglieder dem Wert <span class="math notranslate nohighlight">\(\overline{x}\)</span> immer näher kommen. Nun stellt sich aber die Frage wie wir diese Aussage mathematisch präzise formalisieren können. Zunächst erkennen wir, dass <em>immer näher kommen</em>  bedeutet, dass</p>
+<div class="math notranslate nohighlight" id="equation-eq-folgengrenzewert">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-eq-folgengrenzewert" title="Permalink to this equation">¶</a></span>\[\vert x_n - \overline{x} \vert &lt; \epsilon\]</div>
+<p>für <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> beliebig klein und <span class="math notranslate nohighlight">\(n\)</span> hinreichend groß gilt. <em>Beliebig klein</em> und  <em>hinreichend groß</em> sind mathematisch aber immer noch zu schwammige Begriffe, die wir weiter präzisieren müssen. Tatsächlich tun wir dies, indem wir uns einen Zweifler an der Konvergenz vorstellen, der ein <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> vorgibt und wir müssen <a class="reference internal" href="#equation-eq-folgengrenzewert">(1.6)</a> nun für alle <span class="math notranslate nohighlight">\(n\)</span> groß genug erfüllen (wobei das kleinste <span class="math notranslate nohighlight">\(n\)</span>, für das <a class="reference internal" href="#equation-eq-folgengrenzewert">(1.6)</a> gelten muss natürlich von <span class="math notranslate nohighlight">\(\epsilon\)</span> abhängen kann). Wir können also folgende Definition geben:</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 1.1 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine reelle Folge <span class="math notranslate nohighlight">\((x_n)\)</span> heißt konvergent gegen den Grenzwert <span class="math notranslate nohighlight">\(\overline{x}\)</span>, geschrieben</p>
+<div class="math notranslate nohighlight">
+\[x_n \rightarrow \overline{x} \qquad \text{oder} \lim_{n \rightarrow \infty} x_n = \overline{x},\]</div>
+<p>genau dann, wenn für alle <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span> existiert, sodass für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span> <a class="reference internal" href="#equation-eq-folgengrenzewert">(1.6)</a> erfüllt ist.
+Eine Folge heißt konvergent, wenn es ein <span class="math notranslate nohighlight">\(\overline{x}\)</span> gibt, sodass <span class="math notranslate nohighlight">\(x_n \rightarrow x\)</span>.</p>
+</div>
+</div><p>Bei dieser Formalisierung haben wir zwei wesentliche logische Aussagen verwendet, nämlich <em>für alle</em> und <em>es existiert</em>. Diese werden wir in der Vorlesung durch sogenannte Quantoren abkürzen:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\forall \equiv\)</span> für alle,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\exists \equiv\)</span> es existiert.</p></li>
+</ul>
+<p>Damit können wir obige Aussage kompakt als</p>
+<div class="math notranslate nohighlight">
+\[\forall \epsilon &gt; 0 ~\exists n_0 \in \N ~\forall n \geq n_0: ~\vert x_n - \overline{x} \vert &lt; \epsilon\]</div>
+<p>schreiben. Dabei haben wir den Doppelpunkt verwendet um die eigentliche Aussage zu beginnen, <em>:</em> ersetzt also das sprachliche <em>gilt</em>.</p>
+<p>Ist eine Folge nicht konvergent, so nennen wir sie <em>divergent</em>. Wir beachten, dass nach unserer Definition <span class="math notranslate nohighlight">\(\overline{x} \in \R\)</span> gelten muss. Es gibt also im strengen Sinn keine Konvergenz <span class="math notranslate nohighlight">\(x_n \rightarrow \infty\)</span> (oder analog <span class="math notranslate nohighlight">\(x_n \rightarrow -\infty\)</span>), wie man intuitiv zum Beispiel von der Folge <span class="math notranslate nohighlight">\((x_n) = (n)\)</span> erwarten würde. Das Problem dabei ist, dass <span class="math notranslate nohighlight">\(x_n\)</span> ja dem Wert <span class="math notranslate nohighlight">\(\overline{x}=\infty\)</span> nicht beliebig nahe kommt, der Unterschied ist immer unendlich groß. Deshalb sagen wir <span class="math notranslate nohighlight">\(x_n\)</span> konvergiert gegen unendlich, <span class="math notranslate nohighlight">\(x_n \rightarrow \infty\)</span>, genau dann wenn</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0 ~\exists n_0 \in \N ~\forall n \geq n_0: ~ x_n &gt; \epsilon .\]</div>
+<p>Hier hat <span class="math notranslate nohighlight">\(\epsilon\)</span> eine andere Rolle als vorhin, da wir uns ja dafür interessieren, dass <span class="math notranslate nohighlight">\(\epsilon\)</span> beliebig groß wird (nicht beliebig klein wie bei der üblichen Konvergenz), die Definition über alle <span class="math notranslate nohighlight">\(\epsilon\)</span> deckt dies aber gut ab. Als Übung lassen wir den Fall einer Definition von <span class="math notranslate nohighlight">\(x_n \rightarrow -  \infty\)</span>. Zum Verständnis betrachten wir einige Beispiele:</p>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 1.1 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> die konstante Folge <span class="math notranslate nohighlight">\(x_n = 1 \)</span> für alle <span class="math notranslate nohighlight">\(n\)</span>. Diese konvergiert natürlich gegen <span class="math notranslate nohighlight">\(\overline{x} = 1\)</span>. Es gilt tatsächlich:</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0 ~\forall n \geq 0:  \vert x_n - \overline{x}\vert &lt; \epsilon, \]</div>
+<p>da <span class="math notranslate nohighlight">\(\vert x_n - \overline{x}\vert =0\)</span>, d.h. wir können immer <span class="math notranslate nohighlight">\(n_0=0\)</span> wählen.</p>
+</div>
+</div><div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 1.2 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> die  Folge <span class="math notranslate nohighlight">\(x_n = \frac{1}n \)</span> für alle <span class="math notranslate nohighlight">\(n&gt;0\)</span> mit <span class="math notranslate nohighlight">\(x_0\)</span> beliebig definiert. Diese konvergiert natürlich gegen <span class="math notranslate nohighlight">\(\overline{x} = 0\)</span>. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0 ~\forall n \geq n_0:  \frac{1}n = \vert x_n - \overline{x}\vert &lt; \epsilon, \]</div>
+<p>wenn <span class="math notranslate nohighlight">\(n &gt; \frac{1}\epsilon\)</span> ist. Wir wählen also <span class="math notranslate nohighlight">\(n_0\)</span> als die nächstgrößte natürliche Zahl zu <span class="math notranslate nohighlight">\(\frac{1}\epsilon\)</span>, damit erhalten wir die Konvergenz.</p>
+</div>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 1.3 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> die  Folge <span class="math notranslate nohighlight">\(x_n = (-1)^n \)</span> für alle <span class="math notranslate nohighlight">\(n\geq 0\)</span>. Diese alternierende Folge divergiert. Ist <span class="math notranslate nohighlight">\(\overline{x} = 1\)</span>, dann gilt für ungerades <span class="math notranslate nohighlight">\(n\)</span> beliebig groß <span class="math notranslate nohighlight">\(\vert x_n - \overline{x}\vert = 2\)</span>, also erhalten wir mit <span class="math notranslate nohighlight">\(\epsilon =1\)</span> bereits eine Verletzung der Konvergenzbedingung. Ist <span class="math notranslate nohighlight">\(\overline{x} \neq 1\)</span>, so gilt für gerades <span class="math notranslate nohighlight">\(n\)</span> immer <span class="math notranslate nohighlight">\(\vert x_n - \overline{x} \vert =  \vert 1-\overline{x} \vert \neq 0\)</span>. Damit erhalten wir eine Verletzung der Konvergenzbedingung mit <span class="math notranslate nohighlight">\(\epsilon = \frac{\vert 1-\overline{x} \vert}2\)</span>.</p>
+<p>In diesem Fall gibt es aber zwei konvergente Teilfolgen <span class="math notranslate nohighlight">\((y_n) = (x_{2n})\)</span> mit Grenzwert <span class="math notranslate nohighlight">\(1\)</span> und <span class="math notranslate nohighlight">\((z_n) = (x_{2n+1})\)</span> mit Grenzwert <span class="math notranslate nohighlight">\(-1\)</span>. Wie werden später noch häufiger mit konvergenten Teilfolgen zu tun haben.</p>
+</div>
+</div><div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span class="caption-number">Example 1.4 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> die  Folge <span class="math notranslate nohighlight">\(x_n = \frac{n^2+1}{2n^2+1} \)</span> für alle <span class="math notranslate nohighlight">\(n\geq 0\)</span>. Diese konvergiert  gegen <span class="math notranslate nohighlight">\(\overline{x} = \frac{1}2\)</span>. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \vert x_n - \overline{x}\vert = \frac{1}{4n^2+2}, \]</div>
+<p>dies ist kleiner <span class="math notranslate nohighlight">\(\epsilon\)</span>, wenn <span class="math notranslate nohighlight">\(n \geq n_0 &gt; \sqrt{\frac{1}{4\epsilon}-\frac{1}2}\)</span> (bzw. <span class="math notranslate nohighlight">\(n_0 \geq 0\)</span> wenn <span class="math notranslate nohighlight">\(\epsilon &gt; \frac{1}2\)</span>) gilt.</p>
+</div>
+</div><p>Als Verallgemeinerung des letzten Beispiels können wir zeigen, dass</p>
+<div class="math notranslate nohighlight">
+\[ \frac{x_n}{y_n} \rightarrow \frac{\overline{x}}{\overline{y}} \]</div>
+<p>gilt, wenn <span class="math notranslate nohighlight">\(x_n \rightarrow \overline{x}\)</span> und <span class="math notranslate nohighlight">\(y_n \rightarrow \overline{y} \neq 0\)</span>. Dazu machen wir mit Hilfe der Dreiecksungleichung folgende Abschätzung:</p>
+<div class="math notranslate nohighlight">
+\[\left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{\overline{y}} \right\vert =
+\left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{y_n}+\frac{\overline{x}}{y_n}-\frac{\overline{x}}{\overline{y}} \right\vert \leq 
+\left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{y_n}\right\vert+\left\vert\frac{\overline{x}}{y_n}-\frac{\overline{x}}{\overline{y}} \right\vert = \frac{1}{\vert y_n \vert} \vert x_n - \overline{x}\vert+
+\frac{\vert \overline{x} \vert}{\vert \overline{y} \vert~\vert y_n \vert} \vert y_n - \overline{y}\vert.\]</div>
+<p>Gilt nun</p>
+<div class="math notranslate nohighlight">
+\[  \vert x_n - \overline{x}\vert &lt; \epsilon_1, \qquad  \vert y_n - \overline{y}\vert &lt; \epsilon_2 \]</div>
+<p>Dann folgt mit der Dreiecksungleichung auch</p>
+<div class="math notranslate nohighlight">
+\[ \vert y_n \vert \geq \vert \overline{y}\vert - \vert y_n - \overline{y}\vert \geq \vert \overline{y}\vert - \epsilon_2 . \]</div>
+<p>Damit ist</p>
+<div class="math notranslate nohighlight">
+\[ \left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{\overline{y}} \right\vert \leq \frac{\epsilon_1}{\vert \overline{y} \vert - \epsilon_2} + \frac{\overline{x}\epsilon_2}{\overline{y}(\vert \overline{y} \vert - \epsilon_2)}  . \]</div>
+<p>Nun wählen wir</p>
+<div class="math notranslate nohighlight">
+\[ \epsilon_1 &lt;\frac{\vert \overline{y} \vert }4,  \qquad \epsilon_2 &lt; \min\{\frac{\vert \overline{y} \vert }2, \frac{\vert \overline{y} \vert^2}{4 \vert \overline{x} \vert} \epsilon \} , \]</div>
+<p>dann gibt es <span class="math notranslate nohighlight">\(n_0^1\)</span> und <span class="math notranslate nohighlight">\(n_0^2\)</span>, sodass</p>
+<div class="math notranslate nohighlight">
+\[ \forall n &gt; n_0^1:~\vert x_n - \overline{x} \vert &lt; \epsilon_1 \]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[ \forall n &gt; n_0^2:~\vert y_n - \overline{y} \vert &lt; \epsilon_2 .\]</div>
+<p>Nun sei <span class="math notranslate nohighlight">\(n_0 = \max\{n_0^1,n_0^2\}\)</span>, dann folgt durch Einsetzen der Schranken für <span class="math notranslate nohighlight">\(\epsilon_1\)</span> und <span class="math notranslate nohighlight">\(\epsilon_2\)</span> in die obige Abschätzung</p>
+<div class="math notranslate nohighlight">
+\[  \left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{\overline{y}} \right\vert &lt; \epsilon \]</div>
+<p>für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span>. Als Übung überlassen wir den Fall <span class="math notranslate nohighlight">\(\overline{x} \neq 0\)</span> und <span class="math notranslate nohighlight">\(\overline{y}=0\)</span>, hier erhält man für den Grenzwert Konvergenz gegen <span class="math notranslate nohighlight">\(+\infty\)</span> oder <span class="math notranslate nohighlight">\(-\infty\)</span> je nach Vorzeichen von <span class="math notranslate nohighlight">\(\overline{x}\)</span>.</p>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 1.5 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> die  Folge <span class="math notranslate nohighlight">\(x_n = n \)</span> für alle <span class="math notranslate nohighlight">\(n\geq 0\)</span>. Es gilt <span class="math notranslate nohighlight">\(x_n \rightarrow \infty\)</span>, da <span class="math notranslate nohighlight">\(\vert x_n \vert &gt; \epsilon\)</span> für <span class="math notranslate nohighlight">\(n\geq n_0\)</span>, wenn wir <span class="math notranslate nohighlight">\(n_0\)</span> als die nächstgrößte natürliche Zahl zu <span class="math notranslate nohighlight">\(\epsilon\)</span> wählen.</p>
+</div>
+</div><p>Wir können die Definition der Konvergenz auch direkt auf Folgen <span class="math notranslate nohighlight">\(x_n \in \R^N\)</span> übertragen wenn wir den Betrag durch die (Euklidische Norm) ersetzen:</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0 ~\exists n_0 \in \N ~\forall n \geq n_0: ~\Vert x_n - \overline{x} \Vert &lt; \epsilon \]</div>
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Example 1.6 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Als Beispiel betrachten wir eine Folge <span class="math notranslate nohighlight">\((x_n)\)</span> im <span class="math notranslate nohighlight">\(\R^2\)</span> gegeben durch <span class="math notranslate nohighlight">\(x_n= \veczwei{\frac{n}{n+1}}{2^{-n}}\)</span>. Dies konvergiert gegen <span class="math notranslate nohighlight">\(\overline{x}=\veczwei{1}{0}\)</span>. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \Vert x_n - \overline{x} \Vert = \sqrt{\frac{1}{(n+1)^2} + 2^{-2n}} \leq \frac{\sqrt{2}}{n+1} \]</div>
+<p>für <span class="math notranslate nohighlight">\(n \geq 1\)</span>, da <span class="math notranslate nohighlight">\(2^n \geq n+1\)</span>. Also folgt</p>
+<div class="math notranslate nohighlight">
+\[ \Vert x_n - \overline{x} \Vert &lt; \epsilon, \]</div>
+<p>für <span class="math notranslate nohighlight">\(n \geq n_0\)</span>, wenn <span class="math notranslate nohighlight">\(n_0\)</span> größer als <span class="math notranslate nohighlight">\(\frac{\sqrt{2}}\epsilon -1\)</span> ist.</p>
+</div>
+</div><p>Wir können auch noch andere Eigenschaften von Folgen untersuchen. Eine erste ist die Anordnung, wir sagen eine Folge ist</p>
+<ul class="simple">
+<li><p><em>monoton steigend</em>, wenn <span class="math notranslate nohighlight">\(x_n \leq x_{n+1}\)</span> für alle <span class="math notranslate nohighlight">\(n\in \N\)</span> gilt,</p></li>
+<li><p><em>monoton fallend</em>, wenn <span class="math notranslate nohighlight">\(x_n \geq x_{n+1}\)</span> für alle <span class="math notranslate nohighlight">\(n\in \N\)</span> gilt.
+\end{*ize}</p></li>
+</ul>
+<p>Dazu können wir auch das Supremum (<span class="math notranslate nohighlight">\(\sup\)</span>) und Infimum (<span class="math notranslate nohighlight">\(\inf\)</span>) einer Folge definieren. Bei einer endlichen Menge erreicht man nach endlich vielen Schritten ja immer ein Minimum oder Maximum, bei einer unendlichen Folge ist das nicht zwangsläufig der Fall. So kommt etwa <span class="math notranslate nohighlight">\(x_n = \frac{1}n\)</span> dem Wert <span class="math notranslate nohighlight">\(0\)</span> beliebig nahe, erreicht ihn aber nicht. Deshalb machen wir folgende Definition:</p>
+<div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 1.2 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Wir nennen <span class="math notranslate nohighlight">\(x_* \in \R\)</span> das Infimum der reellen Folge <span class="math notranslate nohighlight">\(x_n\)</span> (geschrieben <span class="math notranslate nohighlight">\(x_* = \inf_n x_n\)</span>), genau dann wenn die beiden folgenden Bedingungen erfüllt sind:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\forall n \in \N:~x_* \leq x_n\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\forall \epsilon &gt; 0~\exists n_0 \in \N: x_{n_0} &lt; x_* + \epsilon\)</span>.</p></li>
+</ul>
+<p>Wir nennen <span class="math notranslate nohighlight">\(x^* \in \R\)</span> das Supremum der reellen Folge <span class="math notranslate nohighlight">\(x_n\)</span> (geschrieben <span class="math notranslate nohighlight">\(x^* = \sup_n x_n\)</span>), genau dann wenn die beiden folgenden Bedingungen erfüllt sind:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\forall n \in \N:~x^* \geq x_n\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\forall \epsilon &gt; 0~\exists n_0 \in \N: x_{n_0} &gt; x^* -\epsilon\)</span>.</p></li>
+</ul>
+</div>
+</div><p>Analog zur Konvergenz können wir auch die Fälle <span class="math notranslate nohighlight">\(\inf_n x_n = - \infty\)</span> und <span class="math notranslate nohighlight">\(\sup x_n = +\infty\)</span> definieren, letzteres ist der Fall wenn</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0~\exists n_0 \in \N: x_{n_0} &gt; \epsilon . \]</div>
+<p>Im Fall einer monotonen Folge können wir nun direkt die Konvergenz beweisen:</p>
+<div class="proof theorem admonition" id="theorem-8">
+<p class="admonition-title"><span class="caption-number">Theorem 1.1 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> eine monoton steigende reelle Folge. Dann gibt es ein <span class="math notranslate nohighlight">\(\overline{x} \in [x_0,+\infty]\)</span> mit <span class="math notranslate nohighlight">\(x_n \rightarrow \overline{x}\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Wir definieren <span class="math notranslate nohighlight">\(\overline{x}= \sup_n x_n\)</span> und unterscheiden zwei Fälle. Ist die Folge unbeschränkt, d.h. <span class="math notranslate nohighlight">\(\overline{x}=\infty\)</span>, so gilt</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0~\exists n_0 \in \N: x_{n_0} &gt; \epsilon. \]</div>
+<p>Da die Folge monoton steigend ist, gilt <span class="math notranslate nohighlight">\(x_n \geq x_{n_0}\)</span> für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span>. Damit ist die Bedingung</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0~\exists n_0 \in \N~\forall n\geq n_0: x_{n_0} &gt; \epsilon  \]</div>
+<p>erfüllt.</p>
+<p>Ist <span class="math notranslate nohighlight">\(\overline{x} &lt; \infty\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ \forall \epsilon &gt; 0~\exists n_0 \in \N: x_{n_0} &gt; \overline{x} -\epsilon\]</div>
+<p>und da wieder <span class="math notranslate nohighlight">\(x_n \geq x_{n_0}\)</span> für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span> gilt erhalten wir auch <span class="math notranslate nohighlight">\( x_n &gt; \overline{x}-\epsilon\)</span>. Andererseits ist <span class="math notranslate nohighlight">\(x_n \leq \overline{x}\)</span>, also gilt für alle <span class="math notranslate nohighlight">\(n \geq n_0\)</span> auch <span class="math notranslate nohighlight">\( \vert x_n - \overline{x} \vert &lt; \epsilon. \)</span>  <span class="math notranslate nohighlight">\(\square\)</span></p>
+</div>
+<p>In obigem Beweis haben wir verwendet, dass aus <span class="math notranslate nohighlight">\(x_{n+1} \geq x_n\)</span> f”ur alle <span class="math notranslate nohighlight">\(n\)</span> auch folgt</p>
+<div class="math notranslate nohighlight">
+\[ \forall m \geq n: x_m \geq x_n. \]</div>
+<p>Dies scheint offensichtlich, benutzt aber ein nichttriviales logisches Prinzip, die sogenannte Induktion. Dabei schließt man auf eine Aussage für alle natürlichen Zahlen, wenn man aus der Aussage für ein <span class="math notranslate nohighlight">\(n \in \N\)</span> auch die Aussage für <span class="math notranslate nohighlight">\(n+1\)</span> folgern kann.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./vorkurs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="koord.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">1.2. </span>Wiederholung: Koordinatensysteme und der Satz des Pythagoras</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="funktionen.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">1.4. </span>Funktionen</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

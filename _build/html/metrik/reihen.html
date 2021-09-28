@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.4. Reihen &#8212; Mathematik für Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}", "x": "\\mathbf{x}", "veczwei": ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.5. Potenzreihen und Exponentialfunktion" href="potenzreihen.html" />
+    <link rel="prev" title="4.3. Teilfolgen" href="teilfolgen.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vorkurs/vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/regression.html">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/folgen.html">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/funktionen.html">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vorkurs/diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../grundlagen/grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/zahlensysteme.html">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vektorraeume/vektorraeume.html">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LGS.html">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="metrik.html">
+   4. Metriken und Konvergenz
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="normen.html">
+     4.1. Metriken und Normen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="konvfolgen.html">
+     4.2. Konvergente Folgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="teilfolgen.html">
+     4.3. Teilfolgen
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.4. Reihen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="potenzreihen.html">
+     4.5. Potenzreihen und Exponentialfunktion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../stetigkeit/stetigkeit.html">
+   5. Stetigkeit
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/eigenschaften.html">
+     5.1. Eigenschaften stetiger reeller Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/grenzwerte.html">
+     5.2. Grenzwerte von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/glm.html">
+     5.3. Gleichmäßige Stetigkeit und gleichmäßige Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/exp.html">
+     5.4. Die Exponentialfunktion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/trig.html">
+     5.5. Trigonometrische Funktionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../differential/differential.html">
+   6. Differentialrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/kombfkt.html">
+     6.1. Ableitungsregeln für Kombinationen von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/mws.html">
+     6.2. Der Mittelwertsatz der Differentialrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/hoehereOrdnung.html">
+     6.3. Höhere Ableitungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../integration/integration.html">
+   7. Integralrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/riemann.html">
+     7.1. Riemann Integral
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/hdi.html">
+     7.2. Der Hauptsatz der Differential- und Integralrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/vertauschen.html">
+     7.3. Vertauschung von Integralen und Taylor-Formel
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/metrik/reihen.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/https://github.com/FAU-AMMN/MathDataScience"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reihen">
+<h1><span class="section-number">4.4. </span>Reihen<a class="headerlink" href="#reihen" title="Permalink to this headline">¶</a></h1>
+<p>Eine spezielle Form von Folgen sind sogenannte Reihen, die wir als Summen von Folgen betrachten können:</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 4.10 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((X,\Vert \cdot \Vert)\)</span> ein normierter Vektorraum und <span class="math notranslate nohighlight">\((x_n)\)</span> eine Folge in <span class="math notranslate nohighlight">\(X\)</span>. Dann identifizieren wir die Reihe <span class="math notranslate nohighlight">\(\sum_{k=0}^\infty x_k\)</span> mit der Folge der Partialsummen</p>
+<div class="math notranslate nohighlight">
+\[ s_n = \sum_{k=0}^n x_k.\]</div>
+<p>Falls die Folge <span class="math notranslate nohighlight">\(s_n\)</span> gegen einen Grenzwert <span class="math notranslate nohighlight">\(s \in  X\)</span> konvergiert, so bezeichnen wir</p>
+<div class="math notranslate nohighlight">
+\[ s = \sum_{k=0}^\infty x_k\]</div>
+<p>und nennen die Reihe konvergent. Andernfalls nennen wir die Reihe divergent.</p>
+</div>
+</div><p>Wir beachten, dass wir natürlich auch jede Folge <span class="math notranslate nohighlight">\(x_n\)</span> als Reihe</p>
+<div class="math notranslate nohighlight">
+\[ x_n =\sum_{k=0}^n y_k\]</div>
+<p>schreiben können, mit <span class="math notranslate nohighlight">\(y_0=x_0\)</span> und <span class="math notranslate nohighlight">\(y_k = x_k - x_{k-1}\)</span> für <span class="math notranslate nohighlight">\(k &gt; 0\)</span>. Wenn wir aber eine Folge explizit angeben können (etwa auch durch Ausrechnen der Partialsummen), dann sprechen wir eher von einer Folge und behandeln sie auch so. Wenn wir aber die Partialsummen nicht ausrechnen können, benötigen wir eine speziellere Betrachtung.</p>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 4.5 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Für <span class="math notranslate nohighlight">\(q \in \R\)</span> betrachten wir die geometrische Reihe</p>
+<div class="math notranslate nohighlight">
+\[ s_n = \sum_{k=0}^n q^k.\]</div>
+<p>Wie wir schon gesehen haben, können wir die Partialsummen explizit berechnen. Für <span class="math notranslate nohighlight">\(q=1\)</span> gilt <span class="math notranslate nohighlight">\(s_n = n+1\)</span> und die Reihe ist offensichtlich divergent. Für <span class="math notranslate nohighlight">\(q\neq 1 \)</span>gilt</p>
+<div class="math notranslate nohighlight">
+\[ s_n = \frac{1-q^n}{1-q}.\]</div>
+<p>Nun sehen wir, dass für <span class="math notranslate nohighlight">\(|q| &lt;1\)</span> gilt <span class="math notranslate nohighlight">\(q^n \rightarrow 0\)</span> für <span class="math notranslate nohighlight">\(n \rightarrow 0\)</span>, also erhalten wir den Grenzwert</p>
+<div class="math notranslate nohighlight">
+\[ s  = \sum_{k=0}^\infty q^k = \frac{1}{1-q}.\]</div>
+<p>Für <span class="math notranslate nohighlight">\(|q|&gt;1\)</span> gilt <span class="math notranslate nohighlight">\(|q^n| \rightarrow \infty\)</span> für <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. Wegen der Dreiecksungleichung ist</p>
+<div class="math notranslate nohighlight">
+\[ |s_n| \geq \frac{|q^n|-1}{|q-1|} \rightarrow \infty,\]</div>
+<p>also divergiert die Reihe.
+Im verbleibenden Fall <span class="math notranslate nohighlight">\(q=-1\)</span> gilt <span class="math notranslate nohighlight">\(s_n=1\)</span> für <span class="math notranslate nohighlight">\(n\)</span> gerade und <span class="math notranslate nohighlight">\(s_n=0\)</span> für <span class="math notranslate nohighlight">\(n\)</span> ungerade. Hier bleiben die Partialsummen zwar beschränkt, aber die Reihe konvergiert nicht.</p>
+</div>
+</div><div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Example 4.6 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Als zweites Beispiel betrachten wir für <span class="math notranslate nohighlight">\(q &gt; 0\)</span> die Reihe</p>
+<div class="math notranslate nohighlight">
+\[ s_n = \sum_{k=0}^n (k+1)^{-q}.\]</div>
+<p>Hier ist zunächst völlig unklar, ob die Reihe konvergiert oder divergiert. Für <span class="math notranslate nohighlight">\(q=1\)</span> sind die ersten Partialsummen <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(\frac{3}2\)</span>, <span class="math notranslate nohighlight">\(\frac{11}6\)</span>, <span class="math notranslate nohighlight">\(\frac{23}{12}\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span> Die Reihe scheint also zu divergieren, aber wir haben kein Kriterium um dies einfach zu entscheiden. Für <span class="math notranslate nohighlight">\(q=2\)</span> sind die ersten Partialsummen <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(\frac{5}4\)</span>, <span class="math notranslate nohighlight">\(\frac{23}{18}\)</span>,<span class="math notranslate nohighlight">\(\ldots\)</span> Hier scheint es sich um Konvergenz zu handeln, aber wieder können wir nicht entscheiden, ob nicht einfach langsames Wachstum gegen unendlich vorliegt.</p>
+</div>
+</div><p>Im Folgenden wollen wir einfache Kriterien zur Konvergenz einer Reihe kennenlernen. Ein einfaches Beispiel in einem vollständigen normierten Raum erhalten wir aus der Äquivalenz der Konvergenz zur Cauchy-Eigenschaft einer Folge:</p>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span class="caption-number">Theorem 4.6 </span> (Cauchy-Kriterium Eine Reihe in einem vollständigen metrischen Raum konvergiert genau dann, wenn es für alle <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span> gibt, sodass)</p>
+<div class="theorem-content section" id="proof-content">
+<div class="math notranslate nohighlight">
+\[ \forall m &gt; n \geq n_0: \quad \Vert \sum_{k=n+1}^m x_k \Vert &lt; \epsilon\]</div>
+<p>gilt.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Die obige Eigenschaft ist genau äquivalent dazu, dass die Folge <span class="math notranslate nohighlight">\((s_n)\)</span> der Partialsummen eine Cauchy-Folge ist, was wiederum äquivalent zur Konvergenz ist.</p>
+</div>
+<p>Ein sehr nützliches Kriterium ist das <em>Majorantenkriterium</em>, dafür definieren wir zunächst den Begriff einer Majorante:</p>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 4.11 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(X\)</span> ein vollständiger normierter Raum und <span class="math notranslate nohighlight">\((x_n)\)</span> eine Folge in <span class="math notranslate nohighlight">\(X\)</span>. Dazu sei <span class="math notranslate nohighlight">\((c_n)\)</span> eine Folge in <span class="math notranslate nohighlight">\(\R\)</span> mt <span class="math notranslate nohighlight">\(c_n \geq 0\)</span> für alle <span class="math notranslate nohighlight">\(n \in \N\)</span>, sodass für alle <span class="math notranslate nohighlight">\(n \in \N\)</span> gilt:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert x_n \Vert \leq c_n .\]</div>
+<p>Dann heisst <span class="math notranslate nohighlight">\((c_n)\)</span> bzw. <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty c_n\)</span> Majorante von <span class="math notranslate nohighlight">\((x_n)\)</span> bzw. <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_n\)</span>.</p>
+</div>
+</div><p>Mit Hilfe von Majoranten können wir wieder Konvergenzkriterien für Reihen in vollständigen normierten Räumen basierend auf Reihen in den positiven reellen Zahlen herleiten:</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 4.7 </span> (Majorantenkriterium)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(X\)</span> ein vollständiger normierter Raum und <span class="math notranslate nohighlight">\((c_n)\)</span> eine Majorante von <span class="math notranslate nohighlight">\((x_n)\)</span>. Falls <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty c_n\)</span> konvergiert, dann konvergiert auch <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_n\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Wegen der Dreiecksungleichung gilt</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\Vert s_m - s_n \Vert &amp;= \Vert \sum_{k=n+1}^m x_k \Vert  \leq \sum_{k=n+1}^m  \Vert x_k \Vert \\
+&amp;\leq \sum_{k=n+1}^m c_k.\end{align*}\]</div>
+<p>Wegen der Konvergenz der Reihe <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty c_n\)</span> sind die zugehörigen Partialsummen auch eine Cauchy-Folge, d.h. für alle <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> existiert ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span>, sodass für <span class="math notranslate nohighlight">\(m &gt; n \geq n_0\)</span> gilt:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert s_m - s_n \Vert \leq \sum_{k=n+1}^m c_k &lt; \epsilon.\]</div>
+<p>Damit ist auch <span class="math notranslate nohighlight">\((s_n)\)</span> eine Cauchy-Folge und somit konvergent.</p>
+</div>
+<p>Wir beachten, dass wir die Konvergenz von <span class="math notranslate nohighlight">\(s_n=\sum_{k=0}^n c_k\)</span> für <span class="math notranslate nohighlight">\(c_k \geq 0\)</span> relativ einfach entscheiden können. <span class="math notranslate nohighlight">\((s_n)\)</span> ist dann eine monoton steigende Folge, diese konvergiert genau dann wenn sie beschränkt ist. Können wir also ein <span class="math notranslate nohighlight">\(C &gt; 0\)</span> finden mit</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{k=0}^n c_k \leq C \qquad \forall n \in \N ,\]</div>
+<p>dann konvergiert die Reihe.
+Das Majorantenkriterium können wir speziell für Reihen in <span class="math notranslate nohighlight">\(X=\R\)</span> anwenden. Es gilt, dass <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_n\)</span> konvergiert, falls  <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty |x_n|\)</span>  konvergiert, da klarerweise <span class="math notranslate nohighlight">\(|x_n|\)</span> eine Majorante für <span class="math notranslate nohighlight">\(x_n\)</span> ist.Die Umkehrung stimmt aber nicht immer. Wir nennen deshalb eine Reihe in <span class="math notranslate nohighlight">\(\R\)</span> bedingt konvergent, wenn <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_n\)</span> konvergiert, aber <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty |x_n|\)</span>  divergiert. Falls auch <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty |x_n|\)</span> konvergiert, nennen wir die Reihe absolut konvergent. Bei bedingt konvergenten Reihen ist Vorsicht geboten, da eine Umordnung der Reihe, d.h. <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_{\pi(n)}\)</span> für eine bijektive Abbildung <span class="math notranslate nohighlight">\(\pi: \N \rightarrow \N\)</span> einen anderen Grenzwert liefern kann.</p>
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Example 4.7 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Das Majorantenkriterium können wir nun zur Untersuchung der Konvergenz von <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty (n+1)^{-q}\)</span> verwenden.
+Sei <span class="math notranslate nohighlight">\(q &gt; 1\)</span>, dann wählen wir <span class="math notranslate nohighlight">\(c_n = 2^{-q \ell}\)</span>, wobei <span class="math notranslate nohighlight">\(\ell\)</span> durch</p>
+<div class="math notranslate nohighlight">
+\[ 2^\ell \leq n+1 \leq 2^{\ell+1}\]</div>
+<p>bestimmt ist.Dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{n=0}^\infty c_n = \sum_{\ell=0}^\infty \sum_{n=2^\ell-1}^{2^{\ell+1}} c_n = \sum_{\ell=0}^\infty \sum_{n=2^\ell-1}^{2^{\ell+1}-2} 2^{-q\ell} =  \sum_{\ell=0}^\infty  2^{(1-q)\ell} = \sum_{\ell=0}^\infty  (2^{1-q})^\ell.\]</div>
+<p>Für <span class="math notranslate nohighlight">\(q &gt; 1\)</span> ist <span class="math notranslate nohighlight">\(2^{1-q} &lt; 1\)</span>, d.h. die geometrische Reihe rechts konvergiert und damit auch die Majorantenreihe.</p>
+<p>Im Fall <span class="math notranslate nohighlight">\(q=1\)</span> können wir mit dem Cauchy-Kriterium zeigen, dass die Reihe divergiert. Wäre sie konvergent, würde insbesondere <span class="math notranslate nohighlight">\(s_{2n} -s_n\)</span> gegen Null konvergieren, es gilt aber</p>
+<div class="math notranslate nohighlight">
+\[ s_{2n} -s_n = \sum_{k=n+1}^{2n} \frac{1}k \geq \sum_{k=n+1}^{2n} \frac{1}{2n} = \frac{1}2.\]</div>
+</div>
+</div><p>Für die absolute Konvergenz von Reihen in <span class="math notranslate nohighlight">\(\R\)</span> können wir nun etwa mit der geometrischen Reihe vergleichen, deren Konvergenz wir aus dem obigen Beispiel schon verstehen:</p>
+<div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Theorem 4.8 </span> (Quotientenkriterium)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\((x_n)\)</span> eine reelle Folge, sodass für ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span> und ein <span class="math notranslate nohighlight">\(q \in [0,1)\)</span> gilt:</p>
+<div class="math notranslate nohighlight">
+\[x_n \neq 0,\qquad \left\vert \frac{x_{n+1}}{x_n} \right\vert \leq q \qquad \forall~n \geq n_0.\]</div>
+<p>Dann konvergiert <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_n\)</span> absolut.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Wegen <span class="math notranslate nohighlight">\(|x_{n+1}| \leq q~|x_n|\)</span> können wir induktiv auch</p>
+<div class="math notranslate nohighlight">
+\[|x_n| \leq q^{n-n_0} |x_{n_0}|\]</div>
+<p>folgern. Wir wählen also als Majorante <span class="math notranslate nohighlight">\(c_n= |x_n|\)</span> für <span class="math notranslate nohighlight">\(n \leq n_0\)</span> und <span class="math notranslate nohighlight">\(c_n = q^{n-n_0} |x_{n_0}|\)</span> für
+<span class="math notranslate nohighlight">\(n &gt; n_0.\)</span> Dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{n=0}^\infty c_n = \sum_{n=0}^{n_0-1} |x_n| + \sum_{n=n_0}^\infty q^{n-n_0} |x_{n_0}| =\sum_{n=0}^{n_0-1} |x_n| +  |x_{n_0}| \sum_{n=0}^\infty q^{n} = =\sum_{n=0}^{n_0-1} |x_n| +  \frac{|x_{n_0}|}{1-q} &lt; \infty.\]</div>
+<p>Also folgt die Konvergenz aus dem Majorantenkriterium.</p>
+</div>
+<div class="proof example admonition" id="example-8">
+<p class="admonition-title"><span class="caption-number">Example 4.8 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Wir betrachten die Reihe <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty \frac{1}{n+1} 2^{-n}\)</span> für <span class="math notranslate nohighlight">\(q \in \R\)</span>. Hier ist</p>
+<div class="math notranslate nohighlight">
+\[  \left\vert \frac{x_{n+1}}{x_n} \right\vert  = \frac{n+1}{n+2} \frac{1}2 \leq \frac{1}2\]</div>
+<p>für alle <span class="math notranslate nohighlight">\(n \in \N\)</span>, deshalb konvergiert die Reihe.</p>
+</div>
+</div><p>Zum Abschluss zeigen wir noch eine recht naheliegende Eigenschaft</p>
+<div class="proof lemma admonition" id="lemma-9">
+<p class="admonition-title"><span class="caption-number">Lemma 4.3 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty x_n\)</span> eine konvergente reelle Reihe. Dann ist <span class="math notranslate nohighlight">\((|x_n|)\)</span> eine Nullfolge.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof.  Sei <span class="math notranslate nohighlight">\(\epsilon &gt;0 \)</span>. Da die Partialsummen eine Cauchy-Folge sind, gibt es ein <span class="math notranslate nohighlight">\(n_0 \in \N\)</span>, sodass für <span class="math notranslate nohighlight">\(m&gt;n\geq n_0\)</span> gilt</p>
+<div class="math notranslate nohighlight">
+\[|\sum_{k=n+1}^m x_k| &lt; \epsilon.\]</div>
+<p>Nun können wir <span class="math notranslate nohighlight">\(m=n+1\)</span> und <span class="math notranslate nohighlight">\(n\)</span> beliebig wählen und erhalten <span class="math notranslate nohighlight">\(|x_n|&lt;\epsilon\)</span> für alle <span class="math notranslate nohighlight">\(n &gt; n_0\)</span>. Also ist <span class="math notranslate nohighlight">\((|x_n|)\)</span>
+eine Nullfolge.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./metrik"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="teilfolgen.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">4.3. </span>Teilfolgen</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="potenzreihen.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">4.5. </span>Potenzreihen und Exponentialfunktion</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

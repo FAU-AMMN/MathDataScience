@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.4. Funktionen &#8212; Mathematik für Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "C": "\\mathbb{C}", "Q": "\\mathbb{Q}", "K": "\\mathbb{K}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "R": ["\\mathbb{R}"], "norm": ["{\\Vert#1\\Vert}", 1], "abs": ["{|#1|}", 1], "coloneqq": ["{:=}"], "eqqcolon": ["{=:}"], "emph": ["\\pmb#1", 1], "tr": "\\operatorname{Spur}", "lin": "\\operatorname{lin}", "dv": "\\mathrm{div}~", "rot": "\\mathrm{rot}~", "Dim": "\\operatorname{dim}", "diag": "\\operatorname{diag}", "Kern": "\\operatorname{Kern}", "Bild": "\\operatorname{Bild}", "Rang": "\\operatorname{Rang}", "GL": "\\operatorname{GL}", "Eig": "\\operatorname{Eig}", "End": "\\operatorname{End}", "Hau": "\\operatorname{Haupt}", "mymathbb": ["\\boldsymbol{#1}", 1], "idx": "\\mathrm{d}x", "d": "\\mathrm{d}", "i": "\\mathrm{i}", "x": "\\mathbf{x}", "veczwei": ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.5. Stetigkeit" href="stetigkeit.html" />
+    <link rel="prev" title="1.3. Folgen und Konvergenz" href="folgen.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/FAU-DMM-Logo-rgb-10cm.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematik für Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Mathematik für DataScience
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="vorkurs.html">
+   1. Vorkurs
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="regression.html">
+     1.1. Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="koord.html">
+     1.2. Wiederholung: Koordinatensysteme und der Satz des Pythagoras
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="folgen.html">
+     1.3. Folgen und Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.4. Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stetigkeit.html">
+     1.5. Stetigkeit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diffnint.html">
+     1.6. Differentiation und Integration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../grundlagen/grundlagen.html">
+   2. Grundlagen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/mengenlogik.html">
+     2.1. Mengenlehre und Logik
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../grundlagen/zahlensysteme.html">
+     2.2. Zahlensysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vektorraeume/vektorraeume.html">
+   3. Vektorräume und lineare Abbildungen
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LineareAbb.html">
+     3.1. Lineare Abbildungen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vektorraeume/LGS.html">
+     3.2. Lineare Gleichungssysteme
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../metrik/metrik.html">
+   4. Metriken und Konvergenz
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/normen.html">
+     4.1. Metriken und Normen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/konvfolgen.html">
+     4.2. Konvergente Folgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/teilfolgen.html">
+     4.3. Teilfolgen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/reihen.html">
+     4.4. Reihen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../metrik/potenzreihen.html">
+     4.5. Potenzreihen und Exponentialfunktion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../stetigkeit/stetigkeit.html">
+   5. Stetigkeit
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/eigenschaften.html">
+     5.1. Eigenschaften stetiger reeller Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/grenzwerte.html">
+     5.2. Grenzwerte von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/glm.html">
+     5.3. Gleichmäßige Stetigkeit und gleichmäßige Konvergenz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/exp.html">
+     5.4. Die Exponentialfunktion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../stetigkeit/trig.html">
+     5.5. Trigonometrische Funktionen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../differential/differential.html">
+   6. Differentialrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/kombfkt.html">
+     6.1. Ableitungsregeln für Kombinationen von Funktionen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/mws.html">
+     6.2. Der Mittelwertsatz der Differentialrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../differential/hoehereOrdnung.html">
+     6.3. Höhere Ableitungen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../integration/integration.html">
+   7. Integralrechnung
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/riemann.html">
+     7.1. Riemann Integral
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/hdi.html">
+     7.2. Der Hauptsatz der Differential- und Integralrechnung
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../integration/vertauschen.html">
+     7.3. Vertauschung von Integralen und Taylor-Formel
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/vorkurs/funktionen.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/https://github.com/FAU-AMMN/MathDataScience"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lineare-funktionen">
+   1.4.1. Lineare Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynome-und-rationale-funktionen">
+   1.4.2. Polynome und Rationale Funktionen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponentialfunktion-und-logarithmus">
+   1.4.3. Exponentialfunktion und Logarithmus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sinus-und-cosinusfunktion">
+   1.4.4. Sinus- und Cosinusfunktion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="funktionen">
+<h1><span class="section-number">1.4. </span>Funktionen<a class="headerlink" href="#funktionen" title="Permalink to this headline">¶</a></h1>
+<p>Eine Funktion ist in allgemeinster Weise eine Abbildung <span class="math notranslate nohighlight">\(f: M_1 \rightarrow M_2\)</span>, die jedem Wert <span class="math notranslate nohighlight">\(x \in M_1\)</span> einen <em>eindeutigen</em> Wert <span class="math notranslate nohighlight">\(y \in M_2\)</span> zuordnet. In der Schule betrachtet man üblicherweise skalare reelle Funktionen, d.h. <span class="math notranslate nohighlight">\(M_1=M_2=\R\)</span>, manchmal auch <span class="math notranslate nohighlight">\(M_1\)</span> ein Intervall in <span class="math notranslate nohighlight">\(\R\)</span>. Im Prinzip sind aber auch Folgen nichts anderes als Funktionen von <span class="math notranslate nohighlight">\(\N\)</span> nach <span class="math notranslate nohighlight">\(\R\)</span>.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 1.3 </span></p>
+<div class="definition-content section" id="proof-content">
+<p>Eine Funktion <span class="math notranslate nohighlight">\(f:M_1 \rightarrow M_2\)</span> heißt</p>
+<ul class="simple">
+<li><p><em>injektiv</em>, wenn aus <span class="math notranslate nohighlight">\(x \neq y\)</span> auch <span class="math notranslate nohighlight">\(f(x) \neq f(y)\)</span> folgt.</p></li>
+<li><p><em>surjektiv</em>, wenn zu jedem <span class="math notranslate nohighlight">\(z \in M_2\)</span> ein <span class="math notranslate nohighlight">\(x \in M_1\)</span> existiert mit <span class="math notranslate nohighlight">\(f(x)=z\)</span>.</p></li>
+<li><p><em>bijektiv</em>, wenn sie injektiv und surjektiv ist.</p></li>
+</ul>
+<p>\end{*ize}</p>
+</div>
+</div><p>Eine bijektive Funktion ordnet jedem Element aus <span class="math notranslate nohighlight">\(M_1\)</span> genau ein Element aus <span class="math notranslate nohighlight">\(M_2\)</span> zu und umgekehrt. Damit existiert  auch eine Umkehrfunktion <span class="math notranslate nohighlight">\(f^{-1}: M_2 \rightarrow M_1\)</span> (wir beachten, dass die Umkehrfunktion <span class="math notranslate nohighlight">\(f^{-1}(x)\)</span> nicht zu verwechseln ist mit <span class="math notranslate nohighlight">\(f(x)^{-1} = \frac{1}{f(x)}\)</span>). Die Umkehrfunktion erfüllt</p>
+<div class="math notranslate nohighlight">
+\[ f^{-1}(f(x)) = x, \qquad f(f^{-1}(y) = y \]</div>
+<p>für alle <span class="math notranslate nohighlight">\(x \in M_1\)</span> und alle <span class="math notranslate nohighlight">\(y \in M_2\)</span>.</p>
+<div class="section" id="lineare-funktionen">
+<h2><span class="section-number">1.4.1. </span>Lineare Funktionen<a class="headerlink" href="#lineare-funktionen" title="Permalink to this headline">¶</a></h2>
+<p>Wir beginnen mit einigen wichtigen Beispielen skalarer Funktionen in <span class="math notranslate nohighlight">\(\R\)</span>. Die wohl einfachsten sind lineare bzw. affin-lineare Funktionen. Eine lineare Funktion ist von der Form</p>
+<div class="math notranslate nohighlight">
+\[ f:x \mapsto a_1 x, \]</div>
+<p>mit einer Konstanten <span class="math notranslate nohighlight">\(a_1 \in \R\)</span>. Eine affin-lineare Funktion ist um eine Konstante verschoben, d.h.</p>
+<div class="math notranslate nohighlight">
+\[ f:x\mapsto a_1 x + a_0. \]</div>
+<p>Für <span class="math notranslate nohighlight">\(a_1 =0\)</span> ist <span class="math notranslate nohighlight">\(f\)</span> eine konstante Funktion.</p>
+<p>Linearität lässt sich durch zwei Eigenschaften charakterisieren:</p>
+<ul class="simple">
+<li><p>Für alle <span class="math notranslate nohighlight">\(x,y \in M_1\)</span> gilt <span class="math notranslate nohighlight">\(f(x+y)=f(x) + f(y) \)</span>.</p></li>
+<li><p>Für alle <span class="math notranslate nohighlight">\(x \in M_1\)</span> und <span class="math notranslate nohighlight">\(c \in \R\)</span>, sodass <span class="math notranslate nohighlight">\(cx \in M_1\)</span> ist, gilt <span class="math notranslate nohighlight">\(f(cx) = c f(x)\)</span>.</p></li>
+</ul>
+<p>In <span class="math notranslate nohighlight">\(\R\)</span> folgt daraus trivialerweise die obige Form, da wir <span class="math notranslate nohighlight">\(x=1\)</span> wählen können und damit ist <span class="math notranslate nohighlight">\(a_1 = f(0)\)</span>. Aber auch im <span class="math notranslate nohighlight">\(\R^n\)</span> reicht dies um eine ähnliche Form herzuleiten.</p>
+</div>
+<div class="section" id="polynome-und-rationale-funktionen">
+<h2><span class="section-number">1.4.2. </span>Polynome und Rationale Funktionen<a class="headerlink" href="#polynome-und-rationale-funktionen" title="Permalink to this headline">¶</a></h2>
+<p>Eine allgemeinere Klasse als lineare Funktionen sind die sogenannten Polynome. Ein Polynom vom Grad <span class="math notranslate nohighlight">\(k\)</span> ist die Funktion</p>
+<div class="math notranslate nohighlight">
+\[ f:x\mapsto a_k x^k + a_{k-1}x^{k-1} + \ldots + a_1 x + a_0. \]</div>
+<p>Eine wichtige Eigenschaft von Polynomen ist der Nullstellensatz: ein Polynom vom Grad <span class="math notranslate nohighlight">\(k\)</span> kann höchstens <span class="math notranslate nohighlight">\(k\)</span> Nullstellen (mit Vielfachheit gezählt haben), mit Ausnahme des trivialen Nullpolynoms. Hat ein Polynom <span class="math notranslate nohighlight">\(k\)</span> reelle Nullstellen <span class="math notranslate nohighlight">\(x_0, \ldots x_{k-1}\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = a_k (x - x_{k-1}) \ldots (x-x_0). \]</div>
+<p>Grundlage dafür ist, dass ein Polynom vom Grad <span class="math notranslate nohighlight">\(k\)</span> mit Nullstelle <span class="math notranslate nohighlight">\(x_0\)</span> immer geschrieben werden kann als</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = (x-x_0) g(x) \]</div>
+<p>mit einem Polynom <span class="math notranslate nohighlight">\(g\)</span> vom Grad <span class="math notranslate nohighlight">\(k-1\)</span>.</p>
+<p>Dies ist ein Spezialfall der sogenannten Polynomdivision, ist <span class="math notranslate nohighlight">\(f\)</span> ein Polynom vom Grad <span class="math notranslate nohighlight">\(k\)</span> und <span class="math notranslate nohighlight">\(g\)</span> ein Polynom vom Grad <span class="math notranslate nohighlight">\(m \leq k\)</span>, dann existiert ein Polynom <span class="math notranslate nohighlight">\(h\)</span> vom Grad <span class="math notranslate nohighlight">\(m-k\)</span> und ein Polynom <span class="math notranslate nohighlight">\(r\)</span> vom Grad höchstens <span class="math notranslate nohighlight">\(m-1\)</span>, sodass</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = h(x) g(x) + r(x).\]</div>
+<p>Die Division funktioniert dabei genauso wie schriftliche Division bei Dezimalzahlen, diese sind ja von der Form</p>
+<div class="math notranslate nohighlight">
+\[z = a_k 10^k + a_{k-1} 10^{k-1} + \ldots + a_1 10^1 + a_0. \]</div>
+<p>Das Polynom <span class="math notranslate nohighlight">\(r\)</span> hat dabei die Rolle des Rests bei der Division.  Wir sehen auch, dass die sogenannten <em>Monome</em> <span class="math notranslate nohighlight">\(x^k\)</span> in dieser Darstellung eine wichtige Rolle einnehmen, wir schreiben jedes Polynom als gewichtete Summe von Monomen, wir werden dies allgemeiner <em>Linearkombination</em> nennen.</p>
+<p>Es gelten auch sonst analoge Eigenschaften wie bei der Rechung mit ganzen Zahlen:</p>
+<ul class="simple">
+<li><p>Summen von Polynomen sind Polynome.</p></li>
+<li><p>Produkte von Polynonem sind Polynome.</p></li>
+<li><p>Es gibt ein neutrales Element der Addition, das Nullpolynom <span class="math notranslate nohighlight">\(p_0(x)=0\)</span>: Es gilt <span class="math notranslate nohighlight">\(p(x) + p_0(x) = p(x)\)</span> für jedes Polynom.</p></li>
+<li><p>Es gibt ein neutrales Element der Multiplikation, das konstante Polynom <span class="math notranslate nohighlight">\(p_1(x)=1\)</span>: Es gilt <span class="math notranslate nohighlight">\(p(x) p_1(x) = p(x)\)</span> für jedes Polynom.</p></li>
+<li><p>Es gibt ein inverses Element der Addition, d.h. zu jedem Polynom <span class="math notranslate nohighlight">\(p\)</span> gibt es ein Polynom <span class="math notranslate nohighlight">\(q\)</span> mit <span class="math notranslate nohighlight">\(p(x) + q(x) =0\)</span> für alle <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>Es gelten Kommutativ-, Assoziativ- und Distributivgesetz.</p></li>
+</ul>
+<p>Wir beachten, dass als Spezialfall dieser Rechenregeln auch die Multiplikation von Polynomen mit reellen Zahlen beinhaltet sind, da wir reelle Zahlen mit konstanten Polynomen identifizieren können.</p>
+<p>Wir kehren nochmal zum Nullstellensatz zurück und wollen uns zunächst überlegen, warum ein Polynom mit Nullstelle <span class="math notranslate nohighlight">\(x_0\)</span> durch <span class="math notranslate nohighlight">\((x-x_0)\)</span> ohne Rest dividierbar ist. Nach der Formel für Polynomdivision gilt</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = h(x) (x-x_0) + r(x).\]</div>
+<p>Da <span class="math notranslate nohighlight">\(x-x_0\)</span> ein Polynom vom Grad <span class="math notranslate nohighlight">\(1\)</span> ist, muss <span class="math notranslate nohighlight">\(r\)</span> Grad <span class="math notranslate nohighlight">\(0\)</span> haben, d.h. <span class="math notranslate nohighlight">\(r\)</span> ist eine konstante. Sezten wir <span class="math notranslate nohighlight">\(x=x_0\)</span> ein, dann folgt</p>
+<div class="math notranslate nohighlight">
+\[ 0 = 0 + r(x_0) . \]</div>
+<p>Also folgt <span class="math notranslate nohighlight">\(r(x) =r(x_0) = 0\)</span> für alle <span class="math notranslate nohighlight">\(x\)</span>. Damit sehen wir auch sofort, dass ein nichtriviales Polynom vom Grad <span class="math notranslate nohighlight">\(k\)</span> höchstens <span class="math notranslate nohighlight">\(k\)</span> Nullstellen (mit Vielfachheit gezählt) haben kann. Gäbe es <span class="math notranslate nohighlight">\(k+1\)</span> Nullstellen, dann könnten wir durch die ersten <span class="math notranslate nohighlight">\(k\)</span> dividieren und es muss ein Polynom vom Grad <span class="math notranslate nohighlight">\(0\)</span> übrig bleiben. Ist dieses gleich Null, dann war <span class="math notranslate nohighlight">\(f\)</span> schon das Nullpolynom. Andernfalls kann das Polynom vom Grad <span class="math notranslate nohighlight">\(0\)</span> keine weitere Nullstelle haben.</p>
+<p>Wenn man Polynome mit nichtverschwindendem Rest dividiert, erhält man <em>rationale Funktionen</em>.
+Eine rationale Funktion ist von der Form</p>
+<div class="math notranslate nohighlight">
+\[ f:x\mapsto  \frac{p(x)}{q(x)}, \]</div>
+<p>wobei <span class="math notranslate nohighlight">\(p\)</span> und <span class="math notranslate nohighlight">\(q\)</span> Polynome sind. Im Gegensatz zu Polynomen ist der Definitionsbereich rationaler Funktionen nicht ganz <span class="math notranslate nohighlight">\(\R\)</span>, da die Nullstellen von <span class="math notranslate nohighlight">\(q\)</span> ausgenommen werden müssen, an denen <span class="math notranslate nohighlight">\(f\)</span> Pole hat. Wegen dem Nullstellensatz ist die Anzahl der Nullstellen von <span class="math notranslate nohighlight">\(f\)</span> durch den Grad von <span class="math notranslate nohighlight">\(p\)</span> begrenzt, die Anzahl der Pole durch den Grad von <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>Bei rationalen Polynomen gelten analoge Rechenregeln wie bei rationalen Zahlen, insbesondere gibt es, wenn <span class="math notranslate nohighlight">\(f\)</span> nicht die Nullfunktion ist, auch ein inverses Element der Multiplikation. Für jedes rationale Funktion <span class="math notranslate nohighlight">\(f\)</span> gibt es eine rationale Funktion <span class="math notranslate nohighlight">\(g\)</span> mit <span class="math notranslate nohighlight">\(f(x) g(x) = 1\)</span> für alle <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</div>
+<div class="section" id="exponentialfunktion-und-logarithmus">
+<h2><span class="section-number">1.4.3. </span>Exponentialfunktion und Logarithmus<a class="headerlink" href="#exponentialfunktion-und-logarithmus" title="Permalink to this headline">¶</a></h2>
+<p>Eine andere wichtige Klasse von Funktionen sind <em>Exponentialfunktionen</em>, die durch <span class="math notranslate nohighlight">\(f: x\mapsto a^x\)</span> für ein <span class="math notranslate nohighlight">\(a \in \R\)</span> definiert sind. Für <span class="math notranslate nohighlight">\(n \in \N\)</span> ist <span class="math notranslate nohighlight">\(a^n\)</span> die <span class="math notranslate nohighlight">\((n-1)\)</span>-malige Multiplikation von <span class="math notranslate nohighlight">\(a\)</span> mit sich selbst und wir sehen, dass dann</p>
+<div class="math notranslate nohighlight">
+\[ f(n+m) = a^{n+m}  = a^n a^m  = f(n) f(m) \]</div>
+<p>gilt. Diese Eigenschaft kann tastsächlich als allgemeine Charakterisierung einer Exponentialfunktion verwendet werden, wir betrachten einfach eine Funktion <span class="math notranslate nohighlight">\(f\)</span> auf <span class="math notranslate nohighlight">\(\R\)</span> für die</p>
+<div class="math notranslate nohighlight">
+\[ f(x+y) =  f(x) f(y) \]</div>
+<p>für alle <span class="math notranslate nohighlight">\(x,y \in \R\)</span> sowie <span class="math notranslate nohighlight">\(f(0)=1\)</span>
+gilt. Damit ist automatisch <span class="math notranslate nohighlight">\(f(x+1) = f(x) f(1)\)</span> und durch Hintereinanderausführung <span class="math notranslate nohighlight">\(f(x+m) = f(x) f(1)^m\)</span> für <span class="math notranslate nohighlight">\(m \in \N\)</span>. Definieren wir also <span class="math notranslate nohighlight">\(a=f(1)\)</span>, so sehen wir dass für alle <span class="math notranslate nohighlight">\(n \in \N\)</span> die Form <span class="math notranslate nohighlight">\(f(n) = a^n\)</span> folgt. Ist <span class="math notranslate nohighlight">\(a \neq 0\)</span> so können wir auch dividieren und erhalten die selbe Form für <span class="math notranslate nohighlight">\(n \in \Z\)</span>. Als nächsten Schritt können wir <span class="math notranslate nohighlight">\(x= \frac{n}m\)</span> für <span class="math notranslate nohighlight">\(n \in \Z, m \in \N\)</span> betrachten. Nun wählen wir <span class="math notranslate nohighlight">\(y=(m-1) x\)</span> und erhalten</p>
+<div class="math notranslate nohighlight">
+\[ f(m x) = f((m-1)x) f(x) \]</div>
+<p>und durch Hintereinanderausführung</p>
+<div class="math notranslate nohighlight">
+\[ a^n = f(n) = f(mx) = f(x)^m. \]</div>
+<p>Also gilt <span class="math notranslate nohighlight">\(f(x) = a^{\frac{n}m}. \)</span> Für die Erweiterung auf reelles <span class="math notranslate nohighlight">\(x\)</span> benötigt man noch einen Grenzwert von rationalen gegen reelle Werte, dies werden wir später auch basierend auf der Annahme der Stetigkeit kennen lernen.</p>
+<p>Besonders interessant ist  der Fall <span class="math notranslate nohighlight">\(a=e\)</span>, wie wir sehen werden lassen sich alle Exponentialfunktionen mit <span class="math notranslate nohighlight">\(a &gt; 0\)</span> als <span class="math notranslate nohighlight">\(f(x) = e^{cx}\)</span> mit <span class="math notranslate nohighlight">\(c\in \R\)</span> schreiben. Die Euler’sche Zahl <span class="math notranslate nohighlight">\(e\)</span> können wir als</p>
+<div class="math notranslate nohighlight">
+\[ e= \lim_{n \rightarrow \infty} \left(1 + \frac{1}n\right)^n \]</div>
+<p>definieren. Alternativ können wir <span class="math notranslate nohighlight">\(e^x\)</span> auch über die Potenzreihe</p>
+<div class="math notranslate nohighlight">
+\[ e^{x} = 1 + x+ \frac{x^2}2 + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots \]</div>
+<p>definieren, allerdings muss dann die Konvergenz der Reihe auch für jedes <span class="math notranslate nohighlight">\(x\)</span> zeigen, was wir später in der Vorlesung tun werden.</p>
+<p>Die Exponentialfunktion ist eine monoton steigende Funktion, d.h.</p>
+<div class="math notranslate nohighlight">
+\[ f(x) \geq f(y) \quad \text{für } x &gt; y, \]</div>
+<p>es gilt sogar <span class="math notranslate nohighlight">\(f(x) &gt; f(y)\)</span> für <span class="math notranslate nohighlight">\(x &gt; y\)</span> und damit ist <span class="math notranslate nohighlight">\(f\)</span> injektiv. Andererseits ist die Exponentialfunktion auch surjektiv und damit invertierbar. Die inverse Funktion nennen wir Logarithmus (<span class="math notranslate nohighlight">\(\log x\)</span>). Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \log e^x = x \qquad e^{\log y} = y. \]</div>
+<p>Die Rechenregeln für den Logarithmus können wir aus den Regeln für die Exponentialfunktion herleiten. Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \log (y_1 y_2) = \log (e^{x_1} e^{x_2}) = \log e^{x_1 + x_2} = x_1 + x_2 = \log y_1 + \log y_2. \]</div>
+<p>Setzen wir <span class="math notranslate nohighlight">\(y_1 = y_2 =y\)</span> dann folgt auch</p>
+<div class="math notranslate nohighlight">
+\[  \log ( y^2) = 2 \log y \]</div>
+<p>und induktiv</p>
+<div class="math notranslate nohighlight">
+\[  \log ( y^n) = n \log y. \]</div>
+<p>Mit einer entsprechenden Konstruktion sehen wir auch</p>
+<div class="math notranslate nohighlight">
+\[ \log (y^x) = x \log y, \]</div>
+<p>für <span class="math notranslate nohighlight">\(x \in \R\)</span>. Damit ist</p>
+<div class="math notranslate nohighlight">
+\[ \log (a^x) = x \log a \]</div>
+<p>und es folgt</p>
+<div class="math notranslate nohighlight">
+\[ a^x = e^{c x}, \]</div>
+<p>mit <span class="math notranslate nohighlight">\(c= \log a\)</span>. Also können wir wie angekündigt alle Exponentialfunktionen in der Form <span class="math notranslate nohighlight">\(e^{cx}\)</span> schreiben.</p>
+</div>
+<div class="section" id="sinus-und-cosinusfunktion">
+<h2><span class="section-number">1.4.4. </span>Sinus- und Cosinusfunktion<a class="headerlink" href="#sinus-und-cosinusfunktion" title="Permalink to this headline">¶</a></h2>
+<p>Die Sinus- und Cosinusfunktion sind periodische Funktionen in <span class="math notranslate nohighlight">\(\R\)</span>, deren Wertebereich <span class="math notranslate nohighlight">\([-1,1]\)</span>, es gibt daher nur Umkehrfunktionen wenn wir sie im Fall des Sinus von <span class="math notranslate nohighlight">\([-\frac{\pi}2,\frac{\pi}2]\)</span> nach <span class="math notranslate nohighlight">\([-1,1]\)</span> und im Fall des Cosinus von <span class="math notranslate nohighlight">\([0,\pi]\)</span> nach <span class="math notranslate nohighlight">\([-1,1]\)</span> betrachten.</p>
+<p>Es gilt</p>
+<div class="math notranslate nohighlight">
+\[ \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots \]</div>
+<p>und</p>
+<div class="math notranslate nohighlight">
+\[\cos x = 1- \frac{x^2}{2!} + \frac{x^4}{4!} - \ldots \]</div>
+<p>Der Sinus ist eine ungerade Funktion, d.h. <span class="math notranslate nohighlight">\(\sin (-x) = -  \sin x\)</span>, während der Cosinus eine gerade Funktion ist, d.h. <span class="math notranslate nohighlight">\(\cos(-x) = \cos(x)\)</span>. Sinus uns Cosinus erfüllen einige interessante Eigenschaften wie Additionstheoreme, wir werden später sehen, dass diese überraschenderweise aus den Eigenschaften der Exponentialfunktion folgen, dies basiert auf den komplexen Zahlen. Mit der imaginären Zahl <span class="math notranslate nohighlight">\(\i\)</span>, die <span class="math notranslate nohighlight">\(\i^2 = -1\)</span> erfüllt, gilt</p>
+<div class="math notranslate nohighlight">
+\[ e^{\i x}  = \cos x + \i \sin x. \]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./vorkurs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="folgen.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">1.3. </span>Folgen und Konvergenz</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="stetigkeit.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">1.5. </span>Stetigkeit</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By M. Burger<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,14 +1,18 @@
-title: "Mathematik für Data Science 2"
+title: "Mathematik für Data Science"
 author: M. Burger
 logo: img/FAU-DMM-Logo-rgb-10cm.png
 copyright: "2021"
 execute:
   execute_notebooks: off
 
+repository:
+  url: https://github.com/https://github.com/FAU-AMMN/MathDataScience
+
 html:
   favicon: "img/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"
   comments:
     hypothesis: true
+  use_repository_button: true
 
 parse:
   myst_enable_extensions:
@@ -68,6 +72,8 @@ sphinx:
           "idx"  : "\\mathrm{d}x"
           "d"    : "\\mathrm{d}"
           "i"    : "\\mathrm{i}"
+          "x"    : "\\mathbf{x}"
+          "veczwei": ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2]
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js
     tojupyter_target_html: true
     tojupyter_lang_synonyms: ["ipython", "ipython3", "python"]

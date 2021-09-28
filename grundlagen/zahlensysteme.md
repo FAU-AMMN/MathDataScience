@@ -346,7 +346,8 @@ $\Q$ ist nicht nur ein angeordneter Körper, sondern wird sogar als _archimedisc
 Wir betrachten zum Abschluss noch die Mächtigkeit von $\Q$. Wir haben schon gesehen, dass es eine bijektive Abbildung $f: \N \mapsto \N \times \N$ gibt, und ähnlich können wir eine bijektive Abbildung von $f: \N \rightarrow \Z \rightarrow \Z \times Z$ konstruieren. Da die Abbildung von $\Z \times \Z \setminus \{0\}$ auf die obigen Äquivalenzklassen, d.h. $\Q$ surjektiv ist, erhalten wir eine surjektive Abbildung von $\N$ nach $\Q$.
 
 ```{margin} Georg Cantor
-[Georg Ferdinand Ludwig Philipp Cantor](https://de.wikipedia.org/wiki/Georg_Cantor) (\* 19. Februarjul. / 3. März 1845greg. in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.
+[Georg Ferdinand Ludwig Philipp Cantor](https://de.wikipedia.org/wiki/Georg_Cantor) (\* 3. März 1845greg. in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.
+```
 
 Andererseits ist die Identität von $\N$ nach $\Q$ eine injektive Abbildung. Also erwarten wir, dass es auch eine Bijektion gibt, d.h. $|\Q|=\aleph_0$. Dies liefert das sogenannte erste Cantor'sche Diagonalverfahren:
 

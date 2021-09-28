@@ -5,7 +5,7 @@ options:
 chapters:
 - file: vorkurs/vorkurs.md
   sections:
-  - file: vorkurs/regression.md
+  - file: vorkurs/regression.ipynb
   - file: vorkurs/koord.md
   - file: vorkurs/folgen.md
   - file: vorkurs/funktionen.md
@@ -19,3 +19,27 @@ chapters:
   sections:
   - file: vektorraeume/LineareAbb.md
   - file: vektorraeume/LGS.md
+- file: metrik/metrik.md
+  sections:
+  - file: metrik/normen.md
+  - file: metrik/konvfolgen.md
+  - file: metrik/teilfolgen.md
+  - file: metrik/reihen.md
+  - file: metrik/potenzreihen.md
+- file: stetigkeit/stetigkeit.md
+  sections:
+  - file: stetigkeit/eigenschaften.md
+  - file: stetigkeit/grenzwerte.md
+  - file: stetigkeit/glm.md
+  - file: stetigkeit/exp.md
+  - file: stetigkeit/trig.md
+- file: differential/differential.md
+  sections:
+  - file: differential/kombfkt.md
+  - file: differential/mws.md
+  - file: differential/hoehereOrdnung.md
+- file: integration/integration.md
+  sections:
+  - file: integration/riemann.md
+  - file: integration/hdi.md
+  - file: integration/vertauschen.md
