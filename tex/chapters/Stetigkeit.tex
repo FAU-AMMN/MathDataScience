@@ -1,0 +1,546 @@
+\chapter{Stetigkeit}
+\label{\detokenize{stetigkeit/stetigkeit:stetigkeit}}\label{\detokenize{stetigkeit/stetigkeit::doc}}
+Wir haben uns bei den Potenzreihen schon mit Funktionen beschäftigt, nun wollen wir diese näher betrachten und das Konzept der Stetigkeit einführen. Bei reellen Funktionen verstehen wir stetige Funktionen als solche ohne Sprungstellen und Singularitäten, diese Funktionen kann man aufzeichnen ohne den Stift vom Blatt zu lösen. Allgemeiner können wir das Konzept von Folgenstetigkeit definieren:
+\label{stetigkeit/stetigkeit:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \(f: X \rightarrow Y\) eine Abbildung zwischen den metrischen Räumen \((X,d_X)\) und \((Y,d_Y)\). Dann heisst \(f\) folgenstetig in \(x \in X\), wenn für jede Folge \((x_n) \subset X\) mit Grenzwert \(x\) auch \(f(x_n) \rightarrow f(x)\) gilt. Die Funktionen heisst folgenstetig in einer Menge \(M \subset X\), wenn sie in jedem \(x \in M\) folgenstetig ist.
+\end{definition}
+\label{stetigkeit/stetigkeit:example-1}
+\begin{example}{}{}
+
+
+
+Die Funktion \(f: \R \rightarrow \R, x \mapsto x^2\) ist stetig, da für \(x_n \rightarrow x\) auch \(x_n^2 \rightarrow x\) konvergiert
+\end{example}
+\label{stetigkeit/stetigkeit:example-2}
+\begin{example}{}{}
+
+
+
+Die sogenannte Heaviside Funktion \(H: \R \rightarrow \R\) mit \(H(x) = 1\) für \(x \geq 0\) und \(H(x)=0\) für \(x < 0\) ist im Punkt \(x =0\) unstetig, sonst stetig. Wählen wir die Folge \(x_n = -\frac{1}n\), so ist \(H(x_n) = 0\) für alle \(n\), damit auch \(\lim_n H(x_n) = 0 \neq H(0)\).
+\end{example}
+
+Eine alternative Definition von Stetigkeit basiert auf dem Verhalten der Funktion in \(\epsilon\) Umgebungen:
+\label{stetigkeit/stetigkeit:definition-3}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f: X \rightarrow Y\) heisst stetig in \(x \in X\), wen
+\begin{equation*}
+ \forall \epsilon > 0 ~\exists \delta > 0 ~\forall \tilde{x} \in U_\delta(x): f(\tilde x) \in U_\epsilon(f(x)),
+\end{equation*}
+wobei
+\begin{align*}
+U_\delta(x) &= \{\tilde x \in X~|~d_X(x,\tilde x) < \delta \} \\
+U_\epsilon(f(x)) &= \{\tilde y \in Y~|~d_Y(f(x),\tilde y) < \epsilon \}.
+\end{align*}
+Die Funktion \(f\) heisst stetig in \(M \subset X\), wenn sie in allen Punkten \(x\in M\) stetig ist.
+\end{definition}
+\label{stetigkeit/stetigkeit:theorem-4}
+\begin{theorem}{}{}
+
+
+
+Eine Funktion \(f: X \rightarrow Y\) ist genau dann stetig, wenn sie folgenstetig ist.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(f\) stetig in \(X\) und \(x_n\) eine Folge mit Grenzwert \(x\). Dann gibt es ein \(n_0 \in \N\), sodass für alle \(n \geq n_0\) gilt: \( d_X(x,x_n) < \delta\) und daraus folgt \( d_y(f(x),f(x_n)) < \epsilon\). Damit ist \(f\) folgenstetig.
+
+Nehmen wir umgekehrt an \(f\) sei nicht stetig. Dann gibt es für ein \(\epsilon > 0\) kein \(\delta > 0\) mi
+\begin{equation*}
+ f(U_\delta(x)) \subset U_\epsilon (f(x)).
+\end{equation*}
+Insbesondere gibt es für jedes \(n \in \N\) ein \(x_n\) mit \(d_X(x,x_n) < \frac{1}n\) und \(d_Y(f(x),f(x_n)) > \epsilon\). Damit konvergiert \(x_n\) gegen \(x\) aber nicht \(f(x_n)\) gegen \(f(x)\), also ist \(f\) nicht folgenstetig.
+\end{emphBox}
+
+Mit der Äquivalenz der Definitionen können wir verschiedene Eigenschaften von stetigen Funktionen beweisen, indem wir die jeweils passende Eigenschaft benutzen:
+\label{stetigkeit/stetigkeit:theorem-5}
+\begin{theorem}{}{}
+
+
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \((x_n)\) eine Folge mit \(x_n \rightarrow x\). Dann gilt wegen der Stetigkeit von \(f\) auch \(y_n=f(x_n) \rightarrow f(x) = y\). Wegen der Stetigkeit von \(g\) bei \(y=f(x)\) folgt dann \(g(y_n) \rightarrow g(y)\), also \(g\circ f(x_n) \rightarrow g \circ f(x)\), also ist \(g \circ f\) stetig bei \(x\).
+\end{emphBox}
+\label{stetigkeit/stetigkeit:theorem-6}
+\begin{theorem}{}{}
+
+
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Für \(x_n \rightarrow x\) folgt \(f(x_n) \rightarrow f(x)\) und \(g(x_n) \rightarrow g(x)\). Damit gilt wegen den Eigenschaften konvergenter Folgen auch \(f(x_n) + g(x_n) \rightarrow f(x) + g(x)\) und
+\(f(x_n) \cdot g(x_n) \rightarrow f(x) \cdot g(x)\). Also sind \(f+g\) und \(f \cdot g\) stetig.
+\end{emphBox}
+
+\textbackslash{}begin\{cor\}
+Alle Polynome \(p: \R  \rightarrow \R\), \( x \mapsto \sum_{j=0}^n a_j x^j\) sind stetig auf \(\R\).
+\textbackslash{}end\{cor\}
+Eine etwas stärkere Eigenschaft als Stetigkeit ist die Hölder  oder auch Lipschitz Stetigkeit:
+\label{stetigkeit/stetigkeit:definition-7}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f: X \rightarrow Y\) zwischen metrischen Räumen heisst Hölder stetig mit Exponent \(0 < \alpha \leq 1\),wenn ein \(c \in \R\) existiert, sodass
+\begin{equation*}
+ \forall x,y \in X: d_Y(f(x),f(y)) \leq c d_X(x,y)^\alpha
+\end{equation*}
+gilt. Im Fall \(\alpha = 1\) heisst \(f\) Lipschitz stetig.
+Die Funktion heisst lokal Hölder stetig mit Exponent \(\alpha\) (bzw. lokal Lipschitz stetig, falls \(\alpha =1\)), wenn für alle \(x \in X\) eine Umgebung \(U_\epsilon(x)\) und eine Konstante \(C=C(x)\) existiert, sodass
+\begin{equation*}
+ \forall y \in U_\epsilon(x): d_Y(f(x),f(y)) \leq C d_X(x,y) .
+\end{equation*}\end{definition}
+
+Es ist klar, dass Hölder Stetigkeit auch lokale Hölder Stetigkeit impliziert. Lokale Hölder Stetigkeit impliziert immer auch Stetigkeit:
+\label{stetigkeit/stetigkeit:theorem-8}
+\begin{theorem}{}{}
+
+
+
+Sei \(f: X \rightarrow Y\) lokal Hölder stetig mit Exponent \(\alpha > 0\). Dann ist \(f\) stetig in \(x\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(x \in X\) und \(x_n\) eine Folge, die gegen \(x\) konvergiert. Dann gibt es für jedes \(\epsilon > 0\) ein \(n_0\), sodas
+\begin{equation*}
+ d(x,x_n) < \left( \frac{\epsilon}{C} \right)^{\frac{1}\alpha} .
+\end{equation*}
+Daraus folgt für alle \$n \textbackslash{}geq n\_0
+\begin{equation*}
+ d_Y(f(x),f(x_n)) < \epsilon ,
+\end{equation*}
+also gilt \(f(x_n) \rightarrow f(x). \)
+\end{emphBox}
+\label{stetigkeit/stetigkeit:example-9}
+\begin{example}{}{}
+
+
+
+Sei \(m \in \N\), dann ist die Funktion \(f(x)=x^m\) lokal Lipschitz stetig mit \(C(x) = ( m+1) |x|^{m-1}\).
+\end{example}
+\label{stetigkeit/stetigkeit:example-10}
+\begin{example}{}{}
+
+
+
+Die Funktion \(f(x)=|x|\) ist global Lipschitz stetig mit \(C=1\).
+\end{example}
+
+
+\section{Eigenschaften stetiger reeller Funktionen}
+\label{\detokenize{stetigkeit/eigenschaften:eigenschaften-stetiger-reeller-funktionen}}\label{\detokenize{stetigkeit/eigenschaften::doc}}
+Im Fall reeller Funktionen \(f: \R \rightarrow \R\) hat die Stetigkeit einige spezielle Eigenschaften. Intuitiv ist eine reelle Funktion stetig, wenn wir sie zeichnen können, ohne den Stift vom Blatt zu nehmen. Dies bedeutet aber auch, um von einem Funktionswert zum anderen zu kommen, müssen wir alle dazwischen passieren. Mathematisch formalisiert dies der sogenannte \{\textbackslash{}em Zwischenwertsatz\}:
+\label{stetigkeit/eigenschaften:theorem-0}
+\begin{theorem}{}{}
+
+
+
+Sei  \(a<b \in \R\), \(f: [a,b] \rightarrow \R\) stetig und wir definieren
+\begin{equation*}
+ A = \min\{f(a),f(b)\}, \quad B = \max\{f(a),f(b)\}.
+\end{equation*}
+Dann gibt es für jedes \(y \in [A,B]\) ein \(x \in [a,b]\) mit \(f(x) =y\), d.h. \(f([a,b]) \supset [A,B]\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(y \in [A,B]\). Wir nehmen an \(f(a) \leq f(b)\), der Fall \(f(b) \geq f(a)\) ist analog. Wir konstruieren wieder Folgen \([a_n,b_n]\) durch Bisektion. Sei dazu \(a_0=a, b_0=b\). Dann setzen wir \(c_0 = \frac{a_0+b_0}2\) und berechnen \(f(c_0)\). Ist \(f(c_0) > C\), dann setzen wir \(a_1=a_0\), \(b_1=c_0\), andernfalls \(a_1=c_0\), \(b_1=b_0\). Gehen wir so weiter, dann konstruieren wir eine monoton wachsende Folge \(a_n\) und eine monoton fallende Folge \(b_n\) mit \(a_n > b_n\), \(|b_n-a_n|=\frac{b-a}{2^n}\), \(f(a_n) \leq C\), \(f(b_n) \geq C\). Somit folgt, das \(a_n\) und \(b_n\) konvergieren und da \(|b_n-a_n|\rightarrow 0\) gilt, haben die beiden den gleichen Grenzwert \(x \in [a,b]\).
+
+Wegen der Stetigkeit von \(f\) folg
+\begin{equation*}
+ \lim_{n \rightarrow \infty} f(a_n) = \lim_{n \rightarrow \infty} f(b_n) = C.
+\end{equation*}
+Wäre nun \(f(x) > C\), dann gilt mit \(\epsilon = f(x) - C\) imme
+\begin{equation*}
+ |f(x) - f(a_n)| = f(x) - f(a_n) \geq f(x) - C = \epsilon
+\end{equation*}
+ein Widerspruch zur Konvergenz von \(a_n\). Analog würde \(f(x) < C\) der Konvergenz von \(b_n\) widersprechen. Also folgt\(f(x) = C\).
+\end{emphBox}
+
+\textbackslash{}begin\{cor\}
+Für \(a <b \in \R\) gilt: \(f([a,b])\) ist ein Intervall in \(\R\).
+\textbackslash{}end\{cor\}
+
+\textbackslash{}begin\{cor\}
+Sei \(f\) stetig und gibt es \(x_+\) und \(x_-\) mit \(f(x_+) \geq 0\) und \(f(x_-) \leq 0\), dann hat \(f\) zumindest eine Nullstelle zwischen \(x_-\) und \(x_+\).
+\textbackslash{}end\{cor\}
+
+Für stetige Funktionen können wir nicht nur Nullstellen finden, sondern auch Minima und Maxima:
+\label{stetigkeit/eigenschaften:definition-1}
+\begin{definition}{}{}
+
+
+
+Sei \(f: X \rightarrow \R\) eine reellwertige Funktion. Dann heisst \(\overline{x} \in X\) Minimalstelle (und \(f(\overline{x})\) Minimalwert), wen
+\begin{equation*}
+ \forall x \in X: f(\overline{x}) \leq f(x).
+\end{equation*}
+Darüber hinaus heisst \(\overline{x} \in X\) Maximalstelle (und \(f(\overline{x})\) Maximalwert), wen
+\begin{equation*}
+ \forall x \in X: f(\overline{x}) \geq f(x).
+\end{equation*}\end{definition}
+
+Wichtig für die Existenz von Minimal  bzw. Maximalstelle ist das Konzept der Kompaktheit:
+\label{stetigkeit/eigenschaften:definition-2}
+\begin{definition}{}{}
+
+
+
+Eine Teilmenge \(M \subset X\) heisst kompakt, wenn jede Folge \((x_n)\) mit \(x_n \in M\) für \(n \in \N\) eine konvergente Teilfolge hat, deren Grenzwert in \(M\) liegt.
+\end{definition}
+
+
+
+\begin{emphBox}{}{}
+Proof.  Ist \(M\) abgeschlossen und beschränkt, dann folgt aus dem Satz von Bolzano Weierstrass, dass jede Folge in \(M\) eine konvergente Teilfolge \((x_{n_k})\) hat. Da \(M\) abgeschlossen ist, ist \(\R^n \setminus M\) offen. D.h. für jedes \(z \in \R^n \setminus M\) gibt es eine \(\epsilon\) Umgebung mit \(U_\epsilon \subset \R^n \setminus M\). Daraus folgt wegen \(x_n \in M\), dass \(\Vert x_n - z \Vert \geq \epsilon\) ist, also kann \(z\) nicht der Grenzwert von \(x_n\) sein. Daraus folgt \(\lim_k x_{n_k} \in M\).
+
+
+\end{emphBox}
+
+\begin{emphBox}{}{}
+Proof. Wir beweisen nur die Existenz einer Minimalstelle, die Maximalstelle ist analog. Sei \(\alpha = \inf_{x \in M} f(x)\). Dann gibt es für jedes \(n \in \N\) ein \(x_n \in M\) mit \(f(x_n) < \alpha+ \frac{1}n\). Da \(M\) kompakt ist hat \(x_n\) eine konvergente Teilfolge \((x_{n_k})\) mit Grenzwert \(\overline{x} \in M\). Wegen der Stetigkeit folgt
+\begin{equation*}
+ f(\overline{x}) = \lim_k f(x_{n_k}) \leq \lim \alpha - \frac{1}{n_k} = \alpha.
+\end{equation*}
+Also ist \(\overline{x}\) Minimalstelle.
+\end{emphBox}
+\label{stetigkeit/eigenschaften:definition-3}
+\begin{definition}{}{}
+
+
+
+Eine reelle Funktion \(f: M \rightarrow \R\) mit \(M \subset \R\) heisst
+\begin{itemize}
+\item {} 
+monoton wachsend (bzw. streng monoton wachsend), wenn für alle \$y > x
+
+\end{itemize}
+\begin{equation*}
+ f(y) \geq f(x) \qquad (\text{ bzw. } f(y) > f(x).
+\end{equation*}\begin{itemize}
+\item {} 
+monoton fallend (bzw. streng monoton fallend), wenn für alle \$y > x
+
+\end{itemize}
+\begin{equation*}
+ f(y) \leq f(x) \qquad (\text{ bzw. } f(y) < f(x). )
+\end{equation*}\end{definition}
+\label{stetigkeit/eigenschaften:theorem-4}
+\begin{theorem}{}{}
+
+
+\begin{itemize}
+\item {} 
+\(i)\) Ist f streng monoton, dann ist \(f\) injektiv.
+
+\item {} 
+\(ii)\) Ist \(D=[a,b]\) und \(f\) injektiv, dann ist \(f\) streng monoton.
+
+\item {} 
+\(iii)\) Ist \(D=[a,b]\) und \(f:D \rightarrow [c,d]\) injektiv, dann ist \(f^{-1}\) stetig.
+
+\end{itemize}
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Für \(i)\) nehmen wir an es gibt \(x_1 \neq x_2\) mit \(f(x_1) = f(x_2)\), o.B.d.A. \(x_1 < x_2\). Wegen der strengen Monotonie gilt aber \(f(x_1) < f(x_2)\) (falls monoton steigend) oder \(f(x_1) > f(x_2)\) (falls monoton fallend), beides widerspricht \(f(x_1) = f(x_2)\).
+Für \(ii)\) nehmen wir an \(f\) wäre nicht streng monoton, d.h. es gibt \(x_1 < x_2 < x_3\) mit \(f(x_1) < f(x_2)\), \(f(x_3) < f(x_2)\) oder \(f(x_1) < f(x_2)\), \(f(x_3) < f(x_2)\). Im ersten Fall gibt es ein \(C \in (f(x_1),f(x_2)) \cap (f(x_2),f(x_3)\) und wegen dem Zwischenwertsatz existieren dann \(z_1 \in (x_1,x_2)\) und \(z_2 \in (x_2,x_3)\) mit\(C = f(z_1) = f(z_2)\). Damit ist \(f\) nicht injektiv. Der zweite Fall ist analog.
+
+\(iii)\) Nach \(ii)\) ist \(f\) streng monoton, wir nehmen an \(f\) ist streng monoton wachsend, der Fall einer streng monoton fallenden Funktion ist analog. Sei \(y_n\) eine Folge mit Grenzwert \(\overline{y}\). Dann gibt es eine monotone Teilfolge \(y_{n_k}\) mit demselben Grenzwert. Nun sei \(x_n = f^{-1}(y_n)\). Dann ist \(x_{n_k}\) monoton und beschränkt, also konvergent. Sei \(x= \lim x_{n_k}\). Nehmen wir an \(f(\overline{y}) > x\), dann ist wegen der strengen Monotonie \(f^{-1}(y) > x\) für alle \(y \geq \overline{y}\), und \(f^{-1}(y) < x\) für alle \(y < \overline{y}\).Damit ist \(f^{-1}\) nicht surjektiv, was der Bijektivität widerspricht. Also gilt \(f^{-1}(\overline{y}) = x\). Abschließend folgern wir aus der Konvergenz der Teilfolge auch noch die Konvergenz der gesamten Folge \((x_n)\). Wegen der Monotonie folgt \(x_{n_k} < x_n\) für \(y_{n_k} < y_n\). Sei also \(n_k\) so, dass  \(|y_{n_k} - \overline{y}| < \epsilon\) und \(m\) so, dass
+\begin{equation*}
+ |y_{n} - \overline{y}| < |y_{n_k} - \overline{y}| < \epsilon
+\end{equation*}
+für \(n \geq m\) ist. Dann folgt auc
+\begin{equation*}
+ |x_n - x|  = x - x_n < x-x_{n_k} = |x-x_{n_k}|.
+\end{equation*}
+Da die rechte Seite gegen beliebig klein wird mit \(k\) gegen unendlich, konvergiert also auch \(x_n\) gegen \(x\).
+\end{emphBox}
+
+
+\section{Grenzwerte von Funktionen}
+\label{\detokenize{stetigkeit/grenzwerte:grenzwerte-von-funktionen}}\label{\detokenize{stetigkeit/grenzwerte::doc}}
+Wir betrachten nun einige Grenzwerte von Funktionen. Dazu benötigen wir zunächst das Konzept des Häufungspunkts einer Menge. Wir nennen einen Punkt  \(y \in M \subset X\) einer Teilmenge eines metrischen Raums \(X\) Häufungspunkt von \(N \subset M\), wenn eine Folge \(y_n\) in \(N\) existiert mit \(y= \lim y_n\). So ist etwa jedes \(y \in \R\) Häufungspunkt von \(\Q\). Man kann leicht zeigen, dass \(M\) genau dann abgeschlossen ist, wenn \(M\) alle seine Häufungspunkte enthält.
+\label{stetigkeit/grenzwerte:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \(f: X \rightarrow Y\) eine Funktion zwischen metrischen Räumen und \(x \in X\) Häufungspunkt der Menge \(M \subset X\). Dann hat die Funktion \(f: M \rightarrow Y\) in \(x \in X\) den Grenzwert \(y\), wenn für jede Folge \(x_n \rightarrow x\) gilt \(f(x_n) = y\).
+\end{definition}
+\label{stetigkeit/grenzwerte:example-1}
+\begin{example}{}{}
+
+
+
+Sei \(f(x) =cx\) für \(M = \Q\). Dann ist für \(x \in \R\) und \(y=cx\) auch \(y\) ein Grenzwert von \(f\) bei \(x\).
+\end{example}
+\label{stetigkeit/grenzwerte:definition-2}
+\begin{definition}{}{}
+
+
+
+Eine auf \(D \subset \R\) definierte Funktion besitzt den rechtsseitigen Grenzwert \(y\) bei \(x \in \R \cup \{-\infty\}\), wenn \(x\)  Häufungspunkt von \(D_x^+=D \cup (x,\infty)\) ist und \(y\) Grenzwert von \(f\) in \(D_x^+\) ist. D.h. für alle Folgen \((x_n) \subset D_x^+\) mit \(x_n \rightarrow x\) gilt \(f(x_n) \rightarrow y\).Analog definiert man den linksseitigen Grenzwert bei \(x \in \R \cup \{+\infty\}\) mit \(D_x^-=D \cup (-\infty,x)\).
+\end{definition}
+\label{stetigkeit/grenzwerte:example-3}
+\begin{example}{}{}
+
+
+
+Die Heaviside Funktion hat in \(x=0\) den rechtsseitigen Grenzwert \(1\) und den linksseitigen Grenzwert \(0\).
+\end{example}
+
+Eine reelle Funktion ist stetig in \(x\) genau dann, wenn der rechts  und linksseite Grenzwert existieren und übereinstimmen.
+
+
+\section{Gleichmäßige Stetigkeit und gleichmäßige Konvergenz}
+\label{\detokenize{stetigkeit/glm:gleichmaszige-stetigkeit-und-gleichmaszige-konvergenz}}\label{\detokenize{stetigkeit/glm::doc}}
+Bei der Definition der Stetigkeit haben wir zu jedem \(x\) möglicherweise einen anderen Zusammenhang zwischen \(\epsilon\) und \(\delta\), in gewisser Weise kann eine Funktion recht ungleichmäßig in ihrer Stetigkeit sein. Umgekehrt können wir gleichmäßige Stetigkeit definieren, wenn wir den \(\epsilon\) \(\delta\) Zusammenhang global machen:
+\label{stetigkeit/glm:definition-0}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f: X\rightarrow Y\) zwischen metrischen Räumen \(X\) und \(Y\) heisst \{\textbackslash{}em gleichmäßig stetig\}, wenn es zu jedem \(\epsilon > 0\) ein \(\delta > 0\) gibt, sodass
+\begin{equation*}
+ d_Y(f(x_1),f(x_2)) < \epsilon
+\end{equation*}
+für alle \(x_1,x_2 \in X\) mit \(d_X(x_1,x_2) < \delta\) gilt.
+\end{definition}
+\label{stetigkeit/glm:example-1}
+\begin{example}{}{}
+
+
+
+Die Funktion \(f:x \mapsto x^2\) ist gleichmäßig stetig auf jedem Intervall \([a,b]\), aber nicht auf ganz \(\R\).
+\end{example}
+
+Die Eigenschaft von \(x \mapsto x^2\) ist kein Zufall, es gilt der Satz von Heine Cantor (hier ohne Beweis):
+\label{stetigkeit/glm:theorem-2}
+\begin{theorem}{}{}
+
+
+
+Sei \(K \subset \R^m\) kompakt, dann ist jede stetige Abbildung \(f:K \rightarrow \R^n\) gleichmäßig stetig.
+\end{theorem}
+
+Wir können auch Folgen von Funktionen betrachten, sowie deren mögliche Grenzwerte:
+\label{stetigkeit/glm:definition-3}
+\begin{definition}{}{}
+
+
+
+Sei \(f_n: M \subset X \rightarrow Y\), \(n \in N\), eine Folge von Abbildungen zwischen metrischen Räumen \(X\) und \(Y\). Wir sagen:
+\begin{itemize}
+\item {} 
+\(f_n\) konvergiert punktweise gegen \(f: M \rightarrow Y\), wenn für alle \(x \in M\) die Folge \((f_n(x))\) gegen \(f(x)\) konvergiert.
+
+\item {} 
+\(f_n\) konvergiert gleichmäßig gegen \(f: M \rightarrow Y\), wenn für alle \(\epsilon > 0\) ein \(n_0\) existiert, sodass für alle \(n \geq n_0\) und \(x \in M\) gilt:
+
+\end{itemize}
+\begin{equation*}
+ d(f(x),f_n(x)) < \epsilon.
+\end{equation*}\end{definition}
+
+Wir sehen, dass sich beim Übergang von der punktweisen zur gleichmäßigen Konvergenz ein Quantor ändert. Während bei der punktweisen Konvergenz für alle \(x\) ein \(n_0\) (abhängig von \(x\)) existiert, muss \(n_0\) bei der gleichmäßigen Konvergenz für alle \(x\) das gleiche sein. Daraus sehen wir auch sofort, dass gleichmäßige Konvergenz einer Funktionenfolge immer auch punktweise Konvergenz impliziert.
+Ein Unterschied der beiden Arten von Konvergenz ist die Eigenschaft des Grenzwerts stetiger Funktionen.
+\label{stetigkeit/glm:example-4}
+\begin{example}{}{}
+
+
+
+Sei \(f_n: [0,2] \rightarrow \R\) definiert durch
+\begin{equation*}
+ f_n(x) = \left\{ \begin{matrix} x^n & x < 1 \\ 1 & \text{sonst.} \end{matrix} \right.
+\end{equation*}
+Dann sehen wir, dass \(f_n\) eine Folge stetiger Funktionen ist, die punktweise gege
+\begin{equation*}
+ f (x) = \left\{ \begin{matrix} 0 & x < 1 \\ 1 & \text{sonst,} \end{matrix} \right.
+\end{equation*}
+konvergiert. Punktweise Konvergenz erhält also nicht die Stetigkeit für den Grenzwert, wir werden aber sehen, dass dies bei gleichmäßiger Konvergenz der Fall ist.
+\end{example}
+\label{stetigkeit/glm:theorem-5}
+\begin{theorem}{}{}
+
+
+
+Sei \(f_n: M \subset X \rightarrow Y\) eine Folge stetiger Funktionen zwischen metrischen Räumen, die gleichmäßig gegen \(f: M \rightarrow Y\) konvergiert. Dann ist \(f\) stetig.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(x \in M\). Wegen der gleichmäßigen Konvergenz von \(f_n\) gibt es für \(\epsilon > 0\) ein \(n_0 \in \N\), sodass für alle \(n \geq n_0\) gilt:
+\begin{equation*}
+ d(f_n(x),f(x)) < \frac{\epsilon}3.
+\end{equation*}
+Dies gilt insbesondere für \(n=n_0\). Nun gibt es wegen der Stetigkeit von \(f_{n_0}\) zu \(\epsilon > 0\) ein \(\delta > 0\), sodas
+\begin{equation*}
+ d(f_{n_0}(x),f_{n_0}(y)) < \frac{\epsilon}3,
+\end{equation*}
+gilt für \(d(x,y) < \delta\). Aus der Dreiecksungleichung folgt für solche \(y\) aber auch\textbackslash{}begin\{align*\} d(f(x),f(y)) \&\textbackslash{}leq d(f(x),f\_\{n\_0\}(y)) + d( f\_\{n\_0\}(y),f(y)) \textbackslash{} \&\textbackslash{}leq d(f(x),f\_\{n\_0\}(x)) + d + d( f\_\{n\_0\}(x),f\_\{n\_0\}(y)) + f\_\{n\_0\}(y),f(y)) \textbackslash{} \&< \textbackslash{}frac\{\textbackslash{}epsilon\}3 + \textbackslash{}frac\{\textbackslash{}epsilon\}3 + \textbackslash{}frac\{\textbackslash{}epsilon\}3 = \textbackslash{}epsilon.\textbackslash{}end\{align*\}
+Also ist \(f\) stetig.
+\end{emphBox}
+
+
+\section{Die Exponentialfunktion}
+\label{\detokenize{stetigkeit/exp:die-exponentialfunktion}}\label{\detokenize{stetigkeit/exp::doc}}
+Wir betrachten nun die Exponentialfunktion noch ein wenig näher, wir haben ja im letzten Kapitel schon die Identität
+\begin{equation*}
+ e^x e^y = e^{x+y}
+\end{equation*}
+für alle \(x,y \in \R\) hergeleitet. Dazu sehen wir aus der Form der Potenzreihe, die nur positive Koeffizienten hat, dass \(e^x > 1\) für alle \(x > 0\) gilt. Daraus folgt natürlich aus
+\begin{equation*}
+ e^{-x} = \frac{1}{e^x} > 0,
+\end{equation*}
+also \(e^y > 0\) für \(y < 0\). Also ist die Exponentialfunktion immer positiv.
+Aus diesen Eigenschaften folgern wir auch, dass die Exponentialfunktion streng monoton wachsend ist. Für \(y > x\) gilt ja
+\begin{equation*}
+ e^y = e^x e^{y-x} > e^x.
+\end{equation*}
+Nun können wir noch die Grenzwerte \(x \rightarrow \infty\) und \(x \rightarrow - \infty\) betrachten. Für \(x > 0\) gilt \(
+e^x > 1+x\), und die rechte Seite wächst monoton gegen \(\infty\). Also folgt \(\lim_{x \rightarrow \infty} e^x = \infty. \) Aus \(e^{-x} = \frac{1}{e^x} \) folgt dann sofort \(\lim_{x \rightarrow - \infty} e^x = 0. \)
+Nun weisen wir noch die Stetigkeit nach:
+\label{stetigkeit/exp:theorem-0}
+\begin{theorem}{}{}
+
+
+
+Die Exponentialfunktion ist lokal Lipschitz stetig auf \(\R\) und damit insbesondere stetig.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Seien \(x  < y \in \R\). Dann gil
+\begin{equation*}
+ \left\vert e^y - e^x \right\vert = e^y - e^x = e^x ( e^{y-x} - 1).
+\end{equation*}
+Sei nun \(z=y-x \in (0,\epsilon)\), dann gilt
+\begin{equation*}
+  \left\vert e^z -  1 \right\vert = \sum_{n=1}^\infty \frac{1}{n!} z^n = z \sum_{n=0}^\infty \frac{1}{(n+1)!} z^n  \leq z \sum_{n=0}^\infty \frac{1}{n!} \epsilon^n = z e^\epsilon.
+\end{equation*}
+Also gilt für \(|x-y| < \epsilon\) auc
+\begin{equation*}
+  \left\vert e^y - e^x \right\vert \leq e^{x+\epsilon} |y-x|,
+\end{equation*}
+d.h. die Exponentialfunktion ist lokal Lipschitz stetig.
+\end{emphBox}
+
+Nun haben wir gesehen, dass \(e^x: \R \rightarrow \R\) eine positive, stetige, streng monotone Funktion ist. Nach dem Zwischenwertsatz ist die Exponentialfunktion surjektiv nach \(\R^+\), da wir \(x\) mit \(e^x\) beliebig groß oder beliebig nahe bei \(0\) finden können. Damit wissen wir auch, dass die Exponentialfunktion eine stetige Inverse auf \(\R^+\) hat, die wir Logarithmus nennen
+\begin{equation*}
+ \log: \R^+ \rightarrow \R, x \rightarrow \log(x),
+\end{equation*}
+wobei \(\log(e^x) =x\). Aus den Eigenschaften der Exponentialfunktion folgern wir
+\begin{equation*}
+ \lim_{x\rightarrow \infty} \log(x) = \infty, \qquad \lim_{x\rightarrow 0_+} \log(x) = -\infty,
+\end{equation*}
+wobei \(\lim_{x\rightarrow 0_+}\) den rechtsseitigen Grenzwert bezeichnet.
+
+
+\section{Trigonometrische Funktionen}
+\label{\detokenize{stetigkeit/trig:trigonometrische-funktionen}}\label{\detokenize{stetigkeit/trig::doc}}
+Um die trigonometrischen Funktionen Sinus (\(\sin(x)\)) und Cosinus (\(\cos(x)\)) einfach zu analysieren, erweitern wir die Potenzreihe für die Exponentialfunktion auf die komplexen Zahlen
+\begin{equation*}
+ e^z:= \sum_{n=0}^\infty \frac{1}{n!} z^n, \qquad z \in \C.
+\end{equation*}
+Man sieht leicht, dass diese Reihe auch in ganz \(\C\) konvergiert. Verwendet man das Argument \(z=\i x\) mit \(x \in \R\), so rechnet man aus den Potenzreihen leicht die sogenannte Euler Formel nach
+\begin{equation*}
+ e^{\i x} = \cos(x) + \i \sin(x),
+\end{equation*}
+bzw. umgekehrt
+\begin{equation*}
+ \cos(x) = \text{Re}(e^{\i x}), \qquad \sin(x) = \text{Im}(e^{\i x}).
+\end{equation*}
+Aus den Eigenschaften der Exponentialfunktion folgen dann auch die Summationstheoreme für Sinus und Cosinus
+\begin{align*}
+e^{\i (x+y)} &= e^{\i x}e{\i y} = (\cos(x) + \i \sin(x)) (\cos(y) + \i \sin(y))  \\
+&= \cos(x) \cos(y) - \sin(x) \sin(y) + \i ( \cos(x) \sin(y) + \sin(y) \cos(x)).
+\end{align*}
+Durch Vergleich der Real  und Imaginärteile erhält ma
+\begin{equation*}
+ \cos(x+y) = \cos(x) \cos(y) - \sin(x) \sin(y)
+\end{equation*}
+un
+\begin{equation*}
+ \sin(x+y) =  \cos(x) \sin(y) + \sin(y) \cos(x).
+\end{equation*}
+Wir sehen aus den Eigenschaften der Potentialreihen leicht, dass Cosinus bzw. Sinus symmetrisch bzw. antisymmetrisch sind, d.h.
+\begin{equation*}
+ \cos(-x) = \cos(x)  , \qquad \sin(-x) = -\sin(x) .
+\end{equation*}
+Verwenden wir dies im obigen Summationstheorem für den Cosinus für \(y=-x\), so erhalten wir
+\begin{equation*}
+ 1 = \cos(0) = \cos(x)^2 + \sin(x)^2
+\end{equation*}
+für alle \(x \in \R\).
+
+Nun wollen wir noch nachweisen, dass Sinus  und Cosinus periodische Funktionen sind.
+\label{stetigkeit/trig:lemma-0}
+\begin{lemma}{}{}
+
+
+
+Es gibt ein \(\pi \in \R^+\) mit \(e^{\i \frac{\pi}2} = \i\) und \(e^{\i x} \neq \i\) für \(x \in [0,\pi)\).
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Wir definieren
+\begin{equation*}
+ \frac{\pi}2 = \inf\{x \in \R^+~|~e^{\i x } = \i \}.
+\end{equation*}
+Wir wissen \(\cos(0)=1 > 0\) und es gilt
+\begin{equation*}
+ \cos(2)= 1 -2 + \sum_{k=2}^\infty (-1)^k \frac{2^{2k}}{(2k)!} \leq -1 + \sum_{k=2}^\infty  \frac{2^{2k}}{(2k)!} .
+\end{equation*}
+Nun zeigt man induktiv leicht für \(k \geq 2\):
+\begin{equation*}
+ (2k)! \geq 4^{2k-4} 4! ,
+\end{equation*}
+also
+\begin{align*}
+\cos(2) &\leq -1 + \frac{4^4}{4!} \sum_{k=2}^\infty \frac{2^{2k}}{4^{2k}} \\
+&= -1   + \frac{4^4}{4!} \sum_{k=2}^\infty \frac{1}{4^{k}} \\
+&= -1   + \frac{4 }{3!} \sum_{k=0}^\infty \frac{1}{4^{k}} \\
+&= -1 + \frac{4}{6} \frac{1}{1-\frac{1}4} = -1 + \frac{16}{24}  = - \frac{1}{3} < 0.
+\end{align*}
+Nach dem Zwischenwertsatz existiert damit eine Nullstelle im Intervall \((0,2)\). Da
+\begin{equation*}
+ \sin(x)^2 + \cos(x)^2 = 1
+\end{equation*}
+gilt, also ist für \(\cos(x) = 0\) automatisch \(\sin(x) \in \{\pm 1\}\).Ist \(\sin(x) = -1\), dann wäre \(e^{\i x} = -\i\) und damit \(e^{3\i x} = (-i)^2(-i) = i\). Also gibt es ein \(x\) mit \(e^{\i x} =\i\).
+\end{emphBox}
+
+Wir sehen, dass aus \( e^{\i \pi/2 } = \i\) auch folgt:
+\begin{equation*}
+ e^{\i pi} = -1, \quad e^{2 \i pi} =  1.
+\end{equation*}
+Damit erhalten wir auch
+\begin{equation*}
+ e^{\i x + 2 \i \pi} = e^{\i x}e^{2 \i \pi} = e^{\i x},
+\end{equation*}
+für alle \(x \in \R\). Separat für den Real  und Imaginärteil aufgeschrieben heisst das\textbackslash{}begin\{align*\}
+\textbackslash{}cos(x+2\textbackslash{}pi) \&= \textbackslash{}cos(x) \textbackslash{}
+\textbackslash{}sin(x+2\textbackslash{}pi) \&= \textbackslash{}sin(x).\textbackslash{}end\{align*\}
+Analog erhalten wir übrigens auch die Eigenschaften
+\begin{equation*}
+ \cos(x+ \pi) = -\cos(x) , \quad  \sin(x+\pi) = - \sin(x), \quad \sin(x+\frac{\pi}2) = \cos(x).
+\end{equation*}
+Durch Quotienten könen wir auc
+\begin{equation*}
+ \tan(x) = \frac{\sin(x)}{\cos(x)} , \qquad \cot(x) = \frac{\cos(x)}{\sin(x)}
+\end{equation*}
+definieren.  Analog zu \(\sin\) und \(\cos\) definiert man die sogenannten hyperbolischen Funktionen
+\begin{equation*}
+ \cosh(x) = \frac{1}2 (e^x+e^{-x}), \qquad \sinh(x) = \frac{1}2 (e^x-e^{-x}).
+\end{equation*}
+Hier gil
+\begin{equation*}
+ \cosh(x)^2 - \sinh(x)^2 = 1,
+\end{equation*}
+wie man leicht nachrechnet.
+
+

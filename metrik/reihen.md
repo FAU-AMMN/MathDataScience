@@ -10,6 +10,7 @@ Sei $(X,\Vert \cdot \Vert)$ ein normierter Vektorraum und $(x_n)$ eine Folge in 
 ```
 
 Falls die Folge $s_n$ gegen einen Grenzwert $s \in  X$ konvergiert, so bezeichnen wir
+
 ```{math}
  s = \sum_{k=0}^\infty x_k
 ```
@@ -66,7 +67,8 @@ Hier ist zunächst völlig unklar, ob die Reihe konvergiert oder divergiert. Fü
 
 Im Folgenden wollen wir einfache Kriterien zur Konvergenz einer Reihe kennenlernen. Ein einfaches Beispiel in einem vollständigen normierten Raum erhalten wir aus der Äquivalenz der Konvergenz zur Cauchy-Eigenschaft einer Folge:
 
-````{prf:theorem} Cauchy-Kriterium Eine Reihe in einem vollständigen metrischen Raum konvergiert genau dann, wenn es für alle $\epsilon > 0$ ein $n_0 \in \N$ gibt, sodass
+````{prf:theorem} Cauchy-Kriterium 
+Eine Reihe in einem vollständigen metrischen Raum konvergiert genau dann, wenn es für alle $\epsilon > 0$ ein $n_0 \in \N$ gibt, sodass
 ```{math}
  \forall m > n \geq n_0: \quad \Vert \sum_{k=n+1}^m x_k \Vert < \epsilon
 ```

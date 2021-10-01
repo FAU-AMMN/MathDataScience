@@ -60,9 +60,12 @@ Aus der Ketten- und Produktregel, lassen sich auch weitere Differentiationsregel
 Die Integration wird üblicherweise als Umkehrung der Differentiation eingeführt. Das unbestimmte Integral, d.h. die Stammfunktion $F$ einer Funktion $f$ ist definiert durch die Eigenschaft $F'=f$. Wir beachten, dass die Stammfunktion nur bis auf eine additive Konstante definiert ist. Für $a < b \in I$ gilt
 
 ```{math}
-:label: eq:hauptsatzintegral \int_a^b f(x) ~dx = \int_a^b F'(x) ~dx = F(b) - F(a). 
-\end {equation} 
-Dies wird auch als Hauptsatz der Differential- und Integralrechnung bezeichnet. Wir beachten, dass beim bestimmten Integral von $a$ nach $b$ laut {eq}`eq:hauptsatzintegral` die additive Konstante in der Differenz rausfällt, deshalb ist das bestimmte Integral auch eindeutig bestimmt. 
+:label: eq:hauptsatzintegral 
+
+\int_a^b f(x) ~dx = \int_a^b F'(x) ~dx = F(b) - F(a). 
+```
+
+Dies wird auch als Hauptsatz der Differential- und Integralrechnung bezeichnet. Wir beachten, dass beim bestimmten Integral von $a$ nach $b$ laut {eq}`eq:hauptsatzintegral` die additive Konstante in der Differenz rausfällt, deshalb ist das bestimmte Integral auch eindeutig bestimmt.
 
 Das Integral ist das kontinuierliche Analogon zur Summation, was aus der Definition über sogenannte Riemann-Summen klar wird. Wir erhalten das Integral einer stetigen Funktion als Grenzwert
 

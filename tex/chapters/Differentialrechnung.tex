@@ -1,0 +1,379 @@
+\chapter{Differentialrechnung}
+\label{\detokenize{differential/differential:differentialrechnung}}\label{\detokenize{differential/differential::doc}}
+Im Folgenden wollen wir nun die Differentialrechnung betrachten, die auf einer lokal linearen Approximation von Funktionen basiert. Sei \(f: \R \rightarrow \R\) und \(x_0 \in \R\). Für \(\epsilon > 0\) betrachten wir eine lineare Approximation von \(f\), die an der Stelle \(x_0\) mit \(f\) übereinstimmt, d.h.
+\begin{equation*}
+ f(x) \approx f(x_0) + a (x-x_0).
+\end{equation*}
+Dies bedeutet die richtige Steigung \(a \in \R\) is
+\begin{equation*}
+ a \approx \frac{f(x)-f(x_0)}{x-x_0} .
+\end{equation*}
+Da wir an einer lokalen Approximation interessiert sind, ist es naheliegend den Grenzwert \(x \rightarrow x_0\) zu betrachten. Damit definieren wir die Ableitung an der Stelle \(x_0\):
+\label{differential/differential:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \(f: D \subset \R \rightarrow \R\) mit \(x_0 \in D\) Häufungspunkt von \(D\). Falls der Grenzwert
+\begin{equation*}
+ f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x-x_0}
+\end{equation*}
+existiert, heisst \(f\) differenzierbar in \(x_0\) und \(f'(x_0)\) Ableitung  (oder auch Differentialquotient \(f'(x) = \frac{dx}{dt}\), in der Physik auch \(\dot f(x)\)). Die Funktion \(f\) heisst differenzierbar in \(D\), wenn für alle \(x \in D\) die Ableitung \(f'(x)\) existiert.
+Ist \(f\) differenzierbar in \(D\) und \(f':D \rightarrow \R\) eine stetige Funktion, dann heisst \(f\) stetig differenzierbar in \(D\).
+\end{definition}
+
+Üblicherweise betrachten wir Ableitungen auf offenen Mengen \(D\), dort ist jeder Punkt \(x_0 \in D\) ein Häufungspunkt von \(D\).
+Aus der Definition sehen wir sofort, dass wenn \(f\) differenzierbar in \(x_0\) ist, eine Darstellung
+\begin{equation*}
+ f(x) = f(x_0) + f'(x_0)(x-x_0) +R(x)(x-x_0)
+\end{equation*}
+existiert mit einem sogenannten Restglied \(R(x)\), sodass \(R(x) \rightarrow 0 \) für \(x \rightarrow x_0\). Insbesondere sehen wir
+\begin{equation*}
+ \lim_{x \rightarrow x_0} f(x) = f(x_0),
+\end{equation*}
+d.h. \(f\) ist stetig in \(x_0\).
+\label{differential/differential:example-1}
+\begin{example}{}{}
+
+
+
+Eine lineare Funktion \(f: \R \rightarrow \R, x \mapsto a x + b\) ist differenzierbar in \(\R\) mit Ableitung \(f'(x) = a\).
+\end{example}
+\label{differential/differential:example-2}
+\begin{example}{}{}
+
+
+
+Ein Monom \(f: \R \rightarrow \R, x \mapsto x^m\), \(m \geq 1\) ist differenzierbar in \(\R\) mit Ableitung \(f'(x) = m x^{m-1}\). Dies sehen wir aus
+\begin{equation*}
+ \frac{x^m - x_0^m}{x-x_0} = \sum_{j=0}^{m-1} x^j x_0^{m-1-j} .
+\end{equation*}
+Damit existiert der Grenzwert wegen \(x^j \rightarrow x_0^j\) für \(x \rightarrow x_0\).
+\end{example}
+\label{differential/differential:example-3}
+\begin{example}{}{}
+
+
+
+Die Exponentialfunktion \(f: \R \rightarrow \R, x \mapsto e^x\) ist differenzierbar in \(\R\) mit Ableitung \(f'(x) = e^x\), da
+\begin{equation*}
+ \frac{e^x - e^{x_0}}{x-x_0} = e^{x_0}  \frac{e^{x-x_0}-1}{x-x_0}
+\end{equation*}
+gilt und für \(h \in \R\)
+\begin{equation*}
+ \frac{e^h - 1}h =  h \sum_{j=2}^\infty \frac{1}{j!}h^{j-2} \leq h  \sum_{j=0}^\infty \frac{1}{j!}h^{j} = h e^h \rightarrow 0
+\end{equation*}
+für \(h \rightarrow 0\).
+\end{example}
+
+
+\section{Ableitungsregeln für Kombinationen von Funktionen}
+\label{\detokenize{differential/kombfkt:ableitungsregeln-fur-kombinationen-von-funktionen}}\label{\detokenize{differential/kombfkt::doc}}
+Wir haben in den obigen Beispielen einige Ableitungen für elementare Funktionen ausgerechnet. Ähnlich wie auch sonst bei Grenzwerten können wir dies auf verschiedene Kombinationen (Summen, Produkte) von Funktionen erweitern:
+\label{differential/kombfkt:theorem-0}
+\begin{theorem}{}{}
+
+
+
+Seien \(f: D\subset \R \rightarrow \R\) und \(g: D\subset \R \rightarrow \R\) in \(x_0 \in D\) differenzierbar. Dann gilt:
+\begin{itemize}
+\item {} 
+\(i)\) Die Summe \(f+g\) ist differenzierbar in \(x_0\) mi
+
+\end{itemize}
+\begin{equation*}
+ (f+g)'(x_0) = f'(x_0) + g'(x_0).
+\end{equation*}\begin{itemize}
+\item {} 
+\(ii)\) Für \(c \in \R\) gilt
+
+\end{itemize}
+\begin{equation*}
+ (cf)'(x_0) = c f'(x_0).
+\end{equation*}\begin{itemize}
+\item {} 
+\(iii)\) Das Produkt \(fg\) ist differenzierbar mit Ableitung (Produktregel)
+
+\end{itemize}
+\begin{equation*}
+ (fg)'(x_0) = f'(x_0) g(x_0) +  f(x_0) g'(x_0).
+\end{equation*}\begin{itemize}
+\item {} 
+\(iv)\) Ist \(g(x_0) \neq 0\), dann ist der Quotient \(\frac{f}g\) differenzierbar mit Ableitung (Quotientenregel)
+
+\end{itemize}
+\begin{equation*}
+ (\frac{f}g)'(x_0) = \frac{f'(x_0)}{ g(x_0)} -  \frac{f(x_0) g'(x_0)}{g(x_0)^2}.
+\end{equation*}\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. \(i)\) und \(ii)\) folgen direkt aus den Regeln für Grenzwerte, \(ii)\) würde auch aus drei Folgen, wenn man \(g(x) =c\) setzt. Um \(iii)\) zu beweisen, betrachten wir
+\begin{align*} \frac{f(x)g(x) - f(x_0)g(x_0)}{x-x_0} &= \frac{f(x)g(x) - f(x_0)g(x)}{x-x_0} + \frac{f(x_0)g(x) - f(x_0)g(x_0)}{x-x_0} \\
+ &= \frac{f(x)  - f(x_0) }{x-x_0} g(x) + f(x_0) \frac{g(x) - g(x_0)}{x-x_0}
+\end{align*}
+Mit den Regeln für Grenzwerte von Summen und Produkten folgt dann direkt die Existenz des Grenzwerts mit
+\begin{equation*}
+ (fg)'(x_0) = f'(x_0) g(x_0) +  f(x_0) g'(x_0),
+\end{equation*}
+wobei wir die Stetigkeit von \(g\) verwenden, um \(g(x) \rightarrow g(x_0)\) zu erhalten.
+
+Für (iv) zeigen wir nur den Fall \(f=1\), der Rest ergibt sich dann aus der Produktregel. Es gilt\textbackslash{}begin\{align*\}
+\textbackslash{}frac\{\textbackslash{}frac\{1\}\{g(x)\}   \textbackslash{}frac\{1\}\{g(x\_0)\}\}\{x x\_0\} \&=   \textbackslash{}frac\{g(x)   g(x\_0)\}\{g(x) g(x\_0) (x x\_0)\} \textbackslash{}end\{align*\}
+Da \(g(x_0) \neq 0\) folgt wegen der Stetigkeit von \(g\) auch, dass \(g(x) \neq 0\) in einer Umgebung von \(x_0\) gilt, also ist der Quotient dort auch wohldefiniert und es gilt \(\frac{1}{g(x)} \rightarrow \frac{1}{g(x_0)}\). Daraus folgt direkt die Quotientenregel. \(\square\)
+\end{emphBox}
+\label{differential/kombfkt:example-1}
+\begin{example}{}{}
+
+
+
+Da wir schon gezeigt haben, dass jedes Monom differenzierbar ist, sehen wir mit \(i)\) und \(ii)\) auch, dass jedes Polynom
+\begin{equation*}
+ p: \R \rightarrow \R, x \mapsto \sum_{j=0}^m a_j x^j
+\end{equation*}
+differenzierbar ist mit
+\begin{equation*}
+ p'(x) = \sum_{j=1}^m j a_j x^{j-1} .
+\end{equation*}\end{example}
+\label{differential/kombfkt:example-2}
+\begin{example}{}{}
+
+
+
+Aus der Quotientenregel sehen wir, dass jede rationale Funktion \(f= \frac{p}q\) mit Polynomen \(p\) und \(q\) überall dort differenzierbar ist, wo \(q\) keine Nullstelle hat.
+\end{example}
+
+Eine weitere zentrale Eigenschaft für Ableitungen ist die Kettenregel:
+\label{differential/kombfkt:theorem-3}
+\begin{theorem}{}{}
+
+
+\begin{equation*}
+ (g\circ f)'(x_0) = g(f(x_0)) f'(x_0).
+\end{equation*}\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Ist \(f'(x_0) \neq 0\), dann ist für \(x\neq x_0\) nahe genug bei \(x_0\) auch \(f(x) \neq f(x_0)\) und es gilt
+\begin{equation*}
+\lim_{x \rightarrow x_0} \frac{g(f(x))-g(f(x_0))}{x-x_0} = \lim_{x \rightarrow x_0} \frac{g(f(x))-g(f(x_0))}{f(x)-f(x_0)}
+ \frac{f(x)-f(x_0)}{x-x_0} = g'(f(x_0)) f'(x_0).
+\end{equation*}
+Falls \(f'(x_0)=0\) gilt, dann ist
+\begin{equation*}
+f(x) = f(x_0) +  R(x)(x-x_0
+\end{equation*}
+mit \(R(x) \rightarrow  0\) für \(x \rightarrow x_0\) und damit
+\begin{equation*}
+\lim_{x \rightarrow x_0} \frac{g(f(x))-g(f(x_0))}{x-x_0} =  
+\lim_{x \rightarrow x_0} \frac{g(f(x_0)+R(x)(x-x_0)-g(f(x_0))}{R(x)(x-x_0)}  \lim_{x \rightarrow x_0} R(x) = 0,
+\end{equation*}
+also gilt auch hier die Kettenregel. \(\square\).
+\end{emphBox}
+\label{differential/kombfkt:example-4}
+\begin{example}{}{}
+
+
+
+Sei \(h: \R \rightarrow \R, x\mapsto e^{-x^2/2}.\) Dann wenden wir die Kettenregel mit \(f(x) = -\frac{x^2}2\), \(f'(x) = -x\) und
+\(g(x) = e^x\), \(g'(x)=e^x\) an und erhalten
+\begin{equation*}
+h'(x) = - x e^{-x^2/2}.
+\end{equation*}\end{example}
+\label{differential/kombfkt:theorem-5}
+\begin{theorem}{}{}
+
+
+
+Sei \(I\) ein Intervall in \(R\) und \(f: I \rightarrow \R\) streng monoton und differenzierbar. Dann ist die Umkehrfunktion \(f^{-1}: f(I) \rightarrow I\) in allen Punkten \(y=f(x)\) mit \(f'(x) \neq 0\) differenzierbar und es gilt
+\begin{equation*}
+ (f^{-1})'(f(x)) = \frac{1}{f'(x)}, \qquad (f^{-1})'(y) = \frac{1}{f'(f^{-1}(y))}.
+\end{equation*}\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Sei \(x_0 \in I\), \(f'(x_0) \neq 0\), \(y_0 =f(x_0)\). Dann gilt mit dem Restglied \(R\)
+\begin{equation*}
+ \vert f(x) - f(x_0) \vert = \vert f'(x_0) + R(x) \vert ~\vert x- x_0\vert
+\end{equation*}
+und wegen \(R(x) \rightarrow 0\) und \(f'(x_0) \neq 0\) folgt für \(|x-x_0|\) klein, \(x \neq x_0\)
+\begin{equation*}
+ |f(x) - f(x_0)| \geq \frac{1}2 |f'(x_0)| ~|x-x_0| > 0.
+\end{equation*}
+Also folgt
+\begin{equation*}
+\frac{f^{-1}(y) - f^{-1}(y_0)}{y-y_0} =  \frac{f^{-1}(y) - f^{-1}(y_0)}{f(f^{-1}(y)) - f(f^{-1}(y_0))} =\frac{x -x_0}{f(x) - f(x_0)}.
+\end{equation*}
+Wegen der Differenzierbarkeit von \(f\) existiert der Grenzwert und es gilt
+\begin{equation*}
+ (f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)},
+\end{equation*}
+die zweite Identität folgt aus \(f(x_0)=y_0\), \(x_0 = f^{-1}(y_0)\). \(\square\)
+\end{emphBox}
+\label{differential/kombfkt:example-6}
+\begin{example}{}{}
+
+
+
+Die Umkehrfunktion \(\log: \R^+ \rightarrow \R\) der Exponentialfunktion erfüllt
+\begin{equation*}
+ \log'(y)  = \frac{1}{e^{\log(y)}} = \frac{1}y.
+\end{equation*}\end{example}
+\label{differential/kombfkt:example-7}
+\begin{example}{}{}
+
+
+
+Die Umkehrfunktion des Sinus \(\arcsin: (-\pi,\pi] \rightarrow \R\)   erfüllt wegen \(\sin'(x) = \cos(x)\)
+\begin{equation*}
+ \arcsin'(y)  = \frac{1}{ \cos(\arcsin(y))} .
+\end{equation*}\end{example}
+
+
+\section{Der Mittelwertsatz der Differentialrechnung}
+\label{\detokenize{differential/mws:der-mittelwertsatz-der-differentialrechnung}}\label{\detokenize{differential/mws::doc}}
+Wir betrachten nun eine Version des Zwischenwertsatzes für Ableitungen, der einen Zusammenhang zwischen Ableitungen undDifferenzenquotienten herstellt. Als Grundlage dafür beweisen wir zunächst ein interessantes Resultat über Minimal  und Maximalstellen:
+\label{differential/mws:lemma-0}
+\begin{emphBox}{}{}{}
+
+
+
+Sei \(f:[a,b] \rightarrow \R\) stetig und \(x_0 \in (a,b)\) eine Minimal  oder Maximalstelle von \(f\). Ist \(f\) bei \(x_0\) differenzierbar, dann gilt \(f'(x_0) = 0\).````
+**Beweis. ** Für \(x_0 \in (a,b)\) gibt es ein \(\epsilon > 0\) mit \((x_0 - \epsilon, x_0 + \epsilon) \subset (a,b)\). Ist \(x_0\) Minimalstelle, dann gilt für alle \(x \in (x_0 - \epsilon, x_0 + \epsilon)\) auch \(f(x) \geq f(x_0)\) und für \(\epsilon\) hinreichend klei
+\begin{equation*}
+ f(x) - f(x_0) = (f'(x_0) + R(x))(x-x_0).
+\end{equation*}
+Also folgt für \(x > x_0\) bzw. \(x < x_0\)
+\begin{equation*}
+ f'(x_0) \leq -  R(x) \qquad \text{bzw.} \qquad f'(x_0) \geq  - R(x).
+\end{equation*}
+Im Grenzwert \(x \rightarrow 0\) folgt dann\( 0 \leq f'(x_0) \leq 0\), also \(f'(x_0) = 0\). Der Beweis für eine Maximalstelle ist analog mit umgedrehten Ungleichungszeichen. \(\square\).
+\label{differential/mws:theorem-1}
+\begin{lemma}{}{}
+
+
+
+Sei \(f:[a,b] \rightarrow \R\) differenzierbar auf \((a,b)\). Dann gibt es ein \(x_0 \in (a,b)\) mit
+\begin{equation*}
+ \frac{f(b) - f(a)}{b-a} = f'(x_0) .
+\end{equation*}\end{lemma}
+\end{emphBox}
+
+\begin{emphBox}{}{}
+Proof. Sei
+\begin{equation*}
+ g(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b-a}(x-a).
+\end{equation*}
+Dann gilt \(g(a) = g(b) = 0\) un
+\begin{equation*}
+ g'(x) = f'(x) -  \frac{f(b) - f(a)}{b-a}.
+\end{equation*}
+\(g\) ist eine stetige Funktion und nimmt deshalb auf \([a,b]\) sowohl sein Minimum als auch sein Maximum an. Ist \(g\) konstant Null, dann ist \(g'(x)\) für alle \(x \in (a,b)\) und wir sind fertig. Andernfalls gibt es zumindest eine Minimal  oder Maximalstelle \(x_0\) von \(g\) im Intervall \((a,b)\), also folgt \(g'(x_0)=0\), was den Mittelwertsatz impliziert. \(\square\)
+\end{emphBox}
+
+Ähnlich beweist man folgende Verallgemeinerung des Mittelwertsatzes: Mit den gleichen Bedingungen an \(f\) und \(g\) wie oben, sowie \(g(b) \neq g(a)\) und \(g'(x) \neq 0\) für \(x \in (a,b)\) folgt die Existenz eines \(x_0 \in (a,b)\) mit
+\begin{equation*}
+\frac{f'(x_0)}{g'(x_0)} = \frac{f(b) - f(a)}{g(b) - g(a)}.
+\end{equation*}
+Eine interessante Anwendung der Differentialrechnung, ähnlich zu dieser Art von Quotienten ist die Regel von de l’Hospital, mit der wir zunächst unbestimmte Grenzwerte von Quotienten charakterisieren können. Ein Beispiel ist\( \lim_{x \rightarrow 0} \frac{\sin(x)}x\), das zunächst auf ein unbestimmtes \(\frac{0}0\) führt. Nun ist aber
+\begin{equation*}
+\sin(x) = \sin(0) + \cos(0)x + R(x)x = (1+R(x))x,
+\end{equation*}
+mit \(R(x) \rightarrow 0\), d.h.,
+\begin{equation*}
+ \lim_{x \rightarrow 0} \frac{\sin(x)}x = \lim_{x \rightarrow 0} \frac{(1+R(x))x}x = 1.
+\end{equation*}
+Die selbe Idee angewendet in Zähler und Nenner führt auf die allgemeinere Regel von de l’Hospital:
+\label{differential/mws:theorem-2}
+\begin{theorem}{}{}
+
+
+
+Seien \(f\) und \(g\) differenzierbar auf \([a,b]\) und \(x_0 \in [a,b]\) mit \(f(x_0)=g(x_0) = 0\), sowie\(g'(x_0) \neq 0\). Dann gilt
+\begin{equation*}
+ \lim_{x \rightarrow x_0} \frac{f(x)}{g(x)} = \frac{f'(x_0)}{g'(x_0)}.
+\end{equation*}\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Es gilt für \(x \neq x_0\) mit den entsprechenden Restgliedern \(R\) und \(S\)
+\begin{align*}
+f(x) &= (f'(x_0) + R(x))(x-x_0) \\
+g(x) &= (g'(x_0) + S(x))(x-x_0),
+\end{align*}
+mit \(\lim_{x \rightarrow x_0} R(x) = \lim_{x \rightarrow x_0} S(x) =0. \)
+Also folgt
+\begin{equation*}
+\lim_{x \rightarrow x_0} \frac{f(x)}{g(x)} = \lim_{x \rightarrow x_0} \frac{f'(x_0) + R(x)}{g'(x_0) + S(x)} = \frac{f'(x_0)}{g'(x_0)}.  \quad\square
+\end{equation*}\end{emphBox}
+\label{differential/mws:example-3}
+\begin{example}{}{}
+
+
+
+Sei \(f(x) = e^x-1\) und \(g(x) = \sin(x)\). Dann ist
+\begin{equation*}
+ \lim_{x \rightarrow 0} \frac{f(x)}{g(x)} = \frac{e^0}{\cos(0)} = 1.
+\end{equation*}\end{example}
+
+
+\section{Höhere Ableitungen}
+\label{\detokenize{differential/hoehereOrdnung:hohere-ableitungen}}\label{\detokenize{differential/hoehereOrdnung::doc}}
+In vielen Fällen kann man die Idee der Ableitung iterieren um höher Ableitungen zu erhalten. Ist \(f'\) wieder differenzierbar in einer Umgebung von \(x_0\) und existiert der Grenzwer
+\begin{equation*}
+ f''(x_0) = \lim_{x \rightarrow x_0} \frac{f'(x) - f'(x_0)}{x-x_0} ,
+\end{equation*}
+so nennen wir \(f'' = (f')'\) die zweite Ableitung von \(f\). In dieser Form erhalten wir, falls diese existieren, auch \(k\) te Ableitungen \(f^{(k)}=(f^{(k-1)})'\). Wir nennen \(f\) in diesem Fall \(k\) mal differenzierbar, bzw. unendlich oft differenzierbar wenn die Ableitung für jedes \(k \in \N\) existiert. Der Vollständigkeit halber setzen wir \(f^{(0)} = f\).
+\label{differential/hoehereOrdnung:example-0}
+\begin{example}{}{}
+
+
+
+Sei \(f: \R \rightarrow \R, x \mapsto e^x.\) Dann ist \(f\) unendlich oft differenzierbar in \(\R\) und \(f^{(k)}(x)=f(x)\).
+\end{example}
+\label{differential/hoehereOrdnung:example-1}
+\begin{example}{}{}
+
+
+
+Sei \(f: \R \rightarrow \R, x \mapsto x^2.\) Dann ist \(f\) unendlich oft differenzierbar in \(\R\) mit \(f'(x)=2x\), \(f''(x)=2\) und \(f^{(k)}(x)=0\) für \(k > 2\).
+\end{example}
+
+Eine interessante Anwendung sind wieder Minimal  und Maximalstellen:
+\label{differential/hoehereOrdnung:theorem-2}
+\begin{theorem}{}{}
+
+
+
+Sei \(f:[a,b]\rightarrow \R\) zweimal differenzierbar in einer Umgebung von \(x_0 \in (a,b)\). Dann gilt:
+\begin{itemize}
+\item {} 
+\(i)\) Ist \(x_0\) Minimalstelle (Maximalstelle) dann gilt \(f'(x_0) = 0\), \(f''(x_0) \geq 0\) (\(f''(x_0) \leq 0\))
+
+\item {} 
+\(ii)\) Ist \(f'(x_0) = 0\) und \(f''(x_0) > 0\) (\(f''(x_0) < 0\)), dann ist \(x_0\) lokale Minimalstelle (lokale Maximalstelle), d.h. es gibt \(\epsilon > 0\) mit \(f(x) \leq f(x_0)\) (bzw. \(f(x) \geq f(x_0)\)) für alle \(x\in (x_0-\epsilon, x_0+\epsilon)\).
+
+\end{itemize}
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Wieder beweisen wir nur den Fall einer Minimalstelle, jener für Maximalstellen ist analog.
+\(i)\) Ist \(x_0\) Minimalstelle, dann wissen wir bereits \(f'(x_0) = 0\). Nun gilt für \(x > x_0\) nach dem Mittelwertsatz für ein \(\xi(x) \in (x_0,x)\)
+\begin{equation*}
+ 0 \leq  \frac{f(x)-f(x_0)}{x-x_0} = f'(\xi(x)).
+\end{equation*}
+Also folgt auch
+\begin{equation*}
+ 0 \leq \frac{f'(\xi(x)) - f'(x_0)}{\xi(x)-x_0}.
+\end{equation*}
+Da \(\xi(x) \rightarrow \x_0\) für \(x \rightarrow x_0\) können wir den Grenzwert durchführen und erhalten \(f''(x_0) \geq 0\).
+
+\(ii)\) Ist \(f'(x_0) = 0\) und \(f''(x_0) > 0\), dann folgt analog für \(x > x_0\)
+\begin{equation*}
+ f(x) - f(x_0) = (x-x_0) ( f'(x_0) + (f''(x_0) + R_2(\xi(x)))(\xi(x)-x_0)) = (f''(x_0) + R_2(\xi(x)))(\xi(x)-x_0)(x-x_0),
+\end{equation*}
+wobei \(R_2\) das Restglied bei der ersten Ableitung ist. Ist \(x-x_0\) klein genug, dann gilt
+\(|R_2(\xi(x))| < \frac{1}2 f''(x_0)\). Damit folg
+\begin{equation*}
+ f(x) - f(x_0) > \frac{1}2 f''(x_0) (\xi(x)-x_0)(x-x_0) > 0,
+\end{equation*}
+also \(f(x) > f(x_0)\). Den Fall \(x < x_0\) behandeln wir analog. \(\square\)
+\end{emphBox}
+
+

@@ -1,0 +1,1033 @@
+\chapter{Vektorräume und lineare Abbildungen}
+\label{\detokenize{vektorraeume/vektorraeume:vektorraume-und-lineare-abbildungen}}\label{\detokenize{vektorraeume/vektorraeume::doc}}
+Die komplexen Zahlen aus dem letzten Abschnitt sind ein einfaches Beispiel eines Vektorraums, nun wollen wir Vektorräume etwas genauer betrachten, die allgemein folgendermaßen definiert sind:
+\label{vektorraeume/vektorraeume:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \(V\) eine Menge und \(\K\) ein Körper. Gegeben seien die Addition \(\oplus: V \times V \rightarrow V\) und die Skalarmultiplikation \(\odot: \K \times V \rightarrow V\). \((V,\oplus,\odot)\) heisst Vektorraum, wenn für alle \(u,v \in V\) und alle \(\alpha, \beta \in \K\) die folgenden Eigenschaften gelten:
+\begin{itemize}
+\item {} 
+\((V,\oplus)\) ist eine abel’sche Gruppe.
+
+\item {} 
+\(\alpha \odot (u \oplus v) = \alpha \odot(v \oplus u) = (\alpha \odot u) \oplus (\alpha \odot v)\)
+
+\item {} 
+\((\alpha + \beta) \odot v = (\alpha \odot v) \oplus (\beta \odot v)\)
+
+\item {} 
+\((\alpha \beta)\odot v = \alpha \odot (\beta \odot v)\)
+
+\item {} 
+\(1 \odot v = v\), wobei \(1\) das Einselement der Multiplikation in \(\K\) ist.
+
+\end{itemize}
+\end{definition}
+
+Wir werden im Folgenden einfach \(u +v\) statt \(u \oplus v\) und \(\alpha v\) statt \(\alpha \odot v\) schreiben.
+\label{vektorraeume/vektorraeume:example-1}
+\begin{example}{}{}
+
+
+
+\(\R^n\) ist ein Vektorraum über \(\R\), allgemein ist \(\K^n\) ein Vektorraum über \(\K\).
+\end{example}
+\label{vektorraeume/vektorraeume:example-2}
+\begin{example}{}{}
+
+
+
+\(\R^\N =  \{(x_n):\N \rightarrow \R\}\) ist Vektorraum über \(\R\).
+\end{example}
+\label{vektorraeume/vektorraeume:example-3}
+\begin{example}{}{}
+
+
+
+\(\ell^\infty(\N) = \{(x_n) \in \R^\N~|~\sup_n |x_n| < \infty\}\) ist ein Vektorraum über \(\R\)
+\end{example}
+\label{vektorraeume/vektorraeume:example-4}
+\begin{example}{}{}
+
+
+
+\(\C = \{ a + b \i ~|~ a,b \in \R\}\) ist ein Vektorraum über \(\R\)
+\end{example}
+
+Im Fall der komplexen Zahlen haben wir den Vektorraum über eine \emph{\textbackslash{}2} (also Vielfache und Summen) gewisser Elemente, nämlich \(1\) und \(\i\), definiert. Dies ist auch in den anderen Vektorräumen der Fall, z.B. können wir in \(\R^n\) alles als Linearkombination der Einheitsvektoren
+\begin{equation*}
+ e_i = (\delta_{ij})_{j=1}^n
+\end{equation*}
+schreiben, wobei \(\delta_{ij}\) das Kronecker Delta bezeichnet, definiert als \(\delta_{ii}=1\) und \(\delta_{ij}=0\) sonst. Diese Elemente sind aber nicht eindeutig, z.B. können wir im \(\R^2\) auch alles als Linearkombination von \((1,1)\) und \((1,-1)\) schreiben, es gilt
+\begin{equation*}
+ (a,b) = \lambda_1 (1,1) + \lambda_2 (1,-1)
+\end{equation*}
+mit \(\lambda_1 = \frac{a+b}2\), \(\lambda_2 = \frac{a-b}2\).
+\label{vektorraeume/vektorraeume:definition-5}
+\begin{definition}{}{}
+
+
+
+Seien \(v_1,\ldots,v_n \in V\).
+\begin{itemize}
+\item {} 
+Seien \(\lambda_1,\ldots,\lambda_b \in \K\), dann heisst
+
+\end{itemize}
+\begin{equation*}
+ v = \sum_{i=1}^n \lambda_i v_i
+\end{equation*}
+Linearkombination der \(v_i\).
+\begin{itemize}
+\item {} 
+Die Elemente \(v_1,\ldots,v_n\) ( bzw. \(\{v_1,\ldots,v_n\}\)) die Menge heissen linear unabhängig, wenn aus\(\sum_{i=1}^n \lambda_i v_i =0\) folgt, dass \(\lambda_1 = \lambda_2 \ldots = \lambda_n = 0\).
+
+\item {} 
+Eine Menge \(W \subset V\) heisst linear unabhängig für alle \(n \in \N \setminus \{0\}\), \(n \leq |W|\) jede Teilmenge \(\{v_1,\ldots,v_n\}\) linear unabhängig ist. Andernfalls nennen wir \(W\) linear abhängig.
+
+\item {} 
+Sei \(W \subset V\), dann ist die lineare Hülle
+
+\end{itemize}
+\begin{equation*}
+ \text{lin}(W) = \{ \sum_{i=1}^n \lambda_i v_i~|~ n \in \N, \lambda_i \in \K, v_i \in W\}
+\end{equation*}
+gegeben als die Menge aller Linearkombinationen von Elementen aus \(W\).
+\begin{itemize}
+\item {} 
+\(W\) heisst Erzeugendensystem, wenn lin\((W)=V\).
+
+\item {} 
+\(B \subset V\) heisst Basis von \(V\), wenn \(B\) Erzeugendensystem und linear unabhängig ist.
+
+\item {} 
+Ist \(B\) Basis von \(V\) und \(n=|B| < \infty\), dann heisst \(V\) endlichdimensionaler Vektorraum und \(n\) die Dimension von \(V\).
+
+\item {} 
+Ist \(W \subset V\) selbst ein Vektorraum, d.h. abgeschlossen bezüglich Addition und Skalarmultiplikation, dann nennen wir \(W\) Unterraum von \(V\).
+
+\end{itemize}
+\end{definition}
+\label{vektorraeume/vektorraeume:example-6}
+\begin{example}{}{}
+
+
+
+Wir betrachten wieder den \(\R^2\). \(B=\{(1,0),(0,1)\}\) ist eine Basis, \(W= \{(1,0),(0,1),(1,1)\}\) ist ein Erzeugendensystem, aber nicht linear unabhängig, da
+\begin{equation*}
+ (1,0) + (0,1) - (1,1) = 0.
+\end{equation*}\end{example}
+\label{vektorraeume/vektorraeume:example-7}
+\begin{example}{}{}
+
+
+
+Für \(V=\R^3\) ist \(W=\{(1,0,0),(0,1,0)\}\)  linear unabhängig, aber kein Erzeugendensystem, da wir kein \(\lambda_1,\lambda_2 \in \R\) finden können mit
+\begin{equation*}
+(0,0,1) =  \lambda_1 (1,0,0)+ \lambda_2 (0,1,0) = (\lambda_1,\lambda_2,0).
+\end{equation*}
+Tatsächlich entspricht lin\((V)\) dem \(\R^2\) mit einer zusätzlichen Null in der dritten Variable.
+\end{example}
+\label{vektorraeume/vektorraeume:example-8}
+\begin{example}{}{}
+
+
+
+Sei \(V=\R^N\), \(W=\{(\delta_{in})_n ~|~i \in \N\}\). Dann ist \(W\) linear unabhängig, aber keine Basis. Es gilt
+\begin{equation*}
+ \text{lin}(W) = \{ (x_n) \in \R^\N~|~ \exists n_0 \in \N \forall n \geq n_0: x_n =0 \},
+\end{equation*}
+die lineare Hülle entspricht also den Folgen, die nach endlich vielen Indizes null werden.
+\end{example}
+
+Wir machen einige Beobachtungen:
+\begin{itemize}
+\item {} 
+Ist \(W\) linear unabhängig, so ist natürlich auch jede nichtleere Teilmenge von \(W\) linear unabhängig. Ist \(W\) ein Erzeugendensystem, dann ist auch jedes \(W'\) mit \(W \subset W'\) Erzeugendensystem.
+
+\item {} 
+Eine Menge, die \(v=0\) enthält ist nie linear unabhängig, da \(\lambda   v  = 0\) für alle \(\lambda \in \K\).
+
+\end{itemize}
+
+Linearkombinationen führen in natürlicher Weise auf lineare Gleichungssysteme für die Koeffizienten \(\lambda_i\), dies sehen wir noch mal am Beispiel
+\begin{equation*}
+ (a,b) = \lambda_1 (1,1) + \lambda_2 (1,-1),
+\end{equation*}
+das wir auch  als Gleichungssystem
+\begin{equation*}
+ \lambda_1 + \lambda_2 = a, \qquad \lambda_1 - \lambda_2 = b
+\end{equation*}
+für \(\lambda_1\), \(\lambda_2\) schreiben können. Die Möglichkeit \(v\) als Linearkombination von \(v_1, \ldots,v_n\) darstellen zu können, ist dann die Frage der Lösbarkeit eines linearen Gleichungssystems für \(n\) unbekannte Koeffizienten, die wir noch intensiv diskutieren werden. Der Einfachheit halber werden wir uns dazu auf \(\K=\R\) beschränken.
+\label{vektorraeume/vektorraeume:theorem-9}
+\begin{theorem}{}{}
+
+
+
+Sei \(W \subset V\), dann ist lin\((W)\) ein Teilraum von \(V\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Da die Gesetze der Addition und Multiplikation auch in lin\((W) \subset V\) gelten, müssen wir nur nachprüfen, dass \(+:\)lin\((W) \times\) lin\((W) \rightarrow \)lin\((W)\) und \(\cdot:\R \times\) lin\((W) \rightarrow\) lin\((W)\) gilt.Ist \(v \in \) lin\((W)\), dann gilt
+\begin{equation*}
+ v = \sum_{i=1}^n \lambda_i v_i, \qquad \lambda_i \in \R, v_i \in W
+\end{equation*}
+und
+damit auch
+\begin{equation*}
+ \alpha v = \sum_{i=1}^n (\alpha \lambda_i) v_i \quad \in \text{ lin}(W).
+\end{equation*}
+Ist darüber hinaus \(w \in \) lin\((W)\), dann gilt
+\begin{equation*}
+ v = \sum_{i=1}^n \mu_i w_i, \qquad \mu_i \in \R, w_i \in W
+\end{equation*}
+und
+damit
+\begin{equation*}
+ v+ w = \sum_{i=1}^{n+m} \lambda_i v_i \qquad \lambda_i \in \R, v_i \in W,
+\end{equation*}
+wobei wir \(\lambda_{n+i} = \mu_i\) und \(v_{n+i} = \mu_i\) setzen. Also ist auch \(v+w \in \) lin\((W)\).
+\end{emphBox}
+\label{vektorraeume/vektorraeume:theorem-10}
+\begin{theorem}{}{}
+
+
+
+Sei \(V\) ein Vektorraum und \(B \subset V\) eine Basis mit \(|B|=n\). Dann gilt für jede linear unabhängig Menge \(W\) auch \(|W| \leq n\) und für jedes Erzeugendensystem \(E\) auch \(|E| \geq n\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(W\) eine  Menge und nehmen wir an es gibt \(n+1\) linear unabhängige Elemente \(w_1, \ldots w_{n+1}\) in \(W\). Dann gibt es für jedes \(w_i\) eine Darstellung in der Basis \(B=\{b_1,\ldots,b_n\}\), d.h.
+\begin{equation*}
+ w_i =  \sum_{j=1}^n \lambda_{ij} b_j.
+\end{equation*}
+Wir beginnen mit \(i=1\). Da nicht alle \(\lambda_{1j} =0 \) sein können, nehmen wir ohne Beschränkung der Allgemeinheit an, dass \(\lambda_{11} \neq 0\) gilt. Also folgt
+\begin{equation*}
+ - \lambda_{11} w_i + \lambda_{i1} w_1 = \sum_{j=2}^n \lambda_{ij}^{(2)}  b_j, \qquad i=2,\ldots,n+1
+\end{equation*}
+mit neuen Koeffizienten \(\lambda_{ij}^{(2)}\). Da nicht alle \(\lambda_{2j}^{(2)} \) gleich Null sein können, nehmen wir wieder an, \(\lambda_{22}^{(2)} \neq 0\). Mit analogem Vorgehen erhalten wir eine Darstellung der Form
+\begin{equation*}
+ \alpha_{1i} w_1 + \alpha_{2i} w_2 + \beta_i w_i = \sum_{j=3}^n \lambda_{ij}^{(3)}  b_j, \qquad i=3,\ldots,n+1.
+\end{equation*}
+Wenden wir dieses Argument wiederholt an, so gilt nach \(n\) Schritten
+\begin{equation*}
+ \alpha_{1,n+1} w_1 + \alpha_{2,n+1} w_2 + \ldots \alpha_{n,n+1} w_n + \beta_{n+1} w_{n+1} = 0
+\end{equation*}
+und damit sind die \(w_i\) linear abhängig.
+Ist umgekehrt \(v_1, \ldots, v_m\) ein Erzeugendensystem mit \(m<n\), so können wir \(b_1,\ldots,b_{m+1}\) wie oben durch die \(v_i\) ausdrücken und analog folgern, dass die Menge \(\{b_1,\ldots,b_{m+1}\}\) linear abhängig ist. Dies widerspricht aber der Basis Eigenschaft.
+\end{emphBox}
+
+Wir sehen insbesondere, dass jede Basis eines Vektorraums die gleiche Anzahl an Elementen haben muss, sobald eine endliche Basis existiert. Wir sprechen dann von der Dimension eines Vektorraums, die wir gleich der Anzahl der Basiselemente setzen. Ist \(|B|\) nicht endlich, so sprechen wir von einem unendlich dimensionalen Vektorraum. In einem Raum der Dimension \(n\) können (und werden) wir immer jedes Element als Linearkombination aller \(n\) Basiselemente schreiben und ggf. Koeffizienten gleich Null setzen.
+Im Allgemeinen sehen wir auch, dass die Entwicklung von \(V\) in einer Basis, d.h. eine Linearkombination aus Basiselementen, eindeutig ist:
+\label{vektorraeume/vektorraeume:theorem-11}
+\begin{theorem}{}{}
+
+
+
+Sei \(V\) ein Vektorraum mit Basis \(B\) und \(v \neq \in V\). Dann existiert genau ein \(n \in \N\) und eine Teilmenge \(\{b_i\}_{i=1,\ldots,n} \subset V\) sowie Koeffizienten \(\lambda_i \in \R\) mit
+\begin{equation*}
+ v =  \sum_{i=1}^n \lambda_i b_i .
+\end{equation*}\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei
+\begin{equation*}
+ v = \sum_{i=1}^n \lambda_i b_i = \sum_{j=1}^m \lambda_j' b_j'
+\end{equation*}
+mit \(b_j' \in B\). Dann gilt mit \(\lambda_{n+i} = -\lambda_i'\) und \(b_{n+i}=-b_i'\)
+\begin{equation*}
+ \sum_{i=1}^{n+m} \lambda_i b_i = 0.
+\end{equation*}
+Wegen der linearen Unabhängigkeit der Basis folgt dann aber \(v=0\).
+\end{emphBox}
+
+Wir definieren nun noch die Summe zweier Vektorräume \(V\) und \(W\), die beide Unterräume eines größeren Raums \(U\) sind, als
+\begin{equation*}
+ V+W = \{ v + w ~|~ v \in V, w \in W \}.
+\end{equation*}\label{vektorraeume/vektorraeume:example-12}
+\begin{example}{}{}
+
+
+
+Sei
+\begin{equation*}
+ V= \{(x,0)~|~x \in  \R \}, \qquad W= \{(0,y)~|~Y \in  \R \},
+\end{equation*}
+dann gilt  \(V+W = \R^2\).
+\end{example}
+
+Analog definieren wir \(\sum_{i=1}^m V_i\) für mehrere Vektorräume   \(V_i\).Eine Summe von Vektorräumen heisst \emph{\textbackslash{}2}, wenn für jedes \(w \in \sum_{i=1}^m V_i\) eine eindeutige Zerlegung\(w=\sum_{i=1}^n v_i\), \(v_i \in V_i\) existiert. Wir schreiben dann für direkte Summe zweier Vektorräume \(V\) und \(W\) auch \(V \oplus W\).
+\label{vektorraeume/vektorraeume:lemma-13}
+\begin{lemma}{}{}
+
+
+
+Seien \(V\) und \(W\) Vektorräume mit Summe \(V+W\). Die Summe ist direkt genau dann, wenn \(V \cap W = \{0\}\).
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Wir zeigen die äquivalente Aussage \(V \cap W \neq \{0\}\) genau dann, wenn die Summe \(V+W\) nicht direkt ist. Sei \(w \neq 0, w \in V \cap W\). Dann ist wegen der Vektorraumeigenschaft auch \(-w \in W\). Damit hat
+\begin{equation*}
+ 0  = 0 + 0 = w + (-w) \in V + W
+\end{equation*}
+eine nichteindeutige Darstellung als Summe. Sei umgekehrt die Summe nicht direkt, dann gibt es \(v_1,v_2 \in V\), \(v_1 \neq v_2\) and \(w_1, w_2 \in W\), \(w_1 \neq w_2\) mit
+\begin{equation*}
+ v_1 + w_1 = v_2 + w_2.
+\end{equation*}
+Nun definieren wir \(v = v_1-v_2 = w_2 -w_1\) und sehen sofort \(v \in V\cap W \setminus\{0\}\).
+\end{emphBox}
+
+
+\section{Lineare Abbildungen}
+\label{\detokenize{vektorraeume/LineareAbb:lineare-abbildungen}}\label{\detokenize{vektorraeume/LineareAbb::doc}}
+Wir können nun Abbildungen zwischen zwei Vetorräumen \(V_1\) und \(V_2\) betrachten, die einfachsten sind dabei die linearen, die auch eine wichtige Klasse bilden.
+\label{vektorraeume/LineareAbb:definition-0}
+\begin{definition}{}{}
+
+
+
+Wir bezeichnen eine Abbildung \(L: V_1 \rightarrow V_2\) als linear, wenn die Addition und Skalarmultiplikation unter \(L\) erhalten bleibt, d.h.
+\begin{itemize}
+\item {} 
+\(\forall v,w \in V_1: L(v+w) = L(v) + L(w).\)
+
+\item {} 
+\(\forall v \in V_1, \alpha \in \R: L(\alpha v) = \alpha L(v)\)
+
+\end{itemize}
+\end{definition}
+
+Wir sehen einfach durch einen induktiven Beweis, dass für alle \(n \in \N\), \(\lambda_i \in \R\) und \(v_i \in V_1\) dann gilt
+\begin{equation*}
+ L(\sum_{i=1}^n \lambda_i v_i) = \sum_{i=1}^n \lambda_i L(v_i) .
+\end{equation*}
+Daraus sehen wir auch, dass es genügt eine lineare Abbildung auf einer Basis \(B\) von \(V_1\) zu definieren, denn ein beliebiges \(v \in V_1\) können wir dann als \(v= \sum_{i=1}^n \lambda_i b_i\) schreiben und daraus folgt
+\begin{equation*}
+ L(v) = \sum_{i=1}^n \lambda_i L(b_i).
+\end{equation*}
+Sind umgekehrt \(L(b_i)\) festgelegt, erhalten wir daraus immer mit der obige Setzung eindeutig eine lineare Abbildung.
+\label{vektorraeume/LineareAbb:example-1}
+\begin{example}{}{}
+
+
+
+\(L: \R \rightarrow \R\) erfüllt \(L(x) = x L(1)\) für alle \(x \in \R\), also ist die lineare Abbildung durch den Wert am einzigen Basiselement \(b_1=1\) festgelegt (diesen nennen wir Steigung).
+\end{example}
+\label{vektorraeume/LineareAbb:example-2}
+\begin{example}{}{}
+
+
+
+\(L: \R^2 \rightarrow \R, (x_1,x_2) \mapsto x_1 +x_2\) ist festgelegt durch \(L((1,0)) = 1\) und \(L((0,1))=1\).
+\end{example}
+\label{vektorraeume/LineareAbb:example-3}
+\begin{example}{}{}
+
+
+
+\(L: \R^2 \rightarrow \R^2, (x_1,x_2) \mapsto (2x_1-x_2,2x_2+x_1)\) ist festgelegt durch \(L((1,0)) = (2,1)\) und \(L((0,1))=(-1,2)\).
+\end{example}
+
+Wir sehen in den Beispielen, dass wir eine lineare Abbildung zwischen einem \(n\) dimensionalen Vektorraum und einem \(m\) dimensionalen Vektorraum durch \(nm\) reelle Zahlen festlegen können, indem wir die \(L(b_i)\), \(i=1,\ldots,n\) in einer Basis von \(V_2\) entwickeln.
+
+Wir wollen nun die Injektivität und Surjektivität linearer Abbildungen genauer betrachten. Dies ist direkt verwandt mit der Eindeutigkeit und Lösbarkeit linearer Gleichungen: \(L(v) = w\) hat für jedes \(w\) eine Lösung \(v\), wenn \(L\) surjektiv ist. Die Lösung ist eindeutig, wenn \(L\) injektiv ist. Eine bijektive lineare Abbildung nennen wir Isomorphismus.
+\label{vektorraeume/LineareAbb:lemma-4}
+\begin{lemma}{}{}
+
+
+
+Ein linearer Operator \(L\) ist injektiv genau dann, wenn aus \(L(v) = 0\) folgt \(v=0\).
+\end{lemma}
+\label{vektorraeume/LineareAbb:theorem-5}
+\begin{theorem}{}{}
+
+
+
+Sei dim\((V) =n\), dann existiert ein Isomorphismus von \(V\) nach \(\R^n\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Wir definieren für die Basiselemente \(L(b_i) = e_i = (\delta_{ij})_{j=1,\ldots,n}\) und entsprechend
+\begin{equation*}
+ L(v) = L(\sum_{i=1}^n \lambda_i b_i) = \sum_{i=1}^n \lambda_i e_i = (\lambda_1, \ldots, \lambda_n) \in \R^n .
+\end{equation*}
+L ist injektiv, da aus \(L(v) = 0\) folgt \(\lambda_1=\ldots,\lambda_n = 0\) und damit \(v=0\). \(L\) ist surjektiv, da jedes
+\begin{equation*}
+ (\lambda_1, \ldots, \lambda_n) \in \R^n\end{equation*}
+gleich \(L(v)\) mit \(v = \sum_{i=1}^n \lambda_i b_i\) ist.
+\end{emphBox}
+
+Damit können wir im Prinzip jeden endlichdimensionalen Vektorraum mit \(\R^n\) identifizieren, indem wir einfach die Koeffizienten in der Basisentwicklung betrachten.
+\label{vektorraeume/LineareAbb:theorem-6}
+\begin{theorem}{}{}
+
+
+
+Sei \(L: V_1 \rightarrow V_2\) eine lineare Abbildung zwischen endlichdimensionalen Vektorräumen. Dann gilt:
+\begin{itemize}
+\item {} 
+Ist \(L\) injektiv, so folgt dim\((V_2) \geq \) dim\((V_1)\).
+
+\item {} 
+Ist \(L\) surjektiv, so folgt dim\((V_2) \leq \) dim\((V_1)\).
+
+\end{itemize}
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei dim\((V_1)=n\) und \(\{b_i\}_{i=1,\ldots,n}\) eine Basis für \(V_1\). Man sieht sofort, dass \(\{L(b_i)\}_{i=1,\ldots,n}\) ein Erzeugendensystem für das Bild von \(L\) ist. Ist \(L\) surjektiv, dann wissen wir auch dim\((V_2) \leq n\) gilt. Ist \(L\) injektiv, dann folgt aus
+\begin{equation*}
+ 0 = \sum_{i=1}^n \lambda_i L(b_i) = L( \sum_{i=1}^n \lambda_i b_i)
+\end{equation*}
+auch\(\sum_{i=1}^n \lambda_i b_i = 0\) und damit \(\lambda_1=\ldots=\lambda_n = 0\) und damit ist \(\{L(b_i)\}_{i=1,\ldots,n}\) ein linear unabhängiges System. Daraus folgt dim\((V_2) \geq n\).
+\end{emphBox}
+
+\textbackslash{}begin\{cor\}
+Sei \(L: \R^n \rightarrow \R^m\). Ist \(m < n\), dann ist \(L\) nicht injektiv. Ist \(m> n\), dann ist \(L\) nicht surjektiv.\textbackslash{}end\{cor\}
+Wir sehen dies auch in den obigen Beispielen von \(\R^2\) nach  \(\R\) (nicht injektiv, aber surjektiv) bzw. von \(\R^2\) nach \(\R^2\) (bijektiv).
+
+Eine lineare Abbildung von \(\R^n\) nach \(\R^m\) können wir durch eine Matrix \(A \in \R^{m \times n}\) darstellen, wir schreiben
+\begin{equation*}
+ A = \left( \begin{array}{ccc} a_{11} &\ldots& a_{1n} \\ a_{21} &\ldots &a_ {2n} \\ \vdots &\ddots &\vdots \\ a_{m1} &\ldots& a_{mn} \end{array} \right)
+\end{equation*}
+wobei
+\begin{equation*}
+ \left( \begin{array}{c} a_{1i} \\ a_{2i}  \\ \vdots \\ a_{mi}  \end{array} \right) = L(e_i)
+\end{equation*}
+ist. An dieser Stelle müssen wir das erste Mal darauf achten, ob wir Zeilen  oder Spaltenvektoren schreiben.Ein Zeilenvektor ist dann eine Matrix in \(\R^{1 \times n}\), ein Spaltenvektor in \(\R^{m \times 1}\).Solange wir keine Matrizen verwenden ist die Unterscheidung unerheblich, aber etwa bei der Konstruktion von \(A\) oder bei der Multiplikation einer Matrix mit einem Vektor wird dies wichtig. Letztere können wir definieren, in dem wir wieder die Matrix \(A\) mit dem linearen Operator \(L\) identifizieren. Ist \(x\) ein Spaltenvektor, dann schreiben wir
+\begin{equation*}
+ A x := L(x) = \left( \begin{array}{c} \sum_{i=1}^n a_{1i} x_i \\ \sum_{i=1}^n a_{2i} x_i \\ \vdots \\ \sum_{i=1}^n a_{mi} x_i  \end{array} \right) .
+\end{equation*}
+Damit berechnen wir also immer das Skalarprodukt einer Zeile von \(A\) (ein Zeilenvektor der Länge \(n\)) mit dem Vektor \(x\) (ein Spaltenvektor der Länge \(n\). Wir werden sehen, dass dies auch bei allgemeiner Matrixmultiplikation der Fall ist. Um diese zu definieren können wir einfach die Hintereinanderausführung linearer Operatoren betrachten. Sind \(L_1: \R^n \rightarrow \R^m\) und  \(L_2: \R^m \rightarrow \R^k\) dargestellt durch Matrizen \(A \in \R^{m \times n}\) bzw. \(B \in \R^{k \times n}\), dann definieren wir das Matrixprodukt \(C = BA \in \R^{n \times k}\) als Darstellung der Abbildung \(x \mapsto L_2(L_1(x))\). Damit ist insbesondere
+\begin{equation*}
+ C e_j = BAe_j = B (\sum_{k=1}^n a_{ik} \delta_{kj})_{i=1,\ldots,m} = B (a_{ij})_{i=1,\ldots,m} = (\sum_{p=1}^m b_{ip} a_{pj})_{i=1,\ldots,k}.
+\end{equation*}
+Insgesamt gilt dann
+\begin{equation*}
+ C = BA =  (\sum_{p=1}^m b_{ip} a_{pj})_{i=1,\ldots,k; j=1,\ldots,m} .
+\end{equation*}
+
+\section{Lineare Gleichungssysteme}
+\label{\detokenize{vektorraeume/LGS:lineare-gleichungssysteme}}\label{\detokenize{vektorraeume/LGS::doc}}
+Im Folgenden werden wir uns mit linearen Gleichungssystemen der Form
+\begin{equation*}
+\begin{matrix}
+a_{11} x_1 &+& a_{12}x_2 &+& \ldots &+& a_{1n}x_n &=& y_1 \\
+a_{21} x_1 &+& a_{22}x_2 &+& \ldots &+& a_{2n}x_n &=& y_2 \\
+\vdots &&  \vdots && \ddots && \vdots && \vdots \\
+a_{m1} x_1 &+& a_{m2}x_2 &+& \ldots &+& a_{mn}x_n &=& y_m
+\end{matrix}
+\end{equation*}
+mit \(m,n \in \N\), \(a_{ij} \in \R\) und \(y_i \in \R\). Die Unbekannten sind dabei \(x_i \in \R\). Schreiben wir die \(x_i\) und \(y_i\) jeweils wieder in einen Spaltenvektor \(x\) bzw. \(y\) und die \(a_{ij}\) in eine Matrix \(A \in \R^{m \times n}\), so erhalten wir die kürzere Matrixform
+\begin{equation*}
+ A x = y .
+\end{equation*}
+Ist \(m=n=1\), so können wir einfach durch \(A\) dividieren um die Gleichung zu lösen, für größere \(m\) und \(n\) benötigen wir eine Verallgemeinerung dieses Vorgangs.
+Wir wissen schon, dass die Lösung nur dann eindeutig ist, wenn das homogene System \(A x = 0\) nur die eindeutige Lösung \(x=0\) hat. Ist dies nicht der Fall, dann nennen wir
+\begin{equation*}
+ {\cal N}(A) = \{ x \in \R^n ~|~ Ax = 0 \}
+\end{equation*}
+den Nullraum der Matrix \(A\) (analog definieren wir den Nullraum einer linearen Abbildung). Wegen der Linearität prüft man leicht nach, dass \({\cal N}(A)\) ein Unterraum des \(\R^n\) ist. Wir nennen
+\begin{equation*}
+ \text{Rg}(A) := n - \text{dim}({\cal N}(A))
+\end{equation*}
+den Rang der Matrix \(A\). Dazu definieren wir den Range (oder auch das Bild) von \(A\) als
+\begin{equation*}
+ {\cal R}(A) = \{ y \in \R^m~|~\exists x \in \R^N: y = Ax\}.
+\end{equation*}\label{vektorraeume/LGS:example-0}
+\begin{example}{}{}
+
+
+
+Die Matrix
+\begin{equation*}
+ A = \left(\begin{matrix} 1 & 2 & 1 \\ 1 & 0 & 0  \\ 2 & 2 & 1  \end{matrix} \right)
+\end{equation*}
+hat den Nullraum
+\begin{equation*}
+ {\cal N}(A) = \{ x \in \R^3 ~|~x_1=0, x_3= -x_2\} =\{ \left(\begin{matrix} 0 \\ t  \\ -t  \end{matrix} \right) ~|~ t \in \R\}
+\end{equation*}
+und den Range
+\begin{equation*}
+ {\cal R}(A) = \{ y \in \R^3~|~y_3 = y_1 + y_2\}=\{ \left(\begin{matrix} s \\ t  \\ s+t  \end{matrix} \right) ~|~ s,t \in \R\}
+\end{equation*}
+Hier ist der Rang zwei, dies ist gleich der Dimension von \({\cal R}(A)\).
+\end{example}
+\label{vektorraeume/LGS:lemma-1}
+\begin{lemma}{}{}
+
+
+
+Sei dim\((V)=n\) und für \(k < n\) sei \(\{b_1,\ldots,b_k\}\) eine linear unabhängige Menge. Dann existieren \(b_{k+1}, \ldots, b_n\), sodass \(\{b_1,\ldots,b_n\}\) eine Basis von \(V\) ist.
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Wir wählen nacheiander \(b_{j+1} \in \) lin\((\{b_1,\ldots,b_j\})\) für \(j=k,\ldots,n-1\) und sehen dann\( \{b_1,\ldots,b_j,b_{j+1} \}\) ist linear unabhängig. Für \(j=n-1\) sind wir dann bei einer Basis von \(V\) angekommen.
+\end{emphBox}
+\label{vektorraeume/LGS:lemma-2}
+\begin{lemma}{}{}
+
+
+
+Sei \(A \in \R^{m \times n}\). Dann gilt Rg\((A)=\)dim \(({\cal R}(A))\).
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(k=\)dim\(({\cal N}(A))\) und \(\{b_1,\ldots,b_k\}\) eine Basis von \({\cal N}(A)\). Dann können wir nach dem obigen Lemma zu einer Basis \(\{b_1,\ldots,b_n\}\) erweitern. Nun sehen wir, dass \(\{Ab_{k+1},\ldots,Ab_n\}\) ein Erzeugendensystem für \({\cal R}(A)\). Andererseits sehen wir auch, dass \(\{Ab_{k+1},\ldots,Ab_n\}\) linear unabhängig ist. Nehmen wir an es gibt \(\lambda_i \in \R\) mit
+\begin{equation*}
+ 0 = \sum_{i=k+1}^n \lambda_i A b_i = A(\sum_{i=k+1}^n \lambda_i b_i).
+\end{equation*}
+Da per Konstruktion \(\sum_{i=k+1}^n \lambda_i b_i\) nur dann im Nullraum von A liegt, falls \(\sum_{i=k+1}^n \lambda_i b_i = 0\) ist, folgt \(\lambda_i=0\)  wegen der linearen Unabhängigkeit der \(b_i\).
+Damit ist \(n-k=\)Rg\((A)=\)dim\(({\cal R}(A))\).
+\end{emphBox}
+
+Wir sehen, dass der Rang angibt wie groß der Raum möglichen \(y\) ist, für die \(Ax = y\) lösbar ist. Andererseits gibt uns der Rang auch Information über die mögliche Anzahl der Lösungen, wenn das Problem lösbar ist. Grundlage dafür ist folgendes Resultat:
+\label{vektorraeume/LGS:lemma-3}
+\begin{lemma}{}{}
+
+
+
+Sei \(x_0 \in \R^n\) eine Lösung von \(A x = y\). Dann ist die Menge aller Lösungen gegeben durch
+\begin{equation*}
+ x_0 + {\cal N}(A) = \{ x \in \R^n ~|~x=x_0+z, z \in {\cal N}(A)\}.
+\end{equation*}\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(x_0\) eine Lösung, dann gilt für \(z \in {\cal N}(A)\) auch
+\begin{equation*}
+ A(x_0+z) = Ax_0  + A_z =y,
+\end{equation*}
+also ist \(x_0 + z\) Lösung. Ist umgekehrt \(x\) eine weitere Lösung neben \(x_0\), dann gilt
+\begin{equation*}
+ A(x-x_0)  = Ax - Ax_0= y - y=0,
+\end{equation*}
+also ist \(x \in x_0 + {\cal N}(A)\).
+\end{emphBox}
+
+Allgemein nennen wir für einen Teilraum \(U \subset V\) und \(x \in V\) die Menge  \(M= x + U\) eine \emph{lineare Mannigfaltigkeit}.
+
+
+\subsection{Transponierte Matrizen und Skalarprodukte}
+\label{\detokenize{vektorraeume/LGS:transponierte-matrizen-und-skalarprodukte}}
+Zu einer Matrix \(A=(A_{ij})_{i=1,\ldots,m;j=1,\ldots,n} \in \R^{m \times n}\) definieren wir die transponierte Matrix \(A^T
+\in \R^{n \times m} \) als
+\begin{equation*}
+ A^T =  (A_{ji})_{i=1,\ldots,n;j=1,\ldots,m}.
+\end{equation*}
+Die transponierte Matrix entsteht durch Wechseln zwischen Zeilen und Spalten, die Zeilen von \(A\) sind die Spalten von \(A^T\) und umgekehrt. Wir sehen leicht, dass \((A^T)^T = A \) gilt und darüber hinaus rechnen wir
+\begin{equation*}
+ (AB)^T = (\sum_{p } A_{jp} B_{pi} ) = (\sum_{p } B_{pi} A_{jp}  ) = B^T A^T.
+\end{equation*}
+Eine Matrix heisst symmetrisch, wenn \(A=A^T\) gilt.
+
+Wir beachten, dass wir \(A^T A \in \R^{n \times n}\) und \(AA^T \in \R^{m \times m}\) berechnen können, während \(A A \) für \(m \neq n\) nicht definiert ist. Deshalb sind die Ausdrücke \(AA^T\) und \(A^T A\)  geeignete Verallgemeinerung des Quadrats auf eine Matrix. Im Fall von Vektoren \(x \in \R^{n \times 1}\) können wir
+\begin{equation*}
+ x^T x = \sum_{i=1}^n x_i^2 \in \R
+\end{equation*}
+berechnen und sehen \(x^T x > 0\) für \(x \neq 0.\)  Als Verallgemeinerung des Betrags definieren wir die Euklidische Norm
+\begin{equation*}
+ \Vert x \Vert := \sqrt{x^T x}.
+\end{equation*}
+Allgemeiner können wir für zwei Vektoren \(x,y \in \R^{n \times n}\) das \emph{Skalarprodukt}
+\begin{equation*}
+ x \cdot y := x^T y = y^T x =  \sum_{i=1}^n x_i y_i
+\end{equation*}
+definieren. Das Skalarprodukt erlaubt eine Verallgemeinerung von Orthogonalität, wir sagen \(x\) und \(y\) sind orthogonal, wenn\( x^T y  = 0.\) Dies können wir auch für Basen definieren:
+\label{vektorraeume/LGS:definition-4}
+\begin{definition}{}{}
+
+
+
+Eine Basis \(\{b_1,\ldots,b_n\}\) der \(\R^n\) heisst Orthogonalbasis, falls \(b_i^T b_j = 0\) für \(i \neq j\) gilt. Gilt zusätzlich \(\Vert b_i \Vert=1\) für \(i=1,\ldots,n\), dann sprechen wir von einer Orthonormalbasis. Analog definieren wir eine Orthogonalbasis oder Orthonormalbasis eines beliebigen Unterraums \(U \subset \R^n\).
+\end{definition}
+
+Wir können aus einer beliebigen Basis \(\{b_1,b_2, \ldots,b_n\}\) eine Orthonormalbasis konstruieren, mit dem sogenannten \emph{Gram Schmidt Verfahren}. Dabei beginnen wir mit \(b_1\) und normieren es einfach zu \(\tilde b_1 = \frac{b_1}{\Vert b_1\Vert}\). Wir beachten, dass \(\Vert b_1\Vert \neq 0\) gilt, da sonst \(b_1=0\) wäre und die Annahme einer Basis falsch wäre. \(\tilde b_2\) konstruieren wir als Linearkombination \(\tilde b_2 = \alpha \tilde b_1 + \beta b_2\) mit \(\alpha, \beta \in \R\), die wir so bestimmen, dass
+\begin{align*}
+0 &=  \tilde b_1^T \tilde b_2 = \alpha \tilde b_1^T \tilde b_1 + \beta \tilde b_1^T b_2\\
+1 &=  \tilde b_2^T \tilde b_2 = \alpha^2 \tilde b_1^T \tilde b_1 + 2 \alpha \beta \beta \tilde b_1^T b_2 + \beta^2 b_2^T b_2.
+\end{align*}
+Wegen \(1 = \tilde b_1^T \tilde b_1 = \Vert \tilde b_1 \Vert^2\) folgt aus der ersten Gleichung
+\begin{equation*}
+ \alpha = - \beta \tilde b_1^T b_2.
+\end{equation*}
+Setzen wir dies in die zweite Gleichung ein, so folgt
+\begin{equation*}
+ 1 = \beta^2 ( b_2^T b_2 - (\tilde b_1^T b_2)^2).
+\end{equation*}
+Dies Gleichung hat einer reelle Lösung \(\beta\), da wegen der Cauchy Schwarz Ungleichung (siehe Vorkurs) gilt
+\begin{equation*}
+ (\tilde b_1^T b_2)^2 \leq \Vert \tilde b_1 \Vert^2 \Vert b_2 \Vert^2 =  b_2^T b_2 ,
+\end{equation*}
+mit Gleichheit wenn \(\tilde b_1\) und \(b_2\) linear abhängig sind. Dies ist wegen der Basiseigenschaft ausgeschlossen, also ist
+\begin{equation*}
+ \beta = \frac{1}{\sqrt{b_2^T b_2 - (\tilde b_1^T b_2)^2}}\end{equation*}
+eine positive reelle Zahl.Nun gehen wir schrittweise weiter so vor und konstruieren \(\tilde b_{j+1}\) als Linearkombination von \(\tilde b_1, \ldots, \tilde b_j\) und \(b_{j+1}\), aus den Gleichungen
+\begin{equation*}
+ \tilde b_i^T \tilde b_{j+1} = 0, \qquad i=1,\ldots,j
+\end{equation*}
+und
+\begin{equation*}
+ \tilde b_{j+1}^T \tilde b_{j+1} = 1.
+\end{equation*}
+Das Vorgehen ist dabei völlig analog zur Bestimmung von \(\tilde b_2\), aus den ersten \(j\) Gleichungen können wir die ersten \(j\) Koeffizienten durch den Koeffizienten von \(\tilde b_{j+1}\) ausdrücken und diesen wieder aus der letzten Gleichung bestimmen.
+Wir bemerken, dass wir im Fall einer Orthonormalbasis \(\{b_1,\ldots,b_n\}\) die Koeffizienten durch Skalarprodukte ausdrücken können. Ist
+\begin{equation*}
+ x = \sum_{i=1}^n \lambda_i b_i,
+\end{equation*}
+dann gilt
+\begin{equation*}
+ b_j^T x = \sum_{i=1}^n \lambda_i b_j^T b_i = \lambda_j.
+\end{equation*}
+Also erhalten wir
+\begin{equation*}
+ x= \sum_{i=1}^n (b_i^T x) b_i.
+\end{equation*}
+Wir sehen dann auch nochmal eine allgemeine Version des Satz von Pythagoras, es gilt
+\begin{equation*}
+ \Vert x \Vert^2 = \sum_{i=1}^n (b_i^T x)^2.
+\end{equation*}
+Nun wenden wir uns noch ein wenig dem Range und dem Nullraum von Operatoren zu. Insbesondere betrachten wir \({\cal R}(A)\) und \({\cal N}(A^T)\). Wir werden sehen, dass diese Räume orthogonal sind. Wir sprechen von zwei orthogonalen Unterräumen \(U\) und \(V\), wenn \(u^T v = 0\) für alle \(u \in U\) und \(v \in V\) gilt. Damit gilt insbesondere \(U \cap V = \{0\}\).
+\label{vektorraeume/LGS:theorem-5}
+\begin{theorem}{}{}
+
+
+
+Es gilt
+\begin{equation*}
+ \R^m  = {\cal R}(A) \oplus {\cal N}(A^T), \qquad \R^n = {\cal R}(A^T) \oplus {\cal N}(A ),
+\end{equation*}
+dazu sind die beiden Teilräume jeweils orthogonal.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Wir zeigen zunächst die Orthogonalität. Ist \(y=Ax \in {\cal R}(A)\) und \(z \in {\cal N}(A^T)\), dann gilt
+\begin{equation*}
+ z^T y = z^T A x = (A^T z)^T x = 0.
+\end{equation*}
+Damit folgt insbesondere, dass die Summe aus den beiden Unterräumen direkt ist und wir müssen nur noch nachweisen, dass sie auch gleich dem \(\R^m\) ist. Sei zunächst \(\{b_1,\ldots,b_k\}\) eine Basis von \({\cal R}(A)\) und \(\{b_{k+1},\ldots,b_m\}\) eine Basiserweiterung. Dann können wir mit dem Gram Schmidt Verfahren eine Orthonormalbasis  \(\{\tilde b_1,\ldots, \tilde b_m\}\)
+konstruieren. Da \(\{\tilde b_1, \ldots, \tilde b_k\}\) aus Linearkombinationen von \(\{b_1, \ldots b_k\}\) entsteht, ist es eine Orthonormalbasis von \({\cal R}(A)\). Für \(j > k\) gilt nun \(\tilde b_i^T \tilde b_j = 0\) für \(j \leq k\) und damit auch
+\begin{equation*}
+ y^T \tilde b_j = (Ax)^T \tilde b_j = x^T (A^T \tilde b_j) = 0
+\end{equation*}
+für alle \(x \in \R^n\) und damit \(y \in {\cal R}(A)\). Insbesondere folgt daraus \(A^T \tilde b_j = 0\) für \(j > k\). Damit ist \(\tilde b_j \in {\cal N}(A^T)\). Wegen \(\R^m  = \)lin\((\{\tilde b_i\}_{i=1,\ldots,m})\) folgt dann direkt
+\begin{equation*}
+ \R^m  = {\cal R}(A) \oplus {\cal N}(A^T).
+\end{equation*}
+Die zweite Identität folgt direkt aus der ersten wegen \((A^T)^T = A\).
+\end{emphBox}
+
+Neben dem Skalarprodukt können wir auch das äußere Produkt \(x \otimes y = x y^T \in \R^{n \times n}\) berechnen. Für die Matrix \(A=x y^T\) gilt \(A z = x(y^T z)\), d.h. alle Elemente von \({\mathcal R}(A)\) sind skalare Vielfache von \(x\). Ist \(x \neq 0\) ist deshalb Rg\((A) = \)dim\(({\mathcal R}(A))\).
+
+
+\subsection{Lösbarkeit}
+\label{\detokenize{vektorraeume/LGS:losbarkeit}}
+Basierend auf Skalarprodukten und der transponierten Matrix können wir auch eine Lösbarkeitsbedingung für das lineare Gleichungssystem \(A x = y\) herleiten. Es gilt
+\begin{equation*}
+ z^T y = z^T A x = (A^T z)^T x.
+\end{equation*}
+Ist nun \(z \in {\cal N}(A^T)\), so muss \(z^T y = 0\) sein. Dies ist aber nicht nur notwendige, sondern auch hinreichende Bedingung.
+\label{vektorraeume/LGS:theorem-6}
+\begin{theorem}{}{}
+
+
+
+\(Ax=y\) ist lösbar, genau dann wenn \(z^T y = 0\) für alle \(z \in {\cal N}(A^T)\) gilt.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Die eine Richtung haben wir schon oben gesehen. Nun nehmen wir an, \(z^T y = 0\) für alle \(z \in {\cal N}(A^T)\) gilt.
+\end{emphBox}
+\label{vektorraeume/LGS:example-7}
+\begin{example}{}{}
+
+
+
+Sei
+\begin{equation*}
+A = \left(  \begin{matrix} 2 & 1 \\ 1  & 0 \\ -1 & 1\end{matrix} \right), \qquad A^T = \left(  \begin{matrix}
+2 & 1 & -1 \\ 1 & 0 & 1 \end{matrix} \right).
+\end{equation*}
+Dann gilt
+\begin{equation*}
+ {\cal N}(A^T) = t \begin{pmatrix} 1 \\ - 3 \\ -1\end{pmatrix},
+\end{equation*}
+also ist \(Ax =y\) lösbar, wenn \(y_1 - 3y_2 -y_3 = 0\) gilt.
+\end{example}
+
+Wir haben nun die Lösbarkeit und die Lösungsmenge untersucht, als nächsten Schritt wollen wir nun konkreter die Berechnung einzelner Lösungen untersuchen. Dazu können wir das Problem auf eines mit quadratischer Matrix zurückführen: Ist \(m > n\), dann haben wir ein überbestimmtes Problem. Statt \(Ax = y\) können wir
+\begin{equation*}
+A^TA x = A^T y
+\end{equation*}
+lösen. Ist \({\cal N}(A^T) =\{0\}\), dann ist eine Lösung von \(A^T A x=A^Ty\) auch eine Lösung von \(Ax =b\). Andernfalls ist das Problem nur lösbar, wenn \(y\) orthogonal zu \({\cal N}(A^T)\) ist und damit ist wiederum jede Lösung von \(A^T A x=A^Ty\) auch eine Lösung von \(Ax =y\).
+
+Ist \(m < n\), dann ist das Problem unterbestimmt und der Nullraum von \(A\) in jedem Fall nichttrivial. Hier können wir eine Lösung der Form \(x=A^T z\) suchen, also das Problem \(AA^T z = y\) lösen.
+
+
+\subsection{Quadratische Matrizen und Inverse}
+\label{\detokenize{vektorraeume/LGS:quadratische-matrizen-und-inverse}}
+Im Folgenden betrachten wir nun Systeme \(Ax = y\) mit \(A \in \R^{n \times n}\). In diesem Fall können wir bestenfalls das System für alle \(y \in \R^n\) eindeutig lösen, d.h. die Abbildung \(x \mapsto Ax\) ist bijektiv.
+\label{vektorraeume/LGS:definition-8}
+\begin{definition}{}{}
+
+
+
+Eine Matrix \(A \in \R^{n \times n}\) heisst regulär, wenn für alle \(y \in \R^n\) eine eindeutige Lösung des linearen Systems \(Ax=y\) existiert. Andernfalls heisst \(A\) singulär.
+\end{definition}
+
+Ist \(A\) regulär, dann können wir insbesondere eindeutige Lösungen \(b_i\) zu \(y=e_i\) finden, d.h. \(A b_i = e_i\). Schreiben wir die Spaltenvektoren \(b_i\) in eine Matrix \(B \in \R^{n \times n}\) und analog die Spaltenvektoren \(e_i\) in die Einheitsmatrix \(I\), dann gilt \(AB=I\), d.h. \(B\) ist die inverse Matrix \(B=A^{-1}\). Also ist eine reguläre Matrix immer invertierbar im Sinne der Matrixmultiplikation und umgekehrt, denn für invertierbare Matrizen ist \(x=A^{-1}y\) die eindeutige Lösung.Wir sehen, dass die invertierbaren Matrizen im \(\R^{n \times n}\) eine Gruppe bilden mit \(I\) als neutralem Element, diese wird allgemeine lineare Gruppe (englisch general linear group), GL\((n)\) genannt.
+\label{vektorraeume/LGS:example-9}
+\begin{example}{}{}
+
+
+
+Sei
+\begin{equation*}
+ A = \left( \begin{matrix} a_{11} & a_{12} \\ a_{21} & a_{22}  \end{matrix} \right).
+\end{equation*}
+Wir berechnen \(b_1\) als Lösung von \(Ax = e_1\), d.h.
+\begin{equation*}
+ a_{11} b_{11} + a_{12} b_{21} = 1, \quad a_{21} b_{11} + a_{22} b_{21} = 0.
+\end{equation*}
+Wir multiplizieren die erste Gleichung mit \(a_{22}\) und die zweite mit \(-a_{12}\) und addieren die beiden, dann erhalten wir
+\begin{equation*}
+ (a_{11} a_{22} - a_{12} a_{21}) b_{11} = a_{22},
+\end{equation*}
+also, falls der Nenner ungleich Null ist
+\begin{equation*}
+ b_{11} = \frac{a_{22}}{a_{11} a_{22} - a_{12} a_{21}}, \quad b_{21} = \frac{-a_{12}}{a_{11} a_{22} - a_{12} a_{21}}.
+\end{equation*}
+Analog können wir die zweite Spalte \(b_2\) der inversen Matrix als
+\begin{equation*}
+ b_{22} = \frac{a_{11}}{a_{11} a_{22} - a_{12} a_{21}}, \quad b_{12} = \frac{-a_{21}}{a_{11} a_{22} - a_{12} a_{21}}\end{equation*}
+berechnen. Damit erhalten wir
+\begin{equation*}
+ A^{-1} = \frac{1}{a_{11} a_{22} - a_{12} a_{21}} \left( \begin{matrix} a_{22} & -a_{12} \\ - a_{21} & a_{11}  \end{matrix} \right).
+\end{equation*}
+Die Inverse existiert unter der Bedingung, dass \(a_{11} a_{22} - a_{12} a_{21} \neq 0\).
+\end{example}
+
+
+\subsection{Determinanten}
+\label{\detokenize{vektorraeume/LGS:determinanten}}
+Im letzen Beispiel haben wir gesehen, dass wir die Invertierbarkeit einer \(2 \times 2\) Matrix durch eine einzige Zahl, die sogenannte Determinante
+\begin{equation*}
+ \text{det}(A) = a_{11} a_{22} - a_{12} a_{21}
+\end{equation*}
+charakterisieren können. Wir werden sehen, das eine analoge Eigenschaft für \(n \times n\) Matrizen gilt. Wie im Fall von \(n=2\) werden wir Determinanten als Summe über Produkte definieren, in denen wir aus jeder Zeile (bzw. Spalte) genau ein Element verwenden. Dann müssen wir nur noch die jeweiligen Vorzeichen klären. Um dies strukturiert zu machen führen wir das Konzept der Permutation ein:
+\label{vektorraeume/LGS:definition-10}
+\begin{definition}{}{}
+
+
+
+Eine \emph{Permutation} ist eine bijektive Abbildung \(\pi: \{1,\ldots,n\} \rightarrow \{1,\ldots,n\} \). Die Menge der Permutationen zur Mächtigkeit \(n\) nennen wir \(\Pi_n\).
+\end{definition}
+
+Wir unterscheiden monotone Teile der Permutation (\(i \leq j\) und \(\pi(i) \leq \pi(j)\)), sowie nichtmonotone (\(i < j\) und \(\pi(i) > \pi(j)\)), letztere nennt man \emph{Fehlstände} oder Inversionen
+\begin{equation*}
+ \text{inv}(\pi): = \{(i,j)~|~i<j, \pi(i) > \pi(j) \}.
+\end{equation*}
+Basierend darauf definieren wir das Vorzeichen einer Permutation als
+\begin{equation*}
+ \text{sign}(\pi) =(-1)^{|\text{inv}(\pi)|}.
+\end{equation*}\label{vektorraeume/LGS:example-11}
+\begin{example}{}{}
+
+
+
+Wir betrachten nochmal die Determinante einer \(2 \times 2\) Matrix. Dort gibt es zwei Permutationen in \(\Pi_2\), nämlich
+\begin{equation*}
+ \pi_1(1)=1, \pi_1(2)=2,
+\end{equation*}
+und
+\begin{equation*}
+ \pi_2(1)=2, \pi_2(2)=1.
+\end{equation*}
+\(\pi_1\) hat keine Fehlstände, inv\((\pi_1)=\emptyset\), also sign\((\pi_1)=1\). \(\pi_2\) hat einen Fehlstand, inv\((\pi_2)={(1,2)}\),
+also  sign\((\pi_2)=-1\). Die Determinante können wir dann als
+\begin{equation*}
+ \text{det}(A) =  \text{sign}(\pi_1) a_{1\pi_1(1)} a_{2\pi_1(2)} + \text{sign}(\pi_2) a_{1\pi_2(1)} a_{2\pi_2(2)}\end{equation*}
+schreiben.
+\end{example}
+
+Die Einsicht des obigen Beispiels ist die Grundlage der Definition der Determinante einer \(n \times n\) Matrix:
+\label{vektorraeume/LGS:definition-12}
+\begin{definition}{}{}
+
+
+
+Sei \(A \in \R^{n \times n}\), dann ist die Determinante von \(A\) definiert als
+\begin{equation*}
+ \text{det}(A) = \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \prod_{j=1}^n a_{j \pi(j)}.
+\end{equation*}\end{definition}
+
+Wir sehen, dass durch die Eigenschaft der Permutationen in jedem Produkt genau ein Element aus jeder Zeile bzw. Spalte steht.
+\label{vektorraeume/LGS:example-13}
+\begin{example}{}{}
+
+
+
+Für die Einheitsmatrix \(I \in \R^{n \times n}\) gilt det\((I)=1\).
+\end{example}
+\label{vektorraeume/LGS:example-14}
+\begin{example}{}{}
+
+
+
+Für eine Dreiecksmatrix  \(A \in \R^{n \times n}\) (\(A_{ij} = 0\) für \(i< j\) oder \(A_{ij} = 0\) für \(i> j\)) gilt det\((A)=\prod_{i=1}^n A_{ii}\).
+\end{example}
+
+Eine besonders wichtige Eigenschaft ist der sogenannte Determinantenproduktsatz, der auf einer einfachen Eigenschaft von Permutationen beruht, die wir hier nicht beweisen:
+\label{vektorraeume/LGS:lemma-15}
+\begin{lemma}{}{}
+
+
+
+Seien \(\pi_1, \pi_2 \in \Pi_n\), dann gilt
+\begin{equation*}
+  \text{sign}(\pi_1 \circ \pi_2) = \text{ sign}(\pi_1) \text{ sign}(\pi_2).
+\end{equation*}\end{lemma}
+
+Wir wollen nun die Determinante eines Produkts \(A B\) berechnen, dazu betrachten wir zunächst wieder das Beispiel \(n=2\)
+\label{vektorraeume/LGS:example-16}
+\begin{example}{}{}
+
+
+
+Wir berechnen det\((AB)\) für
+\begin{equation*}
+ A = \left( \begin{matrix} a_{11} & a_{12} \\ a_{21} & a_{22}  \end{matrix} \right),  B = \left( \begin{matrix} b_{11} & b_{12} \\ b_{21} & b_{22}  \end{matrix} \right).
+\end{equation*}
+Dann ist
+\begin{equation*}
+ C = A B = \left( \begin{matrix} a_{11} b_{11} + a_{12} b_{21}   & a_{11} b_{12} + a_{12} b_{22} \\ a_{21} b_{11} + a_{22} b_{21}    & a_{21} b_{12} + a_{22} b_{22}   \end{matrix} \right)
+\end{equation*}
+und
+\begin{equation*}
+ \text{det}(C) = (a_{11} b_{11} + a_{12} b_{21}) (a_{21} b_{12} + a_{22} b_{22}) - (a_{11} b_{12} + a_{12} b_{22}) (a_{21} b_{11} + a_{22} b_{21}).
+\end{equation*}
+Nach ausmultiplizieren erhalten wir
+\begin{align*}
+  \text{det}(C) =& (a_{11} b_{11} a_{21} b_{12}  +  a_{11} b_{11} a_{22} b_{22} + a_{12} b_{21} a_{21} b_{12} +  a_{12} b_{21}a_{22} b_{22}) - \\& (a_{11} b_{12} a_{21} b_{11} + a_{11} b_{12}  a_{22} b_{21} + a_{12} b_{22} a_{21} b_{11} + a_{12} b_{22} a_{22} b_{21}) \\ =& a_{11} a_{22} b_{11}  b_{22} - a_{12} a_{21}   b_{11} b_{22}   -  a_{11} a_{22}  b_{12}  b_{21} +  a_{12}  a_{21} b_{12} b_{21}  +\\ &    a_{11} a_{21} b_{11}  b_{12} - a_{11} a_{21} b_{11}  b_{12}   +  a_{12} a_{22} b_{21} b_{22}  -  a_{12} a_{22} b_{21} b_{22}  \\=& (a_{11} a_{22} - a_{12} a_{21} )(b_{11}  b_{22}  - b_{12}  b_{21} ).
+\end{align*}
+Wir sehen also det\((C)\)= det\((A)\) det\((B)\).
+\end{example}
+\label{vektorraeume/LGS:theorem-17}
+\begin{theorem}{}{}
+
+
+
+Seien \(A,B \in \R^{n \times n}\). Dann gilt
+\begin{equation*}
+ \text{det}(AB) = \text{ det}(A) \text{ det}(B).
+\end{equation*}\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(C=AB\), dann gilt
+\begin{align*}
+\text{det}(C) &= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \prod_{i=1}^n C_{i\pi(i)} \\
+&= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \prod_{i=1}^n ( \sum_{j_i=1}^n a_{ij_i} b_{j_i\pi(i)})  .
+%&= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \sum_{j=1}^n \prod_{i_j=1}^n (  a_{i_j j} b_{j \pi(i_j)}) \\
+%&= \sum_{j=1}^n \sum_{\pi \in \Pi_n} \text{ sign}(\pi)  \prod_{i_j=1}^n (  a_{i_j j} b_{j \pi(i_j)}).
+\end{align*}
+Nun wollen wir die letzte Summe und das Produkt vertauschen, d.h. ein allgemeines Distributivgesetz anwenden.Dazu definieren wir die Indexmenge \( I_n = \{1,\ldots,n\}^n\), die als mögliche Einträge für die Vektoren \(J=(j_1,\ldots,j_n)\) vorkommen. Nun sehen wir, dass
+\begin{equation*}
+ \prod_{i=1}^n ( \sum_{j_i=1}^n a_{ij_i} b_{j_i\pi(i)}) = \sum_{J \in I_n} \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}
+\end{equation*}
+gilt, was wir bei der Determinantenberechnung verwenden können:
+\begin{align*} \text{det}(C) &= \sum_{\pi \in \Pi_n} \text{ sign}(\pi) \sum_{J \in I_n} \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}  \\ &= \sum_{J \in I_n}  \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}\end{align*}\begin{equation*}
+ \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)} = a_{kj_k} b_{j_k\pi(k)} a_{\ell j_k} b_{j_k\pi(\ell)} \prod_{i=1, i \neq k, i \neq \ell}^n  a_{ij_i} b_{j_i\pi(i)}.\end{equation*}
+Sei nun \(\tilde \pi\) die Permutation mit \(\tilde \pi(\ell)=k, \tilde \pi(k) = \ell\) und \(\tilde \pi(i)=\pi(i)\) sonst. Dann hat \(\tilde \pi\) einen zusätzlichen Fehlstand zu \(\pi\), d.h. sign\((\tilde \pi)= - \) sign\((\pi)\). Darüber hinaus gilt
+\begin{equation*}
+ \prod_{i=1}^n  a_{ij_i} b_{j_i\tilde \pi(i)} = a_{kj_k} b_{j_k\pi(\ell)} a_{\ell j_k} b_{j_k\pi(k)} \prod_{i=1, i \neq k, i \neq \ell}^n  a_{ij_i} b_{j_i\pi(i)} = \prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)} .\end{equation*}
+Damit sind heben sich die beiden Terme mit \(\pi\) und \(\tilde \pi\) in der Summe über alle Permutationen weg und wir folgern für solche \(J\)
+\begin{equation*}
+ \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{ij_i} b_{j_i\pi(i)}  = 0.
+\end{equation*}
+Damit bleiben nur jene \(J\) übrig, in denen jeder Index in \(\{1,\ldots,n\}\) genau einmal vorkommt. Diese entsprechen genau den Permutationen in \(\Pi_n\). Damit erhalten wir
+\begin{equation*}
+ \text{det}(C) =  \sum_{\sigma \in \Pi_n} \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{i\sigma(i)} b_{\sigma(i) \pi(i)} =  \sum_{\sigma \in \Pi_n} \sum_{\pi \in \Pi_n} \text{ sign}(\pi)\prod_{i=1}^n  a_{i\sigma(i)} \prod_{j=1}^n  b_{j \pi(\sigma^{-1}(j))},
+\end{equation*}
+wobei \(\sigma^{-1}\) die Umkehrung von \(\sigma\) und damit wieder eine Permutation ist. Nun sehen wir leicht, dass
+\begin{equation*}
+ \{ \pi \circ \sigma^{-1}~|~\pi \in \Pi_n\} = \Pi_n
+\end{equation*}
+gilt und wegen des obigen Lemmas zum Vorzeichen der Hintereinanderausführung gilt
+\begin{equation*}
+ \text{sign}(\pi \circ \sigma^{-1}) = \text{ sign}(\pi) \text{ sign}(\sigma^{-1}) = \text{ sign}(\pi) \text{ sign}(\sigma )\end{equation*}
+bzw.
+\begin{equation*}
+  \text{sign}(\pi ) = \text{ sign}(\sigma)  \text{sign}(\pi \circ \sigma^{-1}).
+\end{equation*}
+Also folgt
+\begin{align*} \text{det}(C) &=  \sum_{\sigma \in \Pi_n} \sum_{\pi' \in \Pi_n} \text{ sign}(\pi') \text{ sign}(\sigma) \prod_{i=1}^n  a_{i\sigma(i)} \prod_{j=1}^n  b_{j \pi'(j)} \\  &= \sum_{\sigma \in \Pi_n} \sum_{\pi' \in \Pi_n} \text{ sign}(\pi') \text{ sign}(\sigma) \prod_{i=1}^n  a_{i\sigma(i)} \prod_{j=1}^n  b_{j \pi'(j)}  \\  &= \sum_{\sigma \in \Pi_n} \text{ sign}(\sigma) \prod_{i=1}^n  a_{i\sigma(i)} \sum_{\pi' \in \Pi_n} \text{ sign}(\pi')   \prod_{j=1}^n  b_{j \pi'(j)}  = \text{ det}(A) \text{ det}(B). \end{align*}\end{emphBox}
+
+\begin{emphBox}{Gabriel Cramer}{}
+
+\href{https://de.wikipedia.org/wiki/Gabriel\_Cramer}{Gabriel Cramer} (* 31. Juli 1704 in Genf; † 4. Januar 1752 in Bagnols sur Cèze, Frankreich) war ein Genfer Mathematiker.
+\end{emphBox}
+
+Aus dem Determinantenproduktsatz können wir die Cramer’sche Regel, eine Formel für die Lösung des Gleichungssystems \(Ax=y\) herleiten, aus der wir auch die Lösbarkeit sehen, wenn die Determinante nicht verschwindet. Sei dazu \(X_i \in \R^{n \times n}\) die Matrix, die aus der Einheitsmatrix entsteht, wenn man die \(i\) te Spalte durch \(x\) ersetzt. Dann gilt \(A X_i = A_i\), wobei \(A_i \in \R^{n \times n}\) die Matrix ist, die aus \(A\) entsteht, wenn man die \(i\) te Spalte durch \(y=Ax\) ersetzt.  Nach dem Determinantenproduktsatz gilt dann
+\begin{equation*}
+ \det(A) \det(X_i) = \det(A_i).
+\end{equation*}
+Wir sehen sofort \(\det(X_i)=x_i\), also ist das System für jeden Eintrag von \(x\) lösbar, wenn \(\det(A)\neq 0\) und wir erhalten
+\begin{equation*}
+ x_i = \frac{\det(A_i)}{\det(A)},
+\end{equation*}
+die sogenannte Cramer’sche Regel.
+\label{vektorraeume/LGS:theorem-18}
+\begin{theorem}{}{}
+
+
+
+\(A \in \R^{n \times n}\) ist regulär genau dann wenn \(\det(A)\neq 0\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Die eine Richtung sehen wir sofort aus der Cramer’schen Regel. Ist umgekehrt \(A\) regulär, dann folgt aus dem Determinantenproduktsatz
+\begin{equation*}
+ \det(A) \det(A^{-1}) = \det(I) = 1,
+\end{equation*}
+damit kann \(\det(A)\) nicht verschwinden. \(\square\)
+\end{emphBox}
+
+Die Cramer’sche Regel ist theoretisch sehr angenehm, aber ungeeignet für die praktische Anwendung bei großen linearen Gleichungssystemen, da die Berechnung der Determinanten sehr aufwändig ist. Es gibt \(n!\) verschiedene Permutationen, für jede davon ist ein Produkt aus \(n \) Faktoren zu berechnen. Deshalb betrachten wir alternative Verfahren und überlegen zuerst für welche Matrizen das System \(Ax=y\) einfach zu lösen ist.
+\label{vektorraeume/LGS:definition-19}
+\begin{definition}{}{}
+
+
+\begin{itemize}
+\item {} 
+\(D \in \R^{n \times n}\) heisst Diagonalmatrix, wenn \(D_{ij} =0 \) für \(i \neq j\) gilt.
+
+\item {} 
+\(L \in \R^{n \times n}\) heisst linke untere Dreiecksmatrix, wenn \(L_{ij} =0 \) für \(i < j\) gilt.
+
+\item {} 
+\(R \in \R^{n \times n}\) heisst rechte obere Dreiecksmatrix, wenn \(R_{ij} =0 \) für \(i > j\) gilt.
+
+\end{itemize}
+\end{definition}
+
+Im Fall einer Diagonalmatrix ist die Lösung von \(Dx = y\) direkt durch
+\begin{equation*}
+ x_i = \frac{y_i}{D_{ii}}
+\end{equation*}
+gegeben. Im Fall einer linken unteren Dreiecksmatrix berechnen wir die Einträge nacheinander (sogenanntes Vorwärtseinsetzen)
+\begin{align*}
+x_1 &= \frac{y_1}{L_{11}} \\
+x_2 &= \frac{y_2-L_{21} x_1}{L_{22}} \\
+x_3 &= \frac{y_3-L_{31} x_1-L_{32} x_2}{L_{33}} \\
+\ldots
+\end{align*}
+Im Fall einer rechten oberen Dreiecksmatrix gehen wir umgekehrt vor und beginnen beim letzten Eintrag (sogenanntes Rückwärtseinsetzen)
+\begin{align*}
+x_n &= \frac{y_n}{R_{nn}} \\
+x_{n-1} &= \frac{y_{n-1}-R_{n-1,n} x_n}{R_{n-1,n-1}} \\
+x_{n-2} &= \frac{y_{n-2}-R_{n-2,n} x_n-R_{n-2,n-1} x_{n-1}}{R_{n-2,n-2}} \\
+\ldots
+\end{align*}
+Dasselbe Vorgehen ist auch möglich, wenn wir eine Matrix \(A\) haben, die sich durch Vertauschen von Zeilen und Spalten in eine linkere und rechte obere Dreiecksmatrix überführen lässt. Zeilenvertauschung bedeutet, dass wir Gleichungen umnummerieren, Spaltenvertauschung, dass wir Variablen umnummerieren.
+Wie können wir nun ein allgemeines System \(Ax = y\) mit \(A \in \R^{n \times n}\) lösen ? Die grundlegende Idee ist es, das System auf eine Dreiecksform zu bringen und dann Vorwärts  oder Rückwärtseinsetzen zu benutzen. Dies erreicht das sogenannte Gauss Verfahren. Hier beginnen wir mit der ersten Gleichung
+\begin{equation*}
+ a_{11}x_1 + a_{12} x_2 + \ldots + a_{1n} x_n = y_n.
+\end{equation*}
+Ist \(a_{11}=0\) so vertauschen wir die erste Gleichung mit einer anderen Gleichung \(k \in \{2,\ldots,n\}\), sodass \(a_{k1} \neq 0\) gilt. Ist \(a_{k1}=0\) für alle \(k\), so sehen wir sofort dass \(\det(A)=0\) und damit die Gleichung nicht eindeutig lösbar (wenn überhaupt) ist.  Nachdem wir ggf. vertauscht haben, können wir eine Linearkombination von Zeilen durchführen, die die Lösungsmenge unverändert lässt. Wir ziehen für \(k=2,\ldots,n\) ein Vielfaches \(\ell_{k1} = - \frac{a_{k1}}{a_{11}}\) der ersten von der \(k\) ten Zeile ab. \(\ell_{k1}\) ist genau so gewählt, dass \(x_1\) aus den Gleichungen verschwindet. Wir erhalten mit
+\begin{equation*}
+\tilde a_{ki} = a_{ki} + \ell_{k1} a_{1i}, \qquad \tilde y_k = y_k + \ell_{k1} y_1
+\end{equation*}
+die Gleichungen
+\begin{equation*}
+ \sum_{i=2}^n \tilde a_{ki} x_i = \tilde y_k, \qquad k=2,\ldots,n.
+\end{equation*}
+Damit haben wir ein lineares Gleichungssystem in \(\R^{n-1 \times n-1}\) und können nun analog weiter verfahren. Die neue erste Variable ist \(x_2\) und die neue erste Zeile ist die Gleichung mit \(k=2\). Nun können wir völlig analog vorgehen bis wir bei \(k=n\) angekommen sind, hier erhalten wir einfach ein \(1x1\) System für \(x_n\), das wir direkt lösen können. Nun berechnen wir die anderen Variablen durch Rückwärtseinsetzen. Für \(x_{n-1}\) verwenden wir die erste Gleichung im \(2 \times 2\) System aus dem vorletzten Schritt, für \(x_{n-2}\) die erste Gleichung aus dem \(3 \times 3\) System im drittletzten Schritt und so weiter.  Dieses Verfahren nennt man Gauss Elimination.
+\label{vektorraeume/LGS:example-20}
+\begin{example}{}{}
+
+
+
+Wir betrachten \(Ax=y\) mit
+\begin{equation*}
+ A = \left( \begin{matrix} 1 & 2 & 2 \\ 2 & 4 & 3 \\ 0 & -1 & 1 \end{matrix} \right).
+\end{equation*}
+Hier ist \(a_{11}=1\), damit \(\ell_{21} = -2, \ell_{31} = 0. \) Als erste Gleichung, die wir uns für später merken, erhalten wir
+\begin{equation*}
+ x_1 + 2 x_2 + 2x_3 = y_1
+\end{equation*}
+und nach Elimination von \(x_1\) aus der zweiten und dritten Gleichung bleibt das \(2 \times 2 \) System.
+\begin{equation*}
+ 0 x_2 -x_3 = y_2 -2 y_1, \qquad -x_2 + x_3 = y_3.
+\end{equation*}
+Da nun der erste Koeffizient \(0\) ist, vertauschen wir die beiden Gleichungen und haben dann das gestaffelte System (entsprechend rechter oberer Dreiecksmatrix\textbackslash{}begin\{align*\}
+x\_1 + 2 x\_2 + 2x\_3 \&= y\_1 \textbackslash{}  x\_2 + x\_3 \&= y\_3 \textbackslash{}
+ x\_3 \&= y\_2  2 y\_1
+\textbackslash{}end\{align*\}Durch Rückwärtseinsetzen berechnen wir
+\begin{equation*}
+ x_3=2y_1 - y_2, \quad x_2 = 2 y_1 -y_2 -y_3, \quad x_1 = - 7 y_1 + 4y_2 +2 y_3.
+\end{equation*}\end{example}
+
+Um die Rechnung bei der Gauss Elimination ein wenig strukturierter durchführen zu können definieren wir eine rechte obere Dreiecksmatrix \(R \in \R^{n \times n}\) im Laufe des Verfahrens. Im ersten Schritt setzen wir \(R_{1i}=a_{1i}\) für \(i=1,\ldots,n\) und \(z_1=y_1\). Im zweiten Schritt setzen wir \(R_{21} =0\) und \(R_{2i} = \tilde a_{2i}\) für \(i=2, \ldots,n\) mit \(\tilde a_{2i}\) wie oben, und so fahren wir auch für \(k=3\) bis \(m\) fort. Damit haben wir am Ende ein System \(Rx=z\), das wir durch Rückwärtseinsetzen lösen können.
+\label{vektorraeume/LGS:example-21}
+\begin{example}{}{}
+
+
+
+Für
+\begin{equation*}
+ A = \left( \begin{matrix} 1 & 2 & 2 \\ 2 & 4 & 3 \\ 0 & -1 & 1 \end{matrix} \right)
+\end{equation*}
+wie oben erhalten wir
+\begin{equation*}
+ R = \left( \begin{matrix} 1 & 2 & 2 \\ 0 & -1 & 1 \\ 0 & 0 & -1 \end{matrix} \right).
+\end{equation*}\end{example}
+
+Wir sehen auch, dass wir eigentlich keine Gleichungen schreiben müssen, sondern alles direkt auf Ebene der Matrix \(A\) und des Vektors \(y\) durchführen können. Die wichtigste Erkenntnis ist, dass eine Linearkombination von Zeilen in einer Matrix der Multiplikation mit einer Matrix von links entspricht. Wir führen dies für das Gauss Verfahren nochmal durch. Im ersten Schritt multiplizieren wir mit einer Matrix
+\begin{equation*}
+L_1 = \left( \begin{matrix} 1 & 0 & 0 & \ldots & 0 \\ \ell_{21} & 1 & 0 &\ldots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\ \ell_{n1} & 0 & 0 & \ldots & 1 \end{matrix} \right)
+\end{equation*}
+bzw. im \(k\) ten Schritt mit einer Matrix \(L_k\), die neben der Diagonale nur Einträge in der \(k\) ten Spalte unter der Diagonale hat, d.h.
+\begin{equation*}
+(L_k)_{ij} = \left\{ 
+\begin{matrix} 
+1 & i=j \\ 0 & i < j \\ 
+0 & i > j, j \neq k \\ 
+\ell_{ik} & i=k,j >k
+\end{matrix}
+\right\}.
+\end{equation*}
+Damit entspricht das Gauss Verfahren einfach einer wiederholten Multiplikation des Systems \(Ax=y\) mit solchen Matrizen, bis wir
+\begin{equation*}
+ Rx = L_{n-1} L_{n-2} \ldots L_2 L_1 A x = L_{n-1} L_{n-2} Ax  \ldots L_2 L_1 y = z
+\end{equation*}
+erhalten. Man prüft leicht nach, dass \(L_k\) invertierbar ist mit einer sehr einfach zu berechnenden Inverse
+\begin{equation*}
+(L_k^{-1})_{ij} = \left\{ \begin{matrix} 1 & i=j \\ 0 & i < j \\ 0 & i > j, j \neq k \\ - \ell_{ik} & i=k,j > k\end{matrix}\right.
+\end{equation*}
+Damit können wir auch die Identität
+\begin{equation*}
+  R  = L_{n-1} L_{n-2} \ldots L_2 L_1 A
+\end{equation*}
+nochmal neu betrachten. Es gilt dann
+\begin{equation*}
+ A =  L_1^{-1}   L_2^{-1} \ldots  L_{n-2}^{-1} L_{n-1}^{-1} R  = L R,
+\end{equation*}
+wobei \(L= L_1^{-1}   L_2^{-1} \ldots  L_{n-2}^{-1} L_{n-1}^{-1}\). Nun kann man leicht nachrechnen, dass \(L\) eine linke untere Dreiecksmatrix ist, deren Diagonaleinträge alle gleich eins sind. Wir haben also damit \(A\) in eine linke untere und eine rechte obere Dreiecksmatrix zerlegt. Hat man dies einmal berechnet, dann ist es genauso aufwändig, sich die Matrix \(A\) zu merken wie \(L\) und \(R\) (für \(L\) die Einträge unter der Diagonale, für \(R\) auf und über der Diagonale). Sind \(L\) und \(R\) bekannt, kann das System \(Ax=y\) leicht gelöst werden durch
+\begin{equation*}
+ L z = y, \qquad Rx = z.
+\end{equation*}
+Damit müssen wir einmal und Vorwärts  und einmal Rückwärtseinsetzen.
+
+Kommt nun auch die Vertauschung von Zeilen hinzu, so benötigen wir auch dafür geeignete Matrizen, die sogenannten Permutationsmatrizen. Zu jeder Permutation \(\pi \in \Pi_n\) können wir eine Permutationsmatrix \(P^\pi \in \R^{n \times n}\) definieren als \(P_{ij}^\pi = (\delta_{i\pi(i)})\), d.h. \(P^\pi\) hat in jeder Zeile und Spalte einen Eintrag eins und \(n-1\) Einträge null. Eine Multiplikation \(PA\) entspricht einer Vertauschung von Zeilen \(AP\) einer Vertauschung von Spalten. Im Fall des Gauss Verfahrens benötigt man in jedem Schritt nur die Vertauschung der \(k\) ten Zeile mit einer Zeile \(p \geq k\), d.h. die Einträge von \(P^\pi\) entsprechen in \(n-2\) Zeilen der Einheitsmatrix, nur in Zeile \(k\) ist das \(p\) te Element gleich eins und umgekehrt. Das Gauss Verfahren mit Vertauschung ist dann
+\begin{equation*}
+ R=L_{n-1} P_{n-1} L_{n-2} P_{n-2}\ldots L_2 P_2 L_1 P_1 A ,
+\end{equation*}
+mit entsprechenden Permutationsmatrizen \(P_j\) für Zweiervertauschungen. Die Zerlegung insgesamt kann dann am Ende in der Form
+\begin{equation*}
+ P A = L R
+\end{equation*}
+geschrieben werden mit einer allgemeinen Permutationsmatrix \(P\).
+
+

@@ -49,9 +49,10 @@ wobei wir die Stetigkeit von $g$ verwenden, um $g(x) \rightarrow g(x_0)$ zu erha
 Für (iv) zeigen wir nur den Fall $f=1$, der Rest ergibt sich dann aus der Produktregel. Es gilt\begin{align*}
 \frac{\frac{1}{g(x)} - \frac{1}{g(x_0)}}{x-x_0} &= - \frac{g(x) - g(x_0)}{g(x) g(x_0) (x-x_0)} \end{align*}
 Da $g(x_0) \neq 0$ folgt wegen der Stetigkeit von $g$ auch, dass $g(x) \neq 0$ in einer Umgebung von $x_0$ gilt, also ist der Quotient dort auch wohldefiniert und es gilt $\frac{1}{g(x)} \rightarrow \frac{1}{g(x_0)}$. Daraus folgt direkt die Quotientenregel. $\square$
+````
 
 ````{prf:example}
-Da wir schon gezeigt haben, dass jedes Monom differenzierbar ist, sehen wir mit (i) und (ii) auch, dass jedes Polynom
+Da wir schon gezeigt haben, dass jedes Monom differenzierbar ist, sehen wir mit $i)$ und $ii)$ auch, dass jedes Polynom
 
 ```{math}
  p: \R \rightarrow \R, x \mapsto \sum_{j=0}^m a_j x^j

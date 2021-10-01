@@ -11,7 +11,6 @@ Eine Funktion $f:M_1 \rightarrow M_2$ heißt
 
 * _bijektiv_, wenn sie injektiv und surjektiv ist.
 
-\end{*ize} 
 ````
 
 Eine bijektive Funktion ordnet jedem Element aus $M_1$ genau ein Element aus $M_2$ zu und umgekehrt. Damit existiert  auch eine Umkehrfunktion $f^{-1}: M_2 \rightarrow M_1$ (wir beachten, dass die Umkehrfunktion $f^{-1}(x)$ nicht zu verwechseln ist mit $f(x)^{-1} = \frac{1}{f(x)}$). Die Umkehrfunktion erfüllt

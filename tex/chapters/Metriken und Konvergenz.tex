@@ -1,0 +1,773 @@
+\chapter{Metriken und Konvergenz}
+\label{\detokenize{metrik/metrik:metriken-und-konvergenz}}\label{\detokenize{metrik/metrik::doc}}
+Im Folgenden wollen wir uns mit allgemeinen Konvergenzbegriffen beschäftigen. Wir haben schon die Konvergenz reeller Folgen betrachtet, dazu haben wir Abstände über den Betrag gemessen. Im \(\R^N\) haben wir die Euklidische Norm als geeignetes Maß für Abstände kennengelernt. Dies wollen wir nun verallgemeinern.
+
+
+\section{Metriken und Normen}
+\label{\detokenize{metrik/normen:metriken-und-normen}}\label{\detokenize{metrik/normen::doc}}\label{metrik/normen:definition-0}
+\begin{definition}{}{}
+
+
+
+Eine Menge \(X\) mit einer Abbildung \(d: X \times X \rightarrow \R\), welche die folgenden Eigenschaften erfüllt, heisst \emph{metrischer Raum}:
+\begin{itemize}
+\item {} 
+\(d(x,y) \geq 0\) für alle \(x,y \in X\) und \(d(x,y) = 0\) genau dann wenn \(x=y\) (Positivität).
+
+\item {} 
+\(d(x,y) = d(y,x)\) für alle \(x,y \in X\)  (Symmetrie).
+
+\item {} 
+\(d(x,z) \leq d(x,y) + d(y,z)\) für alle \(x,y,z \in X\)  (Dreiecksungleichung).
+Die Abbildung \(d\) heisst dann Metrik auf \(X\).
+
+\end{itemize}
+\end{definition}
+
+Eine Metrik ist ein abstrakter Abstandsbegriff auf Mengen, wir beachten, dass \(X\) keinerlei Vektorraumstruktur haben muss.  Liegt eine solche vor, dann kann man einfache Metriken passend zu Linearkombinationen definieren, wie wir auch aus bekannten Beispielen sehen.In \(\R\) ist \(d(x,y) = |x-y|\) eine Metrik, im \(\R^n\) ist \(d(x,y) = \Vert x -y \Vert \) eine Metrik, wobei \(\Vert \cdot \Vert\) die Euklidische Norm ist. Allgemein definieren wir Normen folgendermaßen:
+\label{metrik/normen:definition-1}
+\begin{definition}{}{}
+
+
+
+Eine Abbildung \(\Vert \cdot \Vert:X\rightarrow \R\) auf einem Vektorraum \(X\) heisst \emph{Norm}, wenn die folgenden Eigenschaften erfüllt sind:
+\begin{itemize}
+\item {} 
+\(\Vert x \Vert \geq 0\) für alle \(x \in X\) und \(\Vert x \Vert = 0\) genau dann wenn \(x=y\) (Positivität).
+
+\item {} 
+\(\Vert \alpha x \Vert = |\alpha|~\Vert x \Vert\) für alle \(\alpha \in \R\). \(x\in X\)  (Absolute Homogenität).
+
+\item {} 
+\(\Vert x+y \Vert \leq\Vert x  \Vert + \Vert y  \Vert\) für alle \(x,y  \in X\)  (Dreiecksungleichung).
+\((X,\Vert \cdot \Vert)\)  nennen wir dann einen normierten Raum oder normierten Vektorraum.
+
+\end{itemize}
+\end{definition}
+
+Aus Normen erhalten wir immer spezielle Metriken, wie der folgende Satz zeigt:
+\label{metrik/normen:theorem-2}
+\begin{theorem}{}{}
+
+
+
+Ist \((X,\Vert \cdot \Vert)\) ein normierter Raum, dann ist \(d\) definiert durch
+\begin{equation*}
+ d(x,y) = \Vert x - y \Vert ,\qquad \forall x,y \in X
+\end{equation*}
+eine Metrik auf \(X\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Wir sehen sofort, dass \(d(x,y) \geq 0\) wegen der Positivität der Norm gilt und \(d(x,y) = \Vert x - y\Vert = 0\) gilt nur für \(x-y = 0\), also \(x=y\). Die Symmetrie folgt aus der absoluten Homogenität mit der Wahl \(\alpha = 1\), dann ist
+\begin{equation*}
+ d(y,x) = \Vert y- x \Vert = \Vert (-1)(x-y) \Vert = |-1|~\Vert x -y \Vert = \Vert x-y \Vert = d(x,y).
+\end{equation*}
+Die Dreiecksungleichung ist  gleichbedeutend zur Dreiecksungleichung einer Metrik wenn wir als Vektorraumelemente (\(x\) und \(y\)) \(x-y\) und \(y-z\) einsetzen.
+\end{emphBox}
+\label{metrik/normen:example-3}
+\begin{example}{}{}
+
+
+
+Wir prüfen kurz nach, dass die Euklidische Norm
+\begin{equation*}
+ \Vert x \Vert = \sqrt{\sum_{i=1}^N x_i^2}
+\end{equation*}
+im \(\R^N\) tatsächlich eine Norm gemäß der obigen Definition ist.Es gilt per Definition \(\Vert x \Vert \geq 0\) und \(\Vert x \Vert = 0\) impliziert \(\sum_{i=1}^N x_i^2=0\). Dies ist nur möglich für \(x_1=x_2=\ldots=x_N=0\), also \(x=0\). Die absolute Homogenität erhalten wir aus
+\begin{equation*}
+ \Vert \alpha x \Vert = \sqrt{\sum_{i=1}^N \alpha ^2 x_i^2} = \sqrt{\alpha^2 (\sum_{i=1}^N \alpha ^2 x_i^2)} = |\alpha|~ \sqrt{\sum_{i=1}^N x_i^2}.\end{equation*}
+Die Dreiecksungleichung können wir äquivalent quadrieren, da sie aus lauter positiven Termen besteht. Also ist sie äquivalent zu
+\begin{equation*}
+  {\sum_{i=1}^N (x_i+y_i)^2} \leq \sum_{i=1}^N x_i^2 + \sum_{i=1}^N y_i^2 + 2 \sqrt{\sum_{i=1}^N x_i^2} \sqrt{\sum_{i=1}^N y_i^2}.
+\end{equation*}
+Quadrieren wir die Summe auf der linken Seite aus und kürzen die entsprechenden Terme mit \(x_i^2\) und \(y_i^2\), so bleibt
+\begin{equation*}
+ 2 \sum_{i=1}^N x_i y_i \leq 2 \sqrt{\sum_{i=1}^N x_i^2} \sqrt{\sum_{i=1}^N y_i^2},
+\end{equation*}
+was aus der Cauchy Schwarz Ungleichung folgt.
+\end{example}
+
+Weitere Beispiele für Normen sind (siehe auch die Übung)
+\begin{itemize}
+\item {} 
+Die \(p\) Norm
+
+\end{itemize}
+\begin{equation*}
+ \Vert x \Vert_p = \left( \sum_{i=1}^N |x_i|^p \right)^{1/p}
+\end{equation*}
+ist für \(1 \leq p < \infty\) eine Norm auf \(\R^N\) (eine Verallgemeinerung der Euklidischen Norm).
+\begin{itemize}
+\item {} 
+Die Maximumsnorm
+
+\end{itemize}
+\begin{equation*}
+ \Vert x \Vert_\infty = \max_{i=1,\ldots,N} |x_i|
+\end{equation*}
+ist eine Norm auf \(\R^N\).
+\begin{itemize}
+\item {} 
+Die Supremumsnorm
+
+\end{itemize}
+\begin{equation*}
+ \Vert x \Vert_\infty = \sup_{i \in \N} |x_i|
+\end{equation*}
+ist eine Norm auf \(\ell^\infty(\N)\).Aus dem letzten Beispiel sehen wir auch, dass wir Normen verwenden können um Teilräume zu definieren. \(\ell^\infty(\N)\) ist ja genau jener Teilraum von \(\R^\N\) auf dem die Supremumsnorm endliche Werte anwendet. Haben wir also eine Abbildung von \(X  \) nach \(\R \cup \{+ \infty\}\), sodass die Eigenschaften der Positivität, absoluten Homogenität und Dreiecksungleichung erfüllt sind, so ist die Teilmenge \(\tilde X\) auf der die Abbildung endlich ist, ein normierter Raum. Die Teilraumeigenschaft überprüfen wir direkt mit der absoluten Homogenität und Dreiecksungleichung.
+Nicht alle Metriken entstehen aus Normen, ein wichtiges Beispiel einer Metrik, die nicht aus einem normierten Vektorraum entsteht ist die geodätische Distanz auf der Erdoberfläche. Um dies mathematische zu vereinfachen, betrachten wir \(X\) als den Einheitskreis im \(R^2\) und als Metrik \(d(x,y)\) die Länge des kürzeren Kreisbogens zwischen \(x\) und \(y\). Dieser entspricht genau dem (spitzen) Winkel \(\varphi \in [0,\pi]\) zwischen \(x\) und \(y\). Offensichtlich ist \(d(x,y)\) dann nichtnegativ und \(d(x,y)=0\) gilt nur, wenn der Winkel gleich Null ist, d.h. \(x =y\). Auch die Symmetrie ist offensichtlich, und die Dreiecksungleichung folgt, da der Winkel zwischen \(x\) und \(z\) entweder der Summe aus den Winkeln zwischen \(x\), \(y\) sowie \(y\), \(z\) ist, oder kleiner als einer der beiden Winkel.
+
+
+\section{Konvergente Folgen}
+\label{\detokenize{metrik/konvfolgen:konvergente-folgen}}\label{\detokenize{metrik/konvfolgen::doc}}
+Mit Hilfe einer Metrik können wir Konvergenz von Folgen und ähnliche Begriffe definieren. Zunächst beginnen wir mit Umgebungen:
+\label{metrik/konvfolgen:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \(X\) ein metrischer Raum und \(\epsilon \in \R_+\). Dann heisst
+\begin{equation*}
+ U_\epsilon(x) = \{ y \in X~|~d(x,y) < \epsilon \}
+\end{equation*}
+\(\epsilon\) Umgebung von \(x\)
+\end{definition}
+\label{metrik/konvfolgen:definition-1}
+\begin{definition}{}{}
+
+
+
+Sei \(X\) ein metrischer Raum und \(M \subset X\). \(M\) heisst offen, wenn für alle \(x \in M\) eine \(\epsilon\) Umgebung \(U_\epsilon(x) \subset M\) existiert (wobei \(\epsilon\) von \(x\) abhängen kann). \(M\) heisst abgeschlossen, wenn \(X \setminus M\) offen ist.
+\end{definition}
+
+Wir beachten, dass die leere Menge immer offen ist, damit ist \(X =X \setminus \emptyset\) abgeschlossen. Andererseits ist \(X\) natürlich auch offen, da ja alle \(\epsilon\) Umgebungen per Definition Teilmengen von \(X\) sind. Damit ist auch wieder \(\emptyset =  X \setminus X\) abgeschlossen. Die leere Menge und \(X\) sind aber die einzigen Mengen, die in \(X\) abgeschlossen und offen sind.
+\label{metrik/konvfolgen:example-2}
+\begin{example}{}{}
+
+
+
+Sei \(X=\R\) und \(a < b \in \R\), dann ist das Intervall \([a,b]\) abgeschlossen und das Intervall \((a,b)\) offen. Die Intervalle \([a,b)\) bzw. \((a,b]\) sind weder abgeschlossen noch offen.
+\end{example}
+\label{metrik/konvfolgen:example-3}
+\begin{example}{}{}
+
+
+
+Sei \(X=\R^2\) mit der Euklidischen Norm, dann sind \(\epsilon\) Umgebungen genau Kreisscheiben um \(x\) mit Radius \(\epsilon\), wobei der Kreis mit Radius \(\epsilon\) ausgenommen ist.
+\end{example}
+
+\begin{emphBox}{Augustin Cauchy}{}
+
+\href{https://de.wikipedia.org/wiki/Augustin-Louis\_Cauchy}{Augustin Louis Cauchy} (* 21. August 1789 in Paris; † 23. Mai 1857 in Sceaux) war ein französischer Mathematiker.
+\end{emphBox}
+
+Konvergente und Cauchy Folgen in metrischen Räumen können wir exakt wie in \(\R\) definieren, in dem wir einfach die spezielle Betragsmetrik durch eine allgemeine Metrik ersetzen:
+\label{metrik/konvfolgen:definition-4}
+\begin{definition}{}{}
+
+
+
+Sei \(X\) ein metrischer Raum und \((x_n)\) eine Folge in \(X\). \((x_n)\) heißt konvergent mit Grenzwert \(\overline{x}\), wenn
+\begin{equation*}
+ \forall \epsilon  >0 ~\exists n_0 \in \N ~\forall n \geq n_0: d(x_n, \overline{x}) < \epsilon.
+\end{equation*}
+\((x_n)\) heisst Cauchy Folge, wenn
+\begin{equation*}
+ \forall \epsilon  >0 ~\exists n_0 \in \N ~\forall m,n \geq n_0: d(x_n, x_m) < \epsilon.
+\end{equation*}\end{definition}
+
+Wir sehen also, dass konvergente Folgen ab einem bestimmten Index in einer \(\epsilon\) Umgebung um den Grenzwert liegen.
+
+Es gilt folgendes einfach zu beweisende Resultat:
+\label{metrik/konvfolgen:nullfolgenmetrik}
+\begin{lemma}{}{}
+
+
+
+Die Folge \((x_n)\) im metrischen Raum \((X,d)\) konvergiert genau dann gegen \(\overline{x}\), wenn \(d(x_n,\overline{x})\) eine Nullfolge in \(\R\) ist.
+\end{lemma}
+
+Genau wie in \(\R\) können wir auch leicht folgendes Resultat beweisen:
+\label{metrik/konvfolgen:theorem-6}
+\begin{theorem}{}{}
+
+
+
+Jede konvergente Folge in einem metrischen Raum ist eine Cauchy Folge.
+\end{theorem}
+
+Wir haben schon gesehen, dass nicht in jedem metrischen Raum die Umkehrung gilt (nicht alle Cauchy Folgen konvergieren), z.B. in \(\Q\) mit der Betragsmetrik.
+\label{metrik/konvfolgen:definition-7}
+\begin{definition}{}{}
+
+
+
+Ein metrischer Raum \((X,d)\) heisst vollständig, wenn jede Cauchy Folge in \(X\) konvergiert.
+\end{definition}
+
+Wir kennen bereits ein Beispiel eines vollständigen Raums, nämlich \(\R\) mit der Betragsnorm. Dies gilt auch im \(\R^N\):
+\label{metrik/konvfolgen:theorem-8}
+\begin{theorem}{}{}
+
+
+
+Für \(N \in \N\) ist \(\R^N\) mit der durch die Euklidischen Norm definierten Metrik vollständig.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Ist \((x_n)\) eine Cauchy Folge in \(\R^N\), so gilt für die Koordinatenfolge
+\begin{equation*}
+ x_n^{(i)} = e_i \cdot x_n,
+\end{equation*}
+die Ungleichung
+\begin{equation*}
+ | x_n^{(i)} -  x_m^{(i)}  | \leq \sqrt{ \sum_{j=1}^n (x_n^{(j)} -  x_m^{(i)} } = \Vert x_n - x_m \Vert .
+\end{equation*}
+Damit ist \((x_n^{i})\) eine Cauchy Folge in \(\R\) und somit konvergent. Wir bezeichnen den Grenzwert mit \(\overline{x}^{(i)}\) und den Vektor
+\(\overline{x}=(\overline{x}^{(i)})_{i=1,\ldots,N}\).
+
+Nun gibt es für jedes \(\epsilon > 0\) ein \(n_0^{(i)} \in \N\), sodass für alle \( n \geq n_0^{i)}\) gilt:
+\begin{equation*}
+ \vert x_n^{i} -\overline{x}^{(i)} \vert < \frac{\epsilon}{\sqrt{N}}.
+\end{equation*}
+Für \(n_0 = \max_{i=1,\ldots,N} n_0^{(i)}\) folgt.
+\begin{equation*}
+ \forall n \geq n_0: \Vert x_n - \overline{x} \Vert = \sqrt{\sum_{i=1}^N (x_n^{(i)} - \overline{x}^{(i)})^2} < \sqrt{\sum_{i=1}^N \frac{\epsilon^2}N} = \epsilon.
+\end{equation*}
+Damit konvergiert \(x_n\) gegen \(\overline{x}\).
+\end{emphBox}
+
+Mit ähnlichen Argumenten sehen wir, dass eine Folge \((x_n)\) im \(\R^N\) mit der Euklidischen Metrik genau dann konvergiert, wenn alle Koordinatenfolgen \((x_n^{i})\) in \(\R\) konvergieren. Mit den Eigenschaften für Grenzwerte in \(\R\) zeigen wir auch für konvergente Folgen \((x_n)\) und \((y_n)\) im \(\R^N\):
+\begin{align*}
+\lim (x_n + y_n) &= \lim x_n + \lim y_n \\
+\lim (x_n \cdot y_n) &= \lim x_n \cdot \lim y_n.
+\end{align*}
+
+\section{Teilfolgen}
+\label{\detokenize{metrik/teilfolgen:teilfolgen}}\label{\detokenize{metrik/teilfolgen::doc}}
+Nicht immer konvergiert die ganze Folge, wie wir schon in \(\R\) am Beispiel \(x_n = (-1)^n\) sehen. Hier konvergieren offensichtlich die sogenannten Teilfolgen \(x_{2n}\) (gegen \(+1\)) und \(x_{2n+1}\) (gegen \(-1\)), nicht aber die ganze Folge.
+\label{metrik/teilfolgen:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \(K: \N \rightarrow \N\) eine streng monoton wachsende Abbildung (\(K(i) > K(j)\) für \(i > j\)). Dann heisst \((x_{K(n)})_{n \in \N}\) Teilfolge von \((x_n). \)
+\end{definition}
+
+Wir werden im Folgenden für Teilfolgen auch kurz \((x_{k_n})_{n \in \N}\) schreiben.
+Wir können das Problem der Konvergenz von Teilfolgen nun näher untersuchen, dazu führen wir zunächst das Konzept eines Häufungspunktes ein:
+\label{metrik/teilfolgen:definition-1}
+\begin{definition}{}{}
+
+
+
+Sei \((X,d)\) ein metrischer Raum. Dann heisst \(y \in X\) Häufungspunkt der Folge \((x_n) \subset X\), wenn
+\begin{equation*}
+ \forall \epsilon > 0, m \in \N ~\exists n > m: d(x_n,y) < \epsilon.
+\end{equation*}\end{definition}
+\label{metrik/teilfolgen:example-2}
+\begin{example}{}{}
+
+
+
+Die reelle Folge \(x_n = (-1)^n\) besitzt die Häufungspunkte \(+1\) und \(-1\). Gleiches gilt für \(x_n = (-1)^n + \frac{1}{n+1}\).
+\end{example}
+\label{metrik/teilfolgen:theorem-3}
+\begin{theorem}{}{}
+
+
+
+Sei \((X,d)\) ein metrischer Raum und \((x_n)\) eine Folge in \(X\). Dann gilt:
+
+*\(i)\) Ist \(x_n\) konvergent gegen \(\overline{x} \in X\), dann ist \(\overline{x}\) der einzige Häufungspunkt von \((x_n)\).
+*\(ii)\) Ist \(y\) Häufungspunkt von \((x_n)\), dann existiert eine konvergente Teilfolge \((x_{n_k})\) mit Grenzwert \(y\) und umgekehrt.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  (i) Aus der Definition ist klar, dass \(\overline{x}\) Häufungspunkt ist: Sei \(x_n\) konvergent und \(\epsilon > 0\). Dann ist für ein \(n_0 \in \N\) und \(n \geq n_0\) auch \(d(x_n, \overline{x}) < \epsilon\). Falls \(m < n_0\) gilt, können wir \(n=n_0\) wählen, sonst einfach \(n=m+1\). Nehmen wir an \(y \neq \overline{x}\) ist Häufungspunkt und sei \(\epsilon < \frac{d(\overline{x},y)}2\). Dann gilt für alle \(n \geq 0\) wegen der Dreiecksungleichung
+\begin{equation*}
+ d(x_n,y) \geq d(y,\overline{x}) - d(x_n,\overline{x}) > 2 \epsilon - \epsilon = \epsilon,
+\end{equation*}
+ein Widerspruch zur Häufungspunkteigenschaft.
+(ii)Ist \(y\) Häufungspunkt, dann wählen wir hintereinander \(\epsilon_k = \frac{1}k\), \(k \in \N \setminus \{0\}\). Zunächst wählen wir für \(\epsilon_1\) \(m=1\), damit existiert ein \(n_1\), sodass \(d(x_{n_1},y) < 1\). Nun wählen wir induktive für \(\epsilon_{k+1}\)  \(m=n_k\). Dann existiert ein \(n_{k+1} > n_k\) mit
+\begin{equation*}
+ d(x_{n_{k+1}},y) < \frac{1}{k+1}.
+\end{equation*}
+Wir sehen sofort, dass \(x_{n_k}\) gegen \(y\) konvergiert.
+Ist umgekehrt \(y\) Grenzwert einer konvergenten Teilfolge, dann gibt es für jedes \(\epsilon >0 \) und \(m \in \N\) ein \(k_0 \) mit
+\begin{equation*}
+ d(x_{n_k},y) < \epsilon, \qquad \forall n_k \geq n_{k_0},
+\end{equation*}
+also ist \(y\) Häufungspunkt.
+\end{emphBox}
+
+In normierten Räumen können wir wieder Summen von Folgen betrachten. Es gilt jedoch nicht immer, dass die Häufungspunkte von \(x_n+y_n\) die Summe der Häufungspunkte beider Folgen sind. Als Beispiel dafür können wir \(x_n=0\) für \(n\) ungerade und \(x_n=n\) für \(n\) gerade, sowie \(y_n=n\) für \(n\) ungerade und \(y_n=0\) für \(n\) gerade betrachten. Beide Folgen haben den Häufungspunkt \(0\), aber es gilt \(x_n+y_n = n\) für alle \(n \in \N\), damit hat diese Folge keinen Häufungspunkt. Es gilt aber folgendes Resultat:
+\label{metrik/teilfolgen:lemma-4}
+\begin{lemma}{}{}
+
+
+
+Sei \(x_n\) eine Folge mit Häufungspunkt \(z\) und \(y_n\) eine konvergente Folge mit Grenzwert \(y\). Dann ist \(z+y\) ein Häufungswert von \(x_n + y_n\).
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Ist \(z\) Häufungspunkt von \((x_n)\) und \((y_n)\) konvergent, dann gibt es eine Teilfolge \((x_{n_k})\) mit Grenzwert \(z\), die Teilfolge \((y_{n_k})\) ist aber immer noch konvergent gegen \(y\). Also ist \((x_{n_k}+y_{n_k})\) eine konvergente Teilfolge von \((x_n+y_n)\) mit Grenzwert \(z+y\).
+\end{emphBox}
+
+Ein besonders wichtiges Resultat über konvergente Teilfolgen ist der Satz von Bolzano Weierstrass:
+\label{metrik/teilfolgen:theorem-5}
+\begin{theorem}{}{}
+
+
+
+Sei \((x_n) \subset \R^N\) eine beschränkte Folge, d.h. es gibt \(C \in \R\) mit
+\begin{equation*}
+ \Vert x_n \Vert \leq C
+\end{equation*}
+für alle \(n \in \N\). Dann existiert eine konvergente Teilfolge \((x_{n_k})\) mit Grenzwert \(\overline{x}\) und es gilt \(\Vert \overline{x} \Vert \leq C\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Wir beweisen zunächst den Fall \(N=1\) durch sogenannte Bisektion. Wir beginnen mit \(a_0=-C\) und \(b_0=C\), dann ist \(x_n \in [a_0,b_0]\) für alle \(n \in \N\). Wir setzen \(n_0 =0\) und berechnen \(c_0=\frac{a_0+b_0}2\). Eines der beiden Intervalle \([a_0,c_0]\) und \([c_0,b_0]\) muss nun unendlich viele Folgenglieder von \(x_n\) enthalten. Enthält \([a_0,c_0]\) unendlich viele, so setzen wir \(a_1=a_0\), \(b_1=c_0\), andernfalls \(a_1=c_0\), \(b_1=b_0\). Wir wählen nun
+\begin{equation*}
+ n_1 = \min\{n > n_0~|~x_n \in [a_1,b_1] \}.
+\end{equation*}
+Nun gehen wir induktiv weiter.
+Wir nehmen an die ersten Glieder \(x_{n_0},\ldots,x_{n_k}\) der Teilfolge sind gegeben, ebenso Intervalle \([a_j,b_j]\), \(j=0,\ldots,k\),  mit \(x_{n_j} \in [a_j,b_j]\) und unendlich vielen Folgengliedern in \( [a_j,b_j]\).Nun berechnen wir \(c_{k+1}= \frac{a_k + b_k}2\) und machen die gleiche Fallunterscheidung wie im Fall \(k=0\) um\([a_{k+1},b_{k+1}]\) zu berechnen. Dazu definieren wir
+\begin{equation*}
+ n_{k+1} = \min\{n > n_k~|~x_n \in [a_{k+1},b_{k+1}] \}.
+\end{equation*}
+Damit erhalten wir eine unendliche Folge kleiner werdender Intervalle \([a_k,b_k]\), es gilt \(|b_k - a_k|=2^{1-k}C\).Darüber hinaus haben wir eine Teilfolge \(x_{n_k}\) konstruiert, mit \(x_{n_j} \in [a_k,b_k]\) für \(j \geq k\). Damit gilt auch
+\begin{equation*}
+ \vert x_{n_i} - x_{n_j} \vert \leq 2^{1-k} C
+\end{equation*}
+für \(n_i, n_j \geq n_k. \) Daraus sehen wir sofort, dass \((x_{n_j})\) eine Cauchy Folge und damit konvergent ist.
+
+Im \(\R^N\) folgt aus der Beschränktheit von \((x_n)\) auch die Beschränktheit jeder Koordinatenfolge, wegen
+\begin{equation*}
+ \vert x_n^{(i)} \vert \leq \Vert x_n \Vert .
+\end{equation*}
+Nun können wir eine konvergente Teilfolge von \(x_n^{1}\) wählen. Da alle Koordinatenteilfolgen \(x_{n_k}^{(i)}\) immer noch beschränkt sind, wählen wir davon eine weitere Teilfolge, sodass \(x_{n_k}^{(2)}\) konvergiert, natürlich konvergiert dann ja auch \(x_{n_k}^{(1)}\) noch. Durch schrittweises Auswählen weiterer Teilfolgen von Teilfolgen enden wir schliessliche bei einer Teilfolge, für die alle Koordinaten konvergieren und damit auch \((x_{n_k})\) selbst.
+\end{emphBox}
+
+Wir haben den Satz von Bolzano Weierstrass in der Euklidischen Metrik formuliert, der Beweis zeigt aber, dass die Aussage auch für anderen Normen, etwa die Maximumsnorm, gilt, da ja nur die Konvergenz aller Koordinatenfolgen wichtig ist. Der Grund dafür ist die sogenannte Äquivalenz von Normen bzw. Metriken:
+\label{metrik/teilfolgen:definition-6}
+\begin{definition}{}{}
+
+
+
+Zwei Metriken \(d_A\) und \(d_B\) auf \(X\) heissen äquivalent, falls Konstanten \(\beta \geq \alpha > 0\) existieren, sodass
+\begin{equation*}
+\forall x,y \in X: \quad \alpha  d_B(x,y) \leq d_A(x,y) \leq \beta d_B(x,y) .
+\end{equation*}
+Zwei Normen \(\Vert \cdot \Vert_A\) und \(\Vert \cdot \Vert_B\) auf einem Vektorraum \(X\) heissen äquivalent, falls Konstanten \(\beta \geq \alpha > 0\) existieren, sodass
+\begin{equation*}
+\forall x  \in X: \quad \alpha  \Vert x \Vert_B  \leq \Vert x \Vert_A  \leq \Vert x \Vert_B  .
+\end{equation*}\end{definition}
+
+Wir sehen sofort, dass für zwei äquivalente Normen auch die zugeordneten Metriken
+\begin{equation*}
+ d_{A/B}(x,y) = \Vert x -y \Vert_{A/B}
+\end{equation*}
+äquivalent sind.
+Darüber hinaus sehen wir, dass die Konvergenz einer Folge in einer Metrik \(d_A\) auch die Konvergenz in einer äquivalenten Metrik \(d_B\) impliziert. Dazu können wir etwa \cref{metrik/konvfolgen:nullfolgenmetrik} verwenden.
+
+
+\section{Reihen}
+\label{\detokenize{metrik/reihen:reihen}}\label{\detokenize{metrik/reihen::doc}}
+Eine spezielle Form von Folgen sind sogenannte Reihen, die wir als Summen von Folgen betrachten können:
+\label{metrik/reihen:definition-0}
+\begin{definition}{}{}
+
+
+
+Sei \((X,\Vert \cdot \Vert)\) ein normierter Vektorraum und \((x_n)\) eine Folge in \(X\). Dann identifizieren wir die Reihe \(\sum_{k=0}^\infty x_k\) mit der Folge der Partialsummen
+\begin{equation*}
+ s_n = \sum_{k=0}^n x_k.
+\end{equation*}
+Falls die Folge \(s_n\) gegen einen Grenzwert \(s \in  X\) konvergiert, so bezeichnen wir
+\begin{equation*}
+ s = \sum_{k=0}^\infty x_k
+\end{equation*}
+und nennen die Reihe konvergent. Andernfalls nennen wir die Reihe divergent.
+\end{definition}
+
+Wir beachten, dass wir natürlich auch jede Folge \(x_n\) als Reihe
+\begin{equation*}
+ x_n =\sum_{k=0}^n y_k
+\end{equation*}
+schreiben können, mit \(y_0=x_0\) und \(y_k = x_k - x_{k-1}\) für \(k > 0\). Wenn wir aber eine Folge explizit angeben können (etwa auch durch Ausrechnen der Partialsummen), dann sprechen wir eher von einer Folge und behandeln sie auch so. Wenn wir aber die Partialsummen nicht ausrechnen können, benötigen wir eine speziellere Betrachtung.
+\label{metrik/reihen:example-1}
+\begin{example}{}{}
+
+
+
+Für \(q \in \R\) betrachten wir die geometrische Reihe
+\begin{equation*}
+ s_n = \sum_{k=0}^n q^k.
+\end{equation*}
+Wie wir schon gesehen haben, können wir die Partialsummen explizit berechnen. Für \(q=1\) gilt \(s_n = n+1\) und die Reihe ist offensichtlich divergent. Für \(q\neq 1 \)gilt
+\begin{equation*}
+ s_n = \frac{1-q^n}{1-q}.
+\end{equation*}
+Nun sehen wir, dass für \(|q| <1\) gilt \(q^n \rightarrow 0\) für \(n \rightarrow 0\), also erhalten wir den Grenzwert
+\begin{equation*}
+ s  = \sum_{k=0}^\infty q^k = \frac{1}{1-q}.
+\end{equation*}
+Für \(|q|>1\) gilt \(|q^n| \rightarrow \infty\) für \(n \rightarrow \infty\). Wegen der Dreiecksungleichung ist
+\begin{equation*}
+ |s_n| \geq \frac{|q^n|-1}{|q-1|} \rightarrow \infty,
+\end{equation*}
+also divergiert die Reihe.
+Im verbleibenden Fall \(q=-1\) gilt \(s_n=1\) für \(n\) gerade und \(s_n=0\) für \(n\) ungerade. Hier bleiben die Partialsummen zwar beschränkt, aber die Reihe konvergiert nicht.
+\end{example}
+\label{metrik/reihen:example-2}
+\begin{example}{}{}
+
+
+
+Als zweites Beispiel betrachten wir für \(q > 0\) die Reihe
+\begin{equation*}
+ s_n = \sum_{k=0}^n (k+1)^{-q}.
+\end{equation*}
+Hier ist zunächst völlig unklar, ob die Reihe konvergiert oder divergiert. Für \(q=1\) sind die ersten Partialsummen \(1\), \(\frac{3}2\), \(\frac{11}6\), \(\frac{23}{12}\), \(\ldots\) Die Reihe scheint also zu divergieren, aber wir haben kein Kriterium um dies einfach zu entscheiden. Für \(q=2\) sind die ersten Partialsummen \(1\), \(\frac{5}4\), \(\frac{23}{18}\),\(\ldots\) Hier scheint es sich um Konvergenz zu handeln, aber wieder können wir nicht entscheiden, ob nicht einfach langsames Wachstum gegen unendlich vorliegt.
+\end{example}
+
+Im Folgenden wollen wir einfache Kriterien zur Konvergenz einer Reihe kennenlernen. Ein einfaches Beispiel in einem vollständigen normierten Raum erhalten wir aus der Äquivalenz der Konvergenz zur Cauchy Eigenschaft einer Folge:
+\label{metrik/reihen:theorem-3}
+\begin{theorem}{}{}
+
+
+
+Eine Reihe in einem vollständigen metrischen Raum konvergiert genau dann, wenn es für alle \(\epsilon > 0\) ein \(n_0 \in \N\) gibt, sodass
+\begin{equation*}
+ \forall m > n \geq n_0: \quad \Vert \sum_{k=n+1}^m x_k \Vert < \epsilon
+\end{equation*}
+gilt.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Die obige Eigenschaft ist genau äquivalent dazu, dass die Folge \((s_n)\) der Partialsummen eine Cauchy Folge ist, was wiederum äquivalent zur Konvergenz ist.
+\end{emphBox}
+
+Ein sehr nützliches Kriterium ist das \emph{Majorantenkriterium}, dafür definieren wir zunächst den Begriff einer Majorante:
+\label{metrik/reihen:definition-4}
+\begin{definition}{}{}
+
+
+
+Sei \(X\) ein vollständiger normierter Raum und \((x_n)\) eine Folge in \(X\). Dazu sei \((c_n)\) eine Folge in \(\R\) mt \(c_n \geq 0\) für alle \(n \in \N\), sodass für alle \(n \in \N\) gilt:
+\begin{equation*}
+ \Vert x_n \Vert \leq c_n .
+\end{equation*}
+Dann heisst \((c_n)\) bzw. \(\sum_{n=0}^\infty c_n\) Majorante von \((x_n)\) bzw. \(\sum_{n=0}^\infty x_n\).
+\end{definition}
+
+Mit Hilfe von Majoranten können wir wieder Konvergenzkriterien für Reihen in vollständigen normierten Räumen basierend auf Reihen in den positiven reellen Zahlen herleiten:
+\label{metrik/reihen:theorem-5}
+\begin{theorem}{}{}
+
+
+
+Sei \(X\) ein vollständiger normierter Raum und \((c_n)\) eine Majorante von \((x_n)\). Falls \(\sum_{n=0}^\infty c_n\) konvergiert, dann konvergiert auch \(\sum_{n=0}^\infty x_n\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Wegen der Dreiecksungleichung gilt
+\begin{align*}
+\Vert s_m - s_n \Vert &= \Vert \sum_{k=n+1}^m x_k \Vert  \leq \sum_{k=n+1}^m  \Vert x_k \Vert \\
+&\leq \sum_{k=n+1}^m c_k.\end{align*}
+Wegen der Konvergenz der Reihe \(\sum_{n=0}^\infty c_n\) sind die zugehörigen Partialsummen auch eine Cauchy Folge, d.h. für alle \(\epsilon > 0\) existiert ein \(n_0 \in \N\), sodass für \(m > n \geq n_0\) gilt:
+\begin{equation*}
+ \Vert s_m - s_n \Vert \leq \sum_{k=n+1}^m c_k < \epsilon.
+\end{equation*}
+Damit ist auch \((s_n)\) eine Cauchy Folge und somit konvergent.
+\end{emphBox}
+
+Wir beachten, dass wir die Konvergenz von \(s_n=\sum_{k=0}^n c_k\) für \(c_k \geq 0\) relativ einfach entscheiden können. \((s_n)\) ist dann eine monoton steigende Folge, diese konvergiert genau dann wenn sie beschränkt ist. Können wir also ein \(C > 0\) finden mit
+\begin{equation*}
+ \sum_{k=0}^n c_k \leq C \qquad \forall n \in \N ,
+\end{equation*}
+dann konvergiert die Reihe.
+Das Majorantenkriterium können wir speziell für Reihen in \(X=\R\) anwenden. Es gilt, dass \(\sum_{n=0}^\infty x_n\) konvergiert, falls  \(\sum_{n=0}^\infty |x_n|\)  konvergiert, da klarerweise \(|x_n|\) eine Majorante für \(x_n\) ist.Die Umkehrung stimmt aber nicht immer. Wir nennen deshalb eine Reihe in \(\R\) bedingt konvergent, wenn \(\sum_{n=0}^\infty x_n\) konvergiert, aber \(\sum_{n=0}^\infty |x_n|\)  divergiert. Falls auch \(\sum_{n=0}^\infty |x_n|\) konvergiert, nennen wir die Reihe absolut konvergent. Bei bedingt konvergenten Reihen ist Vorsicht geboten, da eine Umordnung der Reihe, d.h. \(\sum_{n=0}^\infty x_{\pi(n)}\) für eine bijektive Abbildung \(\pi: \N \rightarrow \N\) einen anderen Grenzwert liefern kann.
+\label{metrik/reihen:example-6}
+\begin{example}{}{}
+
+
+
+Das Majorantenkriterium können wir nun zur Untersuchung der Konvergenz von \(\sum_{n=0}^\infty (n+1)^{-q}\) verwenden.
+Sei \(q > 1\), dann wählen wir \(c_n = 2^{-q \ell}\), wobei \(\ell\) durch
+\begin{equation*}
+ 2^\ell \leq n+1 \leq 2^{\ell+1}
+\end{equation*}
+bestimmt ist.Dann gilt
+\begin{equation*}
+ \sum_{n=0}^\infty c_n = \sum_{\ell=0}^\infty \sum_{n=2^\ell-1}^{2^{\ell+1}} c_n = \sum_{\ell=0}^\infty \sum_{n=2^\ell-1}^{2^{\ell+1}-2} 2^{-q\ell} =  \sum_{\ell=0}^\infty  2^{(1-q)\ell} = \sum_{\ell=0}^\infty  (2^{1-q})^\ell.
+\end{equation*}
+Für \(q > 1\) ist \(2^{1-q} < 1\), d.h. die geometrische Reihe rechts konvergiert und damit auch die Majorantenreihe.
+
+Im Fall \(q=1\) können wir mit dem Cauchy Kriterium zeigen, dass die Reihe divergiert. Wäre sie konvergent, würde insbesondere \(s_{2n} -s_n\) gegen Null konvergieren, es gilt aber
+\begin{equation*}
+ s_{2n} -s_n = \sum_{k=n+1}^{2n} \frac{1}k \geq \sum_{k=n+1}^{2n} \frac{1}{2n} = \frac{1}2.
+\end{equation*}\end{example}
+
+Für die absolute Konvergenz von Reihen in \(\R\) können wir nun etwa mit der geometrischen Reihe vergleichen, deren Konvergenz wir aus dem obigen Beispiel schon verstehen:
+\label{metrik/reihen:theorem-7}
+\begin{theorem}{}{}
+
+
+
+Sei \((x_n)\) eine reelle Folge, sodass für ein \(n_0 \in \N\) und ein \(q \in [0,1)\) gilt:
+\begin{equation*}
+x_n \neq 0,\qquad \left\vert \frac{x_{n+1}}{x_n} \right\vert \leq q \qquad \forall~n \geq n_0.
+\end{equation*}
+Dann konvergiert \(\sum_{n=0}^\infty x_n\) absolut.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Wegen \(|x_{n+1}| \leq q~|x_n|\) können wir induktiv auch
+\begin{equation*}
+|x_n| \leq q^{n-n_0} |x_{n_0}|
+\end{equation*}
+folgern. Wir wählen also als Majorante \(c_n= |x_n|\) für \(n \leq n_0\) und \(c_n = q^{n-n_0} |x_{n_0}|\) für
+\(n > n_0.\) Dann gilt
+\begin{equation*}
+ \sum_{n=0}^\infty c_n = \sum_{n=0}^{n_0-1} |x_n| + \sum_{n=n_0}^\infty q^{n-n_0} |x_{n_0}| =\sum_{n=0}^{n_0-1} |x_n| +  |x_{n_0}| \sum_{n=0}^\infty q^{n} = =\sum_{n=0}^{n_0-1} |x_n| +  \frac{|x_{n_0}|}{1-q} < \infty.
+\end{equation*}
+Also folgt die Konvergenz aus dem Majorantenkriterium.
+\end{emphBox}
+\label{metrik/reihen:example-8}
+\begin{example}{}{}
+
+
+
+Wir betrachten die Reihe \(\sum_{n=0}^\infty \frac{1}{n+1} 2^{-n}\) für \(q \in \R\). Hier ist
+\begin{equation*}
+  \left\vert \frac{x_{n+1}}{x_n} \right\vert  = \frac{n+1}{n+2} \frac{1}2 \leq \frac{1}2
+\end{equation*}
+für alle \(n \in \N\), deshalb konvergiert die Reihe.
+\end{example}
+
+Zum Abschluss zeigen wir noch eine recht naheliegende Eigenschaft
+\label{metrik/reihen:lemma-9}
+\begin{lemma}{}{}
+
+
+
+Sei \(\sum_{n=0}^\infty x_n\) eine konvergente reelle Reihe. Dann ist \((|x_n|)\) eine Nullfolge.
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(\epsilon >0 \). Da die Partialsummen eine Cauchy Folge sind, gibt es ein \(n_0 \in \N\), sodass für \(m>n\geq n_0\) gilt
+\begin{equation*}
+|\sum_{k=n+1}^m x_k| < \epsilon.
+\end{equation*}
+Nun können wir \(m=n+1\) und \(n\) beliebig wählen und erhalten \(|x_n|<\epsilon\) für alle \(n > n_0\). Also ist \((|x_n|)\)
+eine Nullfolge.
+\end{emphBox}
+
+
+\section{Potenzreihen und Exponentialfunktion}
+\label{\detokenize{metrik/potenzreihen:potenzreihen-und-exponentialfunktion}}\label{\detokenize{metrik/potenzreihen::doc}}
+Potenzreichen sind spezielle Reihen von der Form \(\sum_{n=0}^\infty a_n (x-x_0)^n\), mit einer gegebenen reellen Koeffizientenfolge \((a_n)\) und einem Basispunkt \(x_0 \in \R\). Der Unterschied zu einfachen Reihen ist, dass wir verschiedene Werte für das Argument \(x\in \R\) einsetzen möchten, die Potenzreihe ist dann also eine Funktion von \(x\), idealerweise von \(\R\) nach \(\R\). Allerdings ist nicht klar für welche \(x \in \R\) die Reihe konvergiert.
+\label{metrik/potenzreihen:example-0}
+\begin{example}{}{}
+
+
+
+Für \(x \in (-1,1)\) können wir die Funktion
+\begin{equation*}
+ f: x \mapsto \sum_{n=0}^\infty x^n = \frac{1}{1-x}
+\end{equation*}
+über die (geometrische) Potenzreihe definieren. Für \(|x| \geq 1\) konvergiert die Reihe nicht. Wir beachten aber, dass die Definition \(\frac{1}{1-x}\) für \(x\neq 1\) möglich ist.
+\end{example}
+
+Wie sieht nun allgemein der Definitionsbereich einer über eine Potenzreihe definierten Funktion aus, d.h. für welche Argumente \(x\) konvergiert die Potenzreihe ? Wir sehen, dass die Potenzreihe für \(x=x_0\) immer definiert ist und den Wert \(0\) ergibt. Es ist naheliegend, dass die Konvergenz für \(x\) nahe bei \(x_0\) eher gegeben ist als bei größerem Abstand. Zur einfacheren Schreibweise werden wir im Folgenden Resultate für \(x_0 = 0\) formulieren, dies ist aber keine Einschränkung, denn für \(x_0 \neq 0\) verwenden wir einfach die Resultate für \(z=x-x_0\).
+\label{metrik/potenzreihen:theorem-1}
+\begin{theorem}{}{}
+
+
+
+Sei \(\sum_{n=0}^\infty a_n x^n\) eine Potenzreihe. dann gibt es ein eindeutiges \(r \in [0,\infty]\), den sogenannten Konvergenzradius der Reihe, mit folgenden Eigenschaften:
+\begin{itemize}
+\item {} 
+\(i)\) Die Reihe konvergiert absolut für \(|x| < r\).
+
+\item {} 
+\(ii)\) Die Reihe divergiert für \(|x| > r\).
+
+\end{itemize}
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Wir definieren
+\begin{equation*}
+ r:= \sup\{ |x| ~|~ \exists x \in \R, \sum_{n=0}^\infty a_n x^n \text{ konvergiert} \}.
+\end{equation*}
+Sei \(|x|<r\), dann gibt es ein \(\overline{x} \in \R\) mit \(|\overline{x}|>|x|\), sodass \(\sum_{n=0}^\infty a_n \overline{x}^n\) konvergiert. Damit ist die Folge \(|a_n|~ |\overline{x}|^n\) eine Nullfolge und insbesondere beschränkt. Sei \(C\) die obere Schranke, dann gilt
+\begin{equation*}
+|a_n|~ |x|^n \leq C \left( \frac{|x|}{\overline{x}} \right)^n.
+\end{equation*}
+Wegen \(\frac{|x|}{\overline{x}} < 1\) haben wir eine konvergente geometrische Reihe als Majorante und damit istdie Potenzreihe \(\sum_{n=0}^\infty a_n x^n \) absolut konvergent für alle \(x\) mit \(|x|<r\).
+Aus der Definition von  \(r\) ist umgekehrt klar, dass die Potenzreihe divergiert für \(|x|>r\).
+\end{emphBox}
+\label{metrik/potenzreihen:example-2}
+\begin{example}{}{}
+
+
+
+Wir betrachten \(\sum_{n=0}^\infty \frac{(-1)^{n}}{n+1}x^{n+1} = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}x^{n}. \)
+Die geometrische Reihe \(\sum_{n=0}^\infty |x|^n\) ist eine Majorante, deshalb sehen wir sofort die Konvergenz für \(|x| < 1\), d.h. es folgt \(r \geq 1\). Andererseits wissen wir schon, dass die Reihe für \(x=-1\), d.h. \(-
+\sum_{n=0}^\infty \frac{1}{n+1}\) nicht konvergiert. Damit folgt \(r=1\).
+\end{example}
+
+Wir können auch das Quotientenkriterium auf Potenzreihen anwenden und sehen, dass Konvergenz vorliegt, wenn
+\begin{equation*}
+ \forall n \geq n_0: ~\left\vert \frac{a_{n+1} x^{n+1}}{a_n x^n} \right\vert \leq q < 1
+\end{equation*}
+gilt. Dies ist gleichbedeutend zu
+\begin{equation*}
+ |x| \leq q \frac{|a_n|}{|a_{n+1}|}
+\end{equation*}
+für alle \(n \geq n_0\), und wir sehen also, dass die Reihe für
+\begin{equation*}
+ |x|<\inf_{n \geq n_0} \frac{|a_n|}{|a_{n+1}|}
+\end{equation*}
+immer konvergiert. Also gilt auch
+\begin{equation*}
+ r \geq \inf_{n \geq n_0} \frac{|a_n|}{|a_{n+1}|} .
+\end{equation*}
+Da wir \(n_0\) beliebig groß wählen können, gilt sogar
+\begin{equation*}
+ r \geq \lim_{n_0 \rightarrow \infty} \inf_{n \geq n_0} \frac{|a_n|}{|a_{n+1}|} .
+\end{equation*}
+Dieser Grenzwert existiert, da \( \inf_{n \geq n_0} \frac{|a_n|}{|a_{n+1}|}\) eine monoton fallende Folge ist (das Infimum wird über kleiner werdende Menge genommen, die nach unten beschränkt ist).
+Dies führt uns nebenbei  auf die Definition des Limes inferior, für eine reelle Folge \(x_n\) definieren wir
+\begin{equation*}
+ \lim\inf_{n \rightarrow \infty} x_n = \lim_{n \rightarrow \infty} \inf_{m \geq n} x_m .
+\end{equation*}
+Analog definieren wir auch den Limes superior
+\begin{equation*}
+ \lim\sup_{n \rightarrow \infty} x_n = \lim_{n \rightarrow \infty} \sup_{m \geq n} x_m .
+\end{equation*}
+Man kann sogar zeigen, dass eine Folge konvergiert, wenn Limes inferior und Limes superior existieren und es gilt \(\liminf x_n = \lim\sup x_n\).
+
+
+\subsection{Exponentialfunktion und Multiplikation von Reihen}
+\label{\detokenize{metrik/potenzreihen:exponentialfunktion-und-multiplikation-von-reihen}}
+Wir definieren nun die Exponentialfunktion \(\exp(x)\) oder auch \(e^x\) über eine Potenzreihe als
+\begin{equation*}
+ e^x:= \sum_{n=0}^\infty \frac{1}{n!} x^n
+\end{equation*}
+wobei \(0!=1\) und \(n! = \prod_{i=1}^n i\) für \(n > 0\). Wenden wir das Quotientenkriterium an, so folgt
+\begin{equation*}
+ r \geq \lim\inf_n n+1 = \infty,
+\end{equation*}
+also konvergiert die Exponentialreihe für alle \(x \in \R\).
+Analog können wir auch Sinus  und Kosinusfunktionen als Verwandte der Exponentialfunktion über Potenzreihen definieren. Es gilt
+\begin{align*}
+\sin(x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} \\
+\cos(x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n }}{(2n )!}.
+\end{align*}
+Auch hier sehen wir, z.B. aus dem Quotientenkriterium, dass der Konvergenzradius \(r=\infty\) ist.
+
+Wir haben schon gesehen, dass die Summe von konvergenten Reihen wieder konvergent ist. Hat die Reihe \(\sum_{n=0}^\infty a_n x^n\) den Konvergenzradius \(r_1\) und die Reihe  \(\sum_{n=0}^\infty b_n x^n\) den Konvergenzradius \(r_2\), dann konvergiert  \(\sum_{n=0}^\infty (a_n+b_n) x^n\)  mit  Konvergenzradius \(r \geq \min\{r_1,r_2\}.\) Bei unterschiedlichen Vorzeichen kann der Konvergenzradius der Summe natürlich viel größer als die Summe zu sein, wie wir am Beispiel \(a_n = 1\), \(b_n = -1\) für alle \(n\) sehen.
+Konvergente Reihen in \(\R\) können wir auch multiplizieren, dementsprechend gilt dasselbe für Potenzreihen, diese bleiben auch Potenzreihen, es gilt innerhalb der Konvergenzradien
+\begin{equation*}
+ \left( \sum_{n=0}^\infty a_n x^n \right) \left( \sum_{n=0}^\infty b_n x^n \right) = \sum_{n=0}^\infty c_n x^n
+\end{equation*}
+mit geeigneten Koeffizienten \(c_n\). Wir beginnen mit den endlichen Summen
+\begin{align*}\left( \sum_{n=0}^m a_n x^n \right) \left( \sum_{n=0}^m b_n x^n \right) =& (a_0 + a_1x+ \ldots + a_m x^m)(b_0 + b_1x+ \ldots + b_m x^m) \\
+=& a_0 b_0 + (a_0b_1+a_1b_0)x + (a_0 b_2 + a_1 b_1 + a_2 b_0)x^2 + \ldots \\ & + \sum_{j=0}^m a_j b_{m-j} x^m + \ldots +a_m b_m x^m .
+\end{align*}
+Betrachten wir nun die endliche Reihe bis \(m+1\), so kommen nur Terme dazu, die Vielfache von \(x^j\) mit \(j > m\) sind. Die Koeffizienten der ersten \(m\) Terme ändern sich nicht mehr. Damit zeigen wir induktiv
+\begin{equation*}
+ c_n =  \sum_{j=0}^n a_j b_{n-j}  ,
+\end{equation*}
+man bezeichnet dies auch als Faltung der Koeffizienten \((a_j), (b_j)\).
+Als Anwendung können wir die Exponentialfunktion betrachten, etwa
+\begin{equation*}
+ e^x e^{-x} = \sum_{n=0}^\infty \frac{1}{n!} x^n  \sum_{n=0}^\infty \frac{(-1)^n}{n!} x^n .
+\end{equation*}
+Hier gilt  dann
+\begin{equation*}
+ c_n =  \sum_{j=0}^n \frac{(-1)^{n-j}}{j! (n-j)!} .
+\end{equation*}
+Für \(n=0\) erhalten wir \(c_0 =1\), für \(n > 0\) können wir den Binomischen Lehrsatz verwenden:
+\label{metrik/potenzreihen:lemma-3}
+\begin{lemma}{}{}
+
+
+
+Für \(x,y \in \R\) und \(n \in \N\setminus\{0\}\) gilt
+\begin{equation*}
+ (x+y)^n = \sum_{j=0}^\infty (\begin{matrix} n\\j \end{matrix} ) ~  x^j~ y^{n-j}
+\end{equation*}
+mit dem Binomialkoeffizienten
+\begin{equation*}
+  (\begin{matrix} n\\j \end{matrix} ) = \frac{n!}{j! (n-j)!}.
+\end{equation*}\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Wir beweisen das Resultat durch vollständige Induktion. Für \(n=0\) ist
+\begin{equation*}
+(x+y)^0 = 1 =  \sum_{j=0}^0 (\begin{matrix} 0\\0 \end{matrix} ) ~  x^0~ y^0 .
+\end{equation*}
+Für \(n=1\) ist
+\begin{equation*}
+ (x+y) = (\begin{matrix} 0\\0 \end{matrix} ) ~  x^1~ y^0 + (\begin{matrix} 1\\0 \end{matrix} ) ~  x^0~ y^1.
+\end{equation*}
+Nun nehmen wir an das Resultat gilt für ein \(n \in \N\) und folgern die Gültigkeit für \(n+1\).
+Wir haben
+\begin{align*}
+(x+y)^{n+1} &= (x+y) (x+y)^n =  (x+y) \sum_{j=0}^n (\begin{matrix} n\\j \end{matrix} ) ~  x^j~ y^{n-j} \\
+&=\sum_{j=0}^n (\begin{matrix} n\\j \end{matrix} ) ~  x^{j+1}~ y^{n-j} +\sum_{j=0}^n (\begin{matrix} n\\j \end{matrix} ) ~  x^j~ y^{n+1-j}  \\
+&= \sum_{j=1}^{n+1} (\begin{matrix} n\\j \end{matrix} ) ~  x^{j}~ y^{n+1-j}  + \sum_{j=0}^n (\begin{matrix} n\\j \end{matrix} ) ~  x^j~ y^{n+1-j} \\
+&= (\begin{matrix} n+1\\ 0 \end{matrix} ) y^{n+1}+ \sum_{j=1}^{n } \left( (\begin{matrix} n\\j \end{matrix} ) +  (\begin{matrix} n\\j-1 \end{matrix} ) \right) ~  x^{j}~ y^{n+1-j} + (\begin{matrix} 0\\ 0 \end{matrix} ) x^{n+1}
+\end{align*}
+wobei wir verwendet haben, dass
+\begin{equation*}
+1 =
+\begin{pmatrix} n+1\\ 0 \end{pmatrix} 
+= \begin{pmatrix} n\\ 0 \end{pmatrix}.
+\end{equation*}
+Nun rechnen wir noch leicht nach, dass
+\begin{equation*}
+\begin{pmatrix} n\\j \end{pmatrix} +  \begin{pmatrix} n\\j-1 \end{pmatrix}
+=
+\begin{pmatrix} n+1\\j \end{pmatrix}
+\end{equation*}
+gilt und erhalten damit die binomische Formel auch für \(n+1\).
+\end{emphBox}
+
+Setzen wir dies in die obige Formel für \(e^x e^-x\) ein, so folgt für \(n > 0\)
+\begin{equation*}
+c_n = \frac{1}{n!}(-1+1)^n = 0 .
+\end{equation*}
+Also ist tatsächlich
+\begin{equation*}
+ e^{-x} = \frac{1}{e^x}.
+\end{equation*}
+Mit der gleichen Formel für \(e^x e^x\) erhalten wir analog
+\begin{equation*}
+ c_n = \frac{1}{n!}(1+1)^n =  \frac{1}{n!}(2)^n .
+\end{equation*}
+Setzen wir dies ein, so folgt \(e^x e^x = e^{2x}\).
+Allgemeiner können wir mit Hilfe der binomischen Formel auch \(e^x e^y\) berechnen. Für das Produkt von Potenzreihen mit verschiedenen Argumenten erhalten wir analog zur Rechnung oben
+\begin{equation*}
+\left( \sum_{n=0}^\infty  a_n x^n \right) \left( \sum_{n=0}^\infty b_y x^n \right) =
+\sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} x^k y^{n-k}.
+\end{equation*}
+Damit folgt
+\begin{equation*}
+ e^x e^y = \sum_{n=0}^\infty \sum_{k=0}^n \frac{1}{k!} \frac{1}{(n-k)!} x^k y^{n-k} =
+\sum_{n=0}^\infty \frac{1}{n!} \sum_{k=0}^n (\begin{matrix} n\\ k \end{matrix} )  x^k y^{n-k}.
+\end{equation*}
+Setzen wir die Binomische Formel ein, so erhalten wir
+\begin{equation*}
+ e^x e^y = \sum_{n=0}^\infty \frac{1}{n!}  (x+y)^n = e^{x+y},
+\end{equation*}
+die charakteristische Eigenschaft einer Exponentialfunktion.
+
+

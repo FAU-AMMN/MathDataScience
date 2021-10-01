@@ -1,0 +1,722 @@
+\chapter{Vorkurs}
+\label{\detokenize{vorkurs/vorkurs:vorkurs}}\label{\detokenize{vorkurs/vorkurs::doc}}
+In diesem Abschnitt werden wir uns mit einigen heranführenden Themen beschäftigen, u.a. werden wir zunächst eine kleine Motivation mathematischer Probleme in Data Science geben und danach einige Kapitel aus dem Schulstoff wiederholen, die wichtig für das weitere Verständnis sind.
+
+
+\section{Regression}
+\label{\detokenize{vorkurs/regression:regression}}\label{\detokenize{vorkurs/regression::doc}}
+Wir beginnen mit einem der klassischen Probleme in der Datenanalyse, wie man es in vielen Disziplinen findet, nämlich die Konstruktion eines funktionalen Zusammenhangs aus einer endlichen Anzahl an Messdaten. Wir nehmen an, dass
+wir Messdaten \(x_i\) als Eingabe und \(y_i\) als Ausgabe gegeben haben, für \(i=1,\ldots, N\). Nun suchen wir einen funktionalen Zusammenhang, also \(y=f(x)\). Dies geschieht bei der Regression durch einen parametrischen Ansatz
+\begin{equation*}
+ f(x) = F(x,\theta_1,\ldots,\theta_M)\end{equation*}
+mit einer gegebenen Form \(F\) und   zu bestimmenden Parametern \(\theta_j\). Das einfachste Beispiel ist die lineare Regression f”ur skalare Daten, d.h.
+\begin{equation}\label{equation:vorkurs/regression:eq:linreg}
+F(x,\theta_1,\theta_2) = \theta_1 x + \theta_2 .
+\end{equation}
+Unter der Annahme der Exaktheit von funktionaler Form und Messung hätte man ein Gleichungssystem für \(\theta_1\) und \(\theta_2\) zu lösen, nämlich
+\begin{equation}\label{equation:vorkurs/regression:eq:nonlinreg}
+ F(x_i,\theta_1,\ldots,\theta_M) = y_i, \qquad i=1,\ldots,N. 
+\end{equation}
+Im allgemeinen ist dieses System aber nicht lösbar oder eine Lösung gar nicht sinnvoll aus den folgenden Gründen:
+\begin{itemize}
+\item {} 
+Die Messdaten \(x_i\), \(y_i\) weisen Fehler auf.
+
+\item {} 
+Die angenommene Funktionenklasse erklärt das Verhalten der Daten nur approximativ.
+
+\item {} 
+Man hat zusätzlich zu viele Messungen (\(N > M\)), z.B. \(N > 2\) bei der linearen Regression in \eqref{equation:vorkurs/regression:eq:linreg}. Damit hat man mehr Gleichungen als Unbekannte und das Gleichungssystem ist eventuell nicht mehr lösbar. In der Praxis versucht man oft zur Sicherheit lieber mehr Messungen zu machen, um Fehler auszugleichen, also ist dies ein sehr häufiger Fall.
+
+\end{itemize}
+
+
+Deshalb ist es naheliegend die Gleichheit nur approximativ zu erfüllen, man könnte also alle Parameter \(\theta_1,\ldots,\theta_M\) akzeptieren, die zu kleinen Fehlern im Gleichungssystem führen. Wie können wir aber solche Parameter mit einer nachvollziehbaren Rechenvorschrift berechnen ? Ein Ansatz dazu ist das Kleinstquadrate Prinzip, dass schon von Gauss im frühen neunzehnten Jahrhundert angewandt wurde. Statt der Lösung eines Gleichungssystems betrachtet man nun die Lösung eines Optimierungsproblems, wir suchen \(\theta_1,\ldots,\theta_M\) als Lösung von
+\begin{equation}\label{equation:vorkurs/regression:eq:nonlinregoptim}
+\min \sum_{i=1}^N ( F(x_i,\theta_1,\ldots,\theta_M) - y_i)^2.
+\end{equation}
+Wir minimieren also in Summe den quadratischen Abstand zwischen der Modellvorhersage und den gemessenen Daten.
+Da wir eine Summe von Quadraten, also nichtnegativen Termen, haben, sehen wir sofort dass der Minimalwert selbst bei optimaler Wahl der \(\theta_i\) größer oder gleich Null liegen muss. Damit sehen wir sofort, dass eine Lösung des Gleichungssystems \eqref{equation:vorkurs/regression:eq:nonlinreg} auch immer eine Lösung des Optimierungsproblems \eqref{equation:vorkurs/regression:eq:nonlinregoptim} ist.
+
+Mathematisch und praktisch stellen sich dabei sofort einige Fragen:
+\begin{itemize}
+\item {} 
+Gibt es überhaupt eine Lösung des Problems ?
+
+\item {} 
+Wenn ja, wie können wir das Minimum berechnen ?
+
+\item {} 
+Ist das Problem robust gegenüber Messfehlern, d.h. ändert sich die Lösung nur wenig wenn wir die Daten \(x_i\) und \(y_i\) geringfügig ändern ?
+
+\item {} 
+Was passiert mit der Lösung wenn wir weitere Messungen machen, d.h. wenn sich \(N\) ändert ?
+
+\end{itemize}
+
+
+\subsection{Lineare Regression}
+\label{\detokenize{vorkurs/regression:lineare-regression}}
+Wir wollen die obigen Fragen nun im Rahmen der linearen Regression näher betrachten, dort wollen wir eine Funktion von zwei Variablen
+\begin{equation*}
+ f(\theta_1,\theta_2) =  \sum_{i=1}^N (\theta_1 x_i + \theta_2 -y_i)^2\end{equation*}
+minimieren.
+
+Um eine erste Idee zu bekommen, nehmen wir an \(\theta_2 = 0\) ist schon bekannt. Dann bleibt uns nur eine eindimensionale Minimierung der quadratischen Funktion
+\begin{equation*}
+ g(\theta_1) =  \sum_{i=1}^N (\theta_1 x_i   -y_i)^2 .
+\end{equation*}
+Wir bestimmen das Minimum durch Ableitung mit Kettenregel:
+\begin{equation*}
+ g'(\theta_1) = 2 \sum_{i=1}^N x_i (\theta_1 x_i   -y_i) = (2 \sum_i x_i^2) \theta_1 - 2 \sum_i x_i y_i.\end{equation*}
+Also folgt als stationärer Punkt \(g'(\overline{\theta}_1) = 0\)
+\begin{equation*}
+ \overline{\theta}_1 = \frac{\sum_i x_i y_i}{\sum_i x_i^2}.
+\end{equation*}
+Zur Überprüfung berechnen wir auch noch die zweite Ableitung
+\begin{equation*}
+ g'(\theta_1) =  2 \sum_{i=1}^N x_i^2,\end{equation*}
+die offensichtlich positiv ist, wenn wir nicht alle Messungen bei \(x_i = 0\) durchgeführt haben. Also ist der stationäre Punkt auch wirklich ein Minimierer von \(g\).
+
+Nun betrachten wir analog den Fall, dass \(\theta_1 = 0\) schon bekannt ist. In diesem Fall bleibt die quadratische Funktion
+\begin{equation*}
+  g(\theta_2) =  \sum_{i=1}^N (\theta_2   -y_i)^2 .
+\end{equation*}
+Hier erhalten wir als stationären Punkt
+\begin{equation*}
+ \overline{\theta}_2 = \frac{1}N  \sum_{i=1}^N y_i,\end{equation*}
+also den Mittelwert der Daten \(y_i\).
+
+Daraus versuchen wir uns zu überlegen wie die Lösung im allgemeinen Fall aussehen würde. Um das optimale \(\theta_1\) zu bestimmen, haben wir eigentlich den Fall oben, wenn wir statt \(y_i\) die verschobenen Daten \(y_i - \theta_2\) betrachten.
+Dies f”uhrt auf
+\begin{equation*}
+ \overline{\theta}_1 = \frac{\sum_{i=1}^N  x_i (y_i-\overline{\theta}_2)}{\sum_{i=1}^N  x_i^2}.\end{equation*}
+Analog können wir im Problem f”ur \(\theta_2\) die verschobenen Daten \(y_i - \theta_1 x_i\) betrachten und erhalten
+\begin{equation*}
+ \overline{\theta}_2 = \frac{1}N \sum_{i=1}^N   (y_i - \overline{\theta}_1 x_i).\end{equation*}
+Wir haben also eigentlich ein Gleichungssystem der Form
+\label{equation:vorkurs/regression:cecadb3a-3731-4682-ab77-516d581e0bb2}\begin{align}
+(\sum_{i=1}^N x_i^2) \theta_1 + (\sum_{i=1}^N x_i) \theta_2 &= \sum_{i=1}^N x_i y_i \\
+(\sum_{i=1}^N x_i) \theta_1 + N \theta_2 &= \sum_{i=1}^N y_i
+\end{align}
+zu lösen. Daraus erhalten wir
+\label{equation:vorkurs/regression:4a1595a2-887c-40d5-a341-01f9c08dea66}\begin{align}
+\overline{\theta}_1 &=  \frac{N \sum_{i=1}^N x_i y_i - (\sum_{i=1}^N x_i) (\sum_{i=1}^N y_i)}{N \sum_{i=1}^N x_i^2 - (\sum_{i=1}^N x_i)^2} \\
+\overline{\theta}_2 &=  \frac{(\sum_{i=1}^N x_i^2) (\sum_{i=1}^N y_i) - (\sum_{i=1}^N x_i y_i) (\sum_{i=1}^N x_i)}{N \sum_{i=1}^N x_i^2 - (\sum_{i=1}^N x_i)^2}.
+\end{align}
+Wir beachten, dass die Ungleichung
+\begin{equation*}
+ (\sum_{i=1}^N x_i)^2 \leq N \sum_{i=1}^N x_i^2,\end{equation*}
+auch bekannt als arithmetisch quadratische Mittelungleichung
+\begin{equation*}
+ (\frac{1}N \sum_{i=1}^N x_i)^2 \leq \frac{1}N  \sum_{i=1}^N x_i^2
+\end{equation*}
+gilt, mit Gleichheit nur wenn \(x_1=x_2=\ldots=x_N\). Hat man also nicht alle Messungen an der gleichen Stelle \(x_1\) durchgeführt, dann ist der Nenner positiv, insbesondere nicht Null.
+
+
+\section{Wiederholung: Koordinatensysteme und der Satz des Pythagoras}
+\label{\detokenize{vorkurs/koord:wiederholung-koordinatensysteme-und-der-satz-des-pythagoras}}\label{\detokenize{vorkurs/koord::doc}}
+Eine elementares Resultat der Euklidischen Geometrie ist der Satz des Pythagoras, der meist als
+\begin{equation*}
+ a^2 + b^2 = c^2\end{equation*}
+formuliert wird, wobei \(a\) und \(b\) die Katheten und \(c\) die Hypothenuse eines rechtwinkeligen Dreiecks sind.
+Wir können den Satz von Pythagoras aber auch völlig anders interpretieren, indem wir ein Koordinatensystem in die Katheten legen, sodass die Eckpunkte \((0,0)\), \((a,0)\), und \((a,b)\) sind. Dann sind die Katheten die Vektoren \((a,0)\) und \((0,b)\) und die Hypothenuse der Vektor \((a,b)\). Der Satz des Pythagoras sagt dann, dass die Länge des Vektors \(v=(a,b)\) gleich \(\sqrt{a^2+b^2}\) ist. Dies bezeichnen wir als die Euklidische Norm eines Vektors (in der Schule auch Betrag eines Vektors)
+\begin{equation*}
+ \Vert (x_1,x_2) \Vert = \sqrt{x_1^2+x_2^2}.\end{equation*}
+
+
+Basiereend auf der Vektordarstellung können wir auch einen einfachen Beweis des Satz des Pythagoras in einer allgemeinen Version geben. Seien \(v=(x_1,x_2)\) und \(w=(y_1,y_2)\) zwei Vektoren im \(\R^2\). Wie üblich definieren wir ihr Skalarprodukt als
+\begin{equation*}
+ v \cdot w = x_1 y_1 + x_2 y_2 .\end{equation*}
+Wir beachten, dass \(\Vert v \Vert^2 = v \cdot v\) gilt.
+Wir nennen zwei Vektoren orthogonal zueinander, wenn \(v \cdot w = 0\) gilt, im \(\R^2\) bedeutet dies einen Winkel von 90 Grad.
+Nun können wir den Satz des Pythagoras folgenderma\{\textbackslash{}ss\}en formulieren: Sind \(v,w \in \R^2\) zwei zueinander orthogonale Vektoren, dann gilt in der Euklidischen Norm
+\begin{equation*}
+ \Vert v - w \Vert^2 =  \Vert v \Vert^2 + \Vert w \Vert^2.\end{equation*}
+Wir benutzen die Darstellung über die Euklidische Norm
+\begin{equation*}
+ \Vert v - w \Vert^2 = (v-w) \cdot (v-w) = v \cdot v + w\cdot w - 2 v \cdot w = v \cdot v + w\cdot w  \Vert v \Vert^2 + \Vert w \Vert^2.\end{equation*}
+Wir werden sehen, dass wir solche Strukturen stark verallgemeinern können. Ein analoges Resultat gilt im \(\R^n\) für beliebiges \(n\) mit dem Euklidischen Skalarprodukt
+\begin{equation*}
+ v \cdot w = \sum_{i=1}^n x_i y_i .\end{equation*}
+Tatsächlich kann man dies viel weiter verallgemeinern, es genügt einen Raum zu haben, in dem man ein Skalarprodukt definieren kann, das in jeder Komponente linear und symmetrisch ist, sowie \(v \cdot v > 0 \) für \(v \neq 0\) erfüllen.
+Dann ist durch
+\begin{equation*}
+ \Vert v \Vert = \sqrt{ v \cdot v}\end{equation*}
+immer eine Norm definiert.
+
+Eine wichtige Ungleichung in diesem Zusammenhang ist die Cauchy Schwarz Ungleichung
+\begin{equation*}
+ v \cdot w \leq \Vert v \Vert~ \Vert w  \Vert
+\end{equation*}
+bzw. im \(\R^n\)
+\begin{equation*}
+ \sum_{i=1}^n x_i y_i \leq \sqrt{\sum_{i=1}^n x_i^2} \sqrt{\sum_{i=1}^n y_i^2} .
+\end{equation*}
+Für \(n=1\) ist die Cauchy Schwarz Ungleichung besonders einfach: Sie besagt, dass das Produkt zweier reeller Zahlen kleiner als das Produkt ihrer Beträge ist.
+
+Eine verwandte Ungleichung ist die Young’sche Ungleichung
+\begin{equation*}
+  v \cdot w \leq \frac{1}2 \Vert v \Vert^2 + \frac{1}2\Vert w  \Vert^2,\end{equation*}
+die aus der Cauchy Schwarz Ungleichung und der elementaren Ungleichung
+\begin{equation*}
+ ab \leq \frac{1}2 (a+b)\end{equation*}
+für \(a,b \in \R\) folgt. Insgesamt ist die Young’sche Ungleichung aber nur eine Umformulierung von
+\begin{equation*}
+ \frac{1}2 \Vert v - w \Vert^2 \geq 0,\end{equation*}
+was wegen der Nichtnegativität der Norm klar ist. Noch einfacher als die Young’sche Ungleichung ist die Dreiecksungleichung
+\begin{equation*}
+ \Vert v + w\Vert \leq \Vert v \Vert + \Vert w \Vert,\end{equation*}
+die in einer Dimension (für den Betrag) durch Fallunterscheidung nachgewiesen werden kann. Im Fall der Euklidischen Norm kann man wegen der Nichtnegativität äquivalent beide Seiten quadrieren und die Quadrate der Normen wegkürzen, man endet dann genau bei der Cauchy Schwarz Ungleichung.
+
+Für den Beweis der Cauchy Schwarz Ungleichung betrachten wir zunächst die triviale Ungleichung
+\begin{equation*}
+ 0 \leq (v-\lambda w)\cdot (v-\lambda w) = \Vert v \Vert^2 - 2 \lambda v \cdot w + \lambda^2 \Vert w \Vert^2,\end{equation*}
+für \(\lambda \in \R\). Wir können uns auf den Fall \(w \neq 0\) beschränken, da die Cauchy Schwarz Ungleichung sonst klarerweise erfüllt ist, und wählen \(\lambda = \frac{v\cdot w}{\Vert w \Vert^2}\),
+\begin{equation*}
+ 0 \leq  \Vert v \Vert^2 - 2 \frac{v\cdot w}{\Vert w \Vert^2}  v \cdot w + \frac{(v\cdot w)^2}{\Vert w \Vert^2} ,\end{equation*}
+und nach Umstellen folgt die Ungleichung.
+
+
+\section{Folgen und Konvergenz}
+\label{\detokenize{vorkurs/folgen:folgen-und-konvergenz}}\label{\detokenize{vorkurs/folgen::doc}}
+Eine Folge \((x_n)\) reeller Zahlen ist eine Zuordnung \(x_n \in \R\) zu jedem \(n \in \N\). Allgemeiner kann man auch Folgen anderer Objekte betrachten, aber wir belassen es hier bei reellen Folgen. Diese dienen uns als Einstieg ins \emph{Unendliche}, wir wollen daran ein wenig das Konzept von Konvergenz und Grenzwerten beleuchten.
+
+Wir interessieren uns besonders für die Konvergenz (oder auch Divergenz) von Folgen, d.h. das Verhalten für \(n\) gegen unendlich (geschrieben als \(n \rightarrow \infty\)). Eine \emph{konvergente} Folge besitzt einen Grenzwert \(\overline{x}\)
+(geschrieben \(x_n \rightarrow \overline{x}\)), wenn für größer werdende \(n\) die Folgenglieder dem Wert \(\overline{x}\) immer näher kommen. Nun stellt sich aber die Frage wie wir diese Aussage mathematisch präzise formalisieren können. Zunächst erkennen wir, dass \emph{immer näher kommen}  bedeutet, dass
+\begin{equation}\label{equation:vorkurs/folgen:eq:folgengrenzewert}
+\vert x_n - \overline{x} \vert < \epsilon
+\end{equation}
+für \(\epsilon > 0\) beliebig klein und \(n\) hinreichend groß gilt. \emph{Beliebig klein} und  \emph{hinreichend groß} sind mathematisch aber immer noch zu schwammige Begriffe, die wir weiter präzisieren müssen. Tatsächlich tun wir dies, indem wir uns einen Zweifler an der Konvergenz vorstellen, der ein \(\epsilon > 0\) vorgibt und wir müssen \eqref{equation:vorkurs/folgen:eq:folgengrenzewert} nun für alle \(n\) groß genug erfüllen (wobei das kleinste \(n\), für das \eqref{equation:vorkurs/folgen:eq:folgengrenzewert} gelten muss natürlich von \(\epsilon\) abhängen kann). Wir können also folgende Definition geben:
+\label{vorkurs/folgen:definition-0}
+\begin{definition}{}{}
+
+
+
+Eine reelle Folge \((x_n)\) heißt konvergent gegen den Grenzwert \(\overline{x}\), geschrieben
+\begin{equation*}
+x_n \rightarrow \overline{x} \qquad \text{oder} \lim_{n \rightarrow \infty} x_n = \overline{x},
+\end{equation*}
+genau dann, wenn für alle \(\epsilon > 0\) ein \(n_0 \in \N\) existiert, sodass für alle \(n \geq n_0\) \eqref{equation:vorkurs/folgen:eq:folgengrenzewert} erfüllt ist.
+Eine Folge heißt konvergent, wenn es ein \(\overline{x}\) gibt, sodass \(x_n \rightarrow x\).
+\end{definition}
+
+Bei dieser Formalisierung haben wir zwei wesentliche logische Aussagen verwendet, nämlich \emph{für alle} und \emph{es existiert}. Diese werden wir in der Vorlesung durch sogenannte Quantoren abkürzen:
+\begin{itemize}
+\item {} 
+\(\forall \equiv\) für alle,
+
+\item {} 
+\(\exists \equiv\) es existiert.
+
+\end{itemize}
+
+Damit können wir obige Aussage kompakt als
+\begin{equation*}
+\forall \epsilon > 0 ~\exists n_0 \in \N ~\forall n \geq n_0: ~\vert x_n - \overline{x} \vert < \epsilon
+\end{equation*}
+schreiben. Dabei haben wir den Doppelpunkt verwendet um die eigentliche Aussage zu beginnen, \emph{:} ersetzt also das sprachliche \emph{gilt}.
+
+Ist eine Folge nicht konvergent, so nennen wir sie \emph{divergent}. Wir beachten, dass nach unserer Definition \(\overline{x} \in \R\) gelten muss. Es gibt also im strengen Sinn keine Konvergenz \(x_n \rightarrow \infty\) (oder analog \(x_n \rightarrow -\infty\)), wie man intuitiv zum Beispiel von der Folge \((x_n) = (n)\) erwarten würde. Das Problem dabei ist, dass \(x_n\) ja dem Wert \(\overline{x}=\infty\) nicht beliebig nahe kommt, der Unterschied ist immer unendlich groß. Deshalb sagen wir \(x_n\) konvergiert gegen unendlich, \(x_n \rightarrow \infty\), genau dann wenn
+\begin{equation*}
+ \forall \epsilon > 0 ~\exists n_0 \in \N ~\forall n \geq n_0: ~ x_n > \epsilon .
+\end{equation*}
+Hier hat \(\epsilon\) eine andere Rolle als vorhin, da wir uns ja dafür interessieren, dass \(\epsilon\) beliebig groß wird (nicht beliebig klein wie bei der üblichen Konvergenz), die Definition über alle \(\epsilon\) deckt dies aber gut ab. Als Übung lassen wir den Fall einer Definition von \(x_n \rightarrow -  \infty\). Zum Verständnis betrachten wir einige Beispiele:
+\label{vorkurs/folgen:example-1}
+\begin{example}{}{}
+
+
+
+Sei \((x_n)\) die konstante Folge \(x_n = 1 \) für alle \(n\). Diese konvergiert natürlich gegen \(\overline{x} = 1\). Es gilt tatsächlich:
+\begin{equation*}
+ \forall \epsilon > 0 ~\forall n \geq 0:  \vert x_n - \overline{x}\vert < \epsilon,\end{equation*}
+da \(\vert x_n - \overline{x}\vert =0\), d.h. wir können immer \(n_0=0\) wählen.
+\end{example}
+\label{vorkurs/folgen:example-2}
+\begin{example}{}{}
+
+
+
+Sei \((x_n)\) die  Folge \(x_n = \frac{1}n \) für alle \(n>0\) mit \(x_0\) beliebig definiert. Diese konvergiert natürlich gegen \(\overline{x} = 0\). Es gilt
+\begin{equation*}
+ \forall \epsilon > 0 ~\forall n \geq n_0:  \frac{1}n = \vert x_n - \overline{x}\vert < \epsilon,\end{equation*}
+wenn \(n > \frac{1}\epsilon\) ist. Wir wählen also \(n_0\) als die nächstgrößte natürliche Zahl zu \(\frac{1}\epsilon\), damit erhalten wir die Konvergenz.
+\end{example}
+\label{vorkurs/folgen:example-3}
+\begin{example}{}{}
+
+
+
+Sei \((x_n)\) die  Folge \(x_n = (-1)^n \) für alle \(n\geq 0\). Diese alternierende Folge divergiert. Ist \(\overline{x} = 1\), dann gilt für ungerades \(n\) beliebig groß \(\vert x_n - \overline{x}\vert = 2\), also erhalten wir mit \(\epsilon =1\) bereits eine Verletzung der Konvergenzbedingung. Ist \(\overline{x} \neq 1\), so gilt für gerades \(n\) immer \(\vert x_n - \overline{x} \vert =  \vert 1-\overline{x} \vert \neq 0\). Damit erhalten wir eine Verletzung der Konvergenzbedingung mit \(\epsilon = \frac{\vert 1-\overline{x} \vert}2\).
+
+In diesem Fall gibt es aber zwei konvergente Teilfolgen \((y_n) = (x_{2n})\) mit Grenzwert \(1\) und \((z_n) = (x_{2n+1})\) mit Grenzwert \(-1\). Wie werden später noch häufiger mit konvergenten Teilfolgen zu tun haben.
+\end{example}
+\label{vorkurs/folgen:example-4}
+\begin{example}{}{}
+
+
+
+Sei \((x_n)\) die  Folge \(x_n = \frac{n^2+1}{2n^2+1} \) für alle \(n\geq 0\). Diese konvergiert  gegen \(\overline{x} = \frac{1}2\). Es gilt
+\begin{equation*}
+ \vert x_n - \overline{x}\vert = \frac{1}{4n^2+2},\end{equation*}
+dies ist kleiner \(\epsilon\), wenn \(n \geq n_0 > \sqrt{\frac{1}{4\epsilon}-\frac{1}2}\) (bzw. \(n_0 \geq 0\) wenn \(\epsilon > \frac{1}2\)) gilt.
+\end{example}
+
+Als Verallgemeinerung des letzten Beispiels können wir zeigen, dass
+\begin{equation*}
+ \frac{x_n}{y_n} \rightarrow \frac{\overline{x}}{\overline{y}}\end{equation*}
+gilt, wenn \(x_n \rightarrow \overline{x}\) und \(y_n \rightarrow \overline{y} \neq 0\). Dazu machen wir mit Hilfe der Dreiecksungleichung folgende Abschätzung:
+\begin{equation*}
+\left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{\overline{y}} \right\vert =
+\left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{y_n}+\frac{\overline{x}}{y_n}-\frac{\overline{x}}{\overline{y}} \right\vert \leq 
+\left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{y_n}\right\vert+\left\vert\frac{\overline{x}}{y_n}-\frac{\overline{x}}{\overline{y}} \right\vert = \frac{1}{\vert y_n \vert} \vert x_n - \overline{x}\vert+
+\frac{\vert \overline{x} \vert}{\vert \overline{y} \vert~\vert y_n \vert} \vert y_n - \overline{y}\vert.
+\end{equation*}
+Gilt nun
+\begin{equation*}
+  \vert x_n - \overline{x}\vert < \epsilon_1, \qquad  \vert y_n - \overline{y}\vert < \epsilon_2\end{equation*}
+Dann folgt mit der Dreiecksungleichung auch
+\begin{equation*}
+ \vert y_n \vert \geq \vert \overline{y}\vert - \vert y_n - \overline{y}\vert \geq \vert \overline{y}\vert - \epsilon_2 .\end{equation*}
+Damit ist
+\begin{equation*}
+ \left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{\overline{y}} \right\vert \leq \frac{\epsilon_1}{\vert \overline{y} \vert - \epsilon_2} + \frac{\overline{x}\epsilon_2}{\overline{y}(\vert \overline{y} \vert - \epsilon_2)}  .\end{equation*}
+Nun wählen wir
+\begin{equation*}
+ \epsilon_1 <\frac{\vert \overline{y} \vert }4,  \qquad \epsilon_2 < \min\{\frac{\vert \overline{y} \vert }2, \frac{\vert \overline{y} \vert^2}{4 \vert \overline{x} \vert} \epsilon \} ,\end{equation*}
+dann gibt es \(n_0^1\) und \(n_0^2\), sodass
+\begin{equation*}
+ \forall n > n_0^1:~\vert x_n - \overline{x} \vert < \epsilon_1\end{equation*}
+und
+\begin{equation*}
+ \forall n > n_0^2:~\vert y_n - \overline{y} \vert < \epsilon_2 .
+\end{equation*}
+Nun sei \(n_0 = \max\{n_0^1,n_0^2\}\), dann folgt durch Einsetzen der Schranken für \(\epsilon_1\) und \(\epsilon_2\) in die obige Abschätzung
+\begin{equation*}
+  \left\vert \frac{x_n}{y_n} -\frac{\overline{x}}{\overline{y}} \right\vert < \epsilon\end{equation*}
+für alle \(n \geq n_0\). Als Übung überlassen wir den Fall \(\overline{x} \neq 0\) und \(\overline{y}=0\), hier erhält man für den Grenzwert Konvergenz gegen \(+\infty\) oder \(-\infty\) je nach Vorzeichen von \(\overline{x}\).
+\label{vorkurs/folgen:example-5}
+\begin{example}{}{}
+
+
+
+Sei \((x_n)\) die  Folge \(x_n = n \) für alle \(n\geq 0\). Es gilt \(x_n \rightarrow \infty\), da \(\vert x_n \vert > \epsilon\) für \(n\geq n_0\), wenn wir \(n_0\) als die nächstgrößte natürliche Zahl zu \(\epsilon\) wählen.
+\end{example}
+
+Wir können die Definition der Konvergenz auch direkt auf Folgen \(x_n \in \R^N\) übertragen wenn wir den Betrag durch die (Euklidische Norm) ersetzen:
+\begin{equation*}
+ \forall \epsilon > 0 ~\exists n_0 \in \N ~\forall n \geq n_0: ~\Vert x_n - \overline{x} \Vert < \epsilon\end{equation*}\label{vorkurs/folgen:example-6}
+\begin{example}{}{}
+
+
+
+Als Beispiel betrachten wir eine Folge \((x_n)\) im \(\R^2\) gegeben durch \(x_n= \veczwei{\frac{n}{n+1}}{2^{-n}}\). Dies konvergiert gegen \(\overline{x}=\veczwei{1}{0}\). Es gilt
+\begin{equation*}
+ \Vert x_n - \overline{x} \Vert = \sqrt{\frac{1}{(n+1)^2} + 2^{-2n}} \leq \frac{\sqrt{2}}{n+1}\end{equation*}
+für \(n \geq 1\), da \(2^n \geq n+1\). Also folgt
+\begin{equation*}
+ \Vert x_n - \overline{x} \Vert < \epsilon,\end{equation*}
+für \(n \geq n_0\), wenn \(n_0\) größer als \(\frac{\sqrt{2}}\epsilon -1\) ist.
+\end{example}
+
+Wir können auch noch andere Eigenschaften von Folgen untersuchen. Eine erste ist die Anordnung, wir sagen eine Folge ist
+\begin{itemize}
+\item {} 
+\emph{monoton steigend}, wenn \(x_n \leq x_{n+1}\) für alle \(n\in \N\) gilt,
+
+\item {} 
+\emph{monoton fallend}, wenn \(x_n \geq x_{n+1}\) für alle \(n\in \N\) gilt.
+\textbackslash{}end\{*ize\}
+
+\end{itemize}
+
+Dazu können wir auch das Supremum (\(\sup\)) und Infimum (\(\inf\)) einer Folge definieren. Bei einer endlichen Menge erreicht man nach endlich vielen Schritten ja immer ein Minimum oder Maximum, bei einer unendlichen Folge ist das nicht zwangsläufig der Fall. So kommt etwa \(x_n = \frac{1}n\) dem Wert \(0\) beliebig nahe, erreicht ihn aber nicht. Deshalb machen wir folgende Definition:
+\label{vorkurs/folgen:definition-7}
+\begin{definition}{}{}
+
+
+
+Wir nennen \(x_* \in \R\) das Infimum der reellen Folge \(x_n\) (geschrieben \(x_* = \inf_n x_n\)), genau dann wenn die beiden folgenden Bedingungen erfüllt sind:
+\begin{itemize}
+\item {} 
+\(\forall n \in \N:~x_* \leq x_n\)
+
+\item {} 
+\(\forall \epsilon > 0~\exists n_0 \in \N: x_{n_0} < x_* + \epsilon\).
+
+\end{itemize}
+
+Wir nennen \(x^* \in \R\) das Supremum der reellen Folge \(x_n\) (geschrieben \(x^* = \sup_n x_n\)), genau dann wenn die beiden folgenden Bedingungen erfüllt sind:
+\begin{itemize}
+\item {} 
+\(\forall n \in \N:~x^* \geq x_n\)
+
+\item {} 
+\(\forall \epsilon > 0~\exists n_0 \in \N: x_{n_0} > x^* -\epsilon\).
+
+\end{itemize}
+\end{definition}
+
+Analog zur Konvergenz können wir auch die Fälle \(\inf_n x_n = - \infty\) und \(\sup x_n = +\infty\) definieren, letzteres ist der Fall wenn
+\begin{equation*}
+ \forall \epsilon > 0~\exists n_0 \in \N: x_{n_0} > \epsilon .\end{equation*}
+Im Fall einer monotonen Folge können wir nun direkt die Konvergenz beweisen:
+\label{vorkurs/folgen:theorem-8}
+\begin{theorem}{}{}
+
+
+
+Sei \((x_n)\) eine monoton steigende reelle Folge. Dann gibt es ein \(\overline{x} \in [x_0,+\infty]\) mit \(x_n \rightarrow \overline{x}\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Wir definieren \(\overline{x}= \sup_n x_n\) und unterscheiden zwei Fälle. Ist die Folge unbeschränkt, d.h. \(\overline{x}=\infty\), so gilt
+\begin{equation*}
+ \forall \epsilon > 0~\exists n_0 \in \N: x_{n_0} > \epsilon.\end{equation*}
+Da die Folge monoton steigend ist, gilt \(x_n \geq x_{n_0}\) für alle \(n \geq n_0\). Damit ist die Bedingung
+\begin{equation*}
+ \forall \epsilon > 0~\exists n_0 \in \N~\forall n\geq n_0: x_{n_0} > \epsilon \end{equation*}
+erfüllt.
+
+Ist \(\overline{x} < \infty\), dann gilt
+\begin{equation*}
+ \forall \epsilon > 0~\exists n_0 \in \N: x_{n_0} > \overline{x} -\epsilon
+\end{equation*}
+und da wieder \(x_n \geq x_{n_0}\) für alle \(n \geq n_0\) gilt erhalten wir auch \( x_n > \overline{x}-\epsilon\). Andererseits ist \(x_n \leq \overline{x}\), also gilt für alle \(n \geq n_0\) auch \( \vert x_n - \overline{x} \vert < \epsilon. \)  \(\square\)
+\end{emphBox}
+
+In obigem Beweis haben wir verwendet, dass aus \(x_{n+1} \geq x_n\) f”ur alle \(n\) auch folgt
+\begin{equation*}
+ \forall m \geq n: x_m \geq x_n.\end{equation*}
+Dies scheint offensichtlich, benutzt aber ein nichttriviales logisches Prinzip, die sogenannte Induktion. Dabei schließt man auf eine Aussage für alle natürlichen Zahlen, wenn man aus der Aussage für ein \(n \in \N\) auch die Aussage für \(n+1\) folgern kann.
+
+
+\section{Funktionen}
+\label{\detokenize{vorkurs/funktionen:funktionen}}\label{\detokenize{vorkurs/funktionen::doc}}
+Eine Funktion ist in allgemeinster Weise eine Abbildung \(f: M_1 \rightarrow M_2\), die jedem Wert \(x \in M_1\) einen \emph{eindeutigen} Wert \(y \in M_2\) zuordnet. In der Schule betrachtet man üblicherweise skalare reelle Funktionen, d.h. \(M_1=M_2=\R\), manchmal auch \(M_1\) ein Intervall in \(\R\). Im Prinzip sind aber auch Folgen nichts anderes als Funktionen von \(\N\) nach \(\R\).
+\label{vorkurs/funktionen:definition-0}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f:M_1 \rightarrow M_2\) heißt
+\begin{itemize}
+\item {} 
+\emph{injektiv}, wenn aus \(x \neq y\) auch \(f(x) \neq f(y)\) folgt.
+
+\item {} 
+\emph{surjektiv}, wenn zu jedem \(z \in M_2\) ein \(x \in M_1\) existiert mit \(f(x)=z\).
+
+\item {} 
+\emph{bijektiv}, wenn sie injektiv und surjektiv ist.
+
+\end{itemize}
+
+\textbackslash{}end\{*ize\}
+\end{definition}
+
+Eine bijektive Funktion ordnet jedem Element aus \(M_1\) genau ein Element aus \(M_2\) zu und umgekehrt. Damit existiert  auch eine Umkehrfunktion \(f^{-1}: M_2 \rightarrow M_1\) (wir beachten, dass die Umkehrfunktion \(f^{-1}(x)\) nicht zu verwechseln ist mit \(f(x)^{-1} = \frac{1}{f(x)}\)). Die Umkehrfunktion erfüllt
+\begin{equation*}
+ f^{-1}(f(x)) = x, \qquad f(f^{-1}(y) = y\end{equation*}
+für alle \(x \in M_1\) und alle \(y \in M_2\).
+
+
+\subsection{Lineare Funktionen}
+\label{\detokenize{vorkurs/funktionen:lineare-funktionen}}
+Wir beginnen mit einigen wichtigen Beispielen skalarer Funktionen in \(\R\). Die wohl einfachsten sind lineare bzw. affin lineare Funktionen. Eine lineare Funktion ist von der Form
+\begin{equation*}
+ f:x \mapsto a_1 x,\end{equation*}
+mit einer Konstanten \(a_1 \in \R\). Eine affin lineare Funktion ist um eine Konstante verschoben, d.h.
+\begin{equation*}
+ f:x\mapsto a_1 x + a_0.\end{equation*}
+Für \(a_1 =0\) ist \(f\) eine konstante Funktion.
+
+Linearität lässt sich durch zwei Eigenschaften charakterisieren:
+\begin{itemize}
+\item {} 
+Für alle \(x,y \in M_1\) gilt \(f(x+y)=f(x) + f(y) \).
+
+\item {} 
+Für alle \(x \in M_1\) und \(c \in \R\), sodass \(cx \in M_1\) ist, gilt \(f(cx) = c f(x)\).
+
+\end{itemize}
+
+In \(\R\) folgt daraus trivialerweise die obige Form, da wir \(x=1\) wählen können und damit ist \(a_1 = f(0)\). Aber auch im \(\R^n\) reicht dies um eine ähnliche Form herzuleiten.
+
+
+\subsection{Polynome und Rationale Funktionen}
+\label{\detokenize{vorkurs/funktionen:polynome-und-rationale-funktionen}}
+Eine allgemeinere Klasse als lineare Funktionen sind die sogenannten Polynome. Ein Polynom vom Grad \(k\) ist die Funktion
+\begin{equation*}
+ f:x\mapsto a_k x^k + a_{k-1}x^{k-1} + \ldots + a_1 x + a_0.\end{equation*}
+Eine wichtige Eigenschaft von Polynomen ist der Nullstellensatz: ein Polynom vom Grad \(k\) kann höchstens \(k\) Nullstellen (mit Vielfachheit gezählt haben), mit Ausnahme des trivialen Nullpolynoms. Hat ein Polynom \(k\) reelle Nullstellen \(x_0, \ldots x_{k-1}\), dann gilt
+\begin{equation*}
+ f(x) = a_k (x - x_{k-1}) \ldots (x-x_0).\end{equation*}
+Grundlage dafür ist, dass ein Polynom vom Grad \(k\) mit Nullstelle \(x_0\) immer geschrieben werden kann als
+\begin{equation*}
+ f(x) = (x-x_0) g(x)\end{equation*}
+mit einem Polynom \(g\) vom Grad \(k-1\).
+
+Dies ist ein Spezialfall der sogenannten Polynomdivision, ist \(f\) ein Polynom vom Grad \(k\) und \(g\) ein Polynom vom Grad \(m \leq k\), dann existiert ein Polynom \(h\) vom Grad \(m-k\) und ein Polynom \(r\) vom Grad höchstens \(m-1\), sodass
+\begin{equation*}
+ f(x) = h(x) g(x) + r(x).
+\end{equation*}
+Die Division funktioniert dabei genauso wie schriftliche Division bei Dezimalzahlen, diese sind ja von der Form
+\begin{equation*}
+z = a_k 10^k + a_{k-1} 10^{k-1} + \ldots + a_1 10^1 + a_0.\end{equation*}
+Das Polynom \(r\) hat dabei die Rolle des Rests bei der Division.  Wir sehen auch, dass die sogenannten \emph{Monome} \(x^k\) in dieser Darstellung eine wichtige Rolle einnehmen, wir schreiben jedes Polynom als gewichtete Summe von Monomen, wir werden dies allgemeiner \emph{Linearkombination} nennen.
+
+Es gelten auch sonst analoge Eigenschaften wie bei der Rechung mit ganzen Zahlen:
+\begin{itemize}
+\item {} 
+Summen von Polynomen sind Polynome.
+
+\item {} 
+Produkte von Polynonem sind Polynome.
+
+\item {} 
+Es gibt ein neutrales Element der Addition, das Nullpolynom \(p_0(x)=0\): Es gilt \(p(x) + p_0(x) = p(x)\) für jedes Polynom.
+
+\item {} 
+Es gibt ein neutrales Element der Multiplikation, das konstante Polynom \(p_1(x)=1\): Es gilt \(p(x) p_1(x) = p(x)\) für jedes Polynom.
+
+\item {} 
+Es gibt ein inverses Element der Addition, d.h. zu jedem Polynom \(p\) gibt es ein Polynom \(q\) mit \(p(x) + q(x) =0\) für alle \(x\).
+
+\item {} 
+Es gelten Kommutativ , Assoziativ  und Distributivgesetz.
+
+\end{itemize}
+
+Wir beachten, dass als Spezialfall dieser Rechenregeln auch die Multiplikation von Polynomen mit reellen Zahlen beinhaltet sind, da wir reelle Zahlen mit konstanten Polynomen identifizieren können.
+
+Wir kehren nochmal zum Nullstellensatz zurück und wollen uns zunächst überlegen, warum ein Polynom mit Nullstelle \(x_0\) durch \((x-x_0)\) ohne Rest dividierbar ist. Nach der Formel für Polynomdivision gilt
+\begin{equation*}
+ f(x) = h(x) (x-x_0) + r(x).
+\end{equation*}
+Da \(x-x_0\) ein Polynom vom Grad \(1\) ist, muss \(r\) Grad \(0\) haben, d.h. \(r\) ist eine konstante. Sezten wir \(x=x_0\) ein, dann folgt
+\begin{equation*}
+ 0 = 0 + r(x_0) .\end{equation*}
+Also folgt \(r(x) =r(x_0) = 0\) für alle \(x\). Damit sehen wir auch sofort, dass ein nichtriviales Polynom vom Grad \(k\) höchstens \(k\) Nullstellen (mit Vielfachheit gezählt) haben kann. Gäbe es \(k+1\) Nullstellen, dann könnten wir durch die ersten \(k\) dividieren und es muss ein Polynom vom Grad \(0\) übrig bleiben. Ist dieses gleich Null, dann war \(f\) schon das Nullpolynom. Andernfalls kann das Polynom vom Grad \(0\) keine weitere Nullstelle haben.
+
+Wenn man Polynome mit nichtverschwindendem Rest dividiert, erhält man \emph{rationale Funktionen}.
+Eine rationale Funktion ist von der Form
+\begin{equation*}
+ f:x\mapsto  \frac{p(x)}{q(x)},\end{equation*}
+wobei \(p\) und \(q\) Polynome sind. Im Gegensatz zu Polynomen ist der Definitionsbereich rationaler Funktionen nicht ganz \(\R\), da die Nullstellen von \(q\) ausgenommen werden müssen, an denen \(f\) Pole hat. Wegen dem Nullstellensatz ist die Anzahl der Nullstellen von \(f\) durch den Grad von \(p\) begrenzt, die Anzahl der Pole durch den Grad von \(q\).
+
+Bei rationalen Polynomen gelten analoge Rechenregeln wie bei rationalen Zahlen, insbesondere gibt es, wenn \(f\) nicht die Nullfunktion ist, auch ein inverses Element der Multiplikation. Für jedes rationale Funktion \(f\) gibt es eine rationale Funktion \(g\) mit \(f(x) g(x) = 1\) für alle \(x\).
+
+
+\subsection{Exponentialfunktion und Logarithmus}
+\label{\detokenize{vorkurs/funktionen:exponentialfunktion-und-logarithmus}}
+Eine andere wichtige Klasse von Funktionen sind \emph{Exponentialfunktionen}, die durch \(f: x\mapsto a^x\) für ein \(a \in \R\) definiert sind. Für \(n \in \N\) ist \(a^n\) die \((n-1)\) malige Multiplikation von \(a\) mit sich selbst und wir sehen, dass dann
+\begin{equation*}
+ f(n+m) = a^{n+m}  = a^n a^m  = f(n) f(m)\end{equation*}
+gilt. Diese Eigenschaft kann tastsächlich als allgemeine Charakterisierung einer Exponentialfunktion verwendet werden, wir betrachten einfach eine Funktion \(f\) auf \(\R\) für die
+\begin{equation*}
+ f(x+y) =  f(x) f(y)\end{equation*}
+für alle \(x,y \in \R\) sowie \(f(0)=1\)
+gilt. Damit ist automatisch \(f(x+1) = f(x) f(1)\) und durch Hintereinanderausführung \(f(x+m) = f(x) f(1)^m\) für \(m \in \N\). Definieren wir also \(a=f(1)\), so sehen wir dass für alle \(n \in \N\) die Form \(f(n) = a^n\) folgt. Ist \(a \neq 0\) so können wir auch dividieren und erhalten die selbe Form für \(n \in \Z\). Als nächsten Schritt können wir \(x= \frac{n}m\) für \(n \in \Z, m \in \N\) betrachten. Nun wählen wir \(y=(m-1) x\) und erhalten
+\begin{equation*}
+ f(m x) = f((m-1)x) f(x)\end{equation*}
+und durch Hintereinanderausführung
+\begin{equation*}
+ a^n = f(n) = f(mx) = f(x)^m.\end{equation*}
+Also gilt \(f(x) = a^{\frac{n}m}. \) Für die Erweiterung auf reelles \(x\) benötigt man noch einen Grenzwert von rationalen gegen reelle Werte, dies werden wir später auch basierend auf der Annahme der Stetigkeit kennen lernen.
+
+Besonders interessant ist  der Fall \(a=e\), wie wir sehen werden lassen sich alle Exponentialfunktionen mit \(a > 0\) als \(f(x) = e^{cx}\) mit \(c\in \R\) schreiben. Die Euler’sche Zahl \(e\) können wir als
+\begin{equation*}
+ e= \lim_{n \rightarrow \infty} \left(1 + \frac{1}n\right)^n\end{equation*}
+definieren. Alternativ können wir \(e^x\) auch über die Potenzreihe
+\begin{equation*}
+ e^{x} = 1 + x+ \frac{x^2}2 + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots\end{equation*}
+definieren, allerdings muss dann die Konvergenz der Reihe auch für jedes \(x\) zeigen, was wir später in der Vorlesung tun werden.
+
+Die Exponentialfunktion ist eine monoton steigende Funktion, d.h.
+\begin{equation*}
+ f(x) \geq f(y) \quad \text{für } x > y,\end{equation*}
+es gilt sogar \(f(x) > f(y)\) für \(x > y\) und damit ist \(f\) injektiv. Andererseits ist die Exponentialfunktion auch surjektiv und damit invertierbar. Die inverse Funktion nennen wir Logarithmus (\(\log x\)). Es gilt
+\begin{equation*}
+ \log e^x = x \qquad e^{\log y} = y.\end{equation*}
+Die Rechenregeln für den Logarithmus können wir aus den Regeln für die Exponentialfunktion herleiten. Es gilt
+\begin{equation*}
+ \log (y_1 y_2) = \log (e^{x_1} e^{x_2}) = \log e^{x_1 + x_2} = x_1 + x_2 = \log y_1 + \log y_2.\end{equation*}
+Setzen wir \(y_1 = y_2 =y\) dann folgt auch
+\begin{equation*}
+  \log ( y^2) = 2 \log y\end{equation*}
+und induktiv
+\begin{equation*}
+  \log ( y^n) = n \log y.\end{equation*}
+Mit einer entsprechenden Konstruktion sehen wir auch
+\begin{equation*}
+ \log (y^x) = x \log y,\end{equation*}
+für \(x \in \R\). Damit ist
+\begin{equation*}
+ \log (a^x) = x \log a\end{equation*}
+und es folgt
+\begin{equation*}
+ a^x = e^{c x},\end{equation*}
+mit \(c= \log a\). Also können wir wie angekündigt alle Exponentialfunktionen in der Form \(e^{cx}\) schreiben.
+
+
+\subsection{Sinus  und Cosinusfunktion}
+\label{\detokenize{vorkurs/funktionen:sinus-und-cosinusfunktion}}
+Die Sinus  und Cosinusfunktion sind periodische Funktionen in \(\R\), deren Wertebereich \([-1,1]\), es gibt daher nur Umkehrfunktionen wenn wir sie im Fall des Sinus von \([-\frac{\pi}2,\frac{\pi}2]\) nach \([-1,1]\) und im Fall des Cosinus von \([0,\pi]\) nach \([-1,1]\) betrachten.
+
+Es gilt
+\begin{equation*}
+ \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \ldots\end{equation*}
+und
+\begin{equation*}
+\cos x = 1- \frac{x^2}{2!} + \frac{x^4}{4!} - \ldots\end{equation*}
+Der Sinus ist eine ungerade Funktion, d.h. \(\sin (-x) = -  \sin x\), während der Cosinus eine gerade Funktion ist, d.h. \(\cos(-x) = \cos(x)\). Sinus uns Cosinus erfüllen einige interessante Eigenschaften wie Additionstheoreme, wir werden später sehen, dass diese überraschenderweise aus den Eigenschaften der Exponentialfunktion folgen, dies basiert auf den komplexen Zahlen. Mit der imaginären Zahl \(\i\), die \(\i^2 = -1\) erfüllt, gilt
+\begin{equation*}
+ e^{\i x}  = \cos x + \i \sin x.\end{equation*}
+
+\section{Stetigkeit}
+\label{\detokenize{vorkurs/stetigkeit:stetigkeit}}\label{\detokenize{vorkurs/stetigkeit::doc}}
+In diesem Abschnitt wollen wir den Begriff der Stetigkeit, der intuitiv relativ klar ist, mathematisch etwas klarer formulieren. Alle Beispiele an Funktionen, die wir bisher gesehen haben, sind stetig. Eine Funktion ist stetig in einem Punkt \(x\), wenn aus \(|y-x|\) klein auch \(|f(y)-f(x)|\) klein folgt. Dies können wir sauberer über Folgen definieren:
+\label{vorkurs/stetigkeit:definition-0}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f: I \subset \R \rightarrow \R\) heisst stetig in \(x \in I\), genau dann wenn für alle Folgen \(x_n \rightarrow x\) gilt: \(f(x_n) \rightarrow f(x)\).
+\end{definition}
+
+Alternativ können wir auch eine Definition von Stetigkeit über die Nähe geben: egal welche kleine Schranke wir an die Unterschiede der Funktionswerte vorgeben, können wir diese garantieren, solange die Differenz der Argumente klein genug ist:
+\label{vorkurs/stetigkeit:definition-1}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f: I \subset \R \rightarrow \R\) heisst stetig in \(x \in I\), genau dann wenn
+\begin{equation*}
+ \forall \epsilon > 0~\exists \delta > 0 ~\forall y \in I, |y-x| < \delta: |f(x) - f(y)|<\epsilon.\end{equation*}\end{definition}
+
+Wir werden später sehen, dass diese beiden Definitionen äquivalent sind. Hier betrachten wir aber noch einen wichtigen Spezialfall, sogenannte Lipschitz stetige Funktionen:
+\label{vorkurs/stetigkeit:definition-2}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f: I \subset \R \rightarrow \R\) heisst Lipschitz stetig, genau dann wenn
+\begin{equation*}
+ \ \exists L > 0 ~\forall x,y \in I: |f(x) - f(y)| \leq L |x-y|.
+\end{equation*}\end{definition}
+
+Eine Lipschitz stetige Funktion ist immer stetig, für alle \(x \in I\). Wir sehen, dass aus \(|x-y| < \delta\) immer \(|f(x) - f(y)| < L \delta\) folgt. Also können wir zu jedem \(\epsilon > 0\) ein \(\delta = \frac{\epsilon}{L}\) wählen, sodass die Definition der Stetigkeit erfüllt ist.
+\label{vorkurs/stetigkeit:example-3}
+\begin{example}{}{}
+
+
+
+Sei \(f(x) = a_1 x + a_0\), dann ist \(f\) Lipschitz stetig auf \(\R\) mit \(L=\vert a_1 \vert\).
+\end{example}
+\label{vorkurs/stetigkeit:example-4}
+\begin{example}{}{}
+
+
+
+Sei \(f(x) = x^2\), dann ist \(f\) Lipschitz stetig auf \(I=[-b,b]\) mit \(L= 2b\).
+\end{example}
+
+
+\section{Differentiation und Integration}
+\label{\detokenize{vorkurs/diffnint:differentiation-und-integration}}\label{\detokenize{vorkurs/diffnint::doc}}
+Wir kommen nun zu einem der wesentlichsten Themen der Analysis, der Differential  und Integralrechnung. Grundlage der Differentialrechnung ist eine lokal lineare Approximation der Funktion \(f\) nahe eines Punkts \(x_0\). Dazu stellen wir die Geradengleichung durch den Punkt \((x_0,f(x_0))\) auf als
+\begin{equation*}
+ g(x) = f(x_0) + k_0 (x-x_0)\end{equation*}
+und fragen uns wie wir die Steigung \(k_0\) am sinnvollsten wählen. Da \(g(x) \approx f(x)\) gelten sollte, möchten wir
+\begin{equation*}
+ k_0 \approx \frac{f(x) - f(x_0)}{x-x_0}\end{equation*}
+Der richtige Wert ist also der Grenzwert \(x\) gegen \(x_0\).  Dementsprechend definieren wir diesen Grenzwert als Ableitung
+\begin{equation*}
+ f'(x_0) = \lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x-x_0}.\end{equation*}
+Wir sagen, dass der Grenzwert \(\lim_{x \rightarrow x_0}\) existiert, wenn der Grenzwert für alle Folgen \(x_n \rightarrow x_0\) existiert und den gleichen Wert annimmt. In diesem Fall nennen wir die Funktion differenzierbar in \(x_0\). Ist \(f\) differenzierbar für jedes \(x_0 \in I\), so nennen wir \(f\) differenzierbar in \(I\).
+\label{vorkurs/diffnint:example-0}
+\begin{example}{}{}
+
+
+
+Sei \(f(x) = a_1 x + a_0\), dann ist \(f\) differenzierbar in \(\R\) mit \(f'(x) = a_1\).
+\end{example}
+\label{vorkurs/diffnint:example-1}
+\begin{example}{}{}
+
+
+
+Sei \(f(x) = x^2\), dann ist \(f\) differenzierbar in \(\R\) mit \(f'(x) = 2x\).
+\end{example}
+
+Eine differenzierbare Funktion ist immer stetig, wenn \(f\) in einem Intervall differenzierbar und die Ableitung betragsmäßig beschränkt ist, dann ist \(f\) sogar Lipschitz stetig. Dies werden wir später noch mit Hilfe der Integralrechnung sehen.
+
+Die zentralen Regeln bei der Differentiation sind die Produkt  und Kettenregel. Sind \(f, g:I \rightarrow \R\) zwei Funktionen, die in \(x_0\) differenzierbar sind, dann ist auch \(h = f g\) in \(x_0\) differenzierbar und es gilt die Produktregel:
+\begin{equation*}
+h'(x_0) = f'(x_0) g(x_0) + f(x_0) g'(x_0)\end{equation*}
+Die sehen wir durch eine Betrachtung des Genzwerts
+\begin{align*}
+\lim_{x \rightarrow x_0} \frac{h(x) - h(x_0)}{x-x_0} &= \lim_{x \rightarrow x_0} \frac{f(x)g(x) - f(x_0)g(x_0) }{x-x_0} \\
+&= \lim_{x \rightarrow x_0} \frac{f(x)g(x) - f(x_0) g(x) +f(x_0) g(x) - f(x_0)g(x_0) }{x-x_0} \\
+&= \lim_{x \rightarrow x_0} \frac{f(x)  - f(x_0)   }{x-x_0} g(x)+
+\lim_{x \rightarrow x_0} f(x_0) \frac{  g(x) -  g(x_0) }{x-x_0}
+\end{align*}
+Dabei haben wir benutzt, dass Grenzwerte von Summen und Produkten gleich Summen und Produkten von Grenzwerten sind.
+\label{vorkurs/diffnint:example-2}
+\begin{example}{}{}
+
+
+
+Sei \(h(x) = x^2 e^x. \) Dann ist \(h'(x) = 2x e^x + x^2 e^x\).
+\end{example}
+
+Die Kettenregel gilt für die Hintereinanderausführung differenzierbarer Funktionen. Ist \(f\) bei \(x_0\) differenzierbar und \(g\) bei \(y_0=f(x_0)\), dann ist \(h = g \circ f, \) d.h. \(h(x) = g(f(x))\), bei \(x_0\) differenzierbar und es gilt
+\begin{equation*}
+ h'(x_0) = g'(f(x_0)) f'(x_0).\end{equation*}
+Aus der Ketten  und Produktregel, lassen sich auch weitere Differentiationsregeln herleiten, etwa die Quotientenregel für \(h= \frac{f}g\). Dazu wenden wir die Produktregel auf \(f \tilde g\) mit \(\tilde g = \frac{1}g\) an und die Kettenregel auf die Hintereinanderausführung von \(y \mapsto \frac{1}y\) und \(g\).
+
+Die Integration wird üblicherweise als Umkehrung der Differentiation eingeführt. Das unbestimmte Integral, d.h. die Stammfunktion \(F\) einer Funktion \(f\) ist definiert durch die Eigenschaft \(F'=f\). Wir beachten, dass die Stammfunktion nur bis auf eine additive Konstante definiert ist. Für \(a < b \in I\) gilt
+\begin{equation}\label{equation:vorkurs/diffnint:eq:hauptsatzintegral}
+\int_a^b f(x) ~dx = \int_a^b F'(x) ~dx = F(b) - F(a). 
+\end{equation}
+Dies wird auch als Hauptsatz der Differential  und Integralrechnung bezeichnet. Wir beachten, dass beim bestimmten Integral von \(a\) nach \(b\) laut \eqref{equation:vorkurs/diffnint:eq:hauptsatzintegral} die additive Konstante in der Differenz rausfällt, deshalb ist das bestimmte Integral auch eindeutig bestimmt.
+
+Das Integral ist das kontinuierliche Analogon zur Summation, was aus der Definition über sogenannte Riemann Summen klar wird. Wir erhalten das Integral einer stetigen Funktion als Grenzwert
+\begin{equation*}
+ \int_a^b f(x)~dx = \lim_{|\Delta_n| \rightarrow 0} \sum_{j=1}^n (x_j - x_{j-1}) f(\xi_j)\end{equation*}
+wobei \(\Delta_n = \{x_j,\xi_j\}\), sodass
+\begin{equation*}
+ a = x_0 < x_1 < \ldots < x_n =b, \qquad \xi_j \in [x_{j-1},x_j]
+\end{equation*}
+und
+\begin{equation*}
+ \vert \Delta_n \vert = \max_j (x_j - x_{j-1}).\end{equation*}
+Daraus sehen wir auch die Linearität des Integrals:
+\begin{equation*}
+ \int_a^b  c f(x) ~dx = c \int_a^b   f(x) ~dx,\end{equation*}
+und
+\begin{equation*}
+ \int_a^b   ( f(x) + g(x)) ~dx = \int_a^b   f(x) ~dx + \int_a^b   g(x) ~dx.\end{equation*}
+Darüber hinaus pflanzt sich auch die Monotonie und Dreiecksungleichung fort, es gilt
+\begin{equation*}
+ \int_a^b   f(x) ~dx \leq  \int_a^b   g(x) ~dx \end{equation*}
+falls \(f(x) \leq g(x)\) für alle \(x \in (a,b)\) gilt, sowie
+\begin{equation*}
+ \left\vert \int_a^b   f(x) ~dx \right\vert \leq  \int_a^b  \vert  f(x) \vert ~dx .\end{equation*}
+Aus dem Hauptsatz der Differential  und Integralrechnung sowie dieser Ungleichung folgt
+\begin{equation*}
+\vert F(x_2) - F(x_1) \vert = \left\vert \int_{x_1}^{x_2}   F'(x) ~dx \right\vert
+\leq  \int_{x_1}^{x_2}  \vert F'(x) \vert ~dx.
+\end{equation*}
+Ist \(F'\) beschränkt, d.h. \(\vert F'(x) \vert \leq L\) für alle \(x\), dann folgt
+\begin{equation*}
+ \vert F(x_2) - F(x_1) \vert \leq  \int_{x_1}^{x_2}  \vert F'(x) \vert ~dx
+\leq  \int_{x_1}^{x_2}  L ~dx = L \vert x_2 - x_1 \vert.
+\end{equation*}
+Die Differentiationsregeln münden auch direkt Eigenschaften der Integration. Besonders interessant ist die partielle Integration
+\begin{equation*}
+  \int_a^b f'(x) g(x)~dx = f(b) g(b) - f(a) g(a) - \int_a^b f(x) g'(x)~dx,\end{equation*}
+die direkt aus der Produktregel und dem Hauptsatz der Differential  und Integralrechnung folgt.
+
+

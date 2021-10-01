@@ -223,7 +223,7 @@ Setzen wir dies ein, so folgt $e^x e^x = e^{2x}$.
 Allgemeiner können wir mit Hilfe der binomischen Formel auch $e^x e^y$ berechnen. Für das Produkt von Potenzreihen mit verschiedenen Argumenten erhalten wir analog zur Rechnung oben
 
 ```{math}
-$$ \left( \sum_{n=0}^\infty  a_n x^n \right) \left( \sum_{n=0}^\infty b_y x^n \right) =
+\left( \sum_{n=0}^\infty  a_n x^n \right) \left( \sum_{n=0}^\infty b_y x^n \right) =
 \sum_{n=0}^\infty \sum_{k=0}^n a_k b_{n-k} x^k y^{n-k}.
 ```
 

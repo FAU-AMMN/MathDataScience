@@ -129,4 +129,4 @@ Wir sehen sofort, dass für zwei äquivalente Normen auch die zugeordneten Metri
 ```
 
 äquivalent sind.
-Darüber hinaus sehen wir, dass die Konvergenz einer Folge in einer Metrik $d_A$ auch die Konvergenz in einer äquivalenten Metrik $d_B$ impliziert. Dazu können wir etwa Lemma {prf:ref}`nullfolgenmetrik` verwenden.
+Darüber hinaus sehen wir, dass die Konvergenz einer Folge in einer Metrik $d_A$ auch die Konvergenz in einer äquivalenten Metrik $d_B$ impliziert. Dazu können wir etwa {prf:ref}`nullfolgenmetrik` verwenden.

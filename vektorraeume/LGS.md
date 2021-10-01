@@ -253,7 +253,7 @@ für alle $x \in \R^n$ und damit $y \in {\cal R}(A)$. Insbesondere folgt daraus 
 Die zweite Identität folgt direkt aus der ersten wegen $(A^T)^T = A$. 
 ````
 
-Neben dem Skalarprodukt können wir auch das _äußere Produkt_ $x \otimes y = x y^T \in \R^{n \times n}$ berechnen. Für die Matrix $A=x y^T$ gilt $A z = x(y^T z)$, d.h. alle Elemente von ${\cal R}(A)$ sind skalare Vielfache von $x$. Ist $x \neq 0$ ist deshalb Rg$(A) = $dim$({\cal R}(A))$.
+Neben dem Skalarprodukt können wir auch das äußere Produkt $x \otimes y = x y^T \in \R^{n \times n}$ berechnen. Für die Matrix $A=x y^T$ gilt $A z = x(y^T z)$, d.h. alle Elemente von ${\mathcal R}(A)$ sind skalare Vielfache von $x$. Ist $x \neq 0$ ist deshalb Rg$(A) = $dim$({\mathcal R}(A))$.
 
 ## Lösbarkeit
 

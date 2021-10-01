@@ -1,0 +1,1756 @@
+\chapter{Grundlagen}
+\label{\detokenize{grundlagen/grundlagen:grundlagen}}\label{\detokenize{grundlagen/grundlagen::doc}}
+In diesem ersten Teil der Vorlesung beginnen wir mit einigen grundlegenden mathematischen Begriffen, die uns helfen Objekte als Mengen und Aussagen in strikter Logik zu formalisieren. Danach wenden wir uns verschiedenen Zahlensystemen zu, insbesondere den wohlbekannten natürlichen, rationalen und reellen Zahlen.
+
+
+\section{Mengenlehre und Logik}
+\label{\detokenize{grundlagen/mengenlogik:mengenlehre-und-logik}}\label{\detokenize{grundlagen/mengenlogik::doc}}
+Ein wichtiges Konzept um Mathematik aufzuschreiben sind sogenannte \emph{Mengen}. Eine Menge ist eine Sammlung unterscheidbarer Objekte, die wir innerhalb der Mengenklammern \(\{ \ldots \}\) notieren. Wir unterscheiden endliche Mengen, wie
+\begin{equation*}
+ M_1 =  \{1,2,3\}, \qquad M_2=\{\text{Baum},\text{Wiese}\} ,
+\end{equation*}
+oder
+\begin{equation*}
+ M_3=\{\text{James}, \text{Davis}, \text{Caruso}, \text{Caldwell-Pope},\text{Green}\}
+\end{equation*}
+und unendliche Mengen wie natürlichen Zahlen
+\begin{equation*}
+\N =\{0,1,2,3,4,\ldots\}.
+\end{equation*}
+Dabei ist die Reihenfolge der Elemente unerheblich, also können wir genauso \( M_1 = \{1,3,2\}\) oder \(M_1=\{3,2,1\}\) schreiben. Auch \(M_1=\{1,2,2,3\}\) ist immer noch die gleiche Menge, da wir nur unterscheidbare Objekte betrachten.
+Eine Menge \(M\) besteht aus ihren Elementen \(x\), wir schreiben \(x \in M\). Ist \(x\) nicht in \(M\) enthalten, so schreiben wir \(x \notin M\).
+\label{grundlagen/mengenlogik:definition-0}
+\begin{definition}{}{}
+
+
+
+Seien \(M\) und \(\tilde M\) Mengen, dann heißt \(\tilde M\) \emph{Teilmenge} von \(M\), wenn für alle \(x \in \tilde M\) folgt, dass \(x \in M\) gilt. Gibt es ein \(x \in M\) mit \(x \notin \tilde M\), dann heißt \(\tilde M\) \emph{echte Teilmenge}.
+\end{definition}
+
+Jede Menge hat zumindest eine Teilmenge, die sogenannte leere Menge \(\emptyset\). Ein einfaches Beispiel für eine Teilmenge ist \(\N \subset \Z\), es ist auch eine echte Teilmenge, da z.b. \(-1 \in \Z\) und \(-1 \notin \N\).
+Wir beachten auch den Unterschied zwischen \(x\) und der Menge \(\{x\}\). So gilt im obigen Beispiel etwa \(1 \in M_1\), aber \(\{1\} \subset M_1\).
+
+Wir können (Teil)Mengen auch durch Aussagen definieren. Gegeben eine Menge \(M\) und eine Aussage \(A(x)\) über Elemente in \(x\), die entweder wahr oder falsch ist, erhalten wir
+\begin{equation*}
+ \tilde M = \{ x\in M ~|~A(x)\}
+\end{equation*}
+als Teilmenge jener Elemente von \(M\), für die \(A(x)\) wahr ist. Als Beispiel betrachten wir \(M_1\) wie oben und
+\begin{equation*}
+ \tilde M_1 = \{x \in M_1 ~|~x \text{ ist gerade.}\} = \{2\}
+\end{equation*}
+oder als Teilmenge der reellen Zahlen
+\begin{equation*}
+ M = \{ x \in \N~|~x \text{ ist Quadratzahl. }\} = \{0,1,4,9,16,25,\ldots\}.
+\end{equation*}
+
+\subsection{Mengensysteme und Mengenoperationen}
+\label{\detokenize{grundlagen/mengenlogik:mengensysteme-und-mengenoperationen}}
+In dem wir Mengen selbst in Mengen stecken, erhalten wir Mengensysteme. Als Beispiel betrachten wir
+\begin{equation*}
+ S = \emptyset,\{1\_,\{1,2\},\{1,2,3\} \}.
+\end{equation*}
+\(S\) ist eine Teilmenge der sogenannten Potenzmenge von \(\{1,2,3\}\) Allgemein nennen wir die Menge aller Teilmengen von \(M\) die Potenzmenge \({\cal P}(M)\) (oder auch \(2^M\)). So gilt etwa
+\begin{equation*}
+ {\cal P}(\{1,2,3\}) = \emptyset,\{1\_,\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\}\{1,2,3\} \}.
+\end{equation*}
+Ist \(M\) endlich und bezeichnet \(\vert M \vert\) die Anzahl der Elemente in \(M\), so hat \({\cal P}(M)\) genau \(2^{\vert M \vert}\) Elemente.
+Auf Mengensystemen können wir auch Operationen definieren wie etwa den Durchschnitt oder die Vereinigung:
+\label{grundlagen/mengenlogik:definition-1}
+\begin{definition}{}{}
+
+
+
+Sei \(S\) ein Mengensystem. Dann ist der Durchschnitt definiert als
+\begin{equation*}
+ \bigcap_{M \in S} M = \{x ~|~ \forall M \in S: x \in M \}
+\end{equation*}
+und die Vereinigung als
+\begin{equation*}
+ \bigcup_{M \in S} M = \{x ~|~ \exists M \in S: x \in M \}.
+\end{equation*}\end{definition}
+
+Für endliche Systeme \(S=\{M_1,M_2,\ldots,M_n\}\) schreiben wir auch
+\begin{equation*}
+ \bigcap_{M \in S} M  = M_1 \cap M_2 \cap \ldots \cap M_n
+\end{equation*}
+bzw.
+\begin{equation*}
+ \bigcup_{M \in S} M  = M_1 \cup M_2 \cup \ldots \cup M_n.
+\end{equation*}
+Gilt \(M_1 \cap M_2 = \emptyset\), so heißen \(M_1\) und \(M_2\) disjunkt. Gilt \(M_1 \cap M_2 = \emptyset\) für alle \(M_1\) und \(M_2\) in \(S\), so heißen die Elemente von \(S\) paarweise disjunkt.
+Wir können auch die Teilmengeneigenschaft über den Schnitt definieren:
+\label{grundlagen/mengenlogik:lemma-2}
+\begin{lemma}{}{}
+
+
+
+\(\tilde M \subset M\) gilt genau dann wenn \(\tilde M \cap M = \tilde M\)
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof. \(\tilde M  \subset M\) ist äquivalent zu
+\begin{equation*}
+ \forall x \in \tilde M: x \in M,
+\end{equation*}
+dies ist gilt natürlich auch genau dann wenn
+\begin{equation*}
+ \forall x \in \tilde M \cap M: x \in M.
+\end{equation*}
+Die letzte Aussage ist gleichbedeutend mit \(\tilde M \cap M = \tilde M\).
+\(\square\)
+\end{emphBox}
+
+Wir definieren noch einige weitere Operationen auf Paaren von Mengen:
+\begin{itemize}
+\item {} 
+Die Differenzmenge \(M \setminus \tilde M\) ist gegeben durch
+
+\end{itemize}
+\begin{equation*}
+ M \setminus \tilde M = \{ x \in M ~|~ x \notin \tilde M\}
+\end{equation*}\begin{itemize}
+\item {} 
+Die symmetrische Differenz \(M \Delta \tilde M\) ist gegeben durch
+
+\end{itemize}
+\begin{equation*}
+ M \Delta \tilde M = (M \setminus \tilde M ) \cup (\tilde M \setminus M)
+\end{equation*}\begin{itemize}
+\item {} 
+Das kartesische Produkt zweier Mengen ist die Menge aller geordneten Paare aus Elementen, d.h.
+
+\end{itemize}
+\begin{equation*}
+ M \times \tilde M = \{ (m,\tilde m) ~|~ m \in M, \tilde m \in \tilde M\}
+\end{equation*}
+Dies kennen wir auch aus der Definition des \(\R^2 = \R \times \R\) über zwei kartesische Koordinaten.
+
+Neben Operationen können wir auch sogenannte Relationen auf Paaren von Mengen oder einzelnen Mengen definieren. Dazu konstruieren wir eine neue Menge \(R\), in die wir alle geordneten Paare aus \(M \times \tilde M\) schreiben, für die eine Relation gelten soll:
+\label{grundlagen/mengenlogik:definition-3}
+\begin{definition}{}{}
+
+
+
+Eine Teilmenge \(R \subset M \times \tilde M\) heißt Relation zwischen \(M\) und \(\tilde M\). Eine Teilmenge \(R \subset M \times M\) heißt Relation auf \(M\).
+\end{definition}
+
+Als Beispiel können wir die Menge \(M\) der Bundesliga Teams betrachten und definieren eine Relation wenn zwei Teams bereits gegeneinander gespielt haben. \(R\) besteht also aus allen Spielpaaren \((x,y)\). Wollen wir nicht nach Heim  oder Auswärtsspielen unterscheiden, so schreiben wir neben \((x,y)\) auch \((y,x)\) in \(R\).
+\label{grundlagen/mengenlogik:definition-4}
+\begin{definition}{}{}
+
+
+
+Eine Relation \(R \subset M \times M\) heißt\textbackslash{}begin\{*ize\}
+\begin{itemize}
+\item {} 
+\emph{reflexiv}, wenn für alle \(x \in M\) gilt: \((x,x) \in R\)
+
+\item {} 
+\emph{symmetrisch}, wenn \((x,y) \in R\) impliziert: \((y,x) \in R\)
+
+\item {} 
+\emph{antisymmetrisch}, wenn \((x,y) \in R\) und \((y,x) \in R\) impliziert, dass \(y=x\) gilt
+
+\item {} 
+\emph{transitiv}, wenn aus \((x,y) \in R\) und \((y,z) \in R\) folgt, dass \((x,z)  \in R\) gilt.
+\textbackslash{}end\{*ize
+
+\end{itemize}
+\end{definition}
+
+Das obige Beispiel der Bundesligamannschaften ist nie reflexiv und nur dann symmetrisch, wenn wir nicht zwischen Heim  und Auswärtsspielen unterscheiden. Als weiteres Beispiel betrachten wir wieder \(M_1 = \{1,2,3\}\) und
+\begin{equation*}
+ R=\{(x,y) \in M_1 \times M_1~|~x \leq y\} = \{ (1,1),(1,2),(1,3),(2,2),(2,3),(3,3)\}.
+\end{equation*}
+Diese Relation ist reflexiv, anti symmetrisch und transitiv.
+Relationen mit diesen drei Eigenschaften (Reflexivität, Anti Symmetrie, Transitivität) nennen wir Ordnungsrelation (oder Halbordnung). Statt \((x,y) \in R\) schreiben wir auch \(x \preceq y\). Eine Halbordnung heißt Ordnung, wenn sich alle Paare vergleichen lassen, d.h. es gilt \(x \preceq y\) oder \(y \preceq x\).
+\label{grundlagen/mengenlogik:example-5}
+\begin{example}{}{}
+
+
+
+Sei \(M= \N \setminus \{0\}\) und \(R=\{(x,y) \in M \times M~|~x \text{ teilt } y\}\). Dies ist eine Halbordnung auf \(\N \setminus 0\), die keine Ordnung ist, da z.B. \(2\) und \(3\) nicht vergleichbar sind.
+\end{example}
+
+Eine weitere wichtige Klasse sind Äquivalenzrelationen:
+\label{grundlagen/mengenlogik:definition-6}
+\begin{definition}{}{}
+
+
+
+Eine Relation \(R \subset M \times M\) heißt Äquivalenzrelation, wenn sie reflexiv, symmetrisch und transitiv ist. Für \((x,y) \in R\) schreiben wir dann auch \(x \sim y\).
+\end{definition}
+\label{grundlagen/mengenlogik:example-7}
+\begin{example}{}{}
+
+
+
+Sei \(M= \Z\) und \(x \sim y\) wenn
+\begin{equation*}
+x-y \in 2 \Z = \{ 2 z ~|~z \in \Z \}
+\end{equation*}
+gilt. D.h. \(x \sim y\) wenn beide gerade oder beide ungerade sind. In diesem Beispiel kennen wir schon die Einteilung in sogenannte Äquivalenzklassen, nämlich die geraden und die ungeraden Zahlen. Solche kann man auch für allgemeine Äquivalenzrelationen definieren
+\end{example}
+\label{grundlagen/mengenlogik:definition-8}
+\begin{definition}{}{}
+
+
+
+Die von \(m \in M\) erzeugte Äquivalenzklasse unter einer Äquivalenzrelation ist gegeben durch
+\begin{equation*}
+ [m] = \{ n \in M ~|~n \sim m\}.
+\end{equation*}
+Jedes Element einer Äquivalenzrelation heißt Repräsentant
+\end{definition}
+
+Im Beispiel der Aufteilung in gerade und ungerade Zahlen sind typische Repräsentanten die Zahlen \(0\) (für gerade) und \(1\) (für ungerade). Wir wissen auch, dass eine Zahl entweder gerade oder ungerade ist und eine solche Eigenschaft gilt ebenfalls für allgemeine Äquivalenzrelationen:
+\label{grundlagen/mengenlogik:lemma-9}
+\begin{lemma}{}{}
+
+
+
+Gegeben sei eine Äquivalenzrelation \(\sim\) auf \(M\). Dann ist jedes Element \(m \in M\) in genau einer Äquivalenzklasse enthalten. Für alle \(m,n \in M\) gilt entweder
+\begin{equation*}
+[m] = [n] \quad \text{oder} \quad [m] \cap [n] = \emptyset .
+\end{equation*}\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  \([m]\) ist wegen der Reflexivität nicht leer (\(m \in [m]\)) und jedes Element ist damit auch in mindestens einer Äquivalenzklasse enthalten. Sei nun \(m \in [n]\) für \(n \neq m\), dann folgt wegen der Symmetrie auch \(n \in [m]\). Wegen der Transitivität gilt
+\begin{equation*}
+p \in [m] \Leftrightarrow p \sim m \Rightarrow p \sim n \Rightarrow p \in [n]
+\end{equation*}
+und
+\begin{equation*}
+ p \in [n] \Leftrightarrow p \sim n \Rightarrow p \sim m \Rightarrow p \in [m].
+\end{equation*}
+Also folgt \([m]=[n]\). Sei nun \(m \not\sim n\). Dann gilt für \(p \sim m\) auch \(p \not\sim n\), da sonst wegen der Transitivität \(m \sim n\) folgt. Also gilt für jedes \(p \in [m]\) auch \(p \notin [n]\). Mit exakt demselben Argument folgern wir aus \(p \in [n]\) dann \(p \notin [m]\). Damit ist \([n] \cap [m] = \emptyset\)
+\end{emphBox}
+
+Bei der Relation
+\begin{equation*}
+ x \sim y \Leftrightarrow x-y \in 2 \Z ,
+\end{equation*}
+gibt es zwei Äquivalenzklassen, die geraden und die ungeraden Zahlen. Allgemeiner gibt es für \(n \in \N \setminus \{0,1\}\) und
+\begin{equation*}
+x \sim y \Leftrightarrow x - y \in n \Z
+\end{equation*}
+genau \(n\) Äquivalenzklassen, die charakterisiert sind durch den Rest bei der Division durch \(n\), d.h. die Repräsentanten \(0,1,\ldots,n-1\). Man spricht deshalb auch von Restklassen.
+
+Für eine Relation \(R\) auf \(M\) (oder kurz \(\sim\)) bezeichnen wir mit der Faktormenge \(M/R\) (oder \(M/\sim\)) die Menge der Äquivalenzklassen. Wir beachten, dass wir jede Äquivalenzklasse mit einem beliebigen Repräsentanten identifizieren können. So gilt bei der Einteilung in gerade und ungerade Zahlen \(M/\sim = \{[0],[1]\}\), was wir auch mit \(\{0,1\}\) identifizieren können.
+
+
+\subsection{Abbildungen}
+\label{\detokenize{grundlagen/mengenlogik:abbildungen}}
+Eine Abbildung oder Funktion \(f:M_1 \rightarrow M_2\) ordnet jedem Element \(m_1 \in M_1\) ein Element \(m_2 =f(m_1) \in M_2\) zu.
+Die Bedeutung von \emph{Zuordnung} ist zwar relativ klar, mathematisch sauberer  ist eine Betrachtung als Mengen bzw. wieder als spezielle Relation:
+\label{grundlagen/mengenlogik:definition-10}
+\begin{definition}{}{}
+
+
+
+Eine Relation \(f \subset M_1 \times M_2\) heißt Funktion (oder Abbildung) von \(M_1\) nach \(M_2\), wenn
+
+*\(i)\) \(D(f) = \{m_1 \in M_1~|~\exists m_2 \in M_2: (m_1,m_2) \in f \} = M_1 \)
+
+*\(ii)\) \((m,n) \in f\) und \((m,p) \in f\) impliziert \(n=p\).\textbackslash{}end\{*ize\}
+\end{definition}
+
+Wir nennen \(M_1\) den Definitionsbereich und \(M_2\) den Bildbereich von \(f\).
+\begin{equation*}
+f(M_1) = \{m_2 \in M_2~|~\exists m_1 \in M_1: (m_1,m_2) \in f)\}
+\end{equation*}
+heißt Wertebereich (oder Bild) von \(f\).
+Da zu jedem \(m_1 \in M_1\) nun genau ein \(m_2 \in M_2\) mit \((m_1,m_2) \in f\) existiert, können wir hier auch die Zuordnung \(m_2=f(m_1)\) definieren. Damit haben wir die gewohnte Form
+\begin{equation*}
+f: M_1 \rightarrow M_2, m \mapsto f(m),
+\end{equation*}
+die wir im Folgenden für Funktionen auch meist verwenden werden. Wir beachten, dass die Sichtweise über die Relation dem Funktionsgraphen bestehend aus den Punkten \((m,f(m))\) entspricht.
+\label{grundlagen/mengenlogik:definition-11}
+\begin{definition}{}{}
+
+
+
+Eine Funktion \(f:M_1 \rightarrow M_2\) heißt
+\begin{itemize}
+\item {} 
+\emph{surjektiv}, wenn Bildbereich und Wertebereich übereinstimmen, d.h. \(f(M_1)=M_2\)
+
+\item {} 
+\emph{injektiv}, wenn aus \((m_1,n) \in f\) und \((m_2,n) \in f\) (bzw. \(f(m_1) =f(m_2)\)) folgt \(m_1=m_2\).
+
+\item {} 
+\emph{bijektiv}, wenn sie injektiv und surjektiv ist.
+
+\end{itemize}
+\end{definition}
+
+Ist \(f\) bijektiv, dann erfüllt die Relation
+\begin{equation*}
+ f^{-1} = \{(m_2,m_1) ~|~ (m_1,m_2) \in f\}
+\end{equation*}
+auch die Eigenschaften einer Funktion und wir nennen \(f^{-1}\) die Umkehrfunktion von \(f\). Es gilt dann
+\begin{equation*}
+\forall m_1 \in M_1: f^{-1}(f(m_1))=m_1
+\end{equation*}
+und
+\begin{equation*}
+\forall m_2 \in M_2: f(f^{-1}(m_2))=m_2.
+\end{equation*}
+Wir beachten, dass \(f^{-1}\) als Relation auch definiert ist, wenn \(f\) nicht bijektiv ist, \(f^{-1}\) ordnet dann jedem \(m_2\) eine Teilmenge von \(M_1\) zu (die auch leer sein kann).
+Die Einschränkung einer Funktion auf \(U \subset M_1\) bezeichnen wir mit
+\begin{equation*}
+f|_U = \{ (m_1,m_2) \in f~|~ m_1 \in U\}.
+\end{equation*}
+
+\subsection{Mächtigkeit von Mengen}
+\label{\detokenize{grundlagen/mengenlogik:machtigkeit-von-mengen}}
+Mit Hilfe von Abbildungen können wir die Mächtigkeit, d.h. die Größe, von Mengen vergleichen. Für endliche Mengen ist die Mächtigkeit genau die Anzahl der Elemente, die wir einfach durchzählen können. Dies bedeutet wir konstruieren eine bijektive Abbildung von \(\{1,\ldots,n\}\) auf \(M\) und schreiben als Mächtigkeit dann \(\vert M \vert\). Für die leere Menge setzen wir \(\vert \emptyset \vert =0\). Dies können wir allgemeiner zum Vergleich der Mächtigkeit verwenden. Wir sagen, dass zwei Mengen \(M_1\) und \(M_2\) die gleiche Mächtigkeit haben, wenn es eine Bijektion \(f: M_1 \rightarrow M_2\) gibt.
+Die \emph{kleinste} undendliche Menge ist \(\N\), wir definieren die Mächtigkeit von \(\N\) als \(\aleph_0\) (gesprochen Aleph Null) als kleinstes Maß für Unendlichkeit, diese nennen wir erste Kardinalzahl. Mengen \(M\), die durch eine Bijektion auf \(\N\) abgebildet werden können, nennen wir abzählbar (oder abzählbar unendlich) und schreiben dementsprechend \(|M|=\aleph_0\).
+\label{grundlagen/mengenlogik:example-12}
+\begin{example}{}{}
+
+
+
+Es gilt \(|\Z|=\aleph_0\). Wir betrachten dazu die bijektive Abbildung \(f: \N \rightarrow \Z\),\$\$ f(n) = \textbackslash{}left\{ \textbackslash{}begin\{array\}\{ll\} \textbackslash{}frac\{n\}2 \& \textbackslash{}text\{falls \} n \textbackslash{}text\{ gerade\} \textbackslash{}
+\begin{itemize}
+\item {} 
+\textbackslash{}frac\{n+1\}2 \& \textbackslash{}text\{falls \} n \textbackslash{}text\{ ungerade\} \textbackslash{}end\{array\} \textbackslash{}right. \$\$
+
+\end{itemize}
+\end{example}
+\label{grundlagen/mengenlogik:example-13}
+\begin{example}{}{}
+
+
+
+Sei \(M= \N \times \N = \N^2\), dann gilt auch \(|M|=\aleph_0\). Wir betrachten dazu die bijektive Abbildung
+\begin{equation*}
+f: M \rightarrow \N, \quad (m,n) \mapsto \frac{1}2(m+n)(m+n+1) + n.
+\end{equation*}
+Es gilt mit Hintereinanderausführung ähnlicher Abbildung übrigens auch \(|\N^n|=\aleph_0\).
+\end{example}
+
+\begin{emphBox}{Bertrand Russell}{}
+
+\href{https://de.wikipedia.org/wiki/Bertrand\_Russell}{Bertrand Arthur William Russell} (* 18. Mai 1872 bei Trellech, Monmouthshire, Wales; † 2. Februar 1970 in Penrhyndeudraeth, Gwynedd, Wales) war ein britischer Philosoph, Mathematiker, Religionskritiker und Logiker.
+\end{emphBox}
+
+Die Mengenlehre stößt an ihre Grenzen, wenn man Selbstbezüge in der Definition von Mengen einbaut. Dies zeigt ein bekanntes Beispiel von Bertrand Russell.
+
+Sei
+\begin{equation*}
+ M=\{ x ~|~x \text{ ist } Menge \}
+\end{equation*}
+und
+\begin{equation*}
+N = \{x \in M~|~x \notin x\}.
+\end{equation*}
+Damit können wir die unbeantwortbare Frage \emph{Gilt \(N \in N\) ?} stellen. Nehmen wir an es gilt \(N \in N\), dann ist per Definition von \(N\) auch \(N \notin N\) und umgekehrt. Diese sogenannte Russell’sche Antinomie legt nahe, dass man Selbstbezüge in der Definition von Mengen vermeiden sollte um logisch konsistent zu bleiben.
+
+
+\subsection{Logik und Aussagen}
+\label{\detokenize{grundlagen/mengenlogik:logik-und-aussagen}}
+Im Folgenden werden wir nun etwas näher die Aussagenlogik betrachten. Eine Aussage \(A\) ist für uns ein Element der Menge \(\{\text{wahr},\text{falsch}\}\). Eine Aussageform ist eine Abbildung von einer Menge an Möglichkeiten in die Menge \(\{\text{wahr},\text{falsch}\}\). So ist etwa \(4\) ist gerade eine (wahre) Aussage, und \(x \in N, x\) gerade eine Aussageform. Wir identifizieren im Folgenden meist die Aussage \(A\) mit der Abbildung \(M_A:M \rightarrow \{\text{wahr},\text{falsch}\}\), solange der Zusammenhang klar ist.
+Sind \(A,B\) zwei Aussagen, dann können wir mit sogenannten Junktoren neue Aussagen herleiten:
+\begin{itemize}
+\item {} 
+\emph{Negation:} nicht \(A\), geschrieben \(\lnot A\), entspricht der Abbildung, die falsch liefert wenn \(A\) wahr liefert und umgekehrt.
+
+\item {} 
+\emph{Konjunktion:} \(A\) und \(B\), geschrieben \(A \land B\), ist eine Abbildung, die wahr liefert wenn \(A\) und \(B\) wahr sind, sonst erhalten wir falsch.
+
+\item {} 
+\emph{Disjunktion:} \(A\) oder \(B\), geschrieben \(A \lor B\), ist eine Abbildung, die falsch liefert wenn \(A\) und \(B\) falsch sind, sonst erhalten wir wahr.
+
+\item {} 
+\emph{Implikation:} wenn \(A\), dann \(B\), geschrieben \(A \Rightarrow B\).
+
+\item {} 
+\emph{Äquivalenz:} \(A\) äquivalent zu \(B\), \(A \Leftrightarrow B\).
+
+\end{itemize}
+
+Bei zwei Aussagen können wir die Verknüpfung durch Junktoren mit Fallunterscheidungen charakterisieren, die sogenannten Wahrheitstafeln, eine Tabelle der Form
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[{\linewidth}]{|c|c|c|}\hline
+ 
+A
+& 
+B
+& 
+J(A,B)
+\\
+\hline
+W
+&
+W
+&
+*
+\\
+\hline
+W
+&
+F
+&
+*
+\\
+\hline
+F
+&
+W
+&
+*
+\\
+\hline
+F
+&
+F
+&
+*
+\\
+\hline
+\end{tabularx}
+\end{center}
+
+wobei \(J(A,B)\) die Junktion bezeichnet. Als Beispiel betrachten wir das logische Und:
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[]{|c|c|c|}\hline
+ 
+A
+& 
+B
+& 
+A \(\land\) B
+\\
+\hline
+W
+&
+W
+&
+W
+\\
+\hline
+W
+&
+F
+&
+F
+\\
+\hline
+F
+&
+W
+&
+F
+\\
+\hline
+F
+&
+F
+&
+F
+\\
+\hline
+\end{tabularx}
+\end{center}
+
+Mit Hilfe von Wahrheitstafeln können wir auch Verknüpfungen von Junktoren betrachten und deren Äquivalenz zu anderen Formen nachweisen. Als Beispiel betrachten wir \(\lnot (A \land B)\).
+Die Wahrheitstafel liefert
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[{\linewidth}]{|c|c|c|c|}\hline
+ 
+A
+& 
+B
+& 
+\(\lnot (A \land B)\)
+& 
+\((\lnot A) \lor (\lnot B)\)
+\\
+\hline
+W
+&
+W
+&
+F
+&
+F
+\\
+\hline
+W
+&
+F
+&
+W
+&
+W
+\\
+\hline
+F
+&
+W
+&
+W
+&
+W
+\\
+\hline
+F
+&
+F
+&
+W
+&
+W
+\\
+\hline
+\end{tabularx}
+\end{center}
+
+Damit sehen wir
+\begin{equation*}
+\lnot (A \land B) = (\lnot A) \lor (\lnot B).
+\end{equation*}
+Wie bereits vorher verwendet können wir Quantoren wie \(\forall\) und \(\exists\) verwenden und diese auch verknüpfen.
+\begin{itemize}
+\item {} 
+\(\forall x \in M: A(x) \) bedeutet, dass die Aussageform \(A\) für alle \(x\) in \(M\) wahr ist.
+
+\item {} 
+\(\exists x \in M: A(x) \) bedeutet, dass die Aussageform \(A\) für zumindest ein \(x\) in \(M\) wahr ist (oder äquivalent nicht für alle \(x \in M\) falsch ist).
+
+\end{itemize}
+
+Mit offensichtlichen Ergebnissen erhalten wir auch die Negation, Konjunktion etc. von Quantoren. So gilt etwa
+\begin{equation*}
+\lnot( \forall x \in M: A(x) ) = \exists x \in M: \lnot A(x)
+\end{equation*}
+und
+\begin{equation*}
+\lnot( \exists x \in M: A(x) ) = \forall x \in M: \lnot A(x)
+\end{equation*}
+
+\section{Zahlensysteme}
+\label{\detokenize{grundlagen/zahlensysteme:zahlensysteme}}\label{\detokenize{grundlagen/zahlensysteme::doc}}
+Im Folgenden betrachten wir die wichtigsten Zahlensysteme und ihre Eigenschaften. Wir beginnen bei den natürlichen Zahlen und machden den Weg bis zu den reellen und komplexen Zahlen.
+
+
+\subsection{Natürliche Zahlen}
+\label{\detokenize{grundlagen/zahlensysteme:naturliche-zahlen}}
+Die bisher verwendete Aufzählung \(\N = \{0,1,2,3,\ldots\}\) ist etwas unbefriedigend, da wird die Punkte ja nicht bis unendlich auffüllen können. Deshalb ist es besser die natürlichen Zahlen axiomatisch zu definieren (über die sogenannten Dedekind Peano Axiome):
+\label{grundlagen/zahlensysteme:definition-0}
+\begin{definition}{}{}
+
+
+
+Die natürlichen Zahlen sind eine Menge mit den folgenden Eigenschaften:
+\begin{itemize}
+\item {} 
+Es gibt ein ausgezeichnetes Element \(0\)
+
+\item {} 
+Es gibt eine Nachfolgerabbildung \({\cal N}:\N \rightarrow \N\), sodass \(0 \notin {\cal N}(\N)\) und \({\cal N}\) injektiv ist.
+
+\item {} 
+Falls für \(M \subset \N\) gilt: \(0 \in M\) und \({\cal N}(M) \subset M\), dann ist \(M=\N\).
+
+\end{itemize}
+\end{definition}
+
+Man kann zeigen, dass damit die natürlichen Zahlen wohldefiniert sind. Nun definieren wir die Addition und Multiplikation mit
+\begin{equation*}
+ m + {\cal N}(n) = {\cal N}(m+n)
+\end{equation*}
+und
+\begin{equation*}
+ m 0 = 0, \quad m {\cal N}(n) = mn +m.
+\end{equation*}
+Wir nennen \({\cal N}(0)=1\) und haben daher auch
+\( {\cal N}(n) = n+1\).
+
+
+\subsection{Vollständige Induktion}
+\label{\detokenize{grundlagen/zahlensysteme:vollstandige-induktion}}
+Die Definition der natürlichen Zahlen impliziert auch die Beweistechnik der vollständigen Induktion:
+\label{grundlagen/zahlensysteme:theorem-1}
+\begin{theorem}{}{}
+
+
+
+\(A(0)\) sei wahr und aus \(A(n)\) wahr folgt \(A(n+1)\) wahr für alle \(n \in \N\). Dann ist die Aussage \(A(m)\) wahr für alle \(m \in N\).
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(N=\{m \in \N~|~A(m) \text{ ist wahr }\}\). Nun gilt nach unseren Voraussetzungen \(0 \in N\) und für jedes \(n \in N\) auch \({\cal N}(n) \in N\). Also gilt \(N= \N\) und die Aussage ist für alle \(m \in \N\) wahr
+\end{emphBox}
+
+Damit haben wir ein sehr nützliches Prinzip, mit dem wir Aussagen über den natürlichen Zahlen zeigen können. Die Überprüfung, dass \(A(0)\) wahr ist, nennen wir Induktionsanfang, die Folgerung von \(n\) auf \(n+1\) den Induktionsschritt. Beim Induktionsschritt wird die angenommene Gültigkeit von \(A(n)\) auch als Induktionsannahme bezeichnet. Natürlich können wir Induktionsbeweise auch für Teilmengen der Form \(N= \{n \in \N~|~n \geq k \}\)
+anwenden, denn durch die Variablentransformation \(m=n-k\) kommen wir auf die ursprüngliche Version. Damit können wir also den Induktionsanfang bei \(k\) und den Induktionsschritt für \(n \geq k\) machen um eine Aussage auf \(N\) zu zeigen.Wir illustrieren das Induktionsprinzip an zwei Beispielen:
+\label{grundlagen/zahlensysteme:example-2}
+\begin{example}{}{}
+
+
+
+Wir beweisen das Kommutativgesetz der Addition, d.h. wir zeigen \(n+m=m+n\) für alle \(n,m \in \N\). Wir beginnen mit der einfacheren Version \(n+1=1+n\) für alle \(n\in\N\). Der Induktionsanfang bei \(n=0\) liefert \(1=1\), also ist \(A(0)\) wahr. Sei nun die Induktionsannahme \(n+1=1+n\), dann wollen wir folgern
+\begin{equation*}
+ (n+1)+1=1+(n+1).
+\end{equation*}
+Dazu können wir aber die Induktionsannahme verwenden, denn es gilt \(n+1+1 = 1+n+1\) und damit folgt \(A(n+1)\) aus \(A(n)\).
+Mit einem zweiten Induktionsbeweis zeigen wir nun die eigentliche Aussage \(n+m=m+n\), wobei wir jetzt Induktion in \(m\) verwenden. Für \(m=0\) ist die Aussage wahr, da sie zu \(n=n\) reduziert. Nehmen wir nun an, dass \(n+m=m+n\) gilt, so wollen wir zeigen
+\begin{equation*}
+ n+(m+1) = (m+1) + n
+\end{equation*}
+Dazu verwenden wir die oben bewiesene Eigenschaft \(m+1 =1+m\) bzw. \(n+1=1+m\) sowie die Induktionsannahme, also gilt
+\begin{equation*}
+ n+m+1=n+1+m=1+n+m=1+m+n=m+1+n
+\end{equation*}
+und wir haben den Induktionsschritt erfolgreich durchgeführt
+\end{example}
+\label{grundlagen/zahlensysteme:example-3}
+\begin{example}{}{}
+
+
+
+Wir beweisen die Gauss’sche Summationsformel für die Summe der ersten \(n\) Zahlen
+\begin{equation*}
+  \sum_{i=1}^n i = \frac{n(n+1)}2.
+\end{equation*}
+Hier sind wir also im Fall \(k=1\) wie oben beschrieben. Wir definieren die Aussage \(A(n)\) als \emph{Die Summenformel gilt für die ersten \(n\) Zahlen}.
+Den Induktionsanfang \(A(1)\) können wir durch direktes Ausrechnen nachprüfen
+\begin{equation*}
+  1 = \sum_{i=1}^n 1 = \frac{1(1+1)}2 = 1.
+\end{equation*}
+Nun führen wir den Induktionsschritt durch, es gelte \(A(n)\). Wir berechnen dann
+\begin{equation*}
+ \sum_{i=1}^{n+1} i = \sum_{i=1}^n i  + (n+1) = \frac{n(n+1)}2 + (n+1) = \frac{(n+1)(n+2)}2,
+\end{equation*}
+wobei wir in der Mitte die bereits gültige Aussage \(A(n)\)  eingesetzt haben.Damit haben wir \(A(n+1)\) gefolgert und somit die Summenformel für alle \(n \in \N \setminus \{0\}\) gültig
+\end{example}
+
+
+\subsection{Ganze Zahlen}
+\label{\detokenize{grundlagen/zahlensysteme:ganze-zahlen}}
+Nachdem wir die natürlichen Zahlen bereits definiert haben, können wir nun die ganzen Zahlen als
+\begin{equation*}
+ Z = \N \cup -\N = \{n ~|~n \in \N \text{ oder } -n \in \N \}
+\end{equation*}
+definieren mit den gleichen Regeln für die Addition und Multiplikation wie in \(\N\), wobei \(-n\) das zu \(n\) inverse Element bezüglich der Addition ist, d.h.
+\begin{equation*}
+\forall n \in \Z: -n + n = n + (-n) = 0.
+\end{equation*}
+Die \(0\) nennen wir neutrales Element, da \(n+0=0+n=n\), d.h. Addition mit \(0\) verändert die Zahl nicht.
+Daraus folgern wir übrigens auch die Regel \emph{Minus mal Minus ist Plus}. Es gilt ja, dass \(-(-n))\) das inverse Element zu \(-n\) ist und das ist wegen \(n+(-n) = (-n)+n=0\) durch \(n\) gegeben.
+Die Addition und Multiplikation auf den ganzen Zahlen liefern eine interessante algebraische Struktur.
+Die ganzen Zahlen mit der Operation der Addition sind eine sogenannte Gruppe:
+\label{grundlagen/zahlensysteme:definition-4}
+\begin{definition}{}{}
+
+
+
+Eine Menge \(G\) zusammen mit einer Abbildung \(\circ: G \times G \rightarrow G\) heißt \emph{Gruppe}, wenn die folgenden Eigenschaften erfüllt sind:
+\begin{itemize}
+\item {} 
+\( \forall a,b,c \in G: a \circ (b \circ c) = (a\circ b) \circ c\) (Assoziativität)
+
+\item {} 
+\(\exists n \in G~ \forall a \in G: n \circ a = a\) (neutrales Element)
+
+\item {} 
+\(\forall a \in G~\exists a' \in G: a' \circ a = n\) (Existenz eines inversen Elements)
+
+\end{itemize}
+
+Die Gruppe heißt abelsch (oder kommutativ), wenn für alle \(a,b \in G\) gilt: \(a \circ b = b \circ a\).
+\end{definition}
+
+\begin{emphBox}{Niels Abel}{}
+
+\href{https://de.wikipedia.org/wiki/Niels\_Henrik\_Abel}{Niels Henrik Abel} (* 5. August 1802 auf der Insel Finnøy, Ryfylke, Norwegen; † 6. April 1829 in Froland, Aust Agder, Norwegen) war ein norwegischer Mathematiker.
+\end{emphBox}
+
+Wir beachten, dass wir die Eigenschaft des neutralen und inversen Elements nur einseitig definiert haben, bei abelschen Gruppen folgt sofort \(a \circ n = a\) und \(a \circ a'=n\). Diese Eigenschaft folgt aber auch bei allgemeinen Gruppen. Es gilt ja dann
+\begin{equation*}
+a' \circ a  \circ a' = n \circ a' = a'
+\end{equation*}
+und damit
+\begin{equation*}
+(a \circ a') \circ a \circ a' = a \circ a' .
+\end{equation*}
+Nun gibt es ein inverses Element \(b\) zu \((a \circ a')\) also folgt
+\begin{equation*}
+a \circ a' = b \circ (a \circ a') \circ a \circ a' = b \circ (a \circ a') = n.
+\end{equation*}
+Analog zeigt man auch \(a \circ n = a\).
+Es gibt in einer Gruppe nur ein neutrales Element und zu jedem \(a\) ein eindeutiges inverses Element. Seien \(n_1,n_2\) neutrale Elemente, dann gilt ja
+\begin{equation*}
+n_1 = n_1 \circ n_2 = n_2,
+\end{equation*}
+also sind sie gleich. Seien \(a_1'\) und \(a_2'\) inverse Elemente zu \(a\), dann gilt
+\begin{equation*}
+a_1' = a_1' \circ (a \circ a_2') = (a_1' \circ a) \circ a_2' = a_2'.
+\end{equation*}
+Neben \(\Z\) können wir noch andere Beispiele von Gruppen finden.
+\label{grundlagen/zahlensysteme:example-5}
+\begin{example}{}{}
+
+
+
+Sei \(p \in \N \setminus \{0\}\). Dann ist die Faktormenge \(\Z_p = (\Z/p\Z, +)\) eine Gruppe, die wir mit der Restklasse
+\( \{0,1,\ldots,p-1\}\) identifizieren können. Im Sinne einer Restklasse ergibt sich automatisch die Addition modulo \(p\). Das neutrale Element ist \(n=0\), das zu \(m\) inverse Element ist \(m'=p-m\). Wir betrachten als konkretes Beispiel \(p=3\), hier ist die Addition gegeben durch
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[{\linewidth}]{|c|c|c|c|}\hline
+ 
++
+& 
+\(0\)
+& 
+\(1\)
+& 
+\(2\)
+\\
+\hline
+\(0\)
+&
+\(0\)
+&
+\(1\)
+&
+\(2\)
+\\
+\hline
+\(1\)
+&
+\(1\)
+&
+\(2\)
+&
+\(0\)
+\\
+\hline
+\(2\)
+&
+\(2\)
+&
+\(0\)
+&
+\(1\)
+\\
+\hline
+\end{tabularx}
+\end{center}
+\end{example}
+
+Wir können \(\Z\) auch mit den beiden Operationen \(+\) und \(\cdot\) betrachten, dann ergibt sich die Struktur eines Rings:
+\label{grundlagen/zahlensysteme:definition-6}
+\begin{definition}{}{}
+
+
+
+Ein Ring \(R\) ist eine bezüglich der Operation \(+\) abel’sche Gruppe mit einer zweiten Operation \(\cdot : R \times R \rightarrow R\), sodass folgende Eigenschaften erfüllt sind:
+\begin{itemize}
+\item {} 
+\( \forall a,b,c \in R: a \cdot (b \cdot c) = (a\cdot b) \cdot c\) (Assoziativität)
+
+\item {} 
+\( \forall a,b,c \in R: a \cdot (b+c) = a\cdot b + a \cdot c\) und \((b+c) \cdot a = b \cdot a + c \cdot a\) (Distributivgesetz)
+
+\end{itemize}
+
+Wir bezeichnen das neutrale Element der Addition \(+\) als 0.
+Falls ein zusätzliches neutrales Element \(1\) existiert, sodass für alle \(a  \in R\) gilt \(1 \cdot a = a \cdot 1\), dann
+heißt \(R\) Ring mit Einselement. Gilt für alle \(a, b  \in R\), dass \(a \cdot b = b \cdot a\), dann heißt \(R\) kommutativ
+\end{definition}
+
+Wir beachten, dass in einem Ring aus \(a_1 \cdot b = a_2 \cdot b\) nicht \(a_1=a_2\) folgen muss, auch wenn \(b\neq 0\) gilt. Aus diesen Gründen müssen wir beim neutralen Element der Multiplikation auch die beidseitige Definition verwenden.
+\label{grundlagen/zahlensysteme:example-7}
+\begin{example}{}{}
+
+
+
+Wir betrachten \((\Z/2\Z, +,\cdot)=(\{0,1\},+,\cdot)\). Hier gilt
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[{\linewidth}]{|c|c|c|c|c|c|c|}\hline
+ 
+\(+\)
+& 
+\(0\)
+& 
+\(1\)
+&
+
+& 
+\(\cdot\)
+& 
+\(0\)
+& 
+\(1\)
+\\
+\hline
+\(0\)
+&
+\(0\)
+&
+\(1\)
+&
+
+&
+\(0\)
+&
+\(0\)
+&
+\(0\)
+\\
+\hline
+\(1\)
+&
+\(1\)
+&
+\(0\)
+&
+
+&
+\(1\)
+&
+\(0\)
+&
+\(1\)
+\\
+\hline
+\end{tabularx}
+\end{center}
+
+Wir sehen, dass \(0\) das neutrale Element der Addition und \(1\) das neutrale Element der Multiplikation ist. Dazu sind die Operationen kommutativ, wir haben also einen kommutativen Ring mit Einselement.
+\end{example}
+\label{grundlagen/zahlensysteme:example-8}
+\begin{example}{}{}
+
+
+
+Wir betrachten \((\Z/4\Z, +,\cdot)=(\{0,1,2,3\},+,\cdot)\). Hier gilt
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[{\linewidth}]{|c|c|c|c|c|}\hline
+ 
+\(+\)
+& 
+\(0\)
+& 
+\(1\)
+& 
+\(2\)
+& 
+\(3\)
+\\
+\hline
+\(0\)
+&
+\(0\)
+&
+\(1\)
+&
+\(2\)
+&
+\(3\)
+\\
+\hline
+\(1\)
+&
+\(1\)
+&
+\(2\)
+&
+\(3\)
+&
+\(0\)
+\\
+\hline
+\(2\)
+&
+\(2\)
+&
+\(3\)
+&
+\(0\)
+&
+\(1\)
+\\
+\hline
+\(3\)
+&
+\(3\)
+&
+\(0\)
+&
+\(1\)
+&
+\(2\)
+\\
+\hline
+\end{tabularx}
+\end{center}
+
+
+\begin{center}
+\centering
+\begin{tabularx}{\linewidth}[{\linewidth}]{|c|c|c|c|c|}\hline
+ 
+\(\cdot\)
+& 
+\(0\)
+& 
+\(1\)
+& 
+\(2\)
+& 
+\(3\)
+\\
+\hline
+\(0\)
+&
+\(0\)
+&
+\(0\)
+&
+\(0\)
+&
+\(0\)
+\\
+\hline
+\(1\)
+&
+\(0\)
+&
+\(1\)
+&
+\(2\)
+&
+\(3\)
+\\
+\hline
+\(2\)
+&
+\(0\)
+&
+\(2\)
+&
+\(0\)
+&
+\(2\)
+\\
+\hline
+\(3\)
+&
+\(0\)
+&
+\(3\)
+&
+\(2\)
+&
+\(1\)
+\\
+\hline
+\end{tabularx}
+\end{center}
+
+Wir sehen, dass \(0\) das neutrale Element der Addition und \(1\) das neutrale Element der Multiplikation ist. Dazu sind die Operationen kommutativ, wir haben also einen kommutativen Ring mit Einselement.
+\end{example}
+
+
+\subsection{Rationale Zahlen}
+\label{\detokenize{grundlagen/zahlensysteme:rationale-zahlen}}
+Die rationalen Zahlen definieren wir üblicherweise als Brüche von ganzen Zahlen. Dabei haben wir natürlich das Problem des \emph{Kürzens}. Zwei Brüche der Form \(\frac{p_1}{q_1}\) und \(\frac{p_2}{q_2}\) mit \(p_i, q_i \in \Z\),\(q_i \neq 0\) (für \(i=1,2\)) betrachten wir als gleich, wenn nach ausmultiplizieren
+\(p_1 q_2= p_2 q_1\) gilt.
+Die mathematische Grundlage zur Betrachtung dieses Problems haben wir bereits gelegt, nämlich die Faktorisierung bezüglich einer Äquivalenzrelation. Wir definieren zunächst die rationalen Zahlen als \(\Z \times (\N \setminus \{0\})\), d.h. alle möglichen Zähler Nenner Paare. Nun definieren wir eine Äquivalenzrelation
+\begin{equation*}
+\frac{p_1}{q_1} \sim \frac{p_2}{q_2}  \quad \Leftrightarrow \quad p_1 q_2= p_2 q_1.
+\end{equation*}
+Reflexivität, Symmetrie und Transitivität sind wegen den Eigenschaft der Multiplikation in \(\N\) gegeben.
+Nun definieren wir die rationalen Zahlen als Faktorgruppe
+\begin{equation*}
+\Q = ( \Z \times (\N \setminus \{0\}) /  \sim).
+\end{equation*}
+Eine rationale Zahl entspricht also der Klasse an Brüchen, die den gleichen Wert ergeben. Wir können als Repräsentanten dann den gekürzten Bruch, also teilerfremde \(p\) und \(q\) wählen. Wir schreiben dann statt \((p,q)\) einfach \(\frac{p}q\). Auch bei Addition und Multiplikation betrachten wir Äquivalenzklassen und definieren
+\begin{equation*}
+ \frac{p_1}{q_1} +   \frac{p_2}{q_2}  = \frac{p_1 q_2 + p_2 q_1}{q_1q_2}
+\end{equation*}
+und
+\begin{equation*}
+ \frac{p_1}{q_1}  \cdot  \frac{p_2}{q_2}  = \frac{p_1   p_2  }{q_1q_2} .
+\end{equation*}
+Mit diesen Gesetzen weisen wir leicht nach, dass \(\Q\) ein Ring ist, es gilt aber sogar noch die zusätzliche Eigenschaft, dass es ein inverses Element der Multiplikation gibt. Dies führt uns auf die nächste Definition:
+\label{grundlagen/zahlensysteme:definition-9}
+\begin{definition}{}{}
+
+
+
+Ein kommutativer Ring \(\K\) mit Einselement \(1 \neq 0\) heißt Körper, wenn
+\begin{equation*}
+ \forall a \in\K \setminus \{0\} ~\exists b \in K:  a b = 1.
+\end{equation*}\end{definition}
+
+In \(\Q\) ist das inverse Element für \(\frac{p}q \neq 0\) gegeben durch \(\frac{q}p\). Allgemein gilt in einem Körper, dass \(x\) das inverse Element zu \(1/x\). Darüber hinaus erfüllt ein Körper die sogenannte Nullteilerfreiheit, d.h.
+\begin{equation*}
+x \cdot y = 0 \quad \Rightarrow x = 0 \text{ oder } y =0.
+\end{equation*}
+Wir haben am Beispiel des Rings \(\Z_4=\Z/4\Z\) (dort ist \(2 \cdot 2 = 0\)) schon gesehen, das die Nullteilerfreiheit nicht in jedem Ring gilt.
+Neben der Körpereigenschaft haben wir mit der üblichen Ordnungsrelation \(\leq\), d.h.
+\begin{equation*}
+\frac{p_1}{q_1} \leq \frac{p_2}{q_2} \quad \Leftrightarrow \quad p_1 q_2 \leq p_2 q_1
+\end{equation*}
+auch eine vollständige Ordnung auf \(\Q\). Diese verträgt sich in gewisser Weise mit den Rechenoperationen, was uns auf folgende Definition führt:
+\label{grundlagen/zahlensysteme:definition-10}
+\begin{definition}{}{}
+
+
+
+Ein Körper \(\K\) mit vollständiger Ordnung \(\preceq\) bzw. \(\prec\)  heißt angeordnet, wenn die beiden folgenden Bedingungen erfüllt sind:
+\begin{itemize}
+\item {} 
+\(\forall~x,y,z \in \K, x \prec y: x+z \prec y+z\)
+
+\item {} 
+\(\forall x,y \in \K, 0 \prec x, 0 \prec y: 0 \prec x \cdot y\).
+
+\end{itemize}
+\end{definition}
+
+Für einen angeordneten Körper erhalten wir verschiedene intuitive Eigenschaften:
+\begin{itemize}
+\item {} 
+Für \(x \in \K \setminus \{0\}\) gilt entweder \(0 \prec x\) oder \(0 \prec -x\). Dies sehen wir aus der ersten Eigenschaft, denn falls \(0 \prec x\) gilt können wir \(z=-x\) addieren. Damit sehen wir auch, dass \( 0 \preceq 1\) gelten muss, sonst wäre \(0 \preceq -1\) und damit wegen der zweiten Eigenschaft für \(0 \prec x \) auch \(0 \prec -x\).
+
+\item {} 
+\(0 \prec x^2 = (-x)^2\). Dies sehen wir aus der zweiten Eigenschaft, entweder für \(0 \prec x\) oder \(0 \prec -x\).
+
+\item {} 
+Aus \(x_1 \prec x_2\) und \(y_1 \prec y_2\) folgt \(x_1 + y_1 \prec x_2 + y_2\).
+
+\item {} 
+Aus \(0 \prec x\) folgt \(0 \prec \frac{1}x\).
+
+\end{itemize}
+
+In einem angeordneten Körper kann man den Betrag als
+\begin{equation*}
+\vert x \vert := \left\{ \begin{array}{rl} x & 0 \preceq x \\ -x & x \prec 0 \end{array} \right.
+\end{equation*}
+und das Vorzeichen (Signum) als
+\begin{equation*}
+\text{sign}(x) =  \left\{ \begin{array}{rl} 1 & 0 \prec  x \\ 0 & x =0\\-1 & x \prec 0 \end{array}\right.
+\end{equation*}
+definieren. Auch für Betrag und Vorzeichen gelten die üblichen Eigenschaften wie
+\begin{itemize}
+\item {} 
+\(x = |x|\) sign\((x)\), \(|-x|=|x|\).
+
+\item {} 
+\(|x|~|y|=|xy|\), sign\((x)\)sign\((y) = \)sign\((xy)\).
+
+\item {} 
+\(0 \preceq |x|\) und \(|x|=0 \Leftrightarrow x =0\).
+
+\item {} 
+\(|x+y| \preceq |x|+|y|\) (Dreiecksungleichung)
+
+\end{itemize}
+
+Da die ersten Eigenschaften sehr einfach zu zeigen sind, beweisen wir nur kurz die Dreiecksungleichung. Wegen \(x \preceq |x|\) und \(-x \preceq |x|\) folgt
+\begin{equation*}
+x+y \preceq |x|+|y|, \qquad -x-y \preceq |x|+|y|
+\end{equation*}
+und damit direkt die Dreiecksungleichung.
+Neben Betrag und Vorzeichen können wir auch das Maximum und Minimum definieren durch
+\begin{equation*}
+\max\{x,y\} = \left\{ \begin{array}{rl} x & y \preceq x \\ y & x \prec y \end{array} \right.
+\end{equation*}
+bzw.
+\begin{equation*}
+\min\{x,y\} = \left\{ \begin{array}{rl} y & y \preceq x \\ x & x \prec y. \end{array} \right.
+\end{equation*}
+Durch eine Hintereinanderausführung erhalten wir dann auch Maximum und Minimum endlicher Mengen, z.B.
+\begin{equation*}
+\max\{x_1,\ldots,x_n\} = \max\{x_1,\max\{x_2, \ldots, \max\{x_{n-1},x_n\} \ldots\}\}.
+\end{equation*}
+\(\Q\) ist nicht nur ein angeordneter Körper, sondern wird sogar als \emph{archimedisch angeordnet} bezeichnet. Dies bedeutet, dass für alle \(x \in \K\) ein \(n \in \N\) existiert mit \(x \prec n\). Bei einer rationalen Zahl \(\frac{p}q\) können wir einfach \(n = |p|+1\) wählen.
+Wir betrachten zum Abschluss noch die Mächtigkeit von \(\Q\). Wir haben schon gesehen, dass es eine bijektive Abbildung \(f: \N \mapsto \N \times \N\) gibt, und ähnlich können wir eine bijektive Abbildung von \(f: \N \rightarrow \Z \rightarrow \Z \times Z\) konstruieren. Da die Abbildung von \(\Z \times \Z \setminus \{0\}\) auf die obigen Äquivalenzklassen, d.h. \(\Q\) surjektiv ist, erhalten wir eine surjektive Abbildung von \(\N\) nach \(\Q\).
+
+\begin{emphBox}{Georg Cantor}{}
+
+\href{https://de.wikipedia.org/wiki/Georg\_Cantor}{Georg Ferdinand Ludwig Philipp Cantor} (* 3. März 1845 in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.
+\end{emphBox}
+
+Andererseits ist die Identität von \(\N\) nach \(\Q\) eine injektive Abbildung. Also erwarten wir, dass es auch eine Bijektion gibt, d.h. \(|\Q|=\aleph_0\). Dies liefert das sogenannte erste Cantor’sche Diagonalverfahren:
+\label{grundlagen/zahlensysteme:theorem-11}
+\begin{theorem}{}{}
+
+
+
+Es gibt eine bijektive Abbildung \(f: \N \rightarrow \Q\), d.h. \(\Q\) ist abzählbar.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Wir konstruieren eine bijektive Abbildung in zwei Schritten. Zuerst verwenden wir die bereits bekannte Bijektion \(f_1 : \N \rightarrow \Z\) und konstruieren danach eine Abbildung \(f_2: \Z \rightarrow \Q\). Danach definieren wir \(f: \N \rightarrow \Q\) als Hintereinanderausführung \(f_2 \circ f_1\).
+Es genügt \(f_2\) auf \(\N \setminus \{0\}\) mit Werten in \(\Q_+\). Danach definieren wir \(f_2(0)=0\) und \(f_2(-n)=-f_2(n)\) für alle \(n \in \N\) um eine Bijektion von \(\Z\) nach \(\Q\) zu erhalten. Dazu schreiben wir alle rationalen Zahlen zeilenweise an, in die erste Zeile jene mit Zähler \(1\), in die zweite mit Zähler \(2\) usw.:
+\begin{equation*}
+{\Large 
+\begin{matrix}  
+\frac{1}1 & \frac{1}2 & \frac{1}3 & \frac{1}4 & \ldots  \\
+& & & &\\
+\frac{2}1 & \frac{2}3 & \frac{2}5 & \frac{2}7 & \ldots \\
+& & & &\\
+\frac{3}1 & \frac{3}2 & \frac{3}4 & \frac{3}5 & \ldots \\
+& & & &\\
+\frac{4}1 & \frac{4}3 & \frac{4}5 & \frac{4}7 & \ldots \\
+& & & &\\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{matrix}}
+\end{equation*}
+Diese zählen wir mit dem Cantor’schen Diagonalverfahren ab, dies ist analog zur Bijektion von \(\N\) nach \(\N \times \N\):
+\begin{equation*}
+{\Large 
+ \begin{matrix}    
+\frac{1}1 & & \frac{1}2 & \rightarrow &\frac{1}3 & &\frac{1}4 & \ldots  \\
+\downarrow & \nearrow & & \swarrow  & & \nearrow & & \\
+\frac{2}1 & &\frac{2}3 & &\frac{2}5 & &\frac{2}7 & \ldots \\
+& \swarrow & & \nearrow&&  \swarrow & & \\
+\frac{3}1 & &\frac{3}2 & &\frac{3}4 & &\frac{3}5 & \ldots \\
+\downarrow & \nearrow & & \swarrow  & & \nearrow & & \\
+\frac{4}1 & &\frac{4}3 & &\frac{4}5 & &\frac{4}7 & \ldots \\
+\vdots & &\vdots & &\vdots & & \vdots & \ddots
+\end{matrix}}
+\end{equation*}
+Damit haben wir insgesamt eine Bijektion gefunden, da wir jede Zahl genau einmal nach endlich vielen Schritten erreichen. Also ist \(\Q\) abzählbar
+\end{emphBox}
+
+
+\subsection{Reelle Zahlen}
+\label{\detokenize{grundlagen/zahlensysteme:reelle-zahlen}}
+Wir konstruieren im Folgenden die reellen Zahlen und ihre Eigenschaften, indem wir Lücken zwischen den rationalen Zahlen füllen. Solche können wir uns als nichtperiodische Dezimalzahlen mit unendlich vielen Kommastellen vorstellen. Da wir die unendlich vielen Stellen ja nie alle hinschreiben können, haben wir hier einen natürlichen Grenzwertprozess. Wir können uns eine Folge aus Dezimalzahlen mit \(n\) Kommastellen vorstellen, wobei \(n\) größer wird. Für \(n \rightarrow \infty\) erhalten wir dann die reelle Zahl, quasi als Grenzwert. Wir beachten, dass der Unterschied zwischen zwei Versionen einer Dezimalzahl mit \(n\) bzw. \(m > n\) Stellen betragsmäßig immer kleiner als \(10^{-n+1}\) ist, d.h. auf jeden Fall gegen Null konvergiert mit \(n \rightarrow \infty\). Dies wird uns auf das Konzept der sogenannten Cauchy Folgen führen, über die wir reelle Zahlen dann konstruieren. Wir werden auch sehen, dass sehr viele irrationale relle Zahlen gibt, tatsächlich gilt \(|\R| > |\Q|\).
+Die notwendigkeit der Betrachtung irrationaler Zahlen \(x \in \R \setminus \Q\) sehen wir aus der Tatsache, dass wir in den rationalen Zahlen nicht immr eine Wurzel aus einer positiven Zahl ziehen können. Wir sehen dies bereits bei der Quadratwurzel aus \(2\), eine Beobachtung der Griechen, der wir hier in einem Beweis von Euklid folgen:
+\label{grundlagen/zahlensysteme:theorem-12}
+\begin{theorem}{}{}
+
+
+
+Es gibt kein \(x \in \Q\) mit \(x^2 = 2\)
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(x = \frac{p}q\) mit \((p,q) \in \N \times \N \setminus \{0\}\) (wir können O.B.d.A. annehmen, dass \(x\) und damit \(p\) positiv ist). Wir können den Repräsentanten als teilerfremd auswählen, d.h. es gibt keine natürliche Zahl, die sowohl \(p\) als auch \(q\) teilt. Aus \(x^2 =2\) folgt \(p^2 = 2 q^2\) und dies bedeutet, dass \(p^2\) gerade ist. Damit muss natürlich auch \(p\) gerade sein, da das Quadrat einer ungeraden Zahl ungerade ist. Also existiert ein \(\tilde p \in \N\) mit \(p = 2 \tilde p^2\). Setzen wir dies in die obige Identität ein, so folgt
+\begin{equation*}
+ 4 \tilde p^2 = 2 q^2 \Rightarrow q^2 = 2 \tilde p^2.
+\end{equation*}
+Damit können wir mit den gleichen Argumenten wie vorher folgern, dass \(q\) gerade ist. Also ist \(2\) ein gemeinsamer Teiler von \(p\) und \(q\), was der Teilerfremdheit widerspricht. Damit kann kein solches \(x \in \Q\) existieren.
+
+Die Griechen hatten auch bereits ein iteratives Verfahren zur Annäherung der Quadratwurzel, das sogenannte Heron Verfahren, in dem man die Folgenglieder nacheinander definiert als
+\begin{equation*}
+ x_{n+1}=\frac{x_n}2 + \frac{1}x_n,
+\end{equation*}
+mit einem beliebigen Startwert \(x_0 \in \Q_+\), z.B. \(x_0=1\) oder \(x_0=2\). Nehmen wir an es gilt \(x_n \rightarrow \overline{x}\), dann gilt natürlich auch \( x_{n+1} \rightarrow \overline{x}\) für \(n\rightarrow \infty\) und damit muss gelten
+\begin{equation*}
+ \overline{x}=\frac{\overline{x}}2 + \frac{1}{\overline{x}} \Leftrightarrow \overline{x}^2=2.
+\end{equation*}
+Die tatsächliche Konvergenz der Folge werden wir später nachweisen.Da bei der Definition des Heron Verfahrens nur Additionen, Multiplikationen und Divisionen passieren, ist \(x_n \in \Q_+\) für alle \(n\). Damit erhalten wir tatsächlich Folgen rationaler Zahlen, die gegen \(\sqrt{2}\) konvergieren. Wir sehen aber auch die Nichteindeutigkeit, für jeden Anfangswert \(x_0\) erhalten wir eine andere Folge mit dem gleichen Grenzwert. Deshalb werden wir besonders darauf achten müssen, dass wir die reellen Zahlen unabhängig von
+\textbackslash{}subsubsection\{Folgen in Körpern\}
+\label{grundlagen/zahlensysteme:definition-13}
+\begin{definition}{}{}
+
+
+
+Sei \(\K\) ein archimedisch angeordneter Körper.
+\begin{itemize}
+\item {} 
+Eine Folge in \(\K\) ist eine Abbildung \(x: \N \rightarrow \K\), sie wird geschrieben als \((x_n)_{n \in \N}\) bzw.
+\((x_0,x_1,\ldots)\).
+
+\item {} 
+Eine Folge \((x_n)\) konvergiert gegen \(\overline{x} \in \K\), genau dann wenn
+
+\end{itemize}
+\begin{equation*}
+ \forall \epsilon \in K, 0 \prec \epsilon ~ \exists n_0 \in \N ~\forall n \geq n_0: |x_n - \overline{x}| \prec \epsilon.
+\end{equation*}
+In diesem Fall nennen wir \(\overline{x}\) Grenzwert (oder Limes) von \((x_n)\) und schreiben \(x_n \rightarrow \overline{x}\) oder \(\overline{x}= \lim_{n \rightarrow \infty} x_n. \)
+
+Insgesamt nennen wir eine Folge konvergent, wenn es irgendeinen Grenzwert \(\overline{x} \in \K\) der Folge gibt.
+\end{definition}
+\end{emphBox}
+
+Eine Folge rationaler Zahlen konvergiert gegen \(\overline{x} \in \Q\), genau dann wenn in der normalen Ordnung gilt
+\begin{equation*}
+ \forall \epsilon \in K, 0 < \epsilon ~ \exists n_0 \in \N ~\forall n \geq n_0: |x_n - \overline{x}| < \epsilon.
+\end{equation*}
+Allerdings haben wir mit dieser Definition noch das Problem, dass wir einen Grenzwert in \(\Q\) brauchen, wir hätten aber gerne auch Grenzwerte in \(\R \setminus \Q\), die wir eigentlich über die Folge definieren. Also brauchen wir eine alternative Definition, die keinen Grenzwert benutzt:
+\label{grundlagen/zahlensysteme:definition-14}
+\begin{definition}{}{}
+
+
+
+Eine Folge \((x_n) \in \K\) heißt Cauchy Folge, genau dann wenn
+\begin{equation*}
+ \forall \epsilon \in K, 0 \prec \epsilon ~ \exists n_0 \in \N ~\forall n,m  \geq n_0: |x_n - x_m| \prec \epsilon.
+\end{equation*}\end{definition}
+
+Wir sehen sofort eine einseitige Beziehung:
+\label{grundlagen/zahlensysteme:theorem-15}
+\begin{theorem}{}{}
+
+
+
+Eine konvergente Folge \((x_n)\) in einem archimedisch angeordneten Körper \(\K\) ist eine Cauchy Folge.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof. Ist \((x_n)\) konvergent, dann existiert für alle \(\epsilon \in \K\), \(0 \prec \epsilon\) ein \(n_0 \in \N\), sodass für alle \(n \geq n_0\) gilt:
+\begin{equation*}
+| x_n - \overline{x} | \prec  \epsilon',
+\end{equation*}
+wobei \(\overline{x}\) der Grenzwert der Folge ist und \(\epsilon'+\epsilon' \preceq \epsilon\) gilt. Aus der Dreiecksungleichung folgt für \(n,m \geq n_0\)
+\begin{equation*}
+| x_n - x_m | \preceq  | x_n - \overline{x} |  +  | x_m - \overline{x} | \prec \epsilon,
+\end{equation*}
+also ist \((x_n)\) Cauchy Folge.
+\end{emphBox}
+
+Der folgende Satz liefert uns einige Eigenschaften von Cauchy Folgen:
+\label{grundlagen/zahlensysteme:theorem-16}
+\begin{theorem}{}{}
+
+
+
+Sei \((x_n)\) eine Cauchy Folge in einem archimedisch angeordneten Körper \(\K\). Dann ist \((x_n)\) beschränkt, d.h. es gibt ein \(C \in \K\) mit
+\begin{equation*}
+|x_n| \preceq C \qquad \forall~n \in \N.
+\end{equation*}
+Ist \((y_n)\) eine weitere Cauchy Folge in \(\K\), dann sind auch \((x_n+y_n)\) und \((x_n y_n)\) Cauchy Folgen.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Da \((x_n)\) Cauchy Folge ist, gibt es ein \(n_0 \in \N\), sodass für alle \(n,m \geq n_0\) gilt
+\begin{equation*}
+ | x_n - x_m | \preceq 1.
+\end{equation*}
+Damit ist insbesondere für jedes \(n \geq n_0\)
+\begin{equation*}
+|x_n| \preceq |x_{n_0}| + |x_n - x_{n_0}| \prec |x_{n_0}| +1.
+\end{equation*}
+Wählen wir nun
+\begin{equation*}
+C = \max_{1 \leq j \leq n_0} |x_j| + 1,
+\end{equation*}
+dann folgt für alle \(n \in \N\): \(|x_j| \prec 1\).
+Seien nun \((x_n)\) und \((y_n)\) Cauchy Folgen. Dann existiert zu jedem \(\epsilon \in \K\) mit \(0 \prec \epsilon\) ein \(n_0^1\), sodass
+\begin{equation*}
+|x_n - x_m| \prec \epsilon', \qquad \forall n,m \geq n_0^1
+\end{equation*}
+und
+\begin{equation*}
+|y_n - y_m| \prec \epsilon' \qquad \forall n,m \geq n_0^2
+\end{equation*}
+wobei \(\epsilon'+\epsilon' \preceq \epsilon\)
+gilt. Für \(n_0 = \max\{n_0^1,n_0^2\}\) gilt
+\begin{equation*}
+|(x_n+y_n) - (x_m+y_m)| \preceq |x_n - x_m| + |y_n - y_m| \prec {\epsilon} , \qquad \forall n,m \geq n_0.
+\end{equation*}
+Zum Beweis der Eigenschaft für das Produkt verwenden wir
+\begin{align*}
+|x_n y_n| &= | x_n(y_n -y_m) + y_m (x_n - x_m) | \\&\leq |x_n| ~|y_n - y_m| + |y_m|~|x_n - x_m|.\end{align*}
+Nach dem ersten Teil des Satzes sind die Cauchy Folgen \((x_n)\) und \((y_n)\) beschränkt. Ist \(C\) das Maximum der Schranken und \(n_0\) hinreichend groß, dann gilt für \(n,m \geq n_0\)
+\begin{equation*}
+|x_n| \preceq C, \quad |y_n| \preceq C, \quad |x_n - x_m| \prec \frac{\epsilon'}{C}, \qquad|y_n - y_m| \prec \frac{\epsilon'}{C},
+\end{equation*}
+und daraus folgt\( |x_n y_n - x_m y_m | \preceq \epsilon.~\square \)
+\end{emphBox}
+
+
+\subsubsection{Konstruktion reeller Zahlen}
+\label{\detokenize{grundlagen/zahlensysteme:konstruktion-reeller-zahlen}}
+Nun beginnen wir die reellen Zahlen zu konstruieren ohne explizit den Grenzwert anzugeben. Dazu wollen wir reelle Folgen mit rationalen Cauchy Folgen identifizieren. Für die Teilmenge der rationalen Zahlen ist dies einfach, dazu können wir z.b. jedes \(q \in \Q\) mit der konstanten Folge \(x_n = q\) für alle \(n \in \N\) identifizieren. Für irrationale Zahlen können wir uns die Dezimaldarstellung vorstellen, der Einfachheit halber für \(0\leq x <1\):
+\begin{equation*}
+x = 0,a_1a_2a_3 \ldots  \quad \text{ bzw. } x=\sum_{j=1}^\infty a_j 10^{-j}
+\end{equation*}
+wobei die Ziffern \(a_i \in \{0,1,\ldots,9\}\) erfüllen. Ist \(x\) nicht rational, dann ist die Darstellung weder endlich noch periodisch, d.h. wir werden es nie schaffen diese vollständig hinzuschreiben, wir können uns nur darauf beschränken, die ersten \(n\) Dezimalstellen anzugeben. Damit konstruieren wir automatisch eine Folge
+\begin{equation*}
+x_n = 0,a_1a_2a_3 \ldots  \quad \text{ bzw. } x_n=\sum_{j=1}^n a_j 10^{-j} .
+\end{equation*}
+Wir sehen für \(m \geq n\), dass
+\begin{equation*}
+|x_m -x_n| = | \sum_{j=n+1}^m a_j 10^{-j}| < 10^{-n}
+\end{equation*}
+gilt. Damit ist \((x_n)\) natürlich Cauchy Folge in \(\Q\), denn für jedes \(\epsilon \in \Q_+\) gibt es ein \(n_0\) mit
+\(10^{-n_0} < \epsilon \) und damit ist auch \(10^{-n} < \epsilon\) für \(n \geq n_0\).
+Nun haben wir noch das Problem, dass wir nicht direkt reelle Zahlen mit Cauchy Folgen identifizieren können, da es mehrere Folgen mit dem gleichen Grenzwert gegen kann. Dies sehen wir etwa bei \(\sqrt{2}\), wenn wir Folgen aus dem Heron Verfahren mit unterschiedlichen Startwerten betrachten oder sogar für eine reelle Zahl \(q\). Dort können wir etwa \(x_n=q\) oder \(\tilde x_n = q +\frac{1}n\) betrachten, die beide gegen \(q\) konvergieren. Um diese Nichteindeutigkeit zu beheben, müssen wir wieder eine geeignete Äquivalenzrelation einführen und bezüglich dieser faktorisieren.
+\label{grundlagen/zahlensysteme:definition-17}
+\begin{definition}{}{}
+
+
+
+Eine Folge mit Grenzwert \(\overline{x}=0\) nennen wir Nullfolge. Dazu nennen wir
+\begin{equation*}
+ {\cal F} = \{ (x_n): \N \rightarrow \Q~|~(x_n) \text{ ist Cauchy-Folge.}\}
+\end{equation*}\end{definition}
+
+Auf \({\cal F}\) definieren wir eine Äquivalenzrelation
+\begin{equation*}
+ (x_n) \sim (y_n) : \Leftrightarrow (x_n-y_n) \text{ ist Nullfolge. }
+\end{equation*}
+Die Reflexivität ist klar, da \((x_n-x_n)\) die konstante Folge null ist, die Symmetrie folgt aus \(|x_n-y_n|=|y_n-x_n|\) eingesetzt in die Konvergenzbedingung. Die Transitivität erhalten wir wieder mit der Dreiecksungleichung
+\begin{equation*}
+ 0 \leq  |x_n - z_n| \leq |x_n-y_n| + |y_n - z_n|.
+\end{equation*}\label{grundlagen/zahlensysteme:definition-18}
+\begin{definition}{}{}
+
+
+
+Mit der obigen Definition von \({\cal F}\) und \(\sim\) definieren wir die reellen Zahlen als \(\R = {\cal F}/\sim\), d.h. als Äquivalenzklassen rationaler Cauchy Folgen.
+Addition und Multiplikation auf \(\R\) sind definiert durch
+\begin{align*}
+[(x_n)] + [(y_n)] &:= [(x_n+y_n)] \\
+[(x_n)] ~ [(y_n)] &:= [(x_n~y_n)]\end{align*}\end{definition}
+
+Man prüft leicht nach, dass die Addition und Multiplikation wohldefiniert sind, also unabhängig von den Repräsentatnen ausgeführt werden können. Wir wollen nun auch noch eine Ordnungsrelation auf \(\R\) einführen, die natürlich auf dem Vergleich der Folgen basieren muss. Dabei können wir Positivität aber nicht einfach durch die Bedingung \(0 < x_n\) für alle \(n \in \N\) oder für \(n \geq n_0\) fordern, da es auch Folgen wie \(\frac{1}n\) gibt, die diese Bedingung erfüllen aber gegen \(0\) konvergieren.  Um dies zu verhindern definieren wir
+\begin{equation*}
+ 0 < [(x_n)]:\Leftrightarrow \exists \epsilon > 0~\forall (\tilde x_n) \in [(x_n)]~\exists n_0 \in \N ~\forall n\geq n_0: \tilde x_n > \epsilon.
+\end{equation*}
+Wir beachten, dass dabei \(n_0\), aber nicht \(\epsilon\) vom Repräsentanten abhängen darf. Diese Definition erweitern wir wie üblich auf \(\leq\), indem wir schreiben
+\begin{equation*}
+0 \leq  [(x_n)]:\Leftrightarrow 0 < [(x_n)] \text{ oder } 0 = [(x_n)].
+\end{equation*}
+Die Relation ist dann definiert als
+\begin{equation*}
+[(x_n)] \leq [(y_n)] : \Leftrightarrow 0 \leq [(y_n-x_n)].
+\end{equation*}
+Wir weisen noch kurz die Eigenschaften einer Ordnungsrelation nach:
+\begin{itemize}
+\item {} 
+\emph{Reflexivität} ist trivial, da wir die Gleichheit ja explizit in der Definition berücksichtigt haben.
+
+\item {} 
+\emph{Antisymmetrie:} Sei \([(x_n)] < [(y_n)]\), dann gilt für alle Repräsentanten \((\tilde x_n) \in [(x_n)]\) und
+\((\tilde y_n) \in [(y_n)]\);
+
+\end{itemize}
+\begin{equation*}
+\exists \epsilon > 0~\exists n_0 \in \N~\forall n \geq n_0: \tilde y_n - \tilde x_n > \epsilon.
+\end{equation*}
+Damit kann nicht \(\tilde x_n - \tilde y_n > \tilde \epsilon\) gelten für \(\tilde \epsilon >0\) und \(n \geq n_0\). Da \(\tilde x_n - \tilde y_n\) keine Nullfolge ist, gilt nicht \((y_n) \leq (x_n)\).
+\begin{itemize}
+\item {} 
+\emph{Transitivität:} Sei \([(x_n)] \leq [(y_n)]\) und \([(y_n)] \leq [(z_n)]\). Dann unterscheiden wir zunächst \([(x_n)]=[(y_n)]\) und \([(x_n)]< [(y_n)]\). Im ersten Fall ist \([(x_n)] \leq [(z_n)]\) trivial, also betrachten wir den zweiten. Genauso können wir eine Fallunterscheidung bei \([(y_n)]\) und \([(z_n)]\) machen und müssen nur den nichttrivialen Fall \([(y_n)]<[(z_n)]\) betrachten. Hier können wir \(\epsilon_1\) und \(\epsilon_2\) finden, sodass für \(n\geq n_0^1\)
+
+\end{itemize}
+\begin{equation*}
+\tilde y_n - \tilde x_n > \epsilon_1
+\end{equation*}
+und für \(n\geq n_0^2\)
+\begin{equation*}
+\tilde z_n - \tilde y_n > \epsilon_2
+\end{equation*}
+gilt. Mit \(n_0=\max\{n_0^1,n_0^2\}\) und \(\epsilon = \epsilon_1 + \epsilon_2\) erhalten wir die gewünschte Eigenschaft
+\begin{equation*}
+\tilde z_n - \tilde x_n > \epsilon, \qquad \forall n \geq n_0.
+\end{equation*}
+Man prüft leicht nach, dass die Grundrechenarten auf \(\R\) mit der Ordnung verträglich sind und dass \(\R\) ein archimedisch angeordneter Körper ist. Die Anordnung von \(\R\) und die Beziehung zu den natürlichen Zahlen erlaubt es uns auch zu runden:
+\label{grundlagen/zahlensysteme:lemma-19}
+\begin{lemma}{}{}
+
+
+
+Für alle \(x \in \R\) existiert genau ein \(m\in \Z\) mit
+\begin{equation*}
+ m-1 \leq x < m .
+\end{equation*}
+Analog gibt es genau ein genau \(n \in \Z\) mit \(n-1 < x \leq n\)
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof. Sei \(x \in \R\). Wegen der archimedischen Anordnung existiert ein \(n_1 \in \N\) mit \(x < n_1\) und \(n_2 \in \N\) mit \(-x < n_2\). Wir betrachten die nichtleeren Mengen
+\begin{equation*}
+M_1 = \{ z \in \Z~|~ x < z\}, \qquad M_2 = \{ z \in \Z~|~ z \leq x\}.
+\end{equation*}
+Diese sind disjunkt und es gilt \(\Z = M_1 \cup M_2\). Ist \(z \in M_1\), dann ist auch \(z+1 \in M_1\). Damit gibt es wegen der Anordnung nur ein \(m \in M_1\) mit \(m-1 \notin M_1\). Wegen \(\Z = M_1 \cup M_2\) gilt also \(m-1 \in M_1\), damit folgt \(  m-1 \leq x < m . \square\)
+\end{emphBox}
+
+Eine interessante Eigenschaft ist auch das Wachstum der Exponentialfunktion. Dazu benötigen wir zunächst ein Hilfsresultat, die sogenannte Bernoulli Ungleichung
+\label{grundlagen/zahlensysteme:lemma-20}
+\begin{lemma}{}{}
+
+
+
+Für \(x \in \R\), \(x \geq -1\) und \(n\in \N\) gilt
+\begin{equation*}
+ (1+x)^n \geq 1 + n x.
+\end{equation*}\end{lemma}
+
+\begin{emphBox}{}{}
+Proof. Wir können den Beweis per vollständiger Induktion führen. Der Anfang bei \(n=0\) liefert \(1 \geq 1\), ist also wahr. Nun nehmen wir an \((1+x)^n \geq 1 + n x\) und setzen dies ein in
+\begin{equation*}
+ (1+x)^{n+1} = (1+x)^n (1+x) \geq (1+nx)(1+x) = 1+ (n+1)x +x^2.
+\end{equation*}
+Wegen der Nichtnegativität von \(x^2\) folgt die Aussage auch für \(n+1\) und damit haben wir die Ungleichung für alle \(n\in \N\) bewiesen.
+\end{emphBox}
+\label{grundlagen/zahlensysteme:lemma-21}
+\begin{lemma}{}{}
+
+
+
+Sei \(x \in \R\), \(x  > 1\) und \(m\in \N\). Dann gibt es ein \(\ell \in \N\) mit
+\begin{equation*}
+x^\ell \geq m.
+\end{equation*}\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Für \(m=0\) und \(m=1\) erfüllt offensichtlich \(\ell=1\) die Ungleichung. Für \(m > 1\) schreiben wir \(x=1+y\), \(y > 0\) und setzen \(l \geq \frac{m-1}y\). Aus der Bernoulli Ungleichung folgt nun:
+\begin{equation*}
+x^\ell =(1+y)^\ell \geq 1+ \ell y \geq 1+  \frac{m-1}y y = m,
+\end{equation*}
+also gilt die Aussage
+\end{emphBox}
+
+
+\subsubsection{Vollständigkeit}
+\label{\detokenize{grundlagen/zahlensysteme:vollstandigkeit}}
+Die reellen Zahlen \(\R\) sind ein Körper, also können wir wieder Cauchy Folgen in \(\R\) betrachten. Nun stellt sich die Frage, ob \(\R\) vollständig ist, d.h. ob alle Cauchy Folgen konvergieren. Dazu stellen wir zunächst Zusammenhänge zwischen den reellen und den ganzen Zahlen her. Zunächst sehen wir, dass Cauchy Folgen in \(\Q\) auch Cauchy Folgen in \(\R\) sind, indem wir \(\epsilon \in \R_+\) durch \(\epsilon' \in \Q\) ersetzen können. Ist \(\epsilon \in \R\), \(\epsilon \geq 1\), so können wir \(n,m\) so wählen, dass
+\begin{equation*}
+|x_n -x_m| < 1 \leq \epsilon
+\end{equation*}
+gilt. Ist \(\epsilon < 1\), dann können wir \(k \in \N\) wählen, indem wir \(\frac{1}\epsilon\) aufrunden und damit ist
+\(\frac{1}k \leq \epsilon\). Nun können wir \(n,m\) so wählen, dass
+\begin{equation*}
+|x_n -x_m| < \frac{1}k \leq \epsilon.
+\end{equation*}
+Um nich immer explizit die Eigenschaft einer Cauchy Folge nachweisen zu müssen, verwenden wir folgendes einfache Resultat:
+\label{grundlagen/zahlensysteme:lemma-22}
+\begin{lemma}{}{}
+
+
+
+Sei \((y_n)\) eine Nullfolge in \(\R\) und für ein \(C \in \R_+\) gelte
+\begin{equation*}
+\forall m,n \in \N, m \geq n: |x_m-x_n| \leq C y_n.
+\end{equation*}
+Dann ist \((x_n)\) Cauchy Folge
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Da \((y_n)\) eine Nullfolge ist, existiert für jedes \(\epsilon > 0\) ein \(n_0 \in N\), sodass für alle \(n \geq n_0\) gilt \(y_n \leq |y_n| < \frac{\epsilon}C\). Damit folgt sofort für \(m \geq n \geq n_0\)
+\begin{equation*}
+|x_m-x_n| \leq C y_n < \epsilon,
+\end{equation*}
+d.h. \((x_n)\) ist Cauchy Folge
+\end{emphBox}
+\label{grundlagen/zahlensysteme:lemma-23}
+\begin{lemma}{}{}
+
+
+
+Für jedes \(x \in \R\) und \(\epsilon \in \R_+\) existiert ein ein \(q \in \Q\) mit \(|x-q|<\epsilon\)
+\end{lemma}
+
+\begin{emphBox}{}{}
+Proof.  Sei \(k\) wie oben mit \(\frac{1}k \leq \epsilon\). Da \(x\) der Grenzwert einer Cauchy Folge \((r_n)\) in \(\Q\) ist, gibt es ein \(n_0 \in \N\) mit
+\begin{equation*}
+|r_n - r_m| < \frac{1}{2k} \leq \frac{\epsilon}2,
+\end{equation*}
+für alle \(m,n \geq n_0\). Wählen wir nun \(q=r_{n_0}\) und betrachten die konstante Folge \((q)\), dann gilt
+\begin{equation*}
+|r_n - q| <  \frac{\epsilon}2,
+\end{equation*}
+für alle \(n \geq n_0\). Sei nun \((\tilde r_n)\) ein anderer Repräsentant von \(x\), dann ist \((r_n - \tilde r_n)\) Nullfolge, d.h. es gibt ein \(\tilde n_0\) mit
+\begin{equation*}
+|r_n - \tilde r_n|   < \frac{1}{2k} \leq \frac{\epsilon}2,
+\end{equation*}
+für \(n \geq \tilde n_0\). Damit gilt für \(n\geq \max\{n_0,\tilde n_0\}\) auch
+\begin{equation*}
+|q-\tilde r_n| \leq |q -r_n|+|r_n - \tilde r_n| < \epsilon,
+\end{equation*}
+d.h. \(|q-x| < \epsilon\).
+\end{emphBox}
+
+Damit können wir die Vollständigkeit von \(\R\) nachweisen.
+\label{grundlagen/zahlensysteme:theorem-24}
+\begin{theorem}{}{}
+
+
+
+\(\R\) ist vollständig, d.h. jede Cauchy Folge \((x_n)\) in \(\R\) ist konvergent
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Zu jedem Folgenelement \(x_n \in \R\) gibt es ein \(q_n \in \Q\) mit
+\begin{equation*}
+|x_n-q_n| < \frac{1}n.
+\end{equation*}
+Sei nun \(\epsilon > 0\), dann gibt es ein \(n_0\), sodass für alle \(n,m \geq n_0\) gilt
+\begin{equation*}
+|x_n - x_m| < \frac{\epsilon}3.
+\end{equation*}
+Sei darüber hinaus \(n_0\) so groß gewählt, dass \(\frac{1}{n_0} < \frac{\epsilon}3\) gilt. Dann folgt
+\begin{equation*}
+|q_n - q_m| \leq |q_n - x_n| + |x_n - x_m| + |x_m-q_m| <\epsilon,
+\end{equation*}
+d.h. \((q_n)\) ist Cauchy Folge in \(\Q\) und da \((x_n -q_n)\) eine Nullfolge ist, folgt
+\begin{equation*}
+ x=\lim_n q_n = \lim_n x_n
+\end{equation*}
+und damit ist \(x_n\) konvergent.
+\end{emphBox}
+
+Mit Hilfe der Vollständigkeit können wir nun Grenzwerte in \(\R\) definieren, indem wir nachweisen, dass Folgen Cauchy Folgen sind. Als Anwendung betrachten wir die Exponentialfunktion:
+\label{grundlagen/zahlensysteme:example-25}
+\begin{example}{}{}
+
+
+
+Sei \(x \in \R\). Wir definieren
+\begin{equation*}
+ e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = \lim_{n \rightarrow \infty} \sum_{k=0}^n \frac{x^k}{k!},
+\end{equation*}
+wobei \(k! = \prod_{i=1}^k i\). Sei
+\begin{equation*}
+y_n = \sum_{k=0}^n \frac{x^k}{k!}
+\end{equation*}
+und wählen wir \(m \geq n\). Dann ist
+\begin{equation*}
+|y_n - y_m| \leq \sum_{k=n+1}^m \frac{|x|^k}{k!}.
+\end{equation*}
+Sei \(n_0 \in \N\) so, dass \(n_0 > 2{|x|} \), dann gilt
+\begin{align*}
+\sum_{k=n+1}^m \frac{|x|^k}{k!} &= \frac{|x|^{n_0}}{n_0!} \sum_{k=n+1}^m \frac{|x|^{k-n_0}}{(n_0+1)\ldots k} \\
+&\leq \frac{|x|^{n_0}}{n_0!} \sum_{k=n+1}^m \left(\frac{1}2\right)^{k-n_0} \\
+&= \frac{|2x|^{n_0}}{n_0!} \sum_{k=n+1}^m \left(\frac{1}2\right)^{k} \\
+&= \frac{|2x|^{n_0}}{n_0!} \left(\frac{1}2\right)^{n+1} \sum_{k=0}^{m-n-1} \left(\frac{1}2\right)^{k} \\
+&= \frac{|2x|^{n_0}}{n_0!} \left(\frac{1}2\right)^{n+1} \frac{1-\left(\frac{1}2\right)^{m-n-1}}{\frac{1}2} \\
+&\leq \frac{|2x|^{n_0}}{n_0!} \left(\frac{1}2\right)^{n},
+\end{align*}
+Da der letzte Term gegen Null konvergiert, können wir \(m,n\) so groß wählen, dass er beliebig klein wird. Also ist \(y_n\) eine Cauchy Folge.
+\end{example}
+
+Wir betrachten nun noch die Mächtigkeit von \(\R\):
+\label{grundlagen/zahlensysteme:theorem-26}
+\begin{theorem}{}{}
+
+
+
+Es gilt \(|\R| > |\N|\), d.h. \(\R\) ist nicht abzählbar
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.   Es genügt zu zeigen, dass
+\begin{equation*}
+I=[0,1) = \{ x \in \R~|~0 \leq x < 1\}
+\end{equation*}
+nicht abzählbar ist. Wir können\(x \in I\) in Dezimaldarstellung \(0,a_1a_2 \ldots\) schreiben, indem wir iterativ abrunden:
+\begin{equation*}
+a_1 = \lfloor 10 x \rfloor, \quad a_{i+1} = \lfloor 10^{i+1}(x-\sum_{j=0}^i a_j 10^{-j})\rfloor.
+\end{equation*}
+Nehmen wir an, es gäbe eine surjektive Abbildung \(f: \N \rightarrow [0,1)\). Dann schreiben wir die Dezimaldarstellung für den Wertebereich als
+\begin{equation*}
+f(\ell) = 0,a_1^\ell a_2^\ell \ldots
+\end{equation*}
+mit \(a_i^\ell \in \{0,1,\ldots,9\}\). Nun definieren wir
+\begin{equation*}
+x=0,b_1 b_2 \ldots
+\end{equation*}
+mit \(b_i \in \{1,\ldots,8\}\) so, dass \(|b_i - n_i^i| \geq 2\). Damit folgt \(|x-f(\ell)|\geq 10^{-\ell}\), also insbesondere \(x \neq f(\ell)\) für alle \(\ell \in \N\). Damit kann \(f\) nicht surjektiv sein und \(\R\) nicht abzählbar
+\end{emphBox}
+
+Wir sehen also, dass die Mächtigkeit von \(\R\) eine größere Art von Unendlich ist als die Mächtigkeit von \(\N\), dies gilt auch für die irrationalen Zahlen im Vergleich zu den rationalen. Wir definieren diese deshalb als zweite Kardinalzahl \(|\R|= \aleph_1\).
+
+
+\subsection{Infima und Suprema}
+\label{\detokenize{grundlagen/zahlensysteme:infima-und-suprema}}
+Intuitiv würden wir gerne von einem größten und kleinsten Element einer Menge (Maximum bzw. Minimum) sprechen, wenn wir eine vollständige Ordnung haben. Dies ist aber nicht immer gegeben, wie eine Betrachtung verschiedener Intervalle in \(\R\) zeigt. Für \(a,b \in \R\) mit \(a < b\) definieren wir
+\begin{align*}
+[a,b] &:= \{x \in \R~|~a \leq x \leq b\} \\
+(a,b) &:= \{x \in \R~|~a < x < b\} \\
+[a,b) &:= \{x \in \R~|~a \leq x < b\} \\
+(a,b] &:= \{x \in \R~|~a < x \leq b\}.
+\end{align*}
+Wir nennen \([a,b]\) geschlossenes Intervall, \((a,b)\) offenes Intervall und die anderen beiden halboffene Intervalle. Das geschlossene Intervall hat ein Maximum (\(b\)) und ein Minimum (\(a\)), das offene Intervall aber nicht, denn einerseits existiert für jedes \(\epsilon > 0\) ein \(x \in \R\) mit \(x>b-\epsilon\), also müsste ein Maximum größer gleich \(b\) sein. Alle reellen Zahlen größer gleich \(b\) liegen aber nicht in \((a,b)\). In einem solchen Fall werden wir \(b\) ein Supremum nennen (und analog \(a\) ein Infimum), dies führt auf die folgende Definition:
+\label{grundlagen/zahlensysteme:definition-27}
+\begin{definition}{}{}
+
+
+
+Sei \(K\) eine Menge mit Ordnungsrelation \(\preceq\) und \(M \subset K\).
+\begin{itemize}
+\item {} 
+\(z \in K\) heisst obere Schranke für \(M\), wenn für alle \(x \in M\) gilt: \(x \preceq z\).
+
+\item {} 
+\(z \in K\) heisst untere Schranke für \(M\), wenn für alle \(x \in M\) gilt: \(z \preceq x\).
+
+\item {} 
+\(M\) heisst nach oben / unten beschränkt, wenn eine obere / untere Schranke existiert. \(M\) heisst beschränkt, wenn sie nach oben und unten beschränkt ist.* Eine obere Schranke \(s \in K\) heisst Supremum, wenn für alle anderen oberen Schranken \(z\) gilt \(s \preceq z\).
+
+\item {} 
+Eine untere Schranke \(i \in K\) heisst Infimum, wenn für alle anderen unteren Schranken \(z\) gilt \(z \preceq i\).
+
+\end{itemize}
+\end{definition}
+
+Wir wenden dies nun auf die reellen Zahlen an:
+\label{grundlagen/zahlensysteme:theorem-28}
+\begin{theorem}{}{}
+
+
+
+\(M \subset \R\) ist beschränkt genau dann wenn es ein \(g \in \R_+\) gibt, sodass für alle \(x \in M\) gilt: \(|x|\leq g\).Ist \(M \neq \emptyset\) und \(M\) nach oben und unten beschränkt, dann besitzt \(M\) ein Supremum und ein Infimum. Diese sind jeweils eindeutig.
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Zunächst sehen wir, dass für beschränkte Mengen in \(\R\) Schranken \(a,b \in \R\) existieren, mit \(a \leq x  \leq b\) für alle \(x \in M\). Nun wählen wir \(g=\max\{|a|,|b|\}\) und erhalten \(|x|\leq g\). Umgekehrt können wir im Fall \(|x|\leq g\) für alle \(x \in M\) einfach \(g\) als obere und \(-g\) als untere Schranke wählen.
+
+Um ein Supremum zu konstruieren beginnen wir mit \(m_0 \in M\) und einer oberen Schranke \(s_0 \in \R\). Nun definieren wir iterativ zunächst \(x_i=\frac{m_i+s_i}2\). Ist \(x_i\) obere Schranke, dann setzen wir \(s_{i+1}=x_i\) und \(m_{i+1}=m_i\). Andernfalls setzen wir \(m_{i+1}=x_i, s_{i+1}=s_i\). In beiden Fällen ist \(M \cap [m_{i+1},s_{i+1}] \neq \emptyset\). Wir sehen auch
+\begin{equation*}
+|s_{i+1} - m_{i+1}| = \frac{1}2 |s_i - m_i|
+\end{equation*}
+und daraus folgt
+\begin{equation*}
+|s_n - m_n| = \frac{1}{2^n} |s_0-m_0|,
+\end{equation*}
+also ist \((s_n-m_n)\) ein Nullfolge. Darüber hinaus sehen wir
+\begin{equation*}
+ |s_{i+1}-s_i| \leq \frac{1}2 |s_i - m_i|  = \frac{1}{2^{i+1}} |s_0-m_0|
+\end{equation*}
+und erhalten für \(m\geq n\)
+\begin{equation*}
+ |s_m - s_n| = |\sum_{i=n}^{m-1} s_{i+1}-s_i| \leq \sum_{i=n}^{m-1} |s_{i+1}-s_i| \leq  \sum_{i=n}^{m-1}\frac{1}{2^{i+1}} |s_0-m_0| = \frac{1}{2^{n+1}}  |s_0-m_0| \sum_{i=0}^{m-n-1}\frac{1}{2^{i}} \leq \frac{1}{2^{n}}  |s_0-m_0|.
+\end{equation*}
+Also ist \((s_n)\) eine Cauchy Folge und analog zeigen wir, dass auch \((m_n)\) eine Cauchy Folge ist. Da jede Cauchy Folge in \(\R\) konvergiert gibt es einen Grenzwert \(s\), der für beide Folgen gleich ist. Aus der Konstruktion sehen, wir dass \(s_n\) für jedes \(n\) eine obere Schranke ist. Nehmen wir an, dass es ein \(m \in M\) gibt mit \(m > s\), dann ist \(m=s+\epsilon\) für ein \(\epsilon > 0\). Andererseits existiert \(n_0\) mit \(|s-s_{n_0}|< \epsilon\) und damit\(s_{n_0} < s + \epsilon = m\). Dies ist ein Widerspruch dazu, dass \(s_{n_0}\) eine obere Schranke ist, also \(m \leq s_{n_0}\). Damit ist \(s\) eine obere Schranke und es kann keine kleinere obere Schranke geben, da es für jedes \(\epsilon > 0\) ein \(m \in M\) mit \(m > s-\epsilon\) gibt. Also ist \(s\) ein Supremum. Ist \(s'\) ein weiteres Supremum, dann gilt \(s \leq s'\) und \(s' \leq s\), also \(s=s'\). Die Existenz und Eindeutigkeit eines Infimums folgt analog
+\end{emphBox}
+
+Für unbeschränkte Mengen gibt es nicht unbedingt ein Infimum oder Supremum. Wir können dies erzwingen indem wir \(\R\) erweitern zu
+\begin{equation*}
+ \overline{\R} = \R \cup \{+\infty,-\infty\},
+\end{equation*}
+wobei wir \(\pm \infty\) so definieren, dass
+\begin{equation*}
+ \forall x\in \R \cup \{+\infty\} : - \infty < x
+\end{equation*}
+und
+\begin{equation*}
+ \forall x\in \R \cup \{+\infty\} : x < \infty\end{equation*}
+gilt.
+
+
+\subsection{Komplexe Zahlen}
+\label{\detokenize{grundlagen/zahlensysteme:komplexe-zahlen}}
+In \(\R\) können wir die Quadratwurzel einer positiven Zahl ziehen, nicht aber aus einer negativen. Dies bedeutet, dass nicht jede quadratische Gleichung eine Lösung hat, z.B.
+\begin{equation*}
+ x^2 +1 = 0
+\end{equation*}
+ist nicht in \(\R\) lösbar. Allgemeiner gibt es viele algebraische Gleichungen, d.h. Gleichungen der Form
+\begin{equation*}
+ \sum_{j=0}^n a_j x^j = 0,
+\end{equation*}
+die nicht lösbar sind oder äquivalent hat nicht jedes nichtkonstante Polynom eine Nullstelle in \(\R\). Um dies zu beheben führen wir eine imaginäre Zahl \(\i\) ein, sodass
+\begin{equation*}
+ \i^2 = (-\i)^2 = -1
+\end{equation*}
+gilt. Dann können wir auch reelle Zahlen zu \(\i\) addieren oder reelle Vielfache von \(\i\) betrachten, z.B. sollte gelten \((2\i)^2=-4\). Also erhalten wir komplexe Zahlen in der Form
+\begin{equation*}
+ z = a + b \i, \qquad a, b \in \R.
+\end{equation*}
+Wir nennen \(a\) den Realteil und \(b\) den Imaginärteil, sehen also, dass im wesentlichen die komplexen Zahlen dem \(\R^2 = \R \times \R\) entsprechen.
+Für die Addition und Multiplikation verwenden wir Assoziativität, Distributivität und Kommutativität, damit ist
+\begin{equation*}
+ z_1+z_2 = (a_1+a_2) + (b_1+b_2)\i,
+\end{equation*}
+und
+\begin{equation*}
+ z_1 ~z_2 = a_1 a_2 + a_1 b_2 \i + a_2 b_1 \i + b_1 b_2 \i^2 = (a_1 a_2 - b_1 b_2) + ( a_1 b_2   + a_2 b_1) \i .
+\end{equation*}
+Dies führt auf die Definition der komplexen Zahlen als \(\C = \R \times \R\) mit den Rechenregeln
+\begin{equation*}
+ (a_1,b_1) +(a_2,b_2) := (a_1+a_2,b_1+b_2)
+\end{equation*}
+und
+\begin{equation*}
+ (a_1,b_1) ~(a_2,b_2) := (a_1 a_2 - b_1 b_2,a_1 b_2   + a_2 b_1).
+\end{equation*}
+Damit erhalten wir:
+\label{grundlagen/zahlensysteme:theorem-29}
+\begin{theorem}{}{}
+
+
+
+Die komplexen Zahlen \(\C\) sind ein Körper
+\end{theorem}
+
+\begin{emphBox}{}{}
+Proof.  Zunächst sehen wir sofort, dass \((\C,+)\) eine abel’sche Gruppe mit neutralem Element \((0,0)\) und zu \((a,b)\) inversem Element \((-a,-b)\) bildet. Darüber hinaus sehen wir, das \((\C,\cdot)\) eine abel’sche Gruppe mit Einselement \((1,0)\) und zu \((a,b)\) inversem Element \((\frac{a}{a^2+b^2},  \frac{-b}{a^2+b^2}) \) bildet. Das Assoziativ  und Distributivgesetz kann man direkt mit den entsprechenden Gesetzen für die Multiplikation in \(\R\) nachrechnen
+\end{emphBox}
+
+Mit der Abbildung \(x \in \R \mapsto (x,0) \in \C\) haben wir eine kanonische Einbettung der reellen Zahlen in \(\C\). Wir schreiben dann allgemein wieder \(z=a+b\i\) und sagen \(z \in\R\) wenn der Imaginärteil \(b=0\) ist.  Die imaginäre Zahl \(\i\) können wir also mit \((0,1)\) identifizieren.  Wir schreiben auch \(a=\)Re\((z)\) und \(b=\)Im\((z)\). Wir definieren den Betrag einer komplexen Zahl als
+\begin{equation*}
+ |z| := \sqrt{a^2+b^2}
+\end{equation*}
+und die konjugierte Zahl als
+\begin{equation*}
+ \overline{z} := a - b \i.
+\end{equation*}
+Als Beispiel betrachen wir \(z= 4+3\i\), dann ist \(|z|=5\) und \(\overline{z}=4-3\i\).
+
+Den folgenden Satz geben wir ohne seinen (einfachen) Beweis an:
+\label{grundlagen/zahlensysteme:theorem-30}
+\begin{theorem}{}{}
+
+
+
+Sei \(z \in \C \), dann gilt:
+\begin{equation*}
+  |z| \geq 0\quad \text{ und } |z|=\sqrt{z \overline{z}},
+\end{equation*}
+darüber hinaus ist \(|z|=0\) genau dann wenn \(z=0\) gilt.Sind \(x,y \in \C\), dann gilt
+\begin{equation*}
+ |xy|=|x|~|y|,\qquad |x+y| \leq |x|+|y| .
+\end{equation*}\end{theorem}
+
+Ist \(y \in \C\) und \(n\in \N\setminus\{0,1\}\), dann heisst \(x \in \C\) die \(n\) te Wurzel von \(y\), wenn \(y=x^n\) gilt.Eine Wurzel ist eine Nullstelle des Polynoms \(p:\C \rightarrow \C, x \mapsto x^n-y\). Eine solche Wurzel existiert immer in \(\C\), allgemeiner gilt der \emph{Hauptsatz der Algebra} (hier ohne Beweis):
+\label{grundlagen/zahlensysteme:theorem-31}
+\begin{theorem}{}{}
+
+
+
+Jedes Polynom```\{math\}
+p: \textbackslash{}C \textbackslash{}mapsto \textbackslash{}C, x \textbackslash{}mapsto \textbackslash{}sum\_\{j=0\}\textasciicircum{}n a\_j x\textasciicircum{}j
+
+
+\end{theorem}
+\label{grundlagen/zahlensysteme:example-32}
+\begin{example}{}{}
+
+
+
+Das quadratische Polynom \(p(x) =x^2+1\) hat die Nullstellen \(\i\) und \(-\i\)
+\end{example}
+\label{grundlagen/zahlensysteme:example-33}
+\begin{example}{}{}
+
+
+
+Das kubische Polynom \(p(x) =x^3+1\) hat die Nullstellen \(-1\), \(\frac{-1+\sqrt{3}\i}2\) und \(\frac{-1-\sqrt{3}\i}2\)
+\end{example}
+
+In den Beispielen sehen wir, dass zu jeder Nullstelle auch die konjugierte Zahl Nullstelle ist. Dies gilt allgemein für komplexe Polynome: ist \(z \in \C\) Nullstelle, dann ist auch \(\overline{z}\) eine Nullstelle.
+
+
