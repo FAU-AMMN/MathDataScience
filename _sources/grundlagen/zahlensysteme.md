@@ -346,7 +346,7 @@ $\Q$ ist nicht nur ein angeordneter Körper, sondern wird sogar als _archimedisc
 Wir betrachten zum Abschluss noch die Mächtigkeit von $\Q$. Wir haben schon gesehen, dass es eine bijektive Abbildung $f: \N \mapsto \N \times \N$ gibt, und ähnlich können wir eine bijektive Abbildung von $f: \N \rightarrow \Z \rightarrow \Z \times Z$ konstruieren. Da die Abbildung von $\Z \times \Z \setminus \{0\}$ auf die obigen Äquivalenzklassen, d.h. $\Q$ surjektiv ist, erhalten wir eine surjektive Abbildung von $\N$ nach $\Q$.
 
 ```{margin} Georg Cantor
-[Georg Ferdinand Ludwig Philipp Cantor](https://de.wikipedia.org/wiki/Georg_Cantor) (\* 3. März 1845greg. in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.
+[Georg Ferdinand Ludwig Philipp Cantor](https://de.wikipedia.org/wiki/Georg_Cantor) (\* 3. März 1845 in Sankt Petersburg; † 6. Januar 1918 in Halle an der Saale) war ein deutscher Mathematiker.
 ```
 
 Andererseits ist die Identität von $\N$ nach $\Q$ eine injektive Abbildung. Also erwarten wir, dass es auch eine Bijektion gibt, d.h. $|\Q|=\aleph_0$. Dies liefert das sogenannte erste Cantor'sche Diagonalverfahren:
@@ -536,10 +536,10 @@ gilt. Für $n_0 = \max\{n_0^1,n_0^2\}$ gilt
 Zum Beweis der Eigenschaft für das Produkt verwenden wir
 \begin{align*}
 |x_n y_n| &= | x_n(y_n -y_m) + y_m (x_n - x_m) | \\&\leq |x_n| ~|y_n - y_m| + |y_m|~|x_n - x_m|.\end{align*}
-Nach dem ersten Teil des Satzes sind die Cauchy-Folgen $(x_n)$ und $(y_n)$ beschränkt. Ist $C$ das Maximum der Schranken und $n_0$ hinreichend groß, dann gilt für $n,m \geq n_0
+Nach dem ersten Teil des Satzes sind die Cauchy-Folgen $(x_n)$ und $(y_n)$ beschränkt. Ist $C$ das Maximum der Schranken und $n_0$ hinreichend groß, dann gilt für $n,m \geq n_0$
 
 ```{math}
-$ |x_n| \preceq C, \quad |y_n| \preceq C, \quad |x_n - x_m| \prec \frac{\epsilon'}{C}, \qquad|y_n - y_m| \prec \frac{\epsilon'}{C},
+|x_n| \preceq C, \quad |y_n| \preceq C, \quad |x_n - x_m| \prec \frac{\epsilon'}{C}, \qquad|y_n - y_m| \prec \frac{\epsilon'}{C},
 ```
 
 und daraus folgt$ |x_n y_n - x_m y_m | \preceq \epsilon.~\square $
@@ -559,7 +559,7 @@ wobei die Ziffern $a_i \in \{0,1,\ldots,9\}$ erfüllen. Ist $x$ nicht rational, 
 x_n = 0,a_1a_2a_3 \ldots  \quad \text{ bzw. } x_n=\sum_{j=1}^n a_j 10^{-j} .
 ```
 
-Wir sehen f\"ur $m \geq n$, dass
+Wir sehen für $m \geq n$, dass
 
 ```{math}
 |x_m -x_n| = | \sum_{j=n+1}^m a_j 10^{-j}| < 10^{-n}
@@ -1037,7 +1037,7 @@ Den folgenden Satz geben wir ohne seinen (einfachen) Beweis an:
 Sei $z \in \C $, dann gilt:
 
 ```{math}
-  |z| \geq 0\quad \text{ und } |z|=\sqrt{z \overline{z}}\1
+  |z| \geq 0\quad \text{ und } |z|=\sqrt{z \overline{z}},
 ```
 
 darüber hinaus ist $|z|=0$ genau dann wenn $z=0$ gilt.Sind $x,y \in \C$, dann gilt
