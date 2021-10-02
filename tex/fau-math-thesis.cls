@@ -203,7 +203,7 @@
 \renewcommand{\maketitle}{
 \begin{titlepage}
 \thispagestyle{empty}
-\textsf{
+%\textsf{
 \begin{center}
 \vspace*{1cm}
 {\Huge \textbf{\@title}} \\
@@ -227,7 +227,7 @@
 \begin{minipage}{0.3\textwidth}
 \includegraphics[width=\textwidth]{atelier/logo/DepMathLogo} \vspace{3mm}
 \end{minipage}
-}
+%}
 \end{titlepage}
 }
 % ########################################################################################
