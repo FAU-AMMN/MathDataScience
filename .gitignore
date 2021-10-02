@@ -133,3 +133,30 @@ _build
 
 # pdf
 *.pdf
+
+# tex
+*.aux
+*.dep
+*.log
+*.out
+*.synctex.gz
+*.log
+*.fls
+*.dvi
+*.maf
+*.mtc
+*.mtc0
+*.run.xml
+*-blx.bib
+*.bcf
+*.bbl
+*.blg
+*.listing
+*.toc
+*.lof
+*.nlo
+*.nls
+*.ind
+*.idx
+*.els
+*.ilg
