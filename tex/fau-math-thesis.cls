@@ -196,66 +196,28 @@
 % Some macros
 \def\subdate#1{\gdef\@subdate{#1}}
 \subdate{\gertoday} % The default value for the date is today in german style
-\def\degree#1{\gdef\@degree{#1}} % for the degree you want to obtain
-\gdef\degprog#1{\gdef\@degprog{#1}} % Degree Program
-\def\thesistype#1{\gdef\@thesistype{#1}} % for the degree you want to obtain
+\gdef\department#1{\gdef\@department{#1}} % Degree Program
+\def\semester#1{\gdef\@semester{#1}} % for the degree you want to obtain
 \def\keywords#1{\gdef\@keywords{#1}}
-% ----------------------------------------------------------------------------------------
-% Referees
-\define@cmdkey{ref}{first}[]{}
-\define@cmdkey{ref}{second}[]{}
-\define@cmdkey{ref}{third}[]{}
-\newcommand{\Referee}[1]{
-	\setkeys{ref}{#1} 
-}
-\gdef\@Referee{%
-	\key@ifundefined[cmdKV]{ref}{first}{}{Pr\"ufer:& \cmdKV@ref@first}
-	\key@ifundefined[cmdKV]{ref}{second}{}{\\ Pr\"ufer:& \cmdKV@ref@second}
-	\key@ifundefined[cmdKV]{ref}{third}{}{\\ Pr\"ufer:& \cmdKV@ref@third \\}
-}
-% Advisors
-\define@cmdkey{adv}{first}[]{}
-\define@cmdkey{adv}{second}[]{}
-\define@cmdkey{adv}{third}[]{}
-\newcommand{\Advisor}[1]{
-	\setkeys{adv}{#1} 
-}
-\gdef\@Advisor{%
-	\key@ifundefined[cmdKV]{ref}{first}{}{\\}
-	\key@ifundefined[cmdKV]{adv}{first}{}{Betreuer:& \cmdKV@adv@first}
-	\key@ifundefined[cmdKV]{adv}{second}{}{\\ Betreuer:& \cmdKV@adv@second}
-	\key@ifundefined[cmdKV]{adv}{third}{}{\\ Betreuer:& \cmdKV@adv@third \\}
-}
-% Command that places supervisor stuff
-\newcommand{\supervisors}{
-\begin{tabular}{r l}
-	\@Referee
-	\@Advisor
-\end{tabular}
-}
-% ----------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------
 \renewcommand{\maketitle}{
 \begin{titlepage}
 \thispagestyle{empty}
 \textsf{
 \begin{center}
 \vspace*{1cm}
-\huge \textbf{\@title} \\
+{\Huge \textbf{\@title}} \\
 \vspace{2cm}
-\LARGE\textbf{\@thesistype}\\[5mm]
-\Large zur Erlangung des Grades\\[5mm]
-\textbf{\@degree \\[5mm]
-im Studiengang
-\@degprog\\[5mm]
-}
-am Department Mathematik der\\ Friedrich-Alexander-Universit\"at
-Erlangen-N\"urnberg\\[1cm]
-vorgelegt am \textbf{\@subdate} \\[3mm]
-von \textbf{\@author}
+{\LARGE\textbf{\@semester}}\\[5mm]
 \vfill
+{\LARGE\textbf{\@author}}\\
+{\Large\@department}
+\vfill
+{\normalsize Version vom \textbf{\@subdate}}
 \normalsize
-\supervisors
 \end{center}
+%
+\vfill%
 %
 \begin{minipage}{0.36\textwidth}
 \vspace*{10mm}
@@ -395,7 +357,7 @@ von \textbf{\@author}
 	\hypersetup{pdfinfo={
 		Title={\@title},
 		Author={\@author},
-		Subject={\@thesistype},
+		% Subject={\@thesistype},
 		Keywords={\@keywords}}}
 }
 % ########################################################################################

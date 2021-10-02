@@ -36,11 +36,7 @@ with open (path+file_name+extension, 'r' ) as f:
     
     
     # preamble
-    content_new = re.sub(r'((.|\n)*?)\\title', 
-                         r'\\input{preamble}\n\\title', 
-                         content, flags = re.M)
-    
-    content_new = re.sub(r'\\sphinx(.*?)', r'\\\1', content_new, flags = re.M)
+    content_new = re.sub(r'\\sphinx(.*?)', r'\\\1', content, flags = re.M)
     
     # graphics
     content_new = re.sub(r'\\noindent\\includegraphics\{(.*?)\}\n', r'', content_new, flags = re.M)
@@ -119,9 +115,15 @@ for m in m_chapters:
             text_file.write(m)
             chapters.append(chapter_name)
 
-content_main = re.search(r'((.|\n)*?)\\chapter', content_new, flags = re.M)
-with open(path+file_name+"_clean"+extension, "w") as text_file:
-    text_file.write(content_main.group(1)) 
+content_main = re.search(r'((.|\n)*?)\\begin\{document\}', content_new, flags = re.M)
+with open(path+file_name+"_clean"+extension, "w") as text_file:    
+    text_file.write('\\input{preamble}\n')
+    #text_file.write(content_main.group(1))
+    text_file.write('\\begin{document}\n')
+    text_file.write('\\frontmatter\n')
+    text_file.write('\\maketitle\n')  
+    text_file.write('\\tableofcontents\n')
+    text_file.write('\\mainmatter\n')
     for ch in chapters:
       text_file.write('\\input{chapters/'+ch+'}\n')  
     
