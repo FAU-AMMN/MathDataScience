@@ -72,6 +72,11 @@ Dies gilt insbesondere für $n=n_0$. Nun gibt es wegen der Stetigkeit von $f_{n_
  d(f_{n_0}(x),f_{n_0}(y)) < \frac{\epsilon}3,
 ```
 
-gilt für $d(x,y) < \delta$. Aus der Dreiecksungleichung folgt für solche $y$ aber auch\begin{align*} d(f(x),f(y)) &\leq d(f(x),f_{n_0}(y)) + d( f_{n_0}(y),f(y)) \\ &\leq d(f(x),f_{n_0}(x)) + d + d( f_{n_0}(x),f_{n_0}(y)) + f_{n_0}(y),f(y)) \\ &< \frac{\epsilon}3 + \frac{\epsilon}3 + \frac{\epsilon}3 = \epsilon.\end{align*}
+gilt für $d(x,y) < \delta$. Aus der Dreiecksungleichung folgt für solche $y$ aber auch
+
+```{math}
+d(f(x),f(y)) &\leq d(f(x),f_{n_0}(y)) + d( f_{n_0}(y),f(y)) \\ &\leq d(f(x),f_{n_0}(x)) + d + d( f_{n_0}(x),f_{n_0}(y)) + f_{n_0}(y),f(y)) \\ &< \frac{\epsilon}3 + \frac{\epsilon}3 + \frac{\epsilon}3 = \epsilon.
+```
+
 Also ist $f$ stetig.
 ````
