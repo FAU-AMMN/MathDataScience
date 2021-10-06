@@ -250,9 +250,9 @@ Die Bedeutung von _Zuordnung_ ist zwar relativ klar, mathematisch sauberer  ist 
 ````{prf:definition}
 Eine Relation $f \subset M_1 \times M_2$ heißt Funktion (oder Abbildung) von $M_1$ nach $M_2$, wenn
 
-*$i)$ $D(f) = \{m_1 \in M_1~|~\exists m_2 \in M_2: (m_1,m_2) \in f \} = M_1 $
+* $i)$ $D(f) = \{m_1 \in M_1~|~\exists m_2 \in M_2: (m_1,m_2) \in f \} = M_1 $
 
-*$ii)$ $(m,n) \in f$ und $(m,p) \in f$ impliziert $n=p$.\end{*ize}
+* $ii)$ $(m,n) \in f$ und $(m,p) \in f$ impliziert $n=p$.
 ````
 
 Wir nennen $M_1$ den Definitionsbereich und $M_2$ den Bildbereich von $f$.
@@ -311,8 +311,14 @@ Mit Hilfe von Abbildungen können wir die Mächtigkeit, d.h. die Größe, von Me
 Die _kleinste_ undendliche Menge ist $\N$, wir definieren die Mächtigkeit von $\N$ als $\aleph_0$ (gesprochen Aleph Null) als kleinstes Maß für Unendlichkeit, diese nennen wir erste Kardinalzahl. Mengen $M$, die durch eine Bijektion auf $\N$ abgebildet werden können, nennen wir abzählbar (oder abzählbar unendlich) und schreiben dementsprechend $|M|=\aleph_0$.
 
 ````{prf:example}
-Es gilt $|\Z|=\aleph_0$. Wir betrachten dazu die bijektive Abbildung $f: \N \rightarrow \Z$,$$ f(n) = \left\{ \begin{array}{ll} \frac{n}2 & \text{falls } n \text{ gerade} \\
-- \frac{n+1}2 & \text{falls } n \text{ ungerade} \end{array} \right. $$
+Es gilt $|\Z|=\aleph_0$. Wir betrachten dazu die bijektive Abbildung $f: \N \rightarrow \Z$,
+
+```{math}
+f(n) = 
+\begin{pmatrix} \frac{n}2 & \text{falls } n \text{ gerade}\\
+- \frac{n+1}2 & \text{falls }n\text{ ungerade} 
+\end{pmatrix}.
+```
 ````
 
 ````{prf:example}

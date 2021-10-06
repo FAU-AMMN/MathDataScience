@@ -607,8 +607,10 @@ Die Bedeutung von <em>Zuordnung</em> ist zwar relativ klar, mathematisch saubere
 <p class="admonition-title"><span class="caption-number">Definition 2.7 </span></p>
 <div class="definition-content section" id="proof-content">
 <p>Eine Relation <span class="math notranslate nohighlight">\(f \subset M_1 \times M_2\)</span> heißt Funktion (oder Abbildung) von <span class="math notranslate nohighlight">\(M_1\)</span> nach <span class="math notranslate nohighlight">\(M_2\)</span>, wenn</p>
-<p>*<span class="math notranslate nohighlight">\(i)\)</span> <span class="math notranslate nohighlight">\(D(f) = \{m_1 \in M_1~|~\exists m_2 \in M_2: (m_1,m_2) \in f \} = M_1 \)</span></p>
-<p>*<span class="math notranslate nohighlight">\(ii)\)</span> <span class="math notranslate nohighlight">\((m,n) \in f\)</span> und <span class="math notranslate nohighlight">\((m,p) \in f\)</span> impliziert <span class="math notranslate nohighlight">\(n=p\)</span>.\end{*ize}</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i)\)</span> <span class="math notranslate nohighlight">\(D(f) = \{m_1 \in M_1~|~\exists m_2 \in M_2: (m_1,m_2) \in f \} = M_1 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(ii)\)</span> <span class="math notranslate nohighlight">\((m,n) \in f\)</span> und <span class="math notranslate nohighlight">\((m,p) \in f\)</span> impliziert <span class="math notranslate nohighlight">\(n=p\)</span>.</p></li>
+</ul>
 </div>
 </div><p>Wir nennen <span class="math notranslate nohighlight">\(M_1\)</span> den Definitionsbereich und <span class="math notranslate nohighlight">\(M_2\)</span> den Bildbereich von <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -649,10 +651,12 @@ Die <em>kleinste</em> undendliche Menge ist <span class="math notranslate nohigh
 <div class="proof example admonition" id="example-12">
 <p class="admonition-title"><span class="caption-number">Example 2.3 </span></p>
 <div class="example-content section" id="proof-content">
-<p>Es gilt <span class="math notranslate nohighlight">\(|\Z|=\aleph_0\)</span>. Wir betrachten dazu die bijektive Abbildung <span class="math notranslate nohighlight">\(f: \N \rightarrow \Z\)</span>,$$ f(n) = \left{ \begin{array}{ll} \frac{n}2 &amp; \text{falls } n \text{ gerade} \</p>
-<ul class="simple">
-<li><p>\frac{n+1}2 &amp; \text{falls } n \text{ ungerade} \end{array} \right. $$</p></li>
-</ul>
+<p>Es gilt <span class="math notranslate nohighlight">\(|\Z|=\aleph_0\)</span>. Wir betrachten dazu die bijektive Abbildung <span class="math notranslate nohighlight">\(f: \N \rightarrow \Z\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(n) = 
+\begin{pmatrix} \frac{n}2 &amp; \text{falls } n \text{ gerade}\\
+- \frac{n+1}2 &amp; \text{falls }n\text{ ungerade} 
+\end{pmatrix}.\end{split}\]</div>
 </div>
 </div><div class="proof example admonition" id="example-13">
 <p class="admonition-title"><span class="caption-number">Example 2.4 </span></p>
