@@ -63,7 +63,7 @@ Sei $f_n: M \subset X \rightarrow Y$ eine Folge stetiger Funktionen zwischen met
  Sei $x \in M$. Wegen der gleichmäßigen Konvergenz von $f_n$ gibt es für $\epsilon > 0$ ein $n_0 \in \N$, sodass für alle $n \geq n_0$ gilt:
 
 ```{math}
- d(f_n(x),f(x)) < \frac{\epsilon}3.
+ d(f_n(x),f(x)) < \frac{\epsilon} 3.
 ```
 
 Dies gilt insbesondere für $n=n_0$. Nun gibt es wegen der Stetigkeit von $f_{n_0}$ zu $\epsilon > 0$ ein $\delta > 0$, sodas
