@@ -6,7 +6,7 @@ execute:
   execute_notebooks: off
 
 repository:
-  url: https://github.com/https://github.com/FAU-AMMN/MathDataScience
+  url: https://github.com/FAU-AMMN/MathDataScience
 
 html:
   favicon: "img/cropped-fau_solo_aufblau_192x192_rgb-180x180.png"
