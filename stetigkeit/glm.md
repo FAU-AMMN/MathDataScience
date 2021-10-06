@@ -66,7 +66,7 @@ Sei $f_n: M \subset X \rightarrow Y$ eine Folge stetiger Funktionen zwischen met
  d(f_n(x),f(x)) < \frac{\epsilon} 3.
 ```
 
-Dies gilt insbesondere für $n=n_0$. Nun gibt es wegen der Stetigkeit von $f_{n_0}$ zu $\epsilon > 0$ ein $\delta > 0$, sodas
+Dies gilt insbesondere für $n=n_0$. Nun gibt es wegen der Stetigkeit von $f_{n_0}$ zu $\epsilon > 0$ ein $\delta > 0$, sodass
 
 ```{math}
  d(f_{n_0}(x),f_{n_0}(y)) < \frac{\epsilon}3,
